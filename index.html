@@ -1,59 +1,100 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>BHARAT FLIX</title>
 <link rel="manifest" href="manifest.json">
 <style>
 body{margin:0;background:#000;color:#fff;font-family:Arial}
-.header{padding:12px;background:linear-gradient(90deg,#FF9933,#fff,#138808);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
-.logo{display:flex;align-items:center;gap:10px;color:#000;font-weight:bold;font-size:22px}
-.logo img{width:42px;height:42px;border-radius:50%;border:2px solid #000;background:#fff;object-fit:cover}
-.search{width:90%;margin:12px 5%;padding:11px;border-radius:20px;border:none;background:#222;color:#fff}
-.card{background:#1a1a1a;margin:12px;border-radius:12px;overflow:hidden;border:1px solid #333}
-.video-box{width:100%;aspect-ratio:16/9;background:#000;position:relative}
+.header{padding:10px;background:#111;display:flex;align-items:center;gap:8px}
+.logo{color:gold;font-weight:bold;display:flex;align-items:center;gap:8px;font-size:18px}
+.logo img{width:42px;height:42px;border-radius:10px;border:2px solid gold;background:#000}
+.top-btns{padding:10px;text-align:center}
+.top-btns a{display:inline-block;padding:12px 20px;border-radius:25px;text-decoration:none;font-weight:bold;margin:5px;width:80%}
+.white-btn{background:#fff;color:#000}
+.blue-btn{background:#0066ff;color:#fff}
+.earn{background:#111;border:1px solid gold;margin:10px;padding:10px;border-radius:10px;text-align:center}
+.earn b{color:gold}
+.search{width:90%;margin:10px 5%;padding:12px;border-radius:25px;border:none;background:#222;color:#fff}
+.card{background:#1a1a1a;margin:10px;border-radius:12px;overflow:hidden}
+.video-box{width:100%;aspect-ratio:16/9;background:#000}
 .video-box iframe{width:100%;height:100%;border:none}
-.overlay-top{position:absolute;top:8px;left:8px;background:rgba(0,0,0,0.8);color:#fff;padding:5px 10px;border-radius:6px;font-size:13px;font-weight:bold;border:1px solid #FF9933}
-.overlay-bottom{position:absolute;bottom:5px;right:0px;left:0px;background:linear-gradient(90deg,#000,#e50914);color:#fff;padding:8px;border-radius:0px;font-size:14px;font-weight:bold;text-align:center;letter-spacing:1px}
 .info{padding:12px}
 .title{font-size:16px;font-weight:bold}
-.views{font-size:13px;color:#aaa;margin:6px 0}
-.btns{display:flex;gap:8px;margin-top:10px}
-.btns button{background:#2a2a2a;color:#fff;border:none;padding:8px 14px;border-radius:20px}
+.channel{display:flex;align-items:center;gap:10px;margin:10px 0}
+.channel img{width:40px;height:40px;border-radius:50%;background:gold}
+.sub-btn{background:red;color:#fff;border:none;padding:6px 15px;border-radius:20px;font-weight:bold;margin-left:auto}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.stats button{background:#2a2a2a;color:#fff;border:none;padding:8px 14px;border-radius:20px;display:flex;align-items:center;gap:5px}
+.stats button.like{background:#333}
+.comment-box{background:#111;margin-top:10px;padding:10px;border-radius:10px}
+.comment-box input{width:95%;padding:10px;border-radius:20px;border:none;background:#222;color:#fff}
 </style>
 </head>
 <body>
+
 <div class="header">
-<div class="logo"><img src="logo.jpg"> BHARAT FLIX</div>
-<div style="background:#000;color:#fff;padding:5px 12px;border-radius:15px;font-size:12px">🇮🇳 JAI HIND</div>
+<div class="logo">
+<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Crect width='100' height='100' rx='20' fill='%23000'/%3E%3Ctext x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-size='50' fill='gold'%3EB%3C/text%3E%3C/svg%3E">
+BHARAT FLIX
+</div>
 </div>
 
-<input class="search" id="s" placeholder="🔍 फिल्म खोजें..." onkeyup="searchF()">
+<div class="top-btns">
+<a class="white-btn" href="#" onclick="alert('App Install होगा!')">📲 App Install करो</a>
+<a class="blue-btn" href="#" onclick="document.getElementById('downForm').style.display='flex'">⬇️ Download Form भरो</a>
+</div>
+
+<div class="earn">
+<b>💰 50% कमाओ</b><br>
+अपने दोस्तों को शेयर करो और 50% कमाओ!
+</div>
+
+<input class="search" placeholder="🔍 फिल्म खोजें...">
 
 <div class="card">
 <div class="video-box">
-<iframe src="https://www.youtube-nocookie.com/embed/ScMzIvxBSi4?modestbranding=1&rel=0&controls=1&showinfo=0" allowfullscreen></iframe>
-<div class="overlay-top">🇮🇳 BHARAT FLIX</div>
-<div class="overlay-bottom">🇮🇳 BHARAT FLIX ORIGINAL - JAI HIND 🇮🇳</div>
+<iframe src="https://www.youtube.com/embed/ScMzIvxBSi4" allowfullscreen></iframe>
 </div>
 <div class="info">
-<div class="title">Bharat Film 1 - ईमानदार सिनेमा</div>
-<div class="views">👁️ <span class="vc">12,545</span> views | ❤️ <span class="lc">0</span></div>
-<div class="btns">
-<button onclick="like(this)">👍 Like</button>
-<button onclick="sub(this)">🔔 Subscribe</button>
-<button onclick="share()">↗️ Share</button>
+<div class="title">BHARAT FLIX - देसी OTT | India's Own Netflix</div>
+
+<div class="channel">
+<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Ccircle cx='50' cy='50' r='50' fill='gold'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' font-size='40'%3EB%3C/text%3E%3C/svg%3E">
+<div><b>Bharat Flix</b><br><small>1.2M subscribers</small></div>
+<button class="sub-btn">Subscribe</button>
 </div>
+
+<div class="stats">
+<button class="like">👁️ 1.5M Views</button>
+<button class="like">👍 25K Like</button>
+<button>👎 Dislike</button>
+<button>💬 Comment</button>
+<button>↗️ Share</button>
+<button>⬇️ Download</button>
+</div>
+
+<div class="comment-box">
+<b>Comments 1.2K</b><br><br>
+<input placeholder="Comment लिखें...">
+<br><br>
+👤 <b>Raju:</b> बहुत बढ़िया ऐप है! ❤️<br><br>
+👤 <b>Pooja:</b> Full HD में चल रहा है!
+</div>
+
 </div>
 </div>
 
-<script>
-function like(b){let s=b.parentElement.parentElement.querySelector('.lc');s.innerText=parseInt(s.innerText)+1;b.innerText="❤️ Liked";b.style.background="#e50914";}
-function sub(b){b.innerText="✅ Subscribed";b.style.background="#138808";alert("धन्यवाद भैया जी 🙏");}
-function share(){navigator.share?navigator.share({title:'BHARAT FLIX',url:location.href}):alert(location.href)}
-function searchF(){let q=document.getElementById('s').value.toLowerCase();document.querySelectorAll('.card').forEach(c=>{c.style.display=c.innerText.toLowerCase().includes(q)?"":"none"});}
-let v=localStorage.getItem('bf_views')||12545;v=parseInt(v)+1;localStorage.setItem('bf_views',v);document.querySelectorAll('.vc').forEach(e=>e.innerText=v.toLocaleString('en-IN'));
-</script>
+<div id="downForm" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);justify-content:center;align-items:center;z-index:999">
+<div style="background:#222;padding:20px;border-radius:15px;width:85%;text-align:center">
+<h3 style="color:gold">Download Form</h3>
+<input style="width:90%;padding:10px;margin:5px;border-radius:8px;border:none" placeholder="आपका नाम">
+<input style="width:90%;padding:10px;margin:5px;border-radius:8px;border:none" placeholder="मोबाइल नंबर">
+<button onclick="alert('Form भेज दिया!');document.getElementById('downForm').style.display='none'" style="width:92%;padding:12px;background:gold;border:none;border-radius:8px;font-weight:bold;margin-top:10px">Submit</button>
+<button onclick="document.getElementById('downForm').style.display='none'" style="width:92%;padding:10px;background:#333;color:#fff;border:none;border-radius:8px;margin-top:8px">बंद करो</button>
+</div>
+</div>
+
 </body>
   </html>
