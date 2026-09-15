@@ -2,20 +2,81 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bharat Flix - ईमानदार फिल्म समीक्षा</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BHARAT FLIX - भारत की ईमानदार फिल्म समीक्षा</title>
 <style>
-body{background:#000;color:#fff;font-family:sans-serif;text-align:center;padding:15px}
-h1{color:#e50914;font-size:40px}
-.box{background:#222;padding:15px;margin:15px auto;border-radius:10px;max-width:400px}
-a{background:#e50914;color:#fff;padding:10px 20px;text-decoration:none;border-radius:5px;display:inline-block;margin-top:10px}
+body{margin:0;background:#000;color:#fff;font-family:sans-serif;text-align:center}
+.header{padding:15px;background:#111;position:sticky;top:0;z-index:10}
+.logo{color:#e50914;font-size:32px;font-weight:bold}
+.search{width:90%;padding:10px;border-radius:20px;border:0;margin:10px;background:#222;color:#fff}
+.card{background:#1a1a1a;margin:12px;border-radius:12px;padding:12px;text-align:left}
+.video-box{width:100%;aspect-ratio:16/9;background:#111;border-radius:10px;overflow:hidden}
+.video-box iframe{width:100%;height:100%;border:0}
+.btns{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.btns button{background:#2a2a2a;color:#fff;border:0;padding:8px 14px;border-radius:20px}
+.btns .like.active{color:#e50914}
+.red-btn{background:#e50914;color:#fff;border:0;padding:10px 20px;border-radius:8px;width:100%;margin-top:8px}
+.green-btn{background:#1db954;color:#fff;border:0;padding:10px 20px;border-radius:8px}
+input,textarea{width:92%;padding:10px;margin:6px 0;border-radius:8px;border:0;background:#222;color:#fff}
+.install{background:#fff;color:#000;font-weight:bold}
+.footer{color:#777;font-size:12px;padding:20px}
 </style>
 </head>
 <body>
-<h1>BHARAT FLIX</h1>
-<p>भारत की ईमानदार फिल्म समीक्षा</p>
-<div class="box"><h2>Pushpa 2 - समीक्षा</h2><p>2024 | 4.5/5</p><a href="https://www.netflix.com/in/">Netflix पर देखें</a></div>
-<div class="box"><h2>Stree 2 - समीक्षा</h2><p>2024 | 4.7/5</p><a href="https://www.jiocinema.com/">JioCinema पर देखें</a></div>
-<p style="color:#aaa;font-size:13px;margin-top:30px">Disclaimer: हम Download नहीं कराते, सिर्फ बताते हैं कहाँ देखें</p>
+
+<div class="header">
+<div class="logo">BHARAT FLIX</div>
+<div>भारत की ईमानदार फिल्म समीक्षा</div>
+<input class="search" placeholder="🔍 फिल्म या वीडियो Search करो...">
+<button class="green-btn install" onclick="alert('App Install - 3 बिंदु दबा के Add to Home Screen करो')">📲 Install App</button>
+</div>
+
+<div class="card">
+<h2>🔥 आज की Featured Video</h2>
+<div class="video-box">
+<iframe src="https://drive.google.com/file/d/19rIWTYNfluue3z4QaqebYX9npZGaaj92/preview" allowfullscreen></iframe>
+</div>
+<h3>Pushpa 2 Trailer Review</h3>
+<div class="btns">
+<button class="like" onclick="this.classList.toggle('active');this.innerText=this.classList.contains('active')?'👍 Liked (1)':'👍 Like'">👍 Like</button>
+<button onclick="this.innerText='👎 Disliked'">👎 Dislike</button>
+<button onclick="alert('Subscribed!')">🔔 Subscribe</button>
+<button onclick="navigator.share?navigator.share({title:'BHARAT FLIX',url:location.href}):alert(location.href)">↗️ Share</button>
+<button onclick="alert('Video Download जल्द आएगा')">⬇️ Download</button>
+</div>
+<div style="margin-top:10px">
+<input placeholder="Comment लिखो...">
+<button class="red-btn" style="width:auto">Comment करो</button>
+</div>
+</div>
+
+<div class="card">
+<h2>📤 अपना Video Upload करो और कमाओ</h2>
+<p>आपकी Video से जो भी कमाई होगी, <b>50% आपका और 50% BHARAT FLIX का</b> होगा। Payment हर महीने 5 तारीख को।</p>
+<input placeholder="आपका नाम">
+<input placeholder="YouTube / Drive Video Link">
+<textarea placeholder="Video का Title"></textarea>
+<input type="file" accept="video/*">
+<button class="red-btn">🚀 Video Upload करो</button>
+<p style="font-size:11px;color:#aaa">Note: अश्लील / चोरी का Video Upload न करें। Original Video ही भेजें।</p>
+</div>
+
+<div class="card">
+<h2>🎬 Pushpa 2 - समीक्षा 4.5/5</h2>
+<p>2024 | Action</p>
+<button class="red-btn">▶️ Netflix पर देखें</button>
+</div>
+
+<div class="card">
+<h2>🎬 Stree 2 - समीक्षा 4.7/5</h2>
+<p>2024 | Horror Comedy</p>
+<button class="red-btn">▶️ JioCinema पर देखें</button>
+</div>
+
+<div class="footer">
+Disclaimer: हम किसी भी फिल्म को Download नहीं कराते, सिर्फ समीक्षा करते हैं।<br>
+© 2026 BHARAT FLIX
+</div>
+
 </body>
-</html>
+  </html>पर 
