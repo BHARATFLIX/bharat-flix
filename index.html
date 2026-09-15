@@ -2,42 +2,28 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>BHARAT FLIX</title>
 <style>
-body{background:#000;color:#fff;text-align:center;font-family:Arial;margin:0;padding:20px 10px}
-.logo{width:160px;border-radius:25px;border:4px solid gold;margin-top:15px}
-h1{color:gold;margin:10px 0 5px;font-size:32px}
-.tag{color:#aaa;margin-bottom:20px}
-.btn{display:block;width:90%;max-width:350px;margin:12px auto;padding:16px;border-radius:35px;text-decoration:none;font-weight:bold;font-size:17px}
-.red{background:red;color:#fff}
-.white{background:#fff;color:#000}
-.blue{background:#0088cc;color:#fff}
-.green{background:#25D366;color:#fff}
-.pink{background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff}
-.fb{background:#1877f2;color:#fff}
-.orange{background:#ff6a00;color:#fff}
-.gold{background:gold;color:#000}
-.black{border:2px solid gold;color:gold;background:#111}
-.footer{color:#555;margin-top:30px;font-size:12px}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:Arial;background:#0f0f0f;color:#fff}
+#gate1,#gate2{position:fixed;inset:0;background:#000;z-index:100;display:flex;align-items:center;justify-content:center;padding:20px}
+.box{background:#111;border:2px solid #ff9933;border-radius:22px;padding:26px;width:100%;max-width:380px;text-align:center}
+.logo{width:120px;height:120px;border-radius:22px;border:3px solid gold;object-fit:cover;background:#fff}
+.btn{width:100%;padding:14px;border-radius:30px;font-weight:700;margin:10px 0;display:flex;align-items:center;justify-content:center;gap:10px;text-decoration:none}
+.white{background:#fff;color:#000;border:2px solid gold}.green{background:#25D366;color:#fff;display:none}
+.tricolor-line{height:4px;background:linear-gradient(90deg,#ff9933,#fff,#138808);margin:12px 0}
+.top{display:flex;align-items:center;gap:10px;padding:10px 12px;background:linear-gradient(90deg,#ff9933 0%,#ffffff22 20%,#000 50%,#13880822 90%);border-bottom:3px solid #ff9933;position:sticky;top:0}
+.top img{width:34px;height:34px;border-radius:8px}
+.search{flex:1;background:#121212;border:1px solid #333;border-radius:20px;padding:8px 14px;display:flex}
+.search input{background:transparent;border:none;color:#fff;width:100%;outline:none}
+.chips{display:flex;gap:8px;overflow:auto;padding:10px 12px}
+.chips span{background:#272727;padding:6px 12px;border-radius:8px;font-size:12px;white-space:nowrap}.active{background:#fff!important;color:#000!important}
+.card{display:flex;gap:10px;padding:10px 12px;border-bottom:1px solid #1a1a1a}
+.thumb{width:168px;height:94px;background:#212121;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:26px}
+.info{flex:1;text-align:left}.info h4{font-size:14px}.info p{font-size:11px;color:#aaa;margin-top:4px}
 </style>
 </head>
 <body>
-<img src="logo.png" class="logo">
-<h1>BHARAT FLIX</h1>
-<p class="tag">@HARHARMAHADEV0111</p>
 
-<a class="btn red" href="https://www.youtube.com/@HARHARMAHADEV0111" target="_blank">🔴 1. YouTube Channel</a>
-<a class="btn white" href="https://drive.google.com/uc?export=download&id=134vw8oxdPhHCqcwgEu0gjW7sID9AqmZ1">⬇️ 2. App Install करो</a>
-<a class="btn blue" href="https://www.dropbox.com/request/lw3xlosoi8z177ahovzm" target="_blank">📤 3. वीडियो भेजें</a>
-<a class="btn blue" href="https://t.me/HARHARMAHADEV0111" target="_blank">✈️ 4. Telegram</a>
-<a class="btn green" href="https://whatsapp.com/channel/0029VaHARHARMAHADEV0111" target="_blank">💬 5. WhatsApp</a>
-<a class="btn pink" href="https://instagram.com/HARHARMAHADEV0111" target="_blank">📸 6. Instagram</a>
-<a class="btn fb" href="https://facebook.com/HARHARMAHADEV0111" target="_blank">👍 7. Facebook</a>
-<a class="btn orange" href="https://www.youtube.com/@HARHARMAHADEV0111/videos" target="_blank">🎬 8. सभी Videos</a>
-<a class="btn gold" href="https://www.youtube.com/@HARHARMAHADEV0111/about" target="_blank">❤️ 9. Support</a>
-<a class="btn black" href="mailto:harharmahadev0111@gmail.com">📩 10. Contact Us</a>
-
-<p class="footer">© 2026 BHARAT FLIX | Made in Bharat 🇮🇳</p>
-</body>
-</html>
+<div id="gate1"><div class="box">
+<img class="logo" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAwICQsJCAwLCgsODQwOEh4UEhEREiUbHBYeLCcuLisnKyoxN0Y7MTRCNCorPVM+QkhKTk9OLztWXFVMW0ZNTkv/2wBDAQ0ODhIQEiQUFCRLMisyS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0v/wAARCADwAPADASIAAhEBAxEB/8QAGwABAAIDAQEAAAAAAAAAAAAAAAIEAQMFBgf/xABBEAABAwIDBQMKBAMIAwEAAAABAAIDBBEFEiETMVFhkSJBoQYUFzIzVXGBk9EVI7HBJHLwBxZCQ1JTgpI1YuFU/8QAGAEBAQEBAQAAAAAAAAAAAAAAAAECAwT/xAAiEQEBAAIBBAEFAAAAAAAAAAAAAQIRIQMSMVEiBEFhcfD/2gAMAwEAAhEDEQA/APALfBDFJDK58wY9hblYR6wJsbG/dvWhFplekooGVMUfnbSxxaHPAByXJ4HUBQdSQiklm88iMjHgNiAN3C5F/DxVREHSZh1MTHnxKBoLSZCATkdluB/7X3XHf8r16yljpo4iyqinkdmD2x6hlrW17738CtMUEkvqNJHHuW8YfNxYPmg3UeH0c9O2SbFoKeR1/wAp8byRr3kCyxgtDT19W+KqqxTMbE54cS0ZnDc0ZiBr8Vq/D5eLOqfh8vFnVBLEaOnpMnm9fFVFxN2saQWfE7j8iV6TCfJPBK3Co6qo8pYIZnMzOj7I2Z4EEgleZ/D5eLOqfh8vFnVBoqI2RVEsccrZmMeWtkaLB4B3i/Fa1b/D5eLOqfh8vFnVBoqI2RVEsccrZmMeWtkaLB4B3i/Fa1b/D5eLOqfh8vFnVBURW/wAPl4s6p+Hy8WdUFRFb/D5eLOqfh8vFnVBURWnUEw3Bp+BVd7HMdle0g8Cgit9HCyebJLJs2BpJdp4X3rQiC7X0TKV0YiqY5w+47Lh2SDbXXxR+HiKl2z6qnzXsImPDnbjvt8PEKkiDpxYZBJTB/nsbJSzNkcRa9r2vf+joqtPFTOic+eZ7HNzdlrb3008bhVkug7DMIpXSvJxKBkIvlzOGc6O7gbDVo7/8QVanoYaikEgqmNl1BY8htjpbed1r6qhoiCzWQQw1Gzhn2rQO04ttZ3eBqbjmtAaPgooppuZSeYkQMt768FFERm2XwLvYXPhkVBBtJhBVB8pmeIs8hFhswwkEDW9zzXsPRVTe9Zvoj7rHoqpves30R90HkMUnwyagnMcwnqi6IwvMWSQCx2geQADrax5Lgr6b6K6b3rN9EfdPRVTe9Zvoj7oPI4ZVQMex+RkjACCwi9tOC6Damge6Z0sDm5tWBjB2dPjxt4rv+iumG7FZvoj7qY/swj7sZqfpD7oPJUWw84b50DsrG9r6G2l7d17K+ZsKhljtC6doMRfYEA2vnAub63HRd/0YM981P0h91j0Yx++an6Y+6DzclRQPjawUxBbE4Z26EvzEtO/dYgLZHPhccznCCV7XOfZrxfK0tIaN+pDiDfkvQejGP3zU/TH3T0Yx++an6Y+6Dy5fQ+cRO2cuyAG0aNMx1uRqbd2nx3KQkoe1eJ2awsbHLvN9M191u9em9GMfvmp+mPunoxj981P0x90HmzN
