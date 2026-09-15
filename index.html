@@ -3,67 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BHARAT FLIX</title>
+<title>BHARAT FLIX - HAR HAR MAHADEV</title>
+<link rel="manifest" href="manifest.json">
 <style>
-body{margin:0;background:#000;color:#fff;font-family:Arial}
-.header{padding:10px;background:#111;display:flex;align-items:center;gap:10px}
-.header img{width:48px;height:48px;border-radius:10px;border:2px solid gold}
-.logo{color:gold;font-weight:bold;font-size:20px}
-.top-btns{text-align:center;padding:12px}
-.top-btns a{display:inline-block;padding:14px 28px;border-radius:25px;text-decoration:none;font-weight:bold;margin:8px;font-size:16px}
-.white-btn{background:#fff;color:#000}
-.blue-btn{background:#0066ff;color:#fff}
-.earn{background:#111;border:1px solid gold;margin:10px;padding:12px;border-radius:10px;text-align:center}
-.search{width:90%;margin:10px 5%;padding:12px;border-radius:25px;border:none;background:#222;color:#fff}
-.card{background:#1a1a1a;margin:12px;border-radius:12px;overflow:hidden}
-.video-box{width:100%;aspect-ratio:16/9;background:#000}
-.video-box iframe{width:100%;height:100%;border:none}
-.info{padding:12px}
-.channel{display:flex;align-items:center;gap:10px;margin:10px 0}
-.channel img{width:36px;height:36px;border-radius:50%;border:1px solid gold}
-.sub-btn{background:red;color:#fff;border:none;padding:6px 16px;border-radius:20px;font-weight:bold;margin-left:auto}
-.stats{display:flex;gap:8px;flex-wrap:wrap}
-.stats button{background:#2a2a2a;color:#fff;border:none;padding:8px 14px;border-radius:20px}
-.comment-box{margin-top:10px;background:#111;padding:10px;border-radius:10px}
-.comment-box input{width:95%;padding:10px;border-radius:20px;border:none;background:#222;color:#fff}
-.small{font-size:11px;color:#888;margin-top:6px}
+body{background:#000;color:#fff;text-align:center;font-family:Arial;margin:0;padding:20px 10px}
+.logo{width:160px;border-radius:25px;border:4px solid gold;box-shadow:0 0 20px gold;margin-top:15px}
+h1{color:gold;margin:10px 0 5px;font-size:32px;letter-spacing:2px}
+.tag{color:#aaa;margin-bottom:20px}
+.btn{display:block;width:90%;max-width:350px;margin:12px auto;padding:16px;border-radius:35px;text-decoration:none;font-weight:bold;font-size:17px}
+.btn:active{transform:scale(0.95)}
+.red{background:#ff0000;color:#fff}
+.white{background:#fff;color:#000}
+.blue{background:#0088cc;color:#fff}
+.green{background:#25D366;color:#fff}
+.pink{background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff}
+.fb{background:#1877f2;color:#fff}
+.orange{background:#ff6a00;color:#fff}
+.gold{background:gold;color:#000}
+.black{border:2px solid gold;color:gold;background:#111}
+.footer{color:#555;margin-top:30px;font-size:12px}
 </style>
 </head>
 <body>
-<div class="header">
-<img src="logo.png">
-<div class="logo">BHARAT FLIX</div>
-</div>
-<div class="top-btns">
-<a href="https://drive.google.com/uc?export=download&id=134vw8oxdPhHCqcwgEu0gjW7sID9AqmZ1" class="white-btn">⬇️ App Install करो - फ्री में</a>
-<p class="small">Size: ~15MB | Version 1.0 | 100% Safe</p>
-</div>
-<div class="top-btns" style="padding-top:0">
-<a href="https://www.dropbox.com/request/lw3xlosoi8z177ahovzm" target="_blank" class="blue-btn">📤 अपना वीडियो Bharat Flix को भेजें</a>
-</div>
-<div class="earn"><b>💰 50% कमाओ:</b> हर शेयर पर कमाई!</div>
-<input class="search" placeholder="Search movies...">
-<div id="videos"></div>
-<script>
-const videos=[
-{title:"BHARAT FLIX Trailer", id:"dQw4w9WgXcQ", views:"1.2M"},
-{title:"New Action Movie 2026", id:"jNQXAC9IVRw", views:"856K"},
-{title:"Comedy Web Series", id:"9bZkp7q19f0", views:"2.1M"}
-];
-let likes={};
-function load(){
-let h="";
-videos.forEach((v,i)=>{
-if(!likes[i])likes[i]={like:1250,dislike:12,sub:false,liked:false};
-h+=`<div class="card"><div class="video-box"><iframe src="https://www.youtube.com/embed/${v.id}" allowfullscreen></iframe></div><div class="info"><b>${v.title}</b><div class="channel"><img src="logo.png"><span>BHARAT FLIX</span><button class="sub-btn" id="sub${i}" onclick="subscribe(${i})">${likes[i].sub?'Subscribed ✓':'Subscribe'}</button></div><div class="stats"><button onclick="like(${i})">👍 <span id="like${i}">${likes[i].like}</span></button><button onclick="dislike(${i})">👎 <span id="dislike${i}">${likes[i].dislike}</span></button><button>👁️ ${v.views} Views</button><button>🔗 Share</button></div><div class="comment-box"><input placeholder="Add a comment..." onkeypress="if(event.key==='Enter')addComment(this,${i})"><div id="comments${i}"><div>👤 User: Super app! 🔥</div></div></div></div></div>`;
-});
-document.getElementById('videos').innerHTML=h;
-}
-function like(i){if(!likes[i].liked){likes[i].like++;likes[i].liked=true;}else{likes[i].like--;likes[i].liked=false;}document.getElementById('like'+i).innerText=likes[i].like;}
-function dislike(i){likes[i].dislike++;document.getElementById('dislike'+i).innerText=likes[i].dislike;}
-function subscribe(i){likes[i].sub=!likes[i].sub;document.getElementById('sub'+i).innerText=likes[i].sub?'Subscribed ✓':'Subscribe';}
-function addComment(el,i){if(el.value.trim()!=""){let d=document.createElement('div');d.innerText='👤 You: '+el.value;document.getElementById('comments'+i).prepend(d);el.value='';}}
-load();
-</script>
+<img src="logo.png" class="logo">
+<h1>BHARAT FLIX</h1>
+<p class="tag">@HARHARMAHADEV0111 | HAR HAR MAHADEV</p>
+<a class="btn red" href="https://www.youtube.com/@HARHARMAHADEV0111" target="_blank">🔴 1. YouTube Channel</a>
+<a class="btn white" href="https://drive.google.com/uc?export=download&id=134vw8oxdPhHCqcwgEu0gjW7sID9AqmZ1">⬇️ 2. App Install करो</a>
+<a class="btn blue" href="https://www.dropbox.com/request/lw3xlosoi8z177ahovzm" target="_blank">📤 3. वीडियो भेजें</a>
+<a class="btn blue" href="https://t.me/HARHARMAHADEV0111" target="_blank">✈️ 4. Telegram</a>
+<a class="btn green" href="https://whatsapp.com/channel/0029VaHARHARMAHADEV0111" target="_blank">💬 5. WhatsApp</a>
+<a class="btn pink" href="https://instagram.com/HARHARMAHADEV0111" target="_blank">📸 6. Instagram</a>
+<a class="btn fb" href="https://facebook.com/HARHARMAHADEV0111" target="_blank">👍 7. Facebook</a>
+<a class="btn orange" href="https://www.youtube.com/@HARHARMAHADEV0111/videos" target="_blank">🎬 8. सभी Videos</a>
+<a class="btn gold" href="https://www.youtube.com/@HARHARMAHADEV0111/about" target="_blank">❤️ 9. Support</a>
+<a class="btn black" href="mailto:harharmahadev0111@gmail.com">📩 10. Contact Us</a>
+<p class="footer">© 2026 BHARAT FLIX | Made in Bharat 🇮🇳<br>HAR HAR MAHADEV</p>
 </body>
-  </html>
+  </html>{
+  "name": "BHARAT FLIX - HAR HAR MAHADEV",
+  "short_name": "BHARAT FLIX",
+  "icons": [{"src": "logo.png","sizes": "512x512","type": "image/png"}],
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#FFD700"
+}
