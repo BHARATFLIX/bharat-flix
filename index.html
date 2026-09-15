@@ -1,100 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BHARAT FLIX</title>
 <link rel="manifest" href="manifest.json">
 <style>
 body{margin:0;background:#000;color:#fff;font-family:Arial}
-.header{padding:10px;background:#111;display:flex;align-items:center;gap:8px}
-.logo{color:gold;font-weight:bold;display:flex;align-items:center;gap:8px;font-size:18px}
+.header{padding:12px;background:#111;display:flex;align-items:center;gap:10px}
+.logo{color:gold;font-weight:bold;font-size:18px;display:flex;align-items:center;gap:8px}
 .logo img{width:42px;height:42px;border-radius:10px;border:2px solid gold;background:#000}
-.top-btns{padding:10px;text-align:center}
-.top-btns a{display:inline-block;padding:12px 20px;border-radius:25px;text-decoration:none;font-weight:bold;margin:5px;width:80%}
+.top-btns{text-align:center;padding:10px}
+.top-btns a{display:inline-block;padding:12px 18px;border-radius:25px;text-decoration:none;font-weight:bold;margin:6px}
 .white-btn{background:#fff;color:#000}
 .blue-btn{background:#0066ff;color:#fff}
-.earn{background:#111;border:1px solid gold;margin:10px;padding:10px;border-radius:10px;text-align:center}
-.earn b{color:gold}
+.earn{background:#111;border:1px solid gold;margin:10px;padding:12px;border-radius:10px;text-align:center}
 .search{width:90%;margin:10px 5%;padding:12px;border-radius:25px;border:none;background:#222;color:#fff}
-.card{background:#1a1a1a;margin:10px;border-radius:12px;overflow:hidden}
+.card{background:#1a1a1a;margin:12px;border-radius:12px;overflow:hidden}
 .video-box{width:100%;aspect-ratio:16/9;background:#000}
 .video-box iframe{width:100%;height:100%;border:none}
 .info{padding:12px}
-.title{font-size:16px;font-weight:bold}
 .channel{display:flex;align-items:center;gap:10px;margin:10px 0}
-.channel img{width:40px;height:40px;border-radius:50%;background:gold}
-.sub-btn{background:red;color:#fff;border:none;padding:6px 15px;border-radius:20px;font-weight:bold;margin-left:auto}
-.stats{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
-.stats button{background:#2a2a2a;color:#fff;border:none;padding:8px 14px;border-radius:20px;display:flex;align-items:center;gap:5px}
-.stats button.like{background:#333}
-.comment-box{background:#111;margin-top:10px;padding:10px;border-radius:10px}
+.channel img{width:36px;height:36px;border-radius:50%;background:gold}
+.sub-btn{background:red;color:#fff;border:none;padding:6px 16px;border-radius:20px;font-weight:bold;margin-left:auto}
+.stats{display:flex;gap:8px;flex-wrap:wrap}
+.stats button{background:#2a2a2a;color:#fff;border:none;padding:8px 14px;border-radius:20px}
+.comment-box{margin-top:10px;background:#111;padding:10px;border-radius:10px}
 .comment-box input{width:95%;padding:10px;border-radius:20px;border:none;background:#222;color:#fff}
 </style>
 </head>
 <body>
-
 <div class="header">
 <div class="logo">
-<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Crect width='100' height='100' rx='20' fill='%23000'/%3E%3Ctext x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-size='50' fill='gold'%3EB%3C/text%3E%3C/svg%3E">
+<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MiIgaGVpZ2h0PSI0MiI+PHJlY3Qgd2lkdGg9IjQyIiBoZWlnaHQ9IjQyIiByeD0iMTAiIGZpbGw9IiMwMDAiIHN0cm9rZT0iI2ZmZDcwMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iNTAlIiB5PSI1OCUiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiNmZmQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkI8L3RleHQ+PC9zdmc+" alt="B">
 BHARAT FLIX
 </div>
 </div>
-
 <div class="top-btns">
-<a class="white-btn" href="#" onclick="alert('App Install होगा!')">📲 App Install करो</a>
-<a class="blue-btn" href="#" onclick="document.getElementById('downForm').style.display='flex'">⬇️ Download Form भरो</a>
+<a href="#" class="white-btn">⬇ Download App</a>
+<a href="#" class="blue-btn">📤 Share & Earn 50%</a>
 </div>
-
-<div class="earn">
-<b>💰 50% कमाओ</b><br>
-अपने दोस्तों को शेयर करो और 50% कमाओ!
-</div>
-
-<input class="search" placeholder="🔍 फिल्म खोजें...">
-
-<div class="card">
-<div class="video-box">
-<iframe src="https://www.youtube.com/embed/ScMzIvxBSi4" allowfullscreen></iframe>
-</div>
-<div class="info">
-<div class="title">BHARAT FLIX - देसी OTT | India's Own Netflix</div>
-
-<div class="channel">
-<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Ccircle cx='50' cy='50' r='50' fill='gold'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' font-size='40'%3EB%3C/text%3E%3C/svg%3E">
-<div><b>Bharat Flix</b><br><small>1.2M subscribers</small></div>
-<button class="sub-btn">Subscribe</button>
-</div>
-
-<div class="stats">
-<button class="like">👁️ 1.5M Views</button>
-<button class="like">👍 25K Like</button>
-<button>👎 Dislike</button>
-<button>💬 Comment</button>
-<button>↗️ Share</button>
-<button>⬇️ Download</button>
-</div>
-
-<div class="comment-box">
-<b>Comments 1.2K</b><br><br>
-<input placeholder="Comment लिखें...">
-<br><br>
-👤 <b>Raju:</b> बहुत बढ़िया ऐप है! ❤️<br><br>
-👤 <b>Pooja:</b> Full HD में चल रहा है!
-</div>
-
-</div>
-</div>
-
-<div id="downForm" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);justify-content:center;align-items:center;z-index:999">
-<div style="background:#222;padding:20px;border-radius:15px;width:85%;text-align:center">
-<h3 style="color:gold">Download Form</h3>
-<input style="width:90%;padding:10px;margin:5px;border-radius:8px;border:none" placeholder="आपका नाम">
-<input style="width:90%;padding:10px;margin:5px;border-radius:8px;border:none" placeholder="मोबाइल नंबर">
-<button onclick="alert('Form भेज दिया!');document.getElementById('downForm').style.display='none'" style="width:92%;padding:12px;background:gold;border:none;border-radius:8px;font-weight:bold;margin-top:10px">Submit</button>
-<button onclick="document.getElementById('downForm').style.display='none'" style="width:92%;padding:10px;background:#333;color:#fff;border:none;border-radius:8px;margin-top:8px">बंद करो</button>
-</div>
-</div>
-
+<div class="earn"><b>💰 50% कमाओ:</b> हर शेयर पर कमाई!</div>
+<input class="search" placeholder="Search movies...">
+<div id="videos"></div>
+<script>
+const videos=[
+{title:"BHARAT FLIX Trailer", id:"dQw4w9WgXcQ", views:"1.2M"},
+{title:"New Action Movie 2026", id:"jNQXAC9IVRw", views:"856K"},
+{title:"Comedy Web Series", id:"9bZkp7q19f0", views:"2.1M"}
+];
+let likes={};
+function load(){
+let h="";
+videos.forEach((v,i)=>{
+if(!likes[i])likes[i]={like:1250,dislike:12,sub:false,liked:false};
+h+=`<div class="card"><div class="video-box"><iframe src="https://www.youtube.com/embed/${v.id}" allowfullscreen></iframe></div><div class="info"><b>${v.title}</b><div class="channel"><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzYiIGhlaWdodD0iMzYiIHZpZXdCb3g9IjAgMCAzNiAzNiI+PGNpcmNsZSBjeD0iMTgiIGN5PSIxOCIgcj0iMTgiIGZpbGw9IiNmZmQ3MDAiLz48dGV4dCB4PSI1MCUiIHk9IjU4JSIgZmlsbD0iIzAwMCIgZm9udC13ZWlnaHQ9IjcwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+QjwvdGV4dD48L3N2Zz4="><span>BHARAT FLIX</span><button class="sub-btn" id="sub${i}" onclick="subscribe(${i})">${likes[i].sub?'Subscribed ✓':'Subscribe'}</button></div><div class="stats"><button onclick="like(${i})">👍 <span id="like${i}">${likes[i].like}</span></button><button onclick="dislike(${i})">👎 <span id="dislike${i}">${likes[i].dislike}</span></button><button>👁️ ${v.views}</button><button>🔗 Share</button></div><div class="comment-box"><input placeholder="Add a comment..." onkeypress="if(event.key==='Enter')addComment(this,${i})"><div id="comments${i}"><div>👤 User: Super app! 🔥</div></div></div></div></div>`;
+});
+document.getElementById('videos').innerHTML=h;
+}
+function like(i){if(!likes[i].liked){likes[i].like++;likes[i].liked=true;}else{likes[i].like--;likes[i].liked=false;}document.getElementById('like'+i).innerText=likes[i].like;}
+function dislike(i){likes[i].dislike++;document.getElementById('dislike'+i).innerText=likes[i].dislike;}
+function subscribe(i){likes[i].sub=!likes[i].sub;document.getElementById('sub'+i).innerText=likes[i].sub?'Subscribed ✓':'Subscribe';}
+function addComment(el,i){if(el.value.trim()!=""){let d=document.createElement('div');d.innerText='👤 You: '+el.value;document.getElementById('comments'+i).prepend(d);el.value='';}}
+load();
+</script>
 </body>
   </html>
