@@ -4,12 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BHARAT FLIX</title>
-<link rel="manifest" href="manifest.json">
 <style>
 body{margin:0;background:#000;color:#fff;font-family:Arial}
 .header{padding:12px;background:#111;display:flex;align-items:center;gap:10px}
 .logo{color:gold;font-weight:bold;font-size:18px;display:flex;align-items:center;gap:8px}
-.logo img{width:42px;height:42px;border-radius:10px;border:2px solid gold;background:#000}
+.logo img{width:45px;height:45px;border-radius:10px;border:2px solid gold;background:#fff;object-fit:cover}
 .top-btns{text-align:center;padding:10px}
 .top-btns a{display:inline-block;padding:12px 18px;border-radius:25px;text-decoration:none;font-weight:bold;margin:6px}
 .white-btn{background:#fff;color:#000}
@@ -21,7 +20,7 @@ body{margin:0;background:#000;color:#fff;font-family:Arial}
 .video-box iframe{width:100%;height:100%;border:none}
 .info{padding:12px}
 .channel{display:flex;align-items:center;gap:10px;margin:10px 0}
-.channel img{width:36px;height:36px;border-radius:50%;background:gold}
+.channel img{width:36px;height:36px;border-radius:50%;border:1px solid gold}
 .sub-btn{background:red;color:#fff;border:none;padding:6px 16px;border-radius:20px;font-weight:bold;margin-left:auto}
 .stats{display:flex;gap:8px;flex-wrap:wrap}
 .stats button{background:#2a2a2a;color:#fff;border:none;padding:8px 14px;border-radius:20px}
@@ -32,7 +31,7 @@ body{margin:0;background:#000;color:#fff;font-family:Arial}
 <body>
 <div class="header">
 <div class="logo">
-<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MiIgaGVpZ2h0PSI0MiI+PHJlY3Qgd2lkdGg9IjQyIiBoZWlnaHQ9IjQyIiByeD0iMTAiIGZpbGw9IiMwMDAiIHN0cm9rZT0iI2ZmZDcwMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iNTAlIiB5PSI1OCUiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiNmZmQ3MDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkI8L3RleHQ+PC9zdmc+" alt="B">
+<img src="IMG-20260915-WA0000.jpg" alt="B">
 BHARAT FLIX
 </div>
 </div>
@@ -54,7 +53,7 @@ function load(){
 let h="";
 videos.forEach((v,i)=>{
 if(!likes[i])likes[i]={like:1250,dislike:12,sub:false,liked:false};
-h+=`<div class="card"><div class="video-box"><iframe src="https://www.youtube.com/embed/${v.id}" allowfullscreen></iframe></div><div class="info"><b>${v.title}</b><div class="channel"><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzYiIGhlaWdodD0iMzYiIHZpZXdCb3g9IjAgMCAzNiAzNiI+PGNpcmNsZSBjeD0iMTgiIGN5PSIxOCIgcj0iMTgiIGZpbGw9IiNmZmQ3MDAiLz48dGV4dCB4PSI1MCUiIHk9IjU4JSIgZmlsbD0iIzAwMCIgZm9udC13ZWlnaHQ9IjcwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+QjwvdGV4dD48L3N2Zz4="><span>BHARAT FLIX</span><button class="sub-btn" id="sub${i}" onclick="subscribe(${i})">${likes[i].sub?'Subscribed ✓':'Subscribe'}</button></div><div class="stats"><button onclick="like(${i})">👍 <span id="like${i}">${likes[i].like}</span></button><button onclick="dislike(${i})">👎 <span id="dislike${i}">${likes[i].dislike}</span></button><button>👁️ ${v.views}</button><button>🔗 Share</button></div><div class="comment-box"><input placeholder="Add a comment..." onkeypress="if(event.key==='Enter')addComment(this,${i})"><div id="comments${i}"><div>👤 User: Super app! 🔥</div></div></div></div></div>`;
+h+=`<div class="card"><div class="video-box"><iframe src="https://www.youtube.com/embed/${v.id}" allowfullscreen></iframe></div><div class="info"><b>${v.title}</b><div class="channel"><img src="IMG-20260915-WA0000.jpg"><span>BHARAT FLIX</span><button class="sub-btn" id="sub${i}" onclick="subscribe(${i})">${likes[i].sub?'Subscribed ✓':'Subscribe'}</button></div><div class="stats"><button onclick="like(${i})">👍 <span id="like${i}">${likes[i].like}</span></button><button onclick="dislike(${i})">👎 <span id="dislike${i}">${likes[i].dislike}</span></button><button>👁️ ${v.views}</button><button>🔗 Share</button></div><div class="comment-box"><input placeholder="Add a comment..." onkeypress="if(event.key==='Enter')addComment(this,${i})"><div id="comments${i}"><div>👤 User: Super app! 🔥</div></div></div></div></div>`;
 });
 document.getElementById('videos').innerHTML=h;
 }
@@ -65,4 +64,4 @@ function addComment(el,i){if(el.value.trim()!=""){let d=document.createElement('
 load();
 </script>
 </body>
-  </html>
+</html>
