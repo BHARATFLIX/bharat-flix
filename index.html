@@ -15,7 +15,7 @@ body{margin:0;background:#000;color:#fff;font-family:Arial}
 .video-box{width:100%;aspect-ratio:16/9;background:#000;position:relative}
 .video-box iframe{width:100%;height:100%;border:none}
 .overlay-top{position:absolute;top:8px;left:8px;background:rgba(0,0,0,0.8);color:#fff;padding:5px 10px;border-radius:6px;font-size:13px;font-weight:bold;border:1px solid #FF9933}
-.overlay-bottom{position:absolute;bottom:45px;right:8px;background:#e50914;color:#fff;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:bold}
+.overlay-bottom{position:absolute;bottom:5px;right:0px;left:0px;background:linear-gradient(90deg,#000,#e50914);color:#fff;padding:8px;border-radius:0px;font-size:14px;font-weight:bold;text-align:center;letter-spacing:1px}
 .info{padding:12px}
 .title{font-size:16px;font-weight:bold}
 .views{font-size:13px;color:#aaa;margin:6px 0}
@@ -25,7 +25,7 @@ body{margin:0;background:#000;color:#fff;font-family:Arial}
 </head>
 <body>
 <div class="header">
-<div class="logo"><img src="logo.jpg" onerror="this.src='IMG-20260915-WA0011.jpg'"> BHARAT FLIX</div>
+<div class="logo"><img src="logo.jpg"> BHARAT FLIX</div>
 <div style="background:#000;color:#fff;padding:5px 12px;border-radius:15px;font-size:12px">🇮🇳 JAI HIND</div>
 </div>
 
@@ -35,11 +35,11 @@ body{margin:0;background:#000;color:#fff;font-family:Arial}
 <div class="video-box">
 <iframe src="https://www.youtube-nocookie.com/embed/ScMzIvxBSi4?modestbranding=1&rel=0&controls=1&showinfo=0" allowfullscreen></iframe>
 <div class="overlay-top">🇮🇳 BHARAT FLIX</div>
-<div class="overlay-bottom">BHARAT FLIX ORIGINAL</div>
+<div class="overlay-bottom">🇮🇳 BHARAT FLIX ORIGINAL - JAI HIND 🇮🇳</div>
 </div>
 <div class="info">
 <div class="title">Bharat Film 1 - ईमानदार सिनेमा</div>
-<div class="views">👁️ <span class="vc">12,543</span> views | ❤️ <span class="lc">0</span></div>
+<div class="views">👁️ <span class="vc">12,545</span> views | ❤️ <span class="lc">0</span></div>
 <div class="btns">
 <button onclick="like(this)">👍 Like</button>
 <button onclick="sub(this)">🔔 Subscribe</button>
@@ -53,7 +53,7 @@ function like(b){let s=b.parentElement.parentElement.querySelector('.lc');s.inne
 function sub(b){b.innerText="✅ Subscribed";b.style.background="#138808";alert("धन्यवाद भैया जी 🙏");}
 function share(){navigator.share?navigator.share({title:'BHARAT FLIX',url:location.href}):alert(location.href)}
 function searchF(){let q=document.getElementById('s').value.toLowerCase();document.querySelectorAll('.card').forEach(c=>{c.style.display=c.innerText.toLowerCase().includes(q)?"":"none"});}
-let v=localStorage.getItem('bf_views')||12543;v=parseInt(v)+1;localStorage.setItem('bf_views',v);document.querySelectorAll('.vc').forEach(e=>e.innerText=v.toLocaleString('en-IN'));
+let v=localStorage.getItem('bf_views')||12545;v=parseInt(v)+1;localStorage.setItem('bf_views',v);document.querySelectorAll('.vc').forEach(e=>e.innerText=v.toLocaleString('en-IN'));
 </script>
 </body>
   </html>
