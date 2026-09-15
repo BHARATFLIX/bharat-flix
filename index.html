@@ -2,28 +2,50 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BHARAT FLIX</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BHARAT FLIX - Desi OTT</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}body{font-family:Arial;background:#0f0f0f;color:#fff}
-#gate1,#gate2{position:fixed;inset:0;background:#000;z-index:100;display:flex;align-items:center;justify-content:center;padding:20px}
-.box{background:#111;border:2px solid #ff9933;border-radius:22px;padding:26px;width:100%;max-width:380px;text-align:center}
-.logo{width:120px;height:120px;border-radius:22px;border:3px solid gold;object-fit:cover;background:#fff}
-.btn{width:100%;padding:14px;border-radius:30px;font-weight:700;margin:10px 0;display:flex;align-items:center;justify-content:center;gap:10px;text-decoration:none}
-.white{background:#fff;color:#000;border:2px solid gold}.green{background:#25D366;color:#fff;display:none}
-.tricolor-line{height:4px;background:linear-gradient(90deg,#ff9933,#fff,#138808);margin:12px 0}
-.top{display:flex;align-items:center;gap:10px;padding:10px 12px;background:linear-gradient(90deg,#ff9933 0%,#ffffff22 20%,#000 50%,#13880822 90%);border-bottom:3px solid #ff9933;position:sticky;top:0}
-.top img{width:34px;height:34px;border-radius:8px}
-.search{flex:1;background:#121212;border:1px solid #333;border-radius:20px;padding:8px 14px;display:flex}
-.search input{background:transparent;border:none;color:#fff;width:100%;outline:none}
-.chips{display:flex;gap:8px;overflow:auto;padding:10px 12px}
-.chips span{background:#272727;padding:6px 12px;border-radius:8px;font-size:12px;white-space:nowrap}.active{background:#fff!important;color:#000!important}
-.card{display:flex;gap:10px;padding:10px 12px;border-bottom:1px solid #1a1a1a}
-.thumb{width:168px;height:94px;background:#212121;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:26px}
-.info{flex:1;text-align:left}.info h4{font-size:14px}.info p{font-size:11px;color:#aaa;margin-top:4px}
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,sans-serif}
+body{background:#000;color:#fff}
+#gate1,#gate2{position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#000;padding:20px}
+.hidden{display:none!important}
+.box{background:#111;border:2px solid #222;border-radius:16px;padding:24px;width:100%;max-width:380px;text-align:center}
+.logo{width:110px;height:110px;border-radius:20px;background:linear-gradient(135deg,#ff9933,#fff,#138808);display:flex;align-items:center;justify-content:center;font-size:50px;font-weight:900;color:#000;margin:0 auto 16px}
+.btn{width:100%;padding:14px;border-radius:10px;border:0;font-weight:700;font-size:16px;cursor:pointer;margin-top:12px}
+.white{background:#fff;color:#000}
+.orange{background:#ff6a00;color:#fff}
+.tricolor-line{height:4px;background:linear-gradient(90deg,#ff9933 33%,#fff 33%,#fff 66%,#138808 66%);margin:16px 0;border-radius:2px}
+.top{display:flex;align-items:center;gap:10px;padding:12px;background:#0a0a0a;position:sticky;top:0;z-index:10}
+.search{flex:1;background:#121212;border:1px solid #222;border-radius:20px;padding:8px 14px;display:flex;align-items:center}
+.search input{background:transparent;border:0;outline:0;color:#fff;width:100%}
+.chips{display:flex;gap:8px;overflow:auto;padding:10px 12px;white-space:nowrap}
+.chips span{background:#272727;padding:7px 14px;border-radius:18px;font-size:14px;border:1px solid #333}
+.chips span.active{background:#fff;color:#000}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:12px}
+.card{background:#121212;border-radius:12px;overflow:hidden;border:1px solid #222}
+.card img{width:100%;aspect-ratio:2/3;object-fit:cover;background:#222}
+.card .info{padding:8px}
+.title{font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.meta{font-size:11px;color:#888}
+h2{padding:16px 12px 4px;font-size:18px}
 </style>
 </head>
 <body>
-
-<div id="gate1"><div class="box">
-<img class="logo" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAwICQsJCAwLCgsODQwOEh4UEhEREiUbHBYeLCcuLisnKyoxN0Y7MTRCNCorPVM+QkhKTk9OLztWXFVMW0ZNTkv/2wBDAQ0ODhIQEiQUFCRLMisyS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0v/wAARCADwAPADASIAAhEBAxEB/8QAGwABAAIDAQEAAAAAAAAAAAAAAAIEAQMFBgf/xABBEAABAwIDBQMKBAMIAwEAAAABAAIDBBEFEiETMVFhkSJBoQYUFzIzVXGBk9EVI7HBJHLwBxZCQ1JTgpI1YuFU/8QAGAEBAQEBAQAAAAAAAAAAAAAAAAECAwT/xAAiEQEBAAIBBAEFAAAAAAAAAAAAAQIRIQMSMVEiBEFhcfD/2gAMAwEAAhEDEQA/APALfBDFJDK58wY9hblYR6wJsbG/dvWhFplekooGVMUfnbSxxaHPAByXJ4HUBQdSQiklm88iMjHgNiAN3C5F/DxVREHSZh1MTHnxKBoLSZCATkdluB/7X3XHf8r16yljpo4iyqinkdmD2x6hlrW17738CtMUEkvqNJHHuW8YfNxYPmg3UeH0c9O2SbFoKeR1/wAp8byRr3kCyxgtDT19W+KqqxTMbE54cS0ZnDc0ZiBr8Vq/D5eLOqfh8vFnVBLEaOnpMnm9fFVFxN2saQWfE7j8iV6TCfJPBK3Co6qo8pYIZnMzOj7I2Z4EEgleZ/D5eLOqfh8vFnVBoqI2RVEsccrZmMeWtkaLB4B3i/Fa1b/D5eLOqfh8vFnVBoqI2RVEsccrZmMeWtkaLB4B3i/Fa1b/D5eLOqfh8vFnVBURW/wAPl4s6p+Hy8WdUFRFb/D5eLOqfh8vFnVBURWnUEw3Bp+BVd7HMdle0g8Cgit9HCyebJLJs2BpJdp4X3rQiC7X0TKV0YiqY5w+47Lh2SDbXXxR+HiKl2z6qnzXsImPDnbjvt8PEKkiDpxYZBJTB/nsbJSzNkcRa9r2vf+joqtPFTOic+eZ7HNzdlrb3008bhVkug7DMIpXSvJxKBkIvlzOGc6O7gbDVo7/8QVanoYaikEgqmNl1BY8htjpbed1r6qhoiCzWQQw1Gzhn2rQO04ttZ3eBqbjmtAaPgooppuZSeYkQMt768FFERm2XwLvYXPhkVBBtJhBVB8pmeIs8hFhswwkEDW9zzXsPRVTe9Zvoj7rHoqpves30R90HkMUnwyagnMcwnqi6IwvMWSQCx2geQADrax5Lgr6b6K6b3rN9EfdPRVTe9Zvoj7oPI4ZVQMex+RkjACCwi9tOC6Damge6Z0sDm5tWBjB2dPjxt4rv+iumG7FZvoj7qY/swj7sZqfpD7oPJUWw84b50DsrG9r6G2l7d17K+ZsKhljtC6doMRfYEA2vnAub63HRd/0YM981P0h91j0Yx++an6Y+6DzclRQPjawUxBbE4Z26EvzEtO/dYgLZHPhccznCCV7XOfZrxfK0tIaN+pDiDfkvQejGP3zU/TH3T0Yx++an6Y+6Dy5fQ+cRO2cuyAG0aNMx1uRqbd2nx3KQkoe1eJ2awsbHLvN9M191u9em9GMfvmp+mPunoxj981P0x90HmzN
+<div id="gate1"><div class="box"><div class="logo">B</div><h1>BHARAT FLIX</h1><p style="color:#aaa;margin:8px 0">India's Own OTT</p><div class="tricolor-line"></div><button class="btn white" onclick="showGate2()">🚀 Install App & Continue</button></div></div>
+<div id="gate2" class="hidden"><div class="box"><div class="logo">B</div><h2>Welcome</h2><div class="tricolor-line"></div><button class="btn white" onclick="enterApp()">🔐 Login with Google</button><button class="btn orange" onclick="enterApp()">▶️ Skip & Watch Free</button></div></div>
+<div id="app" class="hidden">
+<div class="top"><b>BHARAT FLIX</b><div class="search">🔍<input placeholder="Search..." oninput="doSearch(this.value)"></div></div>
+<div class="chips"><span class="active" onclick="filterChip(this,'all')">All</span><span onclick="filterChip(this,'hindi')">Hindi</span><span onclick="filterChip(this,'bhojpuri')">Bhojpuri</span><span onclick="filterChip(this,'action')">Action</span></div>
+<h2 id="heading">Trending Now 🔥</h2>
+<div class="grid" id="movieGrid"></div>
+</div>
+<script>
+const movies=[{t:"Pushpa 2 - The Rule",y:"2024",c:"Action",img:"https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=300"},{t:"Bhojpuri Dhamaka",y:"2024",c:"Bhojpuri",img:"https://images.unsplash.com/photo-1485846234645-a62644f84728?w=300"},{t:"Panchayat S3",y:"2024",c:"Comedy",img:"https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=300"},{t:"Stree 2",y:"2024",c:"Comedy",img:"https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=300"},{t:"Gangs of Wasseypur",y:"2012",c:"Action",img:"https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=300"},{t:"Mirzapur",y:"2024",c:"Hindi",img:"https://images.unsplash.com/photo-1515634928627-2a4e0dae3ddf?w=300"}];
+function showGate2(){gate1.classList.add('hidden');gate2.classList.remove('hidden');}
+function enterApp(){gate1.classList.add('hidden');gate2.classList.add('hidden');app.classList.remove('hidden');render(movies);}
+function render(list){movieGrid.innerHTML='';list.forEach(m=>{movieGrid.innerHTML+=`<div class="card"><img src="${m.img}"><div class="info"><div class="title">${m.t}</div><div class="meta">${m.y} • ${m.c}</div></div></div>`});}
+function doSearch(q){render(movies.filter(m=>m.t.toLowerCase().includes(q.toLowerCase())));}
+function filterChip(el,cat){document.querySelectorAll('.chips span').forEach(s=>s.classList.remove('active'));el.classList.add('active');if(cat=='all')render(movies);else render(movies.filter(m=>m.c.toLowerCase()==cat));}
+</script>
+</body>
+  </html>
