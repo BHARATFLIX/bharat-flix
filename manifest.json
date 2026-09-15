@@ -1,0 +1,20 @@
+{
+  "name": "Bharat Flix",
+  "short_name": "BharatFlix",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ff6a00",
+  "icons": [
+    {
+      "src": "IMG-20260915-WA0002.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "IMG-20260915-WA0002.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}
