@@ -7,31 +7,53 @@
 <link rel="manifest" href="manifest.json">
 <style>
 body{margin:0;background:#000;color:#fff;font-family:Arial}
-.header{padding:12px;background:linear-gradient(90deg,#FF9933 33%,#fff 66%,#138808 66%);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0}
-.logo{display:flex;align-items:center;gap:8px;color:#000;font-weight:bold;font-size:22px;text-shadow:0 0 3px #fff}
-.logo img{width:40px;height:40px;border-radius:50%;border:2px solid #000;background:#fff}
-.search{width:92%;margin:12px 4%;padding:11px;border-radius:20px;border:none;background:#222;color:#fff}
+.header{padding:12px;background:linear-gradient(90deg,#FF9933,#fff,#138808);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
+.logo{display:flex;align-items:center;gap:10px;color:#000;font-weight:bold;font-size:22px}
+.logo img{width:42px;height:42px;border-radius:50%;border:2px solid #000;background:#fff;object-fit:cover}
+.search{width:90%;margin:12px 5%;padding:11px;border-radius:20px;border:none;background:#222;color:#fff}
 .card{background:#1a1a1a;margin:12px;border-radius:12px;overflow:hidden;border:1px solid #333}
-.video-box{width:100%;aspect-ratio:16/9;background:#000}
+.video-box{width:100%;aspect-ratio:16/9;background:#000;position:relative}
 .video-box iframe{width:100%;height:100%;border:none}
-.info{padding:10px}
+.overlay-top{position:absolute;top:8px;left:8px;background:rgba(0,0,0,0.8);color:#fff;padding:5px 10px;border-radius:6px;font-size:13px;font-weight:bold;border:1px solid #FF9933}
+.overlay-bottom{position:absolute;bottom:45px;right:8px;background:#e50914;color:#fff;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:bold}
+.info{padding:12px}
 .title{font-size:16px;font-weight:bold}
 .views{font-size:13px;color:#aaa;margin:6px 0}
-.btns{display:flex;gap:8px;margin-top:8px}
-.btns button{background:#2a2a2a;color:#fff;border:none;padding:7px 14px;border-radius:20px}
+.btns{display:flex;gap:8px;margin-top:10px}
+.btns button{background:#2a2a2a;color:#fff;border:none;padding:8px 14px;border-radius:20px}
 </style>
 </head>
 <body>
 <div class="header">
-<div class="logo"><img src="IMG-20260915-WA0011.jpg"> BHARAT FLIX</div>
-<div style="background:#000;color:#fff;padding:4px 10px;border-radius:12px;font-size:12px">🇮🇳 JAI HIND</div>
+<div class="logo"><img src="logo.jpg" onerror="this.src='IMG-20260915-WA0011.jpg'"> BHARAT FLIX</div>
+<div style="background:#000;color:#fff;padding:5px 12px;border-radius:15px;font-size:12px">🇮🇳 JAI HIND</div>
 </div>
+
 <input class="search" id="s" placeholder="🔍 फिल्म खोजें..." onkeyup="searchF()">
 
-<div id="all">
-
 <div class="card">
-<div class="video-box"><iframe src="https://www.youtube.com/embed/ScMzIvxBSi4" allowfullscreen></iframe></div>
+<div class="video-box">
+<iframe src="https://www.youtube-nocookie.com/embed/ScMzIvxBSi4?modestbranding=1&rel=0&controls=1&showinfo=0" allowfullscreen></iframe>
+<div class="overlay-top">🇮🇳 BHARAT FLIX</div>
+<div class="overlay-bottom">BHARAT FLIX ORIGINAL</div>
+</div>
 <div class="info">
-<div class="title">Bharat Film 1</div>
-<div class="views">👁️ <span class="vc">12,543</span> views | ❤️ <span class="lc">0</
+<div class="title">Bharat Film 1 - ईमानदार सिनेमा</div>
+<div class="views">👁️ <span class="vc">12,543</span> views | ❤️ <span class="lc">0</span></div>
+<div class="btns">
+<button onclick="like(this)">👍 Like</button>
+<button onclick="sub(this)">🔔 Subscribe</button>
+<button onclick="share()">↗️ Share</button>
+</div>
+</div>
+</div>
+
+<script>
+function like(b){let s=b.parentElement.parentElement.querySelector('.lc');s.innerText=parseInt(s.innerText)+1;b.innerText="❤️ Liked";b.style.background="#e50914";}
+function sub(b){b.innerText="✅ Subscribed";b.style.background="#138808";alert("धन्यवाद भैया जी 🙏");}
+function share(){navigator.share?navigator.share({title:'BHARAT FLIX',url:location.href}):alert(location.href)}
+function searchF(){let q=document.getElementById('s').value.toLowerCase();document.querySelectorAll('.card').forEach(c=>{c.style.display=c.innerText.toLowerCase().includes(q)?"":"none"});}
+let v=localStorage.getItem('bf_views')||12543;v=parseInt(v)+1;localStorage.setItem('bf_views',v);document.querySelectorAll('.vc').forEach(e=>e.innerText=v.toLocaleString('en-IN'));
+</script>
+</body>
+  </html>
