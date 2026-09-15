@@ -6,11 +6,11 @@
 <title>BHARAT FLIX</title>
 <style>
 body{margin:0;background:#000;color:#fff;font-family:Arial}
-.header{padding:12px;background:#111;display:flex;align-items:center;gap:10px}
-.logo{color:gold;font-weight:bold;font-size:18px;display:flex;align-items:center;gap:8px}
-.logo img{width:45px;height:45px;border-radius:10px;border:2px solid gold;background:#fff;object-fit:cover}
-.top-btns{text-align:center;padding:10px}
-.top-btns a{display:inline-block;padding:12px 18px;border-radius:25px;text-decoration:none;font-weight:bold;margin:6px}
+.header{padding:10px;background:#111;display:flex;align-items:center;gap:10px}
+.header img{width:48px;height:48px;border-radius:10px;border:2px solid gold}
+.logo{color:gold;font-weight:bold;font-size:20px}
+.top-btns{text-align:center;padding:12px}
+.top-btns a{display:inline-block;padding:14px 28px;border-radius:25px;text-decoration:none;font-weight:bold;margin:8px;font-size:16px}
 .white-btn{background:#fff;color:#000}
 .blue-btn{background:#0066ff;color:#fff}
 .earn{background:#111;border:1px solid gold;margin:10px;padding:12px;border-radius:10px;text-align:center}
@@ -26,18 +26,20 @@ body{margin:0;background:#000;color:#fff;font-family:Arial}
 .stats button{background:#2a2a2a;color:#fff;border:none;padding:8px 14px;border-radius:20px}
 .comment-box{margin-top:10px;background:#111;padding:10px;border-radius:10px}
 .comment-box input{width:95%;padding:10px;border-radius:20px;border:none;background:#222;color:#fff}
+.small{font-size:11px;color:#888;margin-top:6px}
 </style>
 </head>
 <body>
 <div class="header">
-<div class="logo">
-<img src="IMG-20260915-WA0000.jpg" alt="B">
-BHARAT FLIX
-</div>
+<img src="logo.png">
+<div class="logo">BHARAT FLIX</div>
 </div>
 <div class="top-btns">
-<a href="#" class="white-btn">⬇ Download App</a>
-<a href="#" class="blue-btn">📤 Share & Earn 50%</a>
+<a href="https://drive.google.com/uc?export=download&id=134vw8oxdPhHCqcwgEu0gjW7sID9AqmZ1" class="white-btn">⬇️ App Install करो - फ्री में</a>
+<p class="small">Size: ~15MB | Version 1.0 | 100% Safe</p>
+</div>
+<div class="top-btns" style="padding-top:0">
+<a href="https://www.dropbox.com/request/lw3xlosoi8z177ahovzm" target="_blank" class="blue-btn">📤 अपना वीडियो Bharat Flix को भेजें</a>
 </div>
 <div class="earn"><b>💰 50% कमाओ:</b> हर शेयर पर कमाई!</div>
 <input class="search" placeholder="Search movies...">
@@ -53,7 +55,7 @@ function load(){
 let h="";
 videos.forEach((v,i)=>{
 if(!likes[i])likes[i]={like:1250,dislike:12,sub:false,liked:false};
-h+=`<div class="card"><div class="video-box"><iframe src="https://www.youtube.com/embed/${v.id}" allowfullscreen></iframe></div><div class="info"><b>${v.title}</b><div class="channel"><img src="IMG-20260915-WA0000.jpg"><span>BHARAT FLIX</span><button class="sub-btn" id="sub${i}" onclick="subscribe(${i})">${likes[i].sub?'Subscribed ✓':'Subscribe'}</button></div><div class="stats"><button onclick="like(${i})">👍 <span id="like${i}">${likes[i].like}</span></button><button onclick="dislike(${i})">👎 <span id="dislike${i}">${likes[i].dislike}</span></button><button>👁️ ${v.views}</button><button>🔗 Share</button></div><div class="comment-box"><input placeholder="Add a comment..." onkeypress="if(event.key==='Enter')addComment(this,${i})"><div id="comments${i}"><div>👤 User: Super app! 🔥</div></div></div></div></div>`;
+h+=`<div class="card"><div class="video-box"><iframe src="https://www.youtube.com/embed/${v.id}" allowfullscreen></iframe></div><div class="info"><b>${v.title}</b><div class="channel"><img src="logo.png"><span>BHARAT FLIX</span><button class="sub-btn" id="sub${i}" onclick="subscribe(${i})">${likes[i].sub?'Subscribed ✓':'Subscribe'}</button></div><div class="stats"><button onclick="like(${i})">👍 <span id="like${i}">${likes[i].like}</span></button><button onclick="dislike(${i})">👎 <span id="dislike${i}">${likes[i].dislike}</span></button><button>👁️ ${v.views} Views</button><button>🔗 Share</button></div><div class="comment-box"><input placeholder="Add a comment..." onkeypress="if(event.key==='Enter')addComment(this,${i})"><div id="comments${i}"><div>👤 User: Super app! 🔥</div></div></div></div></div>`;
 });
 document.getElementById('videos').innerHTML=h;
 }
@@ -64,4 +66,4 @@ function addComment(el,i){if(el.value.trim()!=""){let d=document.createElement('
 load();
 </script>
 </body>
-</html>
+  </html>
