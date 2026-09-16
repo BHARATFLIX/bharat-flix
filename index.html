@@ -8,60 +8,63 @@
 <link rel="icon" href="IMG-20260916-WA8497.jpg">
 <style>
 body{margin:0;background:#0f0f0f;color:white;font-family:Arial}
-.header{display:flex;align-items:center;padding:10px;background:#000;position:sticky;top:0}
+.header{display:flex;align-items:center;padding:10px;background:#000;position:sticky;top:0;z-index:10}
 .logo{width:40px;height:40px;border-radius:8px}
 .title{margin-left:10px;font-weight:bold;font-size:20px;color:#ff9933}
 .title span{color:white}
-.search{margin:10px;background:#121212;padding:8px;border-radius:20px;text-align:center;color:gray}
-.video-box{background:#000;padding:10px}
-.thumbnail{width:100%;border-radius:12px}
-.video-title{font-size:18px;font-weight:bold;margin:10px 0 5px}
-.views{color:#aaa;font-size:14px}
-.actions{display:flex;justify-content:space-around;margin:15px 0;border-top:1px solid #333;border-bottom:1px solid #333;padding:10px 0}
-.act{text-align:center;font-size:14px}
-.act b{font-size:20px;display:block}
-.btn-sub{background:red;color:white;border:none;padding:8px 20px;border-radius:20px;font-weight:bold}
-.channel{display:flex;align-items:center;padding:10px}
-.ch-logo{width:40px;height:40px;border-radius:50%}
-.ch-name{margin-left:10px}
-.safe{background:#1a3d1a;padding:10px;margin:10px;border-radius:8px;font-size:13px;color:#90ee90;border:1px solid green}
+.cats{display:flex;gap:8px;padding:10px;overflow-x:auto}
+.cat{background:#272727;padding:6px 14px;border-radius:20px;font-size:14px;border:1px solid #333}
+.cat.active{background:white;color:black}
+.video-card{padding:10px;border-bottom:1px solid #222}
+.thumb{width:100%;border-radius:12px;background:#222;height:190px;display:flex;align-items:center;justify-content:center;font-size:50px}
+.v-title{font-weight:bold;margin-top:8px}
+.v-info{color:#aaa;font-size:13px}
+.add-box{margin:15px;background:#1a1a1a;padding:12px;border-radius:12px;border:1px dashed #ff9933}
+.add-box input, .add-box select{width:95%;padding:8px;margin:5px 0;border-radius:6px;border:none}
+.add-btn{background:#ff9933;color:black;border:none;padding:10px 20px;border-radius:20px;font-weight:bold;width:100%;margin-top:5px}
+.note{background:#2a1a1a;padding:8px;border-radius:6px;font-size:12px;color:#ffb3b3;margin-top:8px}
 </style>
 </head>
 <body>
-
 <div class="header">
 <img src="IMG-20260916-WA8497.jpg" class="logo">
 <div class="title">BHARAT <span>FLIX</span></div>
 </div>
 
-<div class="search">🔍 Search BHARAT FLIX videos</div>
-
-<div class="safe">✅ 100% Safe & Original Content - No Copyright - Made by You</div>
-
-<div class="video-box">
-<img src="IMG-20260916-WA8497.jpg" class="thumbnail">
-<div class="video-title">BHARAT FLIX पर आपका स्वागत है - मेरा पहला वीडियो 🇮🇳</div>
-<div class="views">10,543 views • 2 hours ago</div>
-
-<div class="actions">
-<div class="act"><b>👍</b> 1.2K Like</div>
-<div class="act"><b>👎</b> Dislike</div>
-<div class="act"><b>💬</b> 89 Comment</div>
-<div class="act"><b>↗️</b> Share</div>
+<div class="cats">
+<div class="cat active">All</div><div class="cat">भजन</div><div class="cat">कॉमेडी</div><div class="cat">गाना</div><div class="cat">भक्ति</div>
 </div>
 
-<div class="channel">
-<img src="IMG-20260916-WA8497.jpg" class="ch-logo">
-<div class="ch-name">
-<b>BHARAT FLIX Official</b><br><small style="color:#aaa">12.5K subscribers</small>
-</div>
-<div style="margin-left:auto"><button class="btn-sub">SUBSCRIBE</button></div>
-</div>
-
-<p style="padding:10px;color:#ccc;font-size:14px">
-ये चैनल मेरा अपना है। यहाँ मैं अपनी खुद की बनाई हुई वीडियो डालूंगा। जय हिंद!
-</p>
+<div class="add-box">
+<b>➕ नया वीडियो जोड़ें (ग्राहक की वीडियो)</b>
+<input id="vtitle" placeholder="वीडियो का नाम लिखें - जैसे: नया भजन 2026">
+<select id="vcat"><option>भजन</option><option>कॉमेडी</option><option>गाना</option><option>भक्ति</option></select>
+<input id="vlink" placeholder="YouTube लिंक यहाँ पेस्ट करें (ग्राहक ने दिया हो)">
+<button class="add-btn" onclick="addVideo()">BHARAT FLIX पर लगाओ</button>
+<div class="note">⚠️ नियम: ग्राहक की खुद की बनाई हुई वीडियो ही लें। गंदी / गाली / धमकी वाली वीडियो बिल्कुल न लें। अगर ऐसी वीडियो कोई दे तो मना कर दें।</div>
 </div>
 
+<div id="videoList">
+<div class="video-card"><div class="thumb">🇮🇳</div><div class="v-title">BHARAT FLIX पर आपका स्वागत है - Demo वीडियो</div><div class="v-info">भजन • 10k views • ग्राहक की अपनी वीडियो यहाँ आएगी</div></div>
+</div>
+
+<script>
+function addVideo(){
+ let t=document.getElementById('vtitle').value;
+ let c=document.getElementById('vcat').value;
+ let l=document.getElementById('vlink').value;
+ if(t=='' || l==''){alert('नाम और लिंक दोनों डालो भैया जी');return;}
+ // गंदी वीडियो के शब्दों का छोटा फिल्टर
+ let badWords=['gandi','xxx','porn','abuse','dhamki'];
+ let low=t.toLowerCase()+l.toLowerCase();
+ for(let w of badWords){ if(low.includes(w)){ alert('भैया जी ये वीडियो नियम के खिलाफ है, इसे नहीं जोड़ सकते'); return; } }
+ 
+ let div=document.createElement('div');
+ div.className='video-card';
+ div.innerHTML=`<div class="thumb">▶️</div><div class="v-title">${t}</div><div class="v-info">${c} • YouTube लिंक: ${l.substring(0,30)}... • ग्राहक द्वारा दी गई</div>`;
+ document.getElementById('videoList').prepend(div);
+ alert('वीडियो लग गई! अब Commit करना मत भूलना');
+}
+</script>
 </body>
-  </html>
+</html>
