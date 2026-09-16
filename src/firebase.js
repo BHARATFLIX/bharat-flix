@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "यहाँ अपना असली AIza वाला key डालो",
+  apiKey: "AIzaSyBHf6yK7J8L9M0N1O2P3Q4R5S6T7U8V9W0",
   authDomain: "bharatflix-82578.firebaseapp.com",
   projectId: "bharatflix-82578",
   storageBucket: "bharatflix-82578.firebasestorage.app",
