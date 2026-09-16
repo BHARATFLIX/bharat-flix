@@ -1,13 +1,15 @@
 {
   "name": "BHARAT FLIX",
   "short_name": "BHARAT FLIX",
-  "start_url": ".",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#ff9933",
-  "icons": [{
-    "src": "bharat_flix_icon.webp",
-    "sizes": "512x512",
-    "type": "image/webp"
-  }]
+  "icons": [
+    {
+      "src": "IMG-20260916-WA8497.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
 }
