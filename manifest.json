@@ -1,15 +1,13 @@
 {
-  "name": "BHARAT FLIX",
+  "name": "BHARAT FLIX - Bharat Ka YouTube",
   "short_name": "BHARAT FLIX",
-  "start_url": "./",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#000000",
-  "theme_color": "#ff9933",
-  "icons": [
-    {
-      "src": "IMG-20260916-WA8497.jpg",
-      "sizes": "512x512",
-      "type": "image/jpeg"
-    }
-  ]
+  "theme_color": "#FF9933",
+  "icons": [{
+    "src": "icon.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }]
 }
