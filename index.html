@@ -1,70 +1,98 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BHARAT FLIX</title>
-<link rel="manifest" href="manifest.json">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BHARAT FLIX - YouTube Jaisa</title>
 <link rel="icon" href="IMG-20260916-WA8497.jpg">
+<link rel="manifest" href="manifest.json">
 <style>
-body{margin:0;background:#0f0f0f;color:white;font-family:Arial}
-.header{display:flex;align-items:center;padding:10px;background:#000;position:sticky;top:0;z-index:10}
-.logo{width:40px;height:40px;border-radius:8px}
-.title{margin-left:10px;font-weight:bold;font-size:20px;color:#ff9933}
-.title span{color:white}
-.cats{display:flex;gap:8px;padding:10px;overflow-x:auto}
-.cat{background:#272727;padding:6px 14px;border-radius:20px;font-size:14px;border:1px solid #333}
-.cat.active{background:white;color:black}
-.video-card{padding:10px;border-bottom:1px solid #222}
-.thumb{width:100%;border-radius:12px;background:#222;height:190px;display:flex;align-items:center;justify-content:center;font-size:50px}
-.v-title{font-weight:bold;margin-top:8px}
-.v-info{color:#aaa;font-size:13px}
-.add-box{margin:15px;background:#1a1a1a;padding:12px;border-radius:12px;border:1px dashed #ff9933}
-.add-box input, .add-box select{width:95%;padding:8px;margin:5px 0;border-radius:6px;border:none}
-.add-btn{background:#ff9933;color:black;border:none;padding:10px 20px;border-radius:20px;font-weight:bold;width:100%;margin-top:5px}
-.note{background:#2a1a1a;padding:8px;border-radius:6px;font-size:12px;color:#ffb3b3;margin-top:8px}
+body{margin:0;background:#0f0f0f;color:#fff;font-family:Arial}
+.header{display:flex;align-items:center;justify-content:space-between;padding:12px;background:#000;position:sticky;top:0;border-bottom:1px solid #222;z-index:10}
+.logo{width:42px;height:42px;border-radius:8px}.title{margin-left:10px;font-weight:bold;font-size:22px;color:#ff9933}.title span{color:#fff}
+.header-left{display:flex;align-items:center}
+.install-btn{background:#ff9933;color:#000;border:none;padding:8px 14px;border-radius:20px;font-weight:bold;font-size:13px;display:none}
+.ad-box{margin:12px;background:#000;border-radius:12px;overflow:hidden;border:1.5px solid #ff9933}
+.ad-box video{width:100%;height:230px;background:#000}
+.ad-label{background:#ff9933;color:#000;padding:6px 12px;font-weight:bold;font-size:13px;display:flex;justify-content:space-between}
+.box{margin:15px;background:#1a1a1a;padding:15px;border-radius:12px;border:1px solid #333}
+.box input,.box select{width:94%;padding:12px;margin:7px 0;border-radius:8px;border:none;background:#222;color:#fff}
+.add-btn{background:#ff9933;color:#000;border:none;padding:13px;border-radius:25px;font-weight:bold;width:100%;margin-top:8px;font-size:16px}
+.drop-btn{background:#0061FF;color:#fff;display:block;text-align:center;padding:13px;border-radius:25px;text-decoration:none;font-weight:bold;margin-top:10px}
+.lock-box{background:#221111;border:1px solid #ff3333;padding:10px;border-radius:8px;margin-top:10px}
+.video-card{padding:12px;border-bottom:1px solid #222}.video-card video{width:100%;border-radius:12px;background:#222;max-height:240px}
+.v-title{font-weight:bold;margin-top:8px;font-size:16px}.v-info{color:#aaa;font-size:13px;margin-top:4px}
+#videoList{display:grid;grid-template-columns:1fr}
+@media(min-width:600px){#videoList{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
 <div class="header">
-<img src="IMG-20260916-WA8497.jpg" class="logo">
-<div class="title">BHARAT <span>FLIX</span></div>
+  <div class="header-left"><img src="IMG-20260916-WA8497.jpg" class="logo"><div class="title">BHARAT <span>FLIX</span></div></div>
+  <button id="installBtn" class="install-btn">📲 Install App</button>
 </div>
 
-<div class="cats">
-<div class="cat active">All</div><div class="cat">भजन</div><div class="cat">कॉमेडी</div><div class="cat">गाना</div><div class="cat">भक्ति</div>
+<div class="ad-box"><div class="ad-label"><span>🔥 OFFICIAL AD</span><span>BHARAT FLIX</span></div><video controls autoplay muted loop playsinline poster="IMG-20260916-WA8497.jpg"><source src="ad (1).mp4" type="video/mp4"></video></div>
+
+<div class="box">
+<b>📤 Admin Panel - सिर्फ आपके लिए (ताला लगा है)</b>
+<input id="cname" placeholder="ग्राहक का नाम"><input id="cmobile" placeholder="मोबाइल" type="tel">
+<input id="vtitle" placeholder="वीडियो का नाम"><select id="vcat"><option>भजन</option><option>Divya Katha</option><option>Gyanvardhak</option><option>भक्ति</option></select>
+<input id="vlink" placeholder="Dropbox Share Link ?dl=0 वाला">
+
+<div class="lock-box">
+🔒 Admin Password डालो तभी वीडियो चलेगी (आपकी परमिशन के बिना कोई नहीं चला सकता):<br>
+<input id="adminPass" type="password" placeholder="Password - BHARAT123">
 </div>
 
-<div class="add-box">
-<b>➕ नया वीडियो जोड़ें (ग्राहक की वीडियो)</b>
-<input id="vtitle" placeholder="वीडियो का नाम लिखें - जैसे: नया भजन 2026">
-<select id="vcat"><option>भजन</option><option>कॉमेडी</option><option>गाना</option><option>भक्ति</option></select>
-<input id="vlink" placeholder="YouTube लिंक यहाँ पेस्ट करें (ग्राहक ने दिया हो)">
-<button class="add-btn" onclick="addVideo()">BHARAT FLIX पर लगाओ</button>
-<div class="note">⚠️ नियम: ग्राहक की खुद की बनाई हुई वीडियो ही लें। गंदी / गाली / धमकी वाली वीडियो बिल्कुल न लें। अगर ऐसी वीडियो कोई दे तो मना कर दें।</div>
+<button class="add-btn" onclick="addVideo()">🔐 परमिशन के साथ BHARAT FLIX पर चलाओ</button>
+<a class="drop-btn" href="https://www.dropbox.com/request/lw3xlosoi8z177ahovzm" target="_blank">📁 ग्राहक यहाँ क्लिक करके वीडियो भेजेगा</a>
 </div>
 
-<div id="videoList">
-<div class="video-card"><div class="thumb">🇮🇳</div><div class="v-title">BHARAT FLIX पर आपका स्वागत है - Demo वीडियो</div><div class="v-info">भजन • 10k views • ग्राहक की अपनी वीडियो यहाँ आएगी</div></div>
-</div>
+<div id="videoList"></div>
 
 <script>
-function addVideo(){
- let t=document.getElementById('vtitle').value;
- let c=document.getElementById('vcat').value;
- let l=document.getElementById('vlink').value;
- if(t=='' || l==''){alert('नाम और लिंक दोनों डालो भैया जी');return;}
- // गंदी वीडियो के शब्दों का छोटा फिल्टर
- let badWords=['gandi','xxx','porn','abuse','dhamki'];
- let low=t.toLowerCase()+l.toLowerCase();
- for(let w of badWords){ if(low.includes(w)){ alert('भैया जी ये वीडियो नियम के खिलाफ है, इसे नहीं जोड़ सकते'); return; } }
- 
- let div=document.createElement('div');
- div.className='video-card';
- div.innerHTML=`<div class="thumb">▶️</div><div class="v-title">${t}</div><div class="v-info">${c} • YouTube लिंक: ${l.substring(0,30)}... • ग्राहक द्वारा दी गई</div>`;
- document.getElementById('videoList').prepend(div);
- alert('वीडियो लग गई! अब Commit करना मत भूलना');
+// YouTube jaisa Video List
+let allVideos = JSON.parse(localStorage.getItem('bharatflix_videos') || '[]');
+function render(){ 
+ let list=document.getElementById('videoList'); list.innerHTML='';
+ if(allVideos.length==0){list.innerHTML='<p style="text-align:center;color:#777;padding:20px">अभी कोई वीडियो नहीं है भैया जी, ऊपर से डालो</p>';return;}
+ allVideos.forEach(v=>{
+   let d=document.createElement('div'); d.className='video-card';
+   d.innerHTML=`<video controls src="${v.link}" poster="IMG-20260916-WA8497.jpg"></video><div class="v-title">${v.title}</div><div class="v-info">${v.cat} • ग्राहक: ${v.name} - ${v.mob}</div>`;
+   list.prepend(d);
+ });
 }
+function addVideo(){
+ let pass=document.getElementById('adminPass').value;
+ if(pass !== 'BHARAT123'){ alert('गलत पासवर्ड भैया जी! आपकी बिना इजाजत के कोई वीडियो नहीं चलेगी। सही पासवर्ड डालो: BHARAT123'); return; }
+ let n=document.getElementById('cname').value,m=document.getElementById('cmobile').value,t=document.getElementById('vtitle').value,c=document.getElementById('vcat').value,l=document.getElementById('vlink').value;
+ if(n==''||m==''||t==''||l==''){alert('सब भरना जरूरी है भैया जी');return;}
+ let p=l.replace('www.dropbox.com','dl.dropboxusercontent.com').replace('?dl=0','').replace('&dl=0','');
+ allVideos.push({name:n,mob:m,title:t,cat:c,link:p});
+ localStorage.setItem('bharatflix_videos', JSON.stringify(allVideos));
+ render(); alert('जय श्री राम! परमिशन मिल गई, वीडियो चल गई भैया जी! अब ये YouTube जैसी दिखेगी!');
+ document.getElementById('cname').value='';document.getElementById('cmobile').value='';document.getElementById('vtitle').value='';document.getElementById('vlink').value='';document.getElementById('adminPass').value='';
+}
+render();
+
+// Play Store jaisa Install Button Logic
+let deferredPrompt;
+const installBtn = document.getElementById('installBtn');
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  installBtn.style.display = 'block';
+});
+installBtn.addEventListener('click', async () => {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    if (outcome === 'accepted') { installBtn.style.display = 'none'; }
+    deferredPrompt = null;
+  } else {
+    alert('भैया जी, Browser के 3 बिंदु पर क्लिक करके Add to Home Screen / Install App पर क्लिक करो, Play Store जैसा Install हो जाएगा!');
+  }
+});
 </script>
 </body>
 </html>
