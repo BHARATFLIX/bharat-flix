@@ -1,116 +1,159 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BHARAT FLIX</title>
-<link rel="icon" href="IMG-20260916-WA8497.jpg">
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 <style>
-body{margin:0;background:#0f0f0f;color:#fff;font-family:Arial}
-.header{display:flex;align-items:center;justify-content:space-between;padding:12px;background:#000;border-bottom:2px solid #ff9933;position:sticky;top:0;z-index:10}
-.logo{width:48px;height:48px;border-radius:12px;border:2px solid gold}
-.h-left{display:flex;align-items:center;gap:10px}
-.h-title{font-weight:bold;font-size:22px;color:#ff9933}.h-title span{color:#fff}
-.install-btn{background:#ff9933;color:#000;border:none;padding:10px 18px;border-radius:20px;font-weight:bold}
-.search-wrap{padding:10px 12px;background:#000;position:sticky;top:62px;z-index:9;border-bottom:1px solid #222}
-.search-wrap input{width:100%;padding:12px 15px;border-radius:25px;border:1px solid #333;background:#1a1a1a;color:#fff;font-size:16px;outline:none}
-.ad-box{margin:12px;background:#000;border-radius:12px;overflow:hidden;border:2px solid #ff9933}
-.ad-box video{width:100%;height:220px}
-.ad-head{background:#ff9933;color:#000;padding:6px 12px;font-weight:bold;display:flex;justify-content:space-between;font-size:13px}
-.admin{background:#1a1a1a;margin:12px;padding:12px;border-radius:12px;border:1px solid #333}
-.admin input,.admin select{width:95%;padding:11px;margin:6px 0;border-radius:8px;border:none;background:#222;color:#fff}
-.add-btn{background:#ff9933;color:#000;border:none;padding:13px;width:100%;border-radius:25px;font-weight:bold;margin-top:8px}
-.lock{border:1px solid #ff3333;background:#221111;padding:8px;border-radius:8px;margin-top:8px}
-.drop-btn{background:#0061FF;color:#fff;display:block;text-align:center;padding:12px;border-radius:25px;text-decoration:none;margin-top:10px;font-weight:bold}
-.card{background:#000;padding:12px;border-bottom:8px solid #222}
-.card video{width:100%;border-radius:12px;background:#111}
-.vt{font-weight:bold;margin-top:8px;font-size:16px}.vm{color:#aaa;font-size:13px;margin-top:3px}
-.ch{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
-.ch-l{display:flex;align-items:center;gap:10px}.ch-logo{width:40px;height:40px;border-radius:50%;background:#ff9933;color:#000;font-weight:bold;display:flex;align-items:center;justify-content:center}
-.sub{background:#FF0000;color:#fff;border:none;padding:8px 16px;border-radius:20px;font-weight:bold}
-.sub.done{background:#222;color:#aaa;border:1px solid #555}
-.yt{display:flex;justify-content:space-around;margin-top:14px;border-top:1px solid #222;padding-top:10px}
-.yt button{background:none;border:none;color:#fff;font-size:13px}.yt span{font-size:20px;display:block}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#000;color:#fff;font-family:Arial}
+.header{background:#000;display:flex;align-items:center;justify-content:space-between;padding:12px 15px;border-bottom:2px solid #FF8C00;position:sticky;top:0;z-index:100}
+.logoBox{display:flex;align-items:center;gap:10px}
+.logoBox img{width:48px;height:48px;border-radius:12px;border:2px solid gold;object-fit:cover}
+.logoText{color:#FF8C00;font-weight:bold;font-size:20px}.logoText span{color:#fff}
+#installBtn{background:#FF8C00;color:#fff;padding:10px 18px;border-radius:25px;border:none;font-weight:bold;cursor:pointer}
+.searchBox{padding:12px}.searchBox input{width:100%;padding:12px;border-radius:25px;border:none;outline:none;background:#1a1a1a;color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;padding:12px}
+.card{background:#111;border-radius:12px;overflow:hidden;border:1px solid #222}
+.card img{width:100%;height:110px;object-fit:cover;background:#222}
+.cardBody{padding:8px}.cardBody h4{font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cardBody p{font-size:11px;color:#aaa}
+.btns{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px}
+.btns button{font-size:11px;padding:5px 8px;border-radius:15px;border:none;cursor:pointer}
+.bView{background:#222;color:#fff}.bDown{background:#FF8C00;color:#fff}.bShare{background:#075E54;color:#fff}
+#loginBox{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:9999;justify-content:center;align-items:center}
+.loginCard{background:#fff;color:#000;padding:25px;border-radius:18px;text-align:center;width:90%;max-width:340px}
 </style>
 </head>
 <body>
 
+<!-- HEADER with Tiranga Logo -->
 <div class="header">
-<div class="h-left"><img src="IMG-20260916-WA8497.jpg" class="logo"><div class="h-title">BHARAT <span>FLIX</span></div></div>
-<button id="installBtn" class="install-btn">📲 Install App</button>
+  <div class="logoBox">
+    <img src="https://i.ibb.co/mF8J6Y0/bharat-flix-logo.png" alt="BF" id="mainLogo" onerror="this.src='https://via.placeholder.com/100/FF8C00/FFFFFF?text=B'">
+    <div class="logoText">BHARAT <span>FLIX</span></div>
+  </div>
+  <button id="installBtn">📲 Install App</button>
 </div>
 
-<div class="search-wrap">
-<input id="searchBox" type="text" placeholder="🔍 Search करो - भजन, Divya Katha, Gyanvardhak..." onkeyup="doSearch()">
+<div class="searchBox">
+  <input id="search" type="text" placeholder="🔍 गाना, वीडियो सर्च करें..." oninput="doSearch()">
 </div>
 
-<div class="ad-box"><div class="ad-head"><span>🔥 OFFICIAL AD</span><span>BHARAT FLIX</span></div><video controls autoplay muted loop playsinline poster="IMG-20260916-WA8497.jpg"><source src="ad (1).mp4" type="video/mp4"></video></div>
+<div id="videoGrid" class="grid"></div>
 
-<div class="admin">
-<b>📤 Admin Panel - सिर्फ आपके लिए</b>
-<input id="cname" placeholder="ग्राहक का नाम"><input id="cmobile" placeholder="मोबाइल">
-<input id="vtitle" placeholder="वीडियो का नाम"><select id="vcat"><option>भजन</option><option>Divya Katha</option><option>Gyanvardhak</option><option>भक्ति</option></select>
-<input id="vlink" placeholder="Video Link / Dropbox Link">
-<div class="lock">🔒 Password: BHARAT123 <input id="apass" type="password" placeholder="BHARAT123 डालो"></div>
-<button class="add-btn" onclick="addV()">🔐 BHARAT FLIX पर चलाओ</button>
-<a class="drop-btn" href="https://www.dropbox.com/request/lw2lxosoiR177ahovzm" target="_blank">📤 ग्राहक वीडियो यहाँ भेजेगा</a>
+<!-- Admin Panel (Hidden) -->
+<div id="admin" style="padding:15px;display:none;background:#111;margin:12px;border-radius:12px">
+  <h3 style="color:#FF8C00">वीडियो जोड़ें</h3>
+  <input id="cname" placeholder="आपका नाम" style="width:100%;padding:10px;margin:6px 0;border-radius:8px;border:none">
+  <input id="cmobile" placeholder="मोबाइल नंबर" style="width:100%;padding:10px;margin:6px 0;border-radius:8px;border:none">
+  <input id="ctitle" placeholder="गाने का नाम" style="width:100%;padding:10px;margin:6px 0;border-radius:8px;border:none">
+  <input id="ccat" placeholder="कैटेगरी (भजन, न्यू गाना)" style="width:100%;padding:10px;margin:6px 0;border-radius:8px;border:none">
+  <input id="clink" placeholder="Dropbox / Drive लिंक" style="width:100%;padding:10px;margin:6px 0;border-radius:8px;border:none">
+  <input id="apass" type="password" placeholder="Admin Password" style="width:100%;padding:10px;margin:6px 0;border-radius:8px;border:none">
+  <button onclick="addV()" style="width:100%;padding:12px;background:#FF8C00;color:#fff;border:none;border-radius:25px;font-weight:bold;margin-top:8px">जोड़ें</button>
 </div>
 
-<div id="list"></div>
+<!-- Gmail Login Popup -->
+<div id="loginBox">
+  <div class="loginCard">
+    <img src="https://i.ibb.co/mF8J6Y0/bharat-flix-logo.png" style="width:70px;border-radius:15px;border:2px solid gold" onerror="this.style.display='none'">
+    <h3 style="margin:10px 0 5px">BHARAT FLIX</h3>
+    <p style="color:#666;font-size:13px;margin-bottom:15px">ऐप डाउनलोड करने के लिए Gmail से Login करें</p>
+    <div id="g_id_onload" data-client_id="YOUR_CLIENT_ID_HERE" data-callback="handleLogin"></div>
+    <div class="g_id_signin" data-type="standard" data-shape="pill" data-theme="filled_blue" data-text="signin_with" data-size="large"></div>
+    <br><br>
+    <button onclick="document.getElementById('loginBox').style.display='none'" style="background:none;border:none;color:#888">Cancel</button>
+    <br><br>
+    <button onclick="directDownload()" style="background:none;border:none;color:#FF8C00;font-size:12px;text-decoration:underline">बिना Login के डाउनलोड करें</button>
+  </div>
+</div>
 
 <script>
-let videos=JSON.parse(localStorage.getItem('bf_videos')||'[]');
+// ====== CONFIG ======
+const APK_LINK = "https://drive.google.com/uc?export=download&id=134vw8oxdPhHCqcwgEu0gjW7sID9AqmZ1";
+let dp = null;
 
-function renderFiltered(list){
- let L=document.getElementById('list'); L.innerHTML='';
- if(list.length==0){
-   let q=document.getElementById('searchBox').value;
-   if(q){ L.innerHTML=`<p style="text-align:center;color:#ff9933;padding:20px">🔍 "${q}" के लिए कोई वीडियो नहीं मिला</p>`; }
-   else { L.innerHTML='<p style="text-align:center;color:#777;padding:20px">अभी कोई वीडियो नहीं</p>'; }
-   return;
- }
- list.forEach((v,i)=>{
-  let realIndex = videos.indexOf(v);
-  let d=document.createElement('div'); d.className='card';
-  d.innerHTML=`<video controls src="${v.link}" poster="IMG-20260916-WA8497.jpg" onplay="view(${realIndex})"></video>
-  <div class="vt">${v.title}</div><div class="vm">👁️ ${v.views||0} Views • ${v.cat} • 👤 ${v.name||''}</div>
-  <div class="ch"><div class="ch-l"><div class="ch-logo">BF</div><div><b>Bharat Flix</b><div style="color:#aaa;font-size:12px">1.2K subscribers</div></div></div><button class="sub ${v.sub?'done':''}" onclick="sub(${realIndex})">${v.sub?'🔔 Subscribed':'🔔 Subscribe'}</button></div>
-  <div class="yt"><button onclick="like(${realIndex})"><span>👍</span>${v.likes||0} Like</button><button><span>👎</span>Dislike</button><button onclick="comment(${realIndex})"><span>💬</span>${v.cmt||0} Comment</button><button onclick="share('${v.title}','${v.link}')"><span>↗️</span>Share</button><button onclick="down('${v.link}')"><span>⬇️</span>Download</button></div>`;
-  L.prepend(d);
- });
+// ====== VIDEOS DATA ======
+let videos = JSON.parse(localStorage.getItem('bf_videos') || '[]');
+if(videos.length===0){
+  videos=[{name:"Admin",mob:"",title:"न्यू भोजपुरी गाना 2026",cat:"न्यू गाना",link:"",views:0,sub:false}];
 }
 
-function render(){ renderFiltered(videos); }
+function renderFiltered(list){
+  let grid=document.getElementById('videoGrid');
+  grid.innerHTML="";
+  list.forEach((v,i)=>{
+    grid.innerHTML+=`
+    <div class="card">
+      <div style="background:linear-gradient(45deg,#FF8C00,#fff,#138808);height:110px;display:flex;align-items:center;justify-content:center;font-size:30px">🎵</div>
+      <div class="cardBody">
+        <h4>${v.title}</h4>
+        <p>${v.cat} • ${v.name} • ${v.views} views</p>
+        <div class="btns">
+          <button class="bView" onclick="view(${i})">👁️ View</button>
+          <button class="bDown" onclick="down('${v.link||APK_LINK}')">⬇️ Down</button>
+          <button class="bShare" onclick="share('${v.title}','${v.link}')">Share</button>
+          <button class="bView" onclick="sub(${i})">${v.sub?'❤️':'🤍'}</button>
+          <button class="bView" onclick="comment(${i})">💬</button>
+        </div>
+      </div>
+    </div>`;
+  });
+}
+function render(){renderFiltered(videos)}
 
 function doSearch(){
- let q=document.getElementById('searchBox').value.toLowerCase().trim();
- if(!q){ render(); return; }
- let filtered = videos.filter(v =>
-   (v.title+v.cat+v.name).toLowerCase().includes(q)
- );
- renderFiltered(filtered);
+  let q=document.getElementById('search').value.toLowerCase().trim();
+  if(!q){render();return;}
+  let filtered=videos.filter(v=>(v.title+v.cat+v.name).toLowerCase().includes(q));
+  renderFiltered(filtered);
 }
 
 function addV(){
- if(document.getElementById('apass').value!=='BHARAT123'){alert('गलत पासवर्ड भैया जी! BHARAT123 डालो');return;}
- let n=cname.value,m=cmobile.value,t=vtitle.value,c=vcat.value,l=vlink.value;
- if(!n||!m||!t||!l){alert('सब भरना जरूरी है');return;}
- let p=l.replace('www.dropbox.com','dl.dropboxusercontent.com').replace('?dl=0','').replace('&dl=0','');
- videos.push({name:n,mob:m,title:t,cat:c,link:p,views:0,likes:0,cmt:0,sub:false});
- localStorage.setItem('bf_videos',JSON.stringify(videos)); render(); doSearch(); alert('वीडियो चल गई भैया जी!'); cname.value='';cmobile.value='';vtitle.value='';vlink.value='';apass.value='';
+  if(document.getElementById('apass').value!=="Bharat123"){alert('गलत पासवर्ड!');return;}
+  let n=document.getElementById('cname').value,m=document.getElementById('cmobile').value,t=document.getElementById('ctitle').value,c=document.getElementById('ccat').value,l=document.getElementById('clink').value;
+  if(!n||!m||!t||!l){alert('सब भरना जरूरी है भैया जी!');return;}
+  let p=l.replace('www.dropbox.com','dl.dropboxusercontent.com').replace('?dl=0','');
+  videos.push({name:n,mob:m,title:t,cat:c,link:p,views:0,sub:false});
+  localStorage.setItem('bf_videos',JSON.stringify(videos));
+  alert('वीडियो जुड़ गया!');
+  render();
 }
-function view(i){videos[i].views++; save()} function like(i){videos[i].likes++; save()}
-function sub(i){videos[i].sub=!videos[i].sub; save()}
-function comment(i){let x=prompt('कमेंट लिखो:'); if(x){videos[i].cmt++; save()}}
-function save(){localStorage.setItem('bf_videos',JSON.stringify(videos)); render(); doSearch();}
-function share(t,l){if(navigator.share){navigator.share({title:t,url:l})}else{prompt('Share करो:',l)}}
-function down(l){window.open(l,'_blank')}
-render();
 
-const APK_LINK="https://drive.google.com/uc?export=download&id=134vw8oxdPhHCqcwgEu0gjW7sID9AqmZ1";
-let dp; window.addEventListener('beforeinstallprompt',e=>{e.preventDefault(); dp=e;});
+function view(i){videos[i].views++;localStorage.setItem('bf_videos',JSON.stringify(videos));render(); if(videos[i].link) window.open(videos[i].link,'_blank');}
+function sub(i){videos[i].sub=!videos[i].sub;localStorage.setItem('bf_videos',JSON.stringify(videos));render();}
+function comment(i){let x=prompt('कमेंट लिखें:'); if(x){alert('धन्यवाद! कमेंट: '+x)}}
+function save(){localStorage.setItem('bf_videos',JSON.stringify(videos));}
+function share(t,l){if(navigator.share){navigator.share({title:t,url:l||location.href})}else{prompt('लिंक कॉपी करें:',l||location.href)}}
+function down(l){window.open(l||APK_LINK,'_blank');}
+
+// ====== INSTALL APP LOGIC ======
+window.addEventListener('beforeinstallprompt',(e)=>{e.preventDefault();dp=e;});
 document.getElementById('installBtn').addEventListener('click',async()=>{
- if(dp){dp.prompt(); let r=await dp.userChoice; dp=null; if(r.outcome!=='accepted'){location.href=APK_LINK;}} else{location.href=APK_LINK;}
+  // PWA install अगर उपलब्ध है तो
+  if(dp){dp.prompt();let r=await dp.userChoice;dp=null;return;}
+  // नहीं तो Gmail login दिखाओ
+  document.getElementById('loginBox').style.display='flex';
 });
+
+function handleLogin(res){
+  try{
+    let data=JSON.parse(atob(res.credential.split('.')[1]));
+    console.log("Login:",data.email);
+    localStorage.setItem('bf_user',data.email);
+    alert("धन्यवाद "+data.name+" जी! डाउनलोड शुरू हो रहा है...");
+    document.getElementById('loginBox').style.display='none';
+    window.location.href=APK_LINK;
+  }catch(e){directDownload();}
+}
+function directDownload(){
+  document.getElementById('loginBox').style.display='none';
+  window.location.href=APK_LINK;
+}
+
+render();
 </script>
 </body>
 </html>
