@@ -2,96 +2,90 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BHARAT FLIX - YouTube Jaisa</title>
+<title>BHARAT FLIX</title>
 <link rel="icon" href="IMG-20260916-WA8497.jpg">
-<link rel="manifest" href="manifest.json">
 <style>
 body{margin:0;background:#0f0f0f;color:#fff;font-family:Arial}
-.header{display:flex;align-items:center;justify-content:space-between;padding:12px;background:#000;position:sticky;top:0;border-bottom:1px solid #222;z-index:10}
-.logo{width:42px;height:42px;border-radius:8px}.title{margin-left:10px;font-weight:bold;font-size:22px;color:#ff9933}.title span{color:#fff}
-.header-left{display:flex;align-items:center}
-.install-btn{background:#ff9933;color:#000;border:none;padding:8px 14px;border-radius:20px;font-weight:bold;font-size:13px;display:none}
-.ad-box{margin:12px;background:#000;border-radius:12px;overflow:hidden;border:1.5px solid #ff9933}
-.ad-box video{width:100%;height:230px;background:#000}
-.ad-label{background:#ff9933;color:#000;padding:6px 12px;font-weight:bold;font-size:13px;display:flex;justify-content:space-between}
-.box{margin:15px;background:#1a1a1a;padding:15px;border-radius:12px;border:1px solid #333}
-.box input,.box select{width:94%;padding:12px;margin:7px 0;border-radius:8px;border:none;background:#222;color:#fff}
-.add-btn{background:#ff9933;color:#000;border:none;padding:13px;border-radius:25px;font-weight:bold;width:100%;margin-top:8px;font-size:16px}
-.drop-btn{background:#0061FF;color:#fff;display:block;text-align:center;padding:13px;border-radius:25px;text-decoration:none;font-weight:bold;margin-top:10px}
-.lock-box{background:#221111;border:1px solid #ff3333;padding:10px;border-radius:8px;margin-top:10px}
-.video-card{padding:12px;border-bottom:1px solid #222}.video-card video{width:100%;border-radius:12px;background:#222;max-height:240px}
-.v-title{font-weight:bold;margin-top:8px;font-size:16px}.v-info{color:#aaa;font-size:13px;margin-top:4px}
-#videoList{display:grid;grid-template-columns:1fr}
-@media(min-width:600px){#videoList{grid-template-columns:1fr 1fr}}
+.header{display:flex;align-items:center;justify-content:space-between;padding:12px;background:#000;border-bottom:2px solid #ff9933;position:sticky;top:0;z-index:10}
+.logo{width:48px;height:48px;border-radius:12px;border:2px solid gold}
+.h-left{display:flex;align-items:center;gap:10px}
+.h-title{font-weight:bold;font-size:22px;color:#ff9933}.h-title span{color:#fff}
+.install-btn{background:#ff9933;color:#000;border:none;padding:10px 18px;border-radius:20px;font-weight:bold}
+.ad-box{margin:12px;background:#000;border-radius:12px;overflow:hidden;border:2px solid #ff9933}
+.ad-box video{width:100%;height:220px}
+.ad-head{background:#ff9933;color:#000;padding:6px 12px;font-weight:bold;display:flex;justify-content:space-between;font-size:13px}
+.admin{background:#1a1a1a;margin:12px;padding:12px;border-radius:12px;border:1px solid #333}
+.admin input,.admin select{width:95%;padding:11px;margin:6px 0;border-radius:8px;border:none;background:#222;color:#fff}
+.add-btn{background:#ff9933;color:#000;border:none;padding:13px;width:100%;border-radius:25px;font-weight:bold;margin-top:8px}
+.lock{border:1px solid #ff3333;background:#221111;padding:8px;border-radius:8px;margin-top:8px}
+.drop-btn{background:#0061FF;color:#fff;display:block;text-align:center;padding:12px;border-radius:25px;text-decoration:none;margin-top:10px;font-weight:bold}
+.card{background:#000;padding:12px;border-bottom:8px solid #222}
+.card video{width:100%;border-radius:12px;background:#111}
+.vt{font-weight:bold;margin-top:8px;font-size:16px}.vm{color:#aaa;font-size:13px;margin-top:3px}
+.ch{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+.ch-l{display:flex;align-items:center;gap:10px}.ch-logo{width:40px;height:40px;border-radius:50%;background:#ff9933;color:#000;font-weight:bold;display:flex;align-items:center;justify-content:center}
+.sub{background:#FF0000;color:#fff;border:none;padding:8px 16px;border-radius:20px;font-weight:bold}
+.sub.done{background:#222;color:#aaa;border:1px solid #555}
+.yt{display:flex;justify-content:space-around;margin-top:14px;border-top:1px solid #222;padding-top:10px}
+.yt button{background:none;border:none;color:#fff;font-size:13px}.yt span{font-size:20px;display:block}
 </style>
 </head>
 <body>
+
 <div class="header">
-  <div class="header-left"><img src="IMG-20260916-WA8497.jpg" class="logo"><div class="title">BHARAT <span>FLIX</span></div></div>
-  <button id="installBtn" class="install-btn">📲 Install App</button>
+<div class="h-left"><img src="IMG-20260916-WA8497.jpg" class="logo"><div class="h-title">BHARAT <span>FLIX</span></div></div>
+<button id="installBtn" class="install-btn">📲 Install App</button>
 </div>
 
-<div class="ad-box"><div class="ad-label"><span>🔥 OFFICIAL AD</span><span>BHARAT FLIX</span></div><video controls autoplay muted loop playsinline poster="IMG-20260916-WA8497.jpg"><source src="ad (1).mp4" type="video/mp4"></video></div>
+<div class="ad-box"><div class="ad-head"><span>🔥 OFFICIAL AD</span><span>BHARAT FLIX</span></div><video controls autoplay muted loop playsinline poster="IMG-20260916-WA8497.jpg"><source src="ad (1).mp4" type="video/mp4"></video></div>
 
-<div class="box">
-<b>📤 Admin Panel - सिर्फ आपके लिए (ताला लगा है)</b>
-<input id="cname" placeholder="ग्राहक का नाम"><input id="cmobile" placeholder="मोबाइल" type="tel">
+<div class="admin">
+<b>📤 Admin Panel - सिर्फ आपके लिए</b>
+<input id="cname" placeholder="ग्राहक का नाम"><input id="cmobile" placeholder="मोबाइल">
 <input id="vtitle" placeholder="वीडियो का नाम"><select id="vcat"><option>भजन</option><option>Divya Katha</option><option>Gyanvardhak</option><option>भक्ति</option></select>
-<input id="vlink" placeholder="Dropbox Share Link ?dl=0 वाला">
-
-<div class="lock-box">
-🔒 Admin Password डालो तभी वीडियो चलेगी (आपकी परमिशन के बिना कोई नहीं चला सकता):<br>
-<input id="adminPass" type="password" placeholder="Password - BHARAT123">
+<input id="vlink" placeholder="Video Link / Dropbox Link">
+<div class="lock">🔒 Password: BHARAT123 <input id="apass" type="password" placeholder="BHARAT123 डालो"></div>
+<button class="add-btn" onclick="addV()">🔐 BHARAT FLIX पर चलाओ</button>
+<a class="drop-btn" href="https://www.dropbox.com/request/lw2lxosoiR177ahovzm" target="_blank">📤 ग्राहक वीडियो यहाँ भेजेगा</a>
 </div>
 
-<button class="add-btn" onclick="addVideo()">🔐 परमिशन के साथ BHARAT FLIX पर चलाओ</button>
-<a class="drop-btn" href="https://www.dropbox.com/request/lw3xlosoi8z177ahovzm" target="_blank">📁 ग्राहक यहाँ क्लिक करके वीडियो भेजेगा</a>
-</div>
-
-<div id="videoList"></div>
+<div id="list"></div>
 
 <script>
-// YouTube jaisa Video List
-let allVideos = JSON.parse(localStorage.getItem('bharatflix_videos') || '[]');
-function render(){ 
- let list=document.getElementById('videoList'); list.innerHTML='';
- if(allVideos.length==0){list.innerHTML='<p style="text-align:center;color:#777;padding:20px">अभी कोई वीडियो नहीं है भैया जी, ऊपर से डालो</p>';return;}
- allVideos.forEach(v=>{
-   let d=document.createElement('div'); d.className='video-card';
-   d.innerHTML=`<video controls src="${v.link}" poster="IMG-20260916-WA8497.jpg"></video><div class="v-title">${v.title}</div><div class="v-info">${v.cat} • ग्राहक: ${v.name} - ${v.mob}</div>`;
-   list.prepend(d);
+let videos=JSON.parse(localStorage.getItem('bf_videos')||'[]');
+function render(){
+ let L=document.getElementById('list'); L.innerHTML='';
+ if(videos.length==0){L.innerHTML='<p style="text-align:center;color:#777;padding:20px">अभी कोई वीडियो नहीं</p>';return;}
+ videos.forEach((v,i)=>{
+  let d=document.createElement('div'); d.className='card';
+  d.innerHTML=`<video controls src="${v.link}" poster="IMG-20260916-WA8497.jpg" onplay="view(${i})"></video>
+  <div class="vt">${v.title}</div><div class="vm">👁️ ${v.views||0} Views • ${v.cat}</div>
+  <div class="ch"><div class="ch-l"><div class="ch-logo">BF</div><div><b>Bharat Flix</b><div style="color:#aaa;font-size:12px">1.2K subscribers</div></div></div><button class="sub ${v.sub?'done':''}" onclick="sub(${i})">${v.sub?'🔔 Subscribed':'🔔 Subscribe'}</button></div>
+  <div class="yt"><button onclick="like(${i})"><span>👍</span>${v.likes||0} Like</button><button><span>👎</span>Dislike</button><button onclick="comment(${i})"><span>💬</span>${v.cmt||0} Comment</button><button onclick="share('${v.title}','${v.link}')"><span>↗️</span>Share</button><button onclick="down('${v.link}')"><span>⬇️</span>Download</button></div>`;
+  L.prepend(d);
  });
 }
-function addVideo(){
- let pass=document.getElementById('adminPass').value;
- if(pass !== 'BHARAT123'){ alert('गलत पासवर्ड भैया जी! आपकी बिना इजाजत के कोई वीडियो नहीं चलेगी। सही पासवर्ड डालो: BHARAT123'); return; }
- let n=document.getElementById('cname').value,m=document.getElementById('cmobile').value,t=document.getElementById('vtitle').value,c=document.getElementById('vcat').value,l=document.getElementById('vlink').value;
- if(n==''||m==''||t==''||l==''){alert('सब भरना जरूरी है भैया जी');return;}
+function addV(){
+ if(document.getElementById('apass').value!=='BHARAT123'){alert('गलत पासवर्ड भैया जी! BHARAT123 डालो');return;}
+ let n=cname.value,m=cmobile.value,t=vtitle.value,c=vcat.value,l=vlink.value;
+ if(!n||!m||!t||!l){alert('सब भरना जरूरी है');return;}
  let p=l.replace('www.dropbox.com','dl.dropboxusercontent.com').replace('?dl=0','').replace('&dl=0','');
- allVideos.push({name:n,mob:m,title:t,cat:c,link:p});
- localStorage.setItem('bharatflix_videos', JSON.stringify(allVideos));
- render(); alert('जय श्री राम! परमिशन मिल गई, वीडियो चल गई भैया जी! अब ये YouTube जैसी दिखेगी!');
- document.getElementById('cname').value='';document.getElementById('cmobile').value='';document.getElementById('vtitle').value='';document.getElementById('vlink').value='';document.getElementById('adminPass').value='';
+ videos.push({name:n,mob:m,title:t,cat:c,link:p,views:0,likes:0,cmt:0,sub:false});
+ localStorage.setItem('bf_videos',JSON.stringify(videos)); render(); alert('वीडियो चल गई भैया जी!'); cname.value='';cmobile.value='';vtitle.value='';vlink.value='';apass.value='';
 }
+function view(i){videos[i].views++; save()} function like(i){videos[i].likes++; save()}
+function sub(i){videos[i].sub=!videos[i].sub; save()}
+function comment(i){let x=prompt('कमेंट लिखो:'); if(x){videos[i].cmt++; save()}}
+function save(){localStorage.setItem('bf_videos',JSON.stringify(videos)); render();}
+function share(t,l){if(navigator.share){navigator.share({title:t,url:l})}else{prompt('Share करो:',l)}}
+function down(l){window.open(l,'_blank')}
 render();
 
-// Play Store jaisa Install Button Logic
-let deferredPrompt;
-const installBtn = document.getElementById('installBtn');
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-  installBtn.style.display = 'block';
-});
-installBtn.addEventListener('click', async () => {
-  if (deferredPrompt) {
-    deferredPrompt.prompt();
-    const { outcome } = await deferredPrompt.userChoice;
-    if (outcome === 'accepted') { installBtn.style.display = 'none'; }
-    deferredPrompt = null;
-  } else {
-    alert('भैया जी, Browser के 3 बिंदु पर क्लिक करके Add to Home Screen / Install App पर क्लिक करो, Play Store जैसा Install हो जाएगा!');
-  }
+// आपका APK लिंक - एक बार में लगा दिया है, बार-बार नहीं खोलना पड़ेगा
+const APK_LINK="https://drive.google.com/uc?export=download&id=134vw8oxdPhHCqcwgEu0gjW7sID9AqmZ1";
+let dp; window.addEventListener('beforeinstallprompt',e=>{e.preventDefault(); dp=e;});
+document.getElementById('installBtn').addEventListener('click',async()=>{
+ if(dp){dp.prompt(); let r=await dp.userChoice; dp=null; if(r.outcome!=='accepted'){location.href=APK_LINK;}} else{location.href=APK_LINK;}
 });
 </script>
 </body>
