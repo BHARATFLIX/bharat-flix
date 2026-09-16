@@ -3,49 +3,65 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BHARAT FLIX - Desi OTT</title>
+<title>BHARAT FLIX</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="IMG-20260916-WA8497.jpg">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,sans-serif}
-body{background:#000;color:#fff}
-#gate1,#gate2{position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#000;padding:20px}
-.hidden{display:none!important}
-.box{background:#111;border:2px solid #222;border-radius:16px;padding:24px;width:100%;max-width:380px;text-align:center}
-.logo{width:110px;height:110px;border-radius:20px;background:linear-gradient(135deg,#ff9933,#fff,#138808);display:flex;align-items:center;justify-content:center;font-size:50px;font-weight:900;color:#000;margin:0 auto 16px}
-.btn{width:100%;padding:14px;border-radius:10px;border:0;font-weight:700;font-size:16px;cursor:pointer;margin-top:12px}
-.white{background:#fff;color:#000}
-.orange{background:#ff6a00;color:#fff}
-.tricolor-line{height:4px;background:linear-gradient(90deg,#ff9933 33%,#fff 33%,#fff 66%,#138808 66%);margin:16px 0;border-radius:2px}
-.top{display:flex;align-items:center;gap:10px;padding:12px;background:#0a0a0a;position:sticky;top:0;z-index:10}
-.search{flex:1;background:#121212;border:1px solid #222;border-radius:20px;padding:8px 14px;display:flex;align-items:center}
-.search input{background:transparent;border:0;outline:0;color:#fff;width:100%}
-.chips{display:flex;gap:8px;overflow:auto;padding:10px 12px;white-space:nowrap}
-.chips span{background:#272727;padding:7px 14px;border-radius:18px;font-size:14px;border:1px solid #333}
-.chips span.active{background:#fff;color:#000}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:12px}
-.card{background:#121212;border-radius:12px;overflow:hidden;border:1px solid #222}
-.card img{width:100%;aspect-ratio:2/3;object-fit:cover;background:#222}
-.card .info{padding:8px}
-.title{font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.meta{font-size:11px;color:#888}
-h2{padding:16px 12px 4px;font-size:18px}
+body{margin:0;background:#0f0f0f;color:white;font-family:Arial}
+.header{display:flex;align-items:center;padding:10px;background:#000;position:sticky;top:0}
+.logo{width:40px;height:40px;border-radius:8px}
+.title{margin-left:10px;font-weight:bold;font-size:20px;color:#ff9933}
+.title span{color:white}
+.search{margin:10px;background:#121212;padding:8px;border-radius:20px;text-align:center;color:gray}
+.video-box{background:#000;padding:10px}
+.thumbnail{width:100%;border-radius:12px}
+.video-title{font-size:18px;font-weight:bold;margin:10px 0 5px}
+.views{color:#aaa;font-size:14px}
+.actions{display:flex;justify-content:space-around;margin:15px 0;border-top:1px solid #333;border-bottom:1px solid #333;padding:10px 0}
+.act{text-align:center;font-size:14px}
+.act b{font-size:20px;display:block}
+.btn-sub{background:red;color:white;border:none;padding:8px 20px;border-radius:20px;font-weight:bold}
+.channel{display:flex;align-items:center;padding:10px}
+.ch-logo{width:40px;height:40px;border-radius:50%}
+.ch-name{margin-left:10px}
+.safe{background:#1a3d1a;padding:10px;margin:10px;border-radius:8px;font-size:13px;color:#90ee90;border:1px solid green}
 </style>
 </head>
 <body>
-<div id="gate1"><div class="box"><div class="logo">B</div><h1>BHARAT FLIX</h1><p style="color:#aaa;margin:8px 0">India's Own OTT</p><div class="tricolor-line"></div><button class="btn white" onclick="showGate2()">🚀 Install App & Continue</button></div></div>
-<div id="gate2" class="hidden"><div class="box"><div class="logo">B</div><h2>Welcome</h2><div class="tricolor-line"></div><button class="btn white" onclick="enterApp()">🔐 Login with Google</button><button class="btn orange" onclick="enterApp()">▶️ Skip & Watch Free</button></div></div>
-<div id="app" class="hidden">
-<div class="top"><b>BHARAT FLIX</b><div class="search">🔍<input placeholder="Search..." oninput="doSearch(this.value)"></div></div>
-<div class="chips"><span class="active" onclick="filterChip(this,'all')">All</span><span onclick="filterChip(this,'hindi')">Hindi</span><span onclick="filterChip(this,'bhojpuri')">Bhojpuri</span><span onclick="filterChip(this,'action')">Action</span></div>
-<h2 id="heading">Trending Now 🔥</h2>
-<div class="grid" id="movieGrid"></div>
+
+<div class="header">
+<img src="IMG-20260916-WA8497.jpg" class="logo">
+<div class="title">BHARAT <span>FLIX</span></div>
 </div>
-<script>
-const movies=[{t:"Pushpa 2 - The Rule",y:"2024",c:"Action",img:"https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=300"},{t:"Bhojpuri Dhamaka",y:"2024",c:"Bhojpuri",img:"https://images.unsplash.com/photo-1485846234645-a62644f84728?w=300"},{t:"Panchayat S3",y:"2024",c:"Comedy",img:"https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=300"},{t:"Stree 2",y:"2024",c:"Comedy",img:"https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=300"},{t:"Gangs of Wasseypur",y:"2012",c:"Action",img:"https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=300"},{t:"Mirzapur",y:"2024",c:"Hindi",img:"https://images.unsplash.com/photo-1515634928627-2a4e0dae3ddf?w=300"}];
-function showGate2(){gate1.classList.add('hidden');gate2.classList.remove('hidden');}
-function enterApp(){gate1.classList.add('hidden');gate2.classList.add('hidden');app.classList.remove('hidden');render(movies);}
-function render(list){movieGrid.innerHTML='';list.forEach(m=>{movieGrid.innerHTML+=`<div class="card"><img src="${m.img}"><div class="info"><div class="title">${m.t}</div><div class="meta">${m.y} • ${m.c}</div></div></div>`});}
-function doSearch(q){render(movies.filter(m=>m.t.toLowerCase().includes(q.toLowerCase())));}
-function filterChip(el,cat){document.querySelectorAll('.chips span').forEach(s=>s.classList.remove('active'));el.classList.add('active');if(cat=='all')render(movies);else render(movies.filter(m=>m.c.toLowerCase()==cat));}
-</script>
+
+<div class="search">🔍 Search BHARAT FLIX videos</div>
+
+<div class="safe">✅ 100% Safe & Original Content - No Copyright - Made by You</div>
+
+<div class="video-box">
+<img src="IMG-20260916-WA8497.jpg" class="thumbnail">
+<div class="video-title">BHARAT FLIX पर आपका स्वागत है - मेरा पहला वीडियो 🇮🇳</div>
+<div class="views">10,543 views • 2 hours ago</div>
+
+<div class="actions">
+<div class="act"><b>👍</b> 1.2K Like</div>
+<div class="act"><b>👎</b> Dislike</div>
+<div class="act"><b>💬</b> 89 Comment</div>
+<div class="act"><b>↗️</b> Share</div>
+</div>
+
+<div class="channel">
+<img src="IMG-20260916-WA8497.jpg" class="ch-logo">
+<div class="ch-name">
+<b>BHARAT FLIX Official</b><br><small style="color:#aaa">12.5K subscribers</small>
+</div>
+<div style="margin-left:auto"><button class="btn-sub">SUBSCRIBE</button></div>
+</div>
+
+<p style="padding:10px;color:#ccc;font-size:14px">
+ये चैनल मेरा अपना है। यहाँ मैं अपनी खुद की बनाई हुई वीडियो डालूंगा। जय हिंद!
+</p>
+</div>
+
 </body>
   </html>
