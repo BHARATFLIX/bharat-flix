@@ -3,152 +3,155 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BHARAT FLIX</title>
+<title>BHARAT FLIX - YouTube Jaisi Site</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon.png">
-<script src="https://accounts.google.com/gsi/client" async defer></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#000;color:#fff;font-family:Arial,sans-serif}
-.header{background:#000;display:flex;align-items:center;justify-content:space-between;padding:12px 15px;border-bottom:2px solid #FF8C00;position:sticky;top:0;z-index:100}
+body{background:#0f0f0f;color:#fff;font-family:Arial,sans-serif}
+.header{background:#000;display:flex;align-items:center;justify-content:space-between;padding:10px 15px;border-bottom:2px solid #FF8C00;position:sticky;top:0;z-index:100}
 .logoBox{display:flex;align-items:center;gap:10px}
-.logoBox img{width:46px;height:46px;border-radius:50%;border:2px solid gold;object-fit:cover;background:#000}
+.logoBox img{width:44px;height:44px;border-radius:50%;border:2px solid gold;background:#000;object-fit:cover}
 .logoText{color:#FF8C00;font-weight:bold;font-size:20px}.logoText span{color:#fff}
-#installBtn{background:linear-gradient(180deg,#333,#000);color:#fff;padding:5px 14px 5px 5px;border-radius:30px;border:1px solid #444;font-weight:bold;cursor:pointer;display:flex;align-items:center;gap:8px;box-shadow:0 2px 8px rgba(0,0,0,0.5)}
-#installBtn img{width:32px;height:32px;border-radius:50%;border:1.5px solid gold;background:#000}
-#installBtn span{display:flex;flex-direction:column;align-items:flex-start;line-height:1}
-#installBtn.star{color:gold;font-size:11px}
-#installBtn.txt{font-size:13px}
-.searchBox{padding:12px}.searchBox input{width:100%;padding:12px 15px;border-radius:25px;border:none;outline:none;background:#1a1a1a;color:#fff;font-size:15px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;padding:12px}
-.card{background:#111;border-radius:14px;overflow:hidden;border:1px solid #222}
-.card.thumb{width:100%;height:110px;background:linear-gradient(180deg,#FF9933,#fff,#138808);display:flex;align-items:center;justify-content:center;font-size:32px;position:relative}
-.cardBody{padding:8px}.cardBody h4{font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.cardBody p{font-size:11px;color:#aaa;margin-top:2px}
-.btns{display:flex;gap:5px;flex-wrap:wrap;margin-top:7px}
-.btns button{font-size:11px;padding:5px 8px;border-radius:15px;border:none;cursor:pointer}
-.bView{background:#222;color:#fff}.bDown{background:#FF8C00;color:#fff}.bShare{background:#075E54;color:#fff}
-#admin{padding:15px;display:none;background:#111;margin:12px;border-radius:12px;border:1px solid #333}
-#admin input{width:100%;padding:11px;margin:6px 0;border-radius:8px;border:none;background:#1a1a1a;color:#fff}
-#loginBox{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:9999;justify-content:center;align-items:center}
-.loginCard{background:#fff;color:#000;padding:25px;border-radius:18px;text-align:center;width:90%;max-width:340px}
+#installBtn{background:linear-gradient(180deg,#333,#000);color:#fff;padding:5px 12px 5px 5px;border-radius:30px;border:1px solid #444;font-weight:bold;cursor:pointer;display:flex;align-items:center;gap:8px}
+#installBtn img{width:30px;height:30px;border-radius:50%;border:1.5px solid gold}
+.searchBox{padding:12px}.searchBox input{width:100%;padding:12px 15px;border-radius:25px;border:none;outline:none;background:#1f1f1f;color:#fff}
+.adBox{margin:12px;background:#1a1a1a;border:1px dashed #FF8C00;padding:10px;text-align:center;border-radius:10px;color:#FF8C00;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;padding:12px}
+.card{background:#1a1a1a;border-radius:14px;overflow:hidden;border:1px solid #222}
+.thumb{width:100%;height:170px;background:linear-gradient(180deg,#FF9933,#fff,#138808);display:flex;align-items:center;justify-content:center;font-size:40px;position:relative}
+.live{position:absolute;top:8px;left:8px;background:red;color:#fff;padding:2px 7px;border-radius:4px;font-size:11px;font-weight:bold}
+.cardBody{padding:10px}
+.cardBody h4{font-size:15px}
+.meta{font-size:12px;color:#aaa;margin:4px 0}
+.btnRow{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.btnRow button{font-size:12px;padding:6px 10px;border-radius:20px;border:none;cursor:pointer}
+.bView{background:#272727;color:#fff}.bLike{background:#222;color:#fff}.bDis{background:#222;color:#fff}
+.bSub{background:red;color:#fff;font-weight:bold}.bShare{background:#075E54;color:#fff}.bStar{background:#333;color:gold}
+#uploadSec{margin:12px;padding:15px;background:#111;border-radius:12px;border:1px solid #333}
+#uploadSec input{width:100%;padding:11px;margin:6px 0;border-radius:8px;border:none;background:#1f1f1f;color:#fff}
+#adminPanel{display:none;margin:12px;padding:15px;background:#111;border-radius:12px;border:2px solid #FF8C00}
+.approveCard{background:#1f1f1f;padding:10px;margin:8px 0;border-radius:10px;border:1px solid #333}
 </style>
 </head>
 <body>
 
 <div class="header">
   <div class="logoBox">
-    <img src="icon.png" alt="BF" onerror="this.src='https://via.placeholder.com/100/FF8C00/FFFFFF?text=B'">
+    <img src="icon.png" onerror="this.src='https://via.placeholder.com/100/FF8C00/fff?text=B'">
     <div class="logoText">BHARAT <span>FLIX</span></div>
   </div>
-  <button id="installBtn">
-    <img src="icon.png" alt="BF">
-    <span><span class="star">⭐ 4.9 ★</span><span class="txt">Install App</span></span>
-  </button>
+  <button id="installBtn"><img src="icon.png" onerror="this.style.display='none'"><span>⭐4.9 Install App</span></button>
 </div>
 
-<div class="searchBox">
-  <input id="search" type="text" placeholder="🔍 गाना, वीडियो सर्च करें..." oninput="doSearch()">
-</div>
+<div class="searchBox"><input id="search" placeholder="🔍 गाना, वीडियो सर्च करें..." oninput="doSearch()"></div>
+
+<div class="adBox">📢 AD SPACE - यहाँ आपका Ad चलेगा - Google AdSense Code यहाँ डालें</div>
 
 <div id="videoGrid" class="grid"></div>
 
-<div id="admin">
-  <h3 style="color:#FF8C00;margin-bottom:8px">वीडियो जोड़ें (Admin Only)</h3>
-  <input id="cname" placeholder="आपका नाम">
-  <input id="cmobile" placeholder="मोबाइल नंबर">
-  <input id="ctitle" placeholder="गाने / वीडियो का नाम">
-  <input id="ccat" placeholder="कैटेगरी (भजन, न्यू गाना)">
-  <input id="clink" placeholder="Dropbox / Drive लिंक">
-  <input id="apass" type="password" placeholder="Admin Password">
-  <button onclick="addV()" style="width:100%;padding:12px;background:#FF8C00;color:#fff;border:none;border-radius:25px;font-weight:bold;margin-top:8px">जोड़ें</button>
+<!-- USER UPLOAD -->
+<div id="uploadSec">
+  <h3 style="color:#FF8C00">📤 वीडियो अपलोड करें (आपकी Permission के बाद ही दिखेगा)</h3>
+  <input id="u_name" placeholder="आपका नाम">
+  <input id="u_title" placeholder="वीडियो का टाइटल">
+  <input id="u_link" placeholder="Drive / Dropbox लिंक">
+  <input id="u_cat" placeholder="कैटेगरी - भजन, भोजपुरी">
+  <button onclick="requestUpload()" style="width:100%;padding:12px;background:#FF8C00;color:#fff;border:none;border-radius:25px;font-weight:bold;margin-top:8px">Upload के लिए भेजें (Admin Approval)</button>
+  <p style="font-size:11px;color:#aaa;margin-top:5px">Note: गंदी वीडियो / Copyright वाली वीडियो Auto Reject होगी। Admin कोड से ही Approve होगी।</p>
 </div>
 
-<div id="loginBox">
-  <div class="loginCard">
-    <img src="icon.png" style="width:70px;border-radius:50%;border:2px solid gold;background:#000" onerror="this.style.display='none'">
-    <h3 style="margin:10px 0 5px">BHARAT FLIX</h3>
-    <p style="color:#666;font-size:13px;margin-bottom:15px">ऐप डाउनलोड करने के लिए Gmail से Login करें</p>
-    <div id="g_id_onload" data-client_id="YOUR_GOOGLE_CLIENT_ID" data-callback="handleLogin"></div>
-    <div class="g_id_signin" data-type="standard" data-shape="pill" data-theme="filled_blue" data-text="signin_with" data-size="large"></div>
-    <br><br>
-    <button onclick="document.getElementById('loginBox').style.display='none'" style="background:none;border:none;color:#888;font-size:14px">Cancel</button>
-    <br><br>
-    <button onclick="directDownload()" style="background:none;border:none;color:#FF8C00;font-size:12px;text-decoration:underline">बिना Login के डाउनलोड करें</button>
-  </div>
+<!-- ADMIN LOGIN -->
+<div style="padding:12px"><button onclick="adminLogin()" style="padding:8px 14px;background:#222;color:#FF8C00;border:1px solid #FF8C00;border-radius:20px">🔐 Admin Login</button></div>
+
+<div id="adminPanel">
+  <h3 style="color:#FF8C00">Admin Panel - Pending Videos</h3>
+  <div id="pendingList"></div>
+  <hr style="margin:12px 0;border-color:#333">
+  <h4>Approved Videos (Live)</h4>
+  <button onclick="clearAll()" style="background:#900;color:#fff;padding:6px 12px;border:none;border-radius:15px;margin-top:8px">सब Delete करें</button>
 </div>
 
 <script>
-const APK_LINK = "https://drive.google.com/uc?export=download&id=134vw8oxdPhHCqcwgEu0gjW7sID9AqmZ1";
-let dp = null;
-let videos = JSON.parse(localStorage.getItem('bf_videos') || '[]');
-if(videos.length===0){
+let videos = JSON.parse(localStorage.getItem('bf_videos')||'[]');
+let pending = JSON.parse(localStorage.getItem('bf_pending')||'[]');
+if(videos.length==0){
   videos=[
-    {name:"BHARAT FLIX",mob:"",title:"न्यू भोजपुरी गाना 2026 - Trending",cat:"न्यू गाना",link:"",views:1250,sub:false},
-    {name:"BHARAT FLIX",mob:"",title:"भजन - हनुमान चालीसा",cat:"भजन",link:"",views:890,sub:false}
+    {title:"न्यू भोजपुरी गाना 2026 - Trending",cat:"न्यू गाना",name:"BHARAT FLIX",views:1250,likes:500,dislikes:10,subs:0,comments:[],stars:4.9,link:"",live:true},
+    {title:"भजन - हनुमान चालीसा",cat:"भजन",name:"BHARAT FLIX",views:890,likes:320,dislikes:2,subs:0,comments:[],stars:4.8,link:"",live:false}
   ];
 }
 
-function renderFiltered(list){
-  let grid=document.getElementById('videoGrid'); grid.innerHTML="";
+function render(list=videos){
+  let g=document.getElementById('videoGrid'); g.innerHTML="";
   list.forEach((v,i)=>{
-    grid.innerHTML+=`
-    <div class="card">
-      <div class="thumb">🎵</div>
+    g.innerHTML+=`<div class="card">
+      <div class="thumb">${v.live?'<span class=live>● LIVE</span>':''}🎵</div>
       <div class="cardBody">
         <h4>${v.title}</h4>
-        <p>${v.cat} • ${v.name} • ${v.views} views</p>
-        <div class="btns">
-          <button class="bView" onclick="view(${i})">👁️ View</button>
-          <button class="bDown" onclick="down('${v.link}')">⬇️ Down</button>
-          <button class="bShare" onclick="share('${v.title}','${v.link}')">Share</button>
-          <button class="bView" onclick="sub(${i})">${v.sub?'❤️':'🤍'}</button>
-          <button class="bView" onclick="comment(${i})">💬</button>
+        <div class="meta">${v.cat} • ${v.name} • ${v.views} views • ⭐ ${v.stars}</div>
+        <div class="btnRow">
+          <button class="bView" onclick="view(${i})">👁️ ${v.views} View</button>
+          <button class="bLike" onclick="like(${i})">👍 ${v.likes}</button>
+          <button class="bDis" onclick="dislike(${i})">👎 ${v.dislikes}</button>
+          <button class="bSub" onclick="subscribe(${i})">${v.subs?'Subscribed ✓':'Subscribe'}</button>
+          <button class="bShare" onclick="share('${v.title}')">Share</button>
+          <button class="bStar" onclick="comment(${i})">💬 ${v.comments.length} Comment</button>
         </div>
+        <div style="margin-top:6px;font-size:11px;color:#ccc">${v.comments.slice(-2).map(c=>'• '+c).join('<br>')}</div>
       </div>
     </div>`;
   });
 }
-function render(){renderFiltered(videos)}
+
 function doSearch(){
-  let q=document.getElementById('search').value.toLowerCase().trim();
-  if(!q){render();return;}
-  let f=videos.filter(v=>(v.title+v.cat+v.name).toLowerCase().includes(q));
-  renderFiltered(f);
+  let q=document.getElementById('search').value.toLowerCase();
+  if(!q) render();
+  else render(videos.filter(v=>(v.title+v.cat+v.name).toLowerCase().includes(q)));
 }
-function addV(){
-  if(document.getElementById('apass').value!=="Bharat123"){alert('गलत पासवर्ड!');return;}
-  let n=document.getElementById('cname').value,m=document.getElementById('cmobile').value,t=document.getElementById('ctitle').value,c=document.getElementById('ccat').value,l=document.getElementById('clink').value;
-  if(!n||!m||!t||!l){alert('सब भरना जरूरी है भैया जी!');return;}
-  let p=l.replace('www.dropbox.com','dl.dropboxusercontent.com').replace('?dl=0','');
-  videos.push({name:n,mob:m,title:t,cat:c,link:p,views:0,sub:false});
-  localStorage.setItem('bf_videos',JSON.stringify(videos));
-  alert('वीडियो जुड़ गया भैया जी!');
-  render();
-}
-function view(i){videos[i].views++;localStorage.setItem('bf_videos',JSON.stringify(videos));render();if(videos[i].link) window.open(videos[i].link,'_blank');}
-function sub(i){videos[i].sub=!videos[i].sub;localStorage.setItem('bf_videos',JSON.stringify(videos));render();}
-function comment(i){let x=prompt('कमेंट लिखें:'); if(x) alert('धन्यवाद! '+x)}
-function share(t,l){if(navigator.share){navigator.share({title:t,url:l||location.href})}else{prompt('लिंक कॉपी करें:',l||location.href)}}
-function down(l){window.open(l||APK_LINK,'_blank');}
+function view(i){videos[i].views++;save();render();if(videos[i].link) window.open(videos[i].link,'_blank');}
+function like(i){videos[i].likes++;save();render();}
+function dislike(i){videos[i].dislikes++;save();render();}
+function subscribe(i){videos[i].subs=!videos[i].subs;save();render();alert(videos[i].subs?'Subscribed!':'Unsubscribed');}
+function share(t){if(navigator.share) navigator.share({title:t,url:location.href}); else prompt('लिंक कॉपी करें:',location.href);}
+function comment(i){let c=prompt('कमेंट लिखें:'); if(c){videos[i].comments.push(c);save();render();}}
 
-window.addEventListener('beforeinstallprompt',(e)=>{e.preventDefault();dp=e;});
-document.getElementById('installBtn').addEventListener('click',async()=>{
-  if(dp){dp.prompt();let r=await dp.userChoice;dp=null;return;}
-  document.getElementById('loginBox').style.display='flex';
-});
-function handleLogin(res){
-  try{
-    let data=JSON.parse(atob(res.credential.split('.')[1]));
-    localStorage.setItem('bf_user',data.email);
-    alert("धन्यवाद "+data.name+" जी! डाउनलोड शुरू हो रहा है...");
-    document.getElementById('loginBox').style.display='none';
-    window.location.href=APK_LINK;
-  }catch(e){directDownload();}
+function requestUpload(){
+  let name=document.getElementById('u_name').value;
+  let title=document.getElementById('u_title').value;
+  let link=document.getElementById('u_link').value;
+  let cat=document.getElementById('u_cat').value;
+  if(!name||!title||!link){alert('सब भरें भैया जी!');return;}
+  // Copyright / गंदी वीडियो फिल्टर
+  let badWords=["porn","sex","xxx","nude","gandi"];
+  let isBad=badWords.some(w=>title.toLowerCase().includes(w));
+  if(isBad){alert('गंदी वीडियो Allow नहीं है!');return;}
+  if(title.toLowerCase().includes('copyright')||title.toLowerCase().includes('tseries')){alert('Copyright वाला टाइटल नहीं चलेगा!');return;}
+  pending.push({name,title,link,cat,views:0,likes:0,dislikes:0,subs:0,comments:[],stars:5,live:false});
+  localStorage.setItem('bf_pending',JSON.stringify(pending));
+  alert('आपका वीडियो Admin के पास भेज दिया गया है! जब भैया जी Permission देंगे तब दिखेगा। आपका कोड: BF-'+Date.now());
+  document.getElementById('u_name').value='';document.getElementById('u_title').value='';document.getElementById('u_link').value='';
 }
-function directDownload(){document.getElementById('loginBox').style.display='none';window.location.href=APK_LINK;}
 
+function adminLogin(){
+  let p=prompt('Admin Password डालें:');
+  if(p==="Bharat123"){document.getElementById('adminPanel').style.display='block';renderPending();}
+  else alert('गलत पासवर्ड!');
+}
+function renderPending(){
+  let pl=document.getElementById('pendingList'); pl.innerHTML="";
+  if(pending.length==0) pl.innerHTML="<p style='color:#aaa'>कोई Pending वीडियो नहीं</p>";
+  pending.forEach((v,i)=>{
+    pl.innerHTML+=`<div class="approveCard"><b>${v.title}</b> - ${v.name} - ${v.cat}<br><button onclick="approve(${i})" style="background:green;color:#fff;padding:5px 10px;border:none;border-radius:15px;margin:5px 5px 0 0">✅ Approve (Permission दो)</button><button onclick="reject(${i})" style="background:red;color:#fff;padding:5px 10px;border:none;border-radius:15px">❌ Reject</button></div>`;
+  });
+}
+function approve(i){videos.push(pending[i]);pending.splice(i,1);save();render();renderPending();alert('Approved! अब सबको दिखेगा');}
+function reject(i){pending.splice(i,1);localStorage.setItem('bf_pending',JSON.stringify(pending));renderPending();}
+function clearAll(){if(confirm('सब डिलीट?')){videos=[];save();render();}}
+function save(){localStorage.setItem('bf_videos',JSON.stringify(videos));localStorage.setItem('bf_pending',JSON.stringify(pending));}
 render();
+let dp=null;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();dp=e;});
+document.getElementById('installBtn').addEventListener('click',async()=>{if(dp){dp.prompt();await dp.userChoice;dp=null;}});
 </script>
 </body>
 </html>
