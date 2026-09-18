@@ -1,170 +1,104 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bharat Flix - भारत का अपना OTT</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BharatFlix</title>
+<link rel="manifest" href="manifest.json">
 <style>
-body{margin:0; background:#000; color:#fff; font-family:Arial, sans-serif}
-.page{display:none; min-height:100vh}
-#page0{display:block; background:radial-gradient(circle at center, #222 0%, #000 80%); text-align:center; padding-top:70px}
-.logo-main{width:300px; border-radius:28px; border:3px solid #FFD700; box-shadow:0 0 40px rgba(255,215,0,0.8)}
-.install-btn{background:linear-gradient(#FFD700,#b8960c); color:#000; padding:20px 85px; font-size:32px; font-weight:900; border-radius:16px; border:none; margin-top:45px; box-shadow:0 8px 25px rgba(255,215,0,0.6)}
-.header{display:flex; justify-content:space-between; align-items:center; background:#000; padding:10px 14px; border-bottom:1px solid #222; position:sticky; top:0; z-index:99}
-.left-logo{display:flex; align-items:center; gap:8px}
-.left-logo img{width:36px; height:36px; border-radius:50%; border:2px solid gold}
-.right-icons{display:flex; align-items:center; gap:14px}
-.right-icons img{width:32px; height:32px; border-radius:50%; border:2px solid gold}
-.cat-bar{display:flex; overflow-x:auto; gap:8px; padding:10px; background:#0f0f0f; white-space:nowrap}
-.cat-bar button{background:#272727; color:#fff; border:1px solid #333; padding:7px 14px; border-radius:8px}
-.cat-bar button.active{background:#fff; color:#000}
-input{width:90%; padding:14px; margin:10px 0; border-radius:10px; border:2px solid gold; font-size:16px}
-.reg-btn{background:gold; color:#000; padding:14px; width:92%; font-size:19px; font-weight:bold; border-radius:10px; border:none}
-.video-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px; padding:10px}
-.video-card{background:#111; border-radius:12px; overflow:hidden; border:1px solid #222}
+body{margin:0;font-family:system-ui;background:#f5f5f5}
+.page{display:none;min-height:100vh}
+.page.active{display:flex;align-items:center;justify-content:center}
+#page-install.active,#page-gate.active{flex-direction:column;background:linear-gradient(to bottom,#FF9933,white,#138808)}
+.card{background:white;padding:25px;border-radius:20px;box-shadow:0 10px 30px #0003;width:85%;max-width:340px;text-align:center}
+button.main{width:100%;padding:15px;background:linear-gradient(90deg,#b8962e,#ffd700);color:black;font-weight:bold;font-size:18px;border:2px solid gold;border-radius:12px;margin-top:12px}
+input{width:90%;padding:12px;margin:6px;border:1px solid #ccc;border-radius:10px}
+header{background:#0a0a2a;padding:12px;display:flex;align-items:center;gap:10px;color:white;width:100%;box-sizing:border-box}
+.ad{margin:15px;padding:20px;border:2px dashed #d4af37;border-radius:15px;background:white;text-align:center;width:90%}
+.video{margin:15px;border-radius:18px;padding:12px;background:linear-gradient(to bottom,#FF9933,white,#138808);width:90%}
+video{width:100%;border-radius:12px}
+.row{background:white;border:2px solid gold;margin:10px 0;padding:12px;border-radius:12px}
 </style>
 </head>
 <body>
 
-<!-- PAGE 0 - पहला पेज - आपका B वाला लोगो -->
-<div id="page0" class="page">
-  <img src="logo.png" class="logo-main">
-  <br>
-  <button class="install-btn" onclick="handleInstall()">INSTALL</button>
-  <p style="margin-top:25px; color:#ddd;">Stream Indian Movies • Series • Live TV<br>Anytime, Anywhere</p>
-  <p style="margin-top:30px; font-size:13px; opacity:0.6;">Version 1.0.0 • Free • 4.8★ • 10M+ Downloads<br><span id="vCount">Visitor Counting...</span></p>
-</div>
-
-<!-- PAGE 1 - Compulsory ID -->
-<div id="page1" class="page" style="text-align:center; padding:20px; background:#111;">
-  <h2 style="color:gold; margin-top:40px;">🇮🇳 BharatFlix में स्वागत है</h2>
-  <p>अंदर जाने के लिए ID जरूरी है भैया जी</p>
-  <input id="userName" placeholder="आपका पूरा नाम *">
-  <input id="userGmail" type="email" placeholder="आपकी Gmail ID *">
-  <select id="userRole" style="width:91%; padding:14px; border-radius:10px; border:2px solid gold; margin:10px 0;">
-    <option value="public">आम दर्शक - सिर्फ देखेगा</option>
-    <option value="reporter">रिपोर्टर - खबर/रिपोर्ट डालेगा (लड़ाई वाली CHALU रहेगी)</option>
-  </select>
-  <input id="userPhoto" type="file" accept="image/*">
-  <button class="reg-btn" onclick="registerUser()">Register करो और अंदर जाओ 🚀</button>
-</div>
-
-<!-- PAGE 3 - YouTube जैसा Player - All in One -->
-<div id="page3" class="page">
-  <div class="header">
-    <div class="left-logo">
-      <img src="logo.png"><span style="font-weight:900; font-size:18px;">BharatFlix</span>
-    </div>
-    <div class="right-icons">
-      <span>🔍</span><span>🔔</span>
-      <img id="topUserImg" src="https://via.placeholder.com/32/FFD700/000?text=U">
-      <span onclick="openSetting()">⚙️</span>
-    </div>
-  </div>
-  <div class="cat-bar">
-    <button class="active" onclick="filterCat('all')">All</button>
-    <button onclick="filterCat('movies')">Movies</button>
-    <button onclick="filterCat('series')">Series</button>
-    <button onclick="filterCat('live')">Live TV</button>
-    <button onclick="filterCat('news')">News</button>
-    <button onclick="filterCat('reporter')">Reporter News</button>
-    <button onclick="filterCat('bhajan')">Bhajan</button>
-  </div>
-  <video id="mainPlayer" controls style="width:100%; border-bottom:2px solid gold;"></video>
-  <div id="videoGrid" class="video-grid"></div>
-  <div style="text-align:center; padding:20px;">
-    <button onclick="showPage(2)" style="background:#fff; color:#000; padding:12px 22px; border-radius:10px; font-weight:bold;">🚀 अपना स्टॉल लगाओ / चैनल बनाओ</button>
+<!-- 1. INSTALL PAGE -->
+<div id="page-install" class="page active">
+  <div class="card">
+    <img src="logo.png" width="110" style="border-radius:18px;border:3px solid gold">
+    <h2>BHARAT FLIX</h2>
+    <p>भारत का अपना OTT<br>100% FREE</p>
+    <button class="main" id="installBtn">🇮🇳 FREE Install करो</button>
+    <button class="main" style="background:black;color:white" onclick="goGate()">बिना Install देखो</button>
   </div>
 </div>
 
-<!-- PAGE 2 - Upload - AI Scanner अंदर -->
-<div id="page2" class="page" style="text-align:center; padding:20px; background:#111;">
-  <h2 style="color:gold;">अपना चैनल / स्टॉल बनाओ</h2>
-  <p id="roleInfo"></p>
-  <input type="file" id="videoFile" accept="video/*">
-  <input id="videoTitle" placeholder="Video का Title डालो">
-  <button class="reg-btn" onclick="uploadWithAIScan()">AI Scan करके Upload करो</button>
-  <br><br><button onclick="showPage(3)">← Back to Player</button>
-  <p style="font-size:12px; opacity:0.6; margin-top:20px;">AI Scanner: गंदी Video=BAND, लड़ाई/धमकी=पब्लिक के लिए BAND, रिपोर्टर के लिए CHALU, Copyright=Auto Cut</p>
+<!-- 2. ZERO PAISE GATE -->
+<div id="page-gate" class="page">
+  <div class="card">
+    <img src="logo.png" width="80" style="border-radius:12px;border:2px solid gold">
+    <h3>Zero Paise - Gate Pass</h3>
+    <input id="name" placeholder="आपका नाम">
+    <input id="mobile" placeholder="मोबाइल नंबर">
+    <input id="gmail" placeholder="Gmail (optional)">
+    <button class="main" style="background:black;color:white" onclick="enterApp()">Gate Pass बनाओ</button>
+  </div>
+</div>
+
+<!-- 3. HOME PAGE -->
+<div id="page-home" class="page" style="flex-direction:column;justify-content:flex-start">
+  <header><img src="logo.png" width="45" style="border-radius:8px"><b>BHARAT FLIX</b>
+    <button onclick="showTop()" style="margin-left:auto;padding:6px 10px;border-radius:6px">Top List</button>
+  </header>
+
+  <div class="ad"><b style="color:#b8962e">Ad Space - Yahan Ad Aayega</b><br><small>₹500 / दिन</small></div>
+
+  <div class="video"><video controls onplay="addView('v1','Raju Bhai')" poster="" src="https://www.w3schools.com/html/mov_bbb.mp4"></video><b>Bharat Ke Veer</b><br><small id="vc1">0 views</small></div>
+  <div class="video"><video controls onplay="addView('v2','Pappu Bhai')" src="https://www.w3schools.com/html/mov_bbb.mp4"></video><b>Street Food India</b><br><small id="vc2">0 views</small></div>
+
+  <div id="topArea" style="width:90%;display:none"><h2>🏆 Top Viral List</h2><div id="list"></div><button class="main" style="background:black;color:white" onclick="hideTop()">वापस जाओ</button></div>
 </div>
 
 <script>
-// ========= भैया जी यहाँ अपनी Gmail डालो - आप मालिक हो =========
-const MALIK_GMAIL = "apni_gmail_yahan_dalo@gmail.com";
-// ============================================================
-
-function showPage(n){
-  document.querySelectorAll('.page').forEach(p=>p.style.display='none');
-  document.getElementById('page'+n).style.display='block';
+// PAGE SWITCH
+function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
+function goGate(){showPage('page-gate');}
+function enterApp(){
+  let n=document.getElementById('name').value,m=document.getElementById('mobile').value;
+  if(!n||!m){alert("भैया जी नाम मोबाइल भर दो");return;}
+  localStorage.setItem('bharatflix_user',JSON.stringify({name:n,mobile:m}));
+  showPage('page-home'); loadCounts();
 }
-
-function handleInstall(){
-  let c = parseInt(localStorage.getItem('bharatflix_visitors')||'0')+1;
-  localStorage.setItem('bharatflix_visitors', c);
-  document.getElementById('vCount').innerText = "Visitors: "+c;
-  // आपकी Sheet में भी जाएगी
-  // fetch("https://api.countapi.xyz/hit/bharatflix.github.io/visits");
-
-  let g = localStorage.getItem('bf_gmail');
-  if(g){ showPage(3); loadVideos(); } else { showPage(1); }
+function addView(id,creator){
+  let s=JSON.parse(localStorage.getItem('bharat_stats')||'{}');
+  if(!s[id])s[id]={views:0,creator:creator}; s[id].views+=1;
+  localStorage.setItem('bharat_stats',JSON.stringify(s)); loadCounts();
 }
-
-function registerUser(){
-  let name = document.getElementById('userName').value;
-  let gmail = document.getElementById('userGmail').value.trim().toLowerCase();
-  let role = document.getElementById('userRole').value;
-  if(!name ||!gmail.includes("@gmail.com")){ alert("भैया जी सही नाम और Gmail डालो!"); return; }
-  localStorage.setItem('bf_name', name);
-  localStorage.setItem('bf_gmail', gmail);
-  localStorage.setItem('bf_role', role);
-  // Google Sheet में Save - Compulsory ID
-  // fetch(`YOUR_SHEET_URL?name=${name}&gmail=${gmail}&role=${role}`);
-  alert("Register हो गया भैया जी!");
-  showPage(3); loadVideos();
+function loadCounts(){
+  let s=JSON.parse(localStorage.getItem('bharat_stats')||'{}');
+  if(s['v1'])document.getElementById('vc1').innerText=s['v1'].views+" views";
+  if(s['v2'])document.getElementById('vc2').innerText=s['v2'].views+" views";
 }
-
-function uploadWithAIScan(){
-  let role = localStorage.getItem('bf_role') || 'public';
-  let file = document.getElementById('videoFile').files[0];
-  if(!file){ alert("पहले Video चुनो भैया जी"); return; }
-
-  // AI SCANNER - आपको परमिशन नहीं मांगना पड़ेगा
-  let isNSFW = false; // यहाँ आपका NSFW AI आएगा - अभी demo false
-  let isViolence = file.name.toLowerCase().includes("fight"); // demo logic
-
-  if(isNSFW){
-    alert("AI ने रोका: ये गंदी Video है भैया जी, पब्लिक और रिपोर्टर दोनों के लिए BAND है!");
-    return;
-  }
-  if(isViolence){
-    if(role === 'public'){
-      alert("AI ने रोका: लड़ाई/धमकी वाली Video - पब्लिक के लिए BAND है! सिर्फ रिपोर्टर के लिए CHALU रहेगी भैया जी");
-      return;
-    } else if(role === 'reporter'){
-      alert("AI ने पास किया: आप रिपोर्टर हो भैया जी, आपकी ये Video CHALU रहेगी - Reporter News में जाएगी!");
-      // upload continue
-    }
-  }
-  alert("AI Scan Pass हो गया! Video Upload हो रही है...");
-  showPage(3);
+function showTop(){
+  let s=JSON.parse(localStorage.getItem('bharat_stats')||'{}');
+  let sorted=Object.entries(s).sort((a,b)=>b[1].views-a[1].views);
+  document.getElementById('topArea').style.display='block';
+  document.getElementById('list').innerHTML=sorted.length==0?"<p>अभी कोई व्यू नहीं भैया जी</p>":sorted.map((v,i)=>`<div class="row"><h3>${i==0?'🥇':i==1?'🥈':'🏅'} #${i+1} - ${v[1].views} Views</h3><p>${v[0]} - ${v[1].creator}</p></div>`).join('');
+  window.scrollTo(0,document.body.scrollHeight);
 }
+function hideTop(){document.getElementById('topArea').style.display='none';}
 
-function openSetting(){ alert("Setting: Profile: "+localStorage.getItem('bf_name')+"\nRole: "+localStorage.getItem('bf_role')+"\nGmail: "+localStorage.getItem('bf_gmail')); }
-function filterCat(cat){ alert(cat+" Category filter - AI खुद Category लगाएगा भैया जी"); }
-function loadVideos(){ document.getElementById('roleInfo').innerText = "आप "+localStorage.getItem('bf_role')+" हो भैया जी"; }
+// AUTO LOGIN
+if(localStorage.getItem('bharatflix_user')){showPage('page-home'); loadCounts();}
 
-window.onload = function(){
-  let g = localStorage.getItem('bf_gmail');
-  if(g){
-    // आप मालिक हो तो सीधा Player
-    if(g === MALIK_GMAIL){ showPage(3); loadVideos(); }
-    else { showPage(0); }
-  } else {
-    showPage(0);
-  }
-  let c = localStorage.getItem('bharatflix_visitors')||'0';
-  document.getElementById('vCount').innerText = "Visitors: "+c;
-}
+// PWA INSTALL
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;});
+document.getElementById('installBtn').onclick=async()=>{
+  if(deferredPrompt){deferredPrompt.prompt(); await deferredPrompt.userChoice;}
+  goGate();
+};
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js');}
 </script>
 </body>
 </html>
