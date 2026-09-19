@@ -2,202 +2,102 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BharatFlix - Bharat Ka YouTube</title>
-<link rel="manifest" href="manifest.json">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bharat Flix - भारत का अपना OTT</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@700;900&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Roboto,Arial}
-body{background:#0f0f0f;color:white}
-header{position:sticky;top:0;z-index:10;background:#0f0f0f;display:flex;align-items:center;padding:10px;gap:12px;border-bottom:1px solid #333}
-.logo{display:flex;align-items:center;gap:8px;font-weight:bold;font-size:20px}
-.logo span{background:linear-gradient(90deg,#FF9933,white,#138808);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-size:22px}
-.logo img{width:38px;border-radius:8px;border:2px solid gold}
-#search{flex:1;background:#121212;border:1px solid #333;border-radius:25px;padding:10px 15px;color:white;outline:none}
-.btn{background:#272727;border:none;color:white;padding:8px 14px;border-radius:20px;cursor:pointer}
-.btn-gold{background:linear-gradient(90deg,#b8962e,#ffd700);color:black;font-weight:bold}
-.main{display:flex}
-.sidebar{width:70px;background:#0f0f0f;padding:10px;display:flex;flex-direction:column;gap:15px;align-items:center}
-.sidebar div{font-size:10px;text-align:center;cursor:pointer}
-.feed{flex:1;padding:15px;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px}
-.card{background:#181818;border-radius:12px;overflow:hidden;cursor:pointer;border:1px solid #222}
-.card video{width:100%;aspect-ratio:16/9;background:black}
-.card .info{padding:10px}
-.card h4{font-size:14px;margin:5px 0;line-height:18px}
-.card p{font-size:12px;color:#aaa}
-.page{display:none;min-height:100vh}
-.page.active{display:block}
-#watchPage{padding:15px}
-.watch-flex{display:flex;flex-wrap:wrap;gap:15px}
-.watch-left{flex:2;min-width:300px}
-.watch-right{flex:1;min-width:280px}
-#mainVideo{width:100%;border-radius:12px;background:black}
-.action-row{display:flex;gap:10px;margin:10px 0;flex-wrap:wrap}
-.uploadBox{background:#181818;padding:20px;border-radius:15px;border:2px dashed gold;margin:15px}
-input,textarea{width:100%;padding:12px;margin:6px 0;background:#121212;border:1px solid #333;border-radius:10px;color:white}
+  *{margin:0; padding:0; box-sizing:border-box;}
+  body{
+    min-height:100vh;
+    background: linear-gradient(180deg, #FF9933 0%, #FF9933 33%, #FFFFFF 33%, #FFFFFF 66%, #138808 66%, #138808 100%);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Noto Sans Devanagari', sans-serif;
+    padding:20px;
+  }
+  .card{
+    width:100%; max-width:380px;
+    background:white;
+    border-radius:28px;
+    padding:70px 22px 28px 22px;
+    box-shadow:0 20px 50px rgba(0,0,0,0.4);
+    border:3.5px solid #FFD700;
+    position:relative;
+    text-align:center;
+  }
+  .b-logo{
+    width:110px; height:110px;
+    background: linear-gradient(180deg, #FF9933, #fff, #138808);
+    border:3px solid #FFD700;
+    border-radius:22px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:70px; font-weight:900; color:#E8B500;
+    text-shadow: 0 2px 0 #fff, 0 4px 8px rgba(0,0,0,0.5);
+    position:absolute; top:-55px; left:50%; transform:translateX(-50%);
+    box-shadow:0 12px 30px rgba(0,0,0,0.4);
+  }
+  h1{
+    font-size:30px; font-weight:900; letter-spacing:1px;
+    background: linear-gradient(to bottom, #FF6F00, #FFD600, #FF6F00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom:4px;
+  }
+  .sub{color:#2E7D32; font-weight:700; font-size:14px; margin-bottom:18px;}
+  .swagat-title{
+    font-size:19px; font-weight:900; color:#BF360C;
+    margin:15px 0 12px 0; line-height:1.4;
+  }
+  .parivar-box{
+    background:#FFF8E1;
+    border-left:5px solid #FF9933;
+    border-right:5px solid #138808;
+    border-radius:12px;
+    padding:14px 12px;
+    font-size:15px; line-height:1.7; color:#333; font-weight:600;
+  }
+  .install-btn{
+    display:block;
+    margin-top:22px;
+    background: linear-gradient(to right, #FF8F00, #FFD600);
+    color:#000;
+    text-decoration:none;
+    padding:18px 10px;
+    font-size:21px; font-weight:900;
+    border-radius:50px;
+    box-shadow:0 8px 20px rgba(255,143,0,0.6);
+    animation: chamak 1.3s infinite;
+  }
+  @keyframes chamak{
+    0%{ transform:scale(1); }
+    50%{ transform:scale(1.06); box-shadow:0 0 28px #FF8F00; }
+    100%{ transform:scale(1); }
+  }
+  .note{font-size:11px; color:gray; margin-top:14px;}
 </style>
 </head>
 <body>
 
-<header>
-<div class="logo"><img src="logo.png"><span>BHARATFLIX</span></div>
-<input id="search" placeholder="Search - भारत में खोजो" oninput="searchVideo(this.value)">
-<button class="btn btn-gold" onclick="openUpload()">＋ Upload</button>
-<button class="btn" onclick="showPage('feedPage')">Home</button>
-</header>
+<div class="card">
+  <div class="b-logo">B</div>
+  
+  <h1>BHARAT FLIX</h1>
+  <div class="sub">🇮🇳 भारत का अपना OTT 🇮🇳</div>
 
-<!-- FEED PAGE - YOUTUBE HOME -->
-<div id="feedPage" class="page active">
-<div class="main">
-<div class="sidebar">
-<div onclick="showPage('feedPage')">🏠<br>Home</div>
-<div onclick="openUpload()">⬆️<br>Upload</div>
-<div onclick="showTop()">🔥<br>Top</div>
-<div>📺<br>Shorts</div>
-</div>
-<div class="feed" id="feed"></div>
-</div>
-</div>
+  <div class="swagat-title">भारत फ्लिक्स में आपका स्वागत है!<br>हमेशा जुड़े रहिए भारत फ्लिक्स से,<br>ये आपका अपना प्लेटफॉर्म है।</div>
 
-<!-- WATCH PAGE - YOUTUBE WATCH -->
-<div id="watchPage" class="page">
-<div class="watch-flex">
-<div class="watch-left">
-<video id="mainVideo" controls></video>
-<h2 id="wTitle" style="margin-top:10px"></h2>
-<p id="wChannel" style="color:#aaa;font-size:14px"></p>
-<div class="action-row">
-<button class="btn" id="likeBtn" onclick="likeCurrent()">👍 <span id="likeCount">0</span></button>
-<button class="btn" id="subBtn" onclick="subscribeCurrent()">🔔 Subscribe</button>
-<button class="btn" onclick="shareCurrent()">↗️ Share</button>
-</div>
-<div style="background:#272727;padding:12px;border-radius:12px;margin-top:10px">
-<p id="wViews"></p>
-<p id="wDesc" style="font-size:13px;color:#ddd;margin-top:6px"></p>
-</div>
-<div style="margin-top:15px">
-<h4>Comments</h4>
-<input id="commentInput" placeholder="Comment लिखो भैया जी...">
-<button class="btn btn-gold" onclick="addComment()">Comment करो</button>
-<div id="commentList" style="margin-top:10px"></div>
-</div>
-</div>
-<div class="watch-right" id="suggestion"></div>
-</div>
+  <div class="parivar-box">
+    🙏 ये आपका खुद का प्लेटफॉर्म है,<br>
+    यहाँ सब अपने हैं।<br>
+    ये बहुत बड़ा परिवार होने वाला है!
+  </div>
+
+  <!-- आपका फाइनल APK लिंक - सीधा डाउनलोड -->
+  <a class="install-btn" href="https://drive.google.com/uc?export=download&id=134vw8oxdPhHCqcwgEu0gjW7sID9AqmZ1">
+    📲 अभी इंस्टॉल करें - यहाँ टच करें
+  </a>
+
+  <div class="note">✅ सिर्फ 15MB | 100% सुरक्षित | Made in Bharat<br>टच करते ही डाउनलोड शुरू होगा</div>
 </div>
 
-<!-- UPLOAD PAGE -->
-<div id="uploadPage" class="page">
-<div class="uploadBox">
-<h2>📤 BharatFlix पर Video Upload करो</h2>
-<input id="vTitle" placeholder="Video Title - टाइटल लिखो">
-<input id="vChannel" placeholder="Channel Name - आपका नाम">
-<textarea id="vDesc" placeholder="Description लिखो"></textarea>
-<p style="font-size:12px;color:gold">Video File चुनो या Link डालो</p>
-<input type="file" id="vFile" accept="video/*">
-<input id="vLink" placeholder="या Video Link डालो (mp4 link)">
-<button class="btn btn-gold" style="width:100%;padding:15px;margin-top:10px" onclick="doUpload()">🚀 Upload कर दो भैया जी</button>
-<button class="btn" style="width:100%;margin-top:8px" onclick="showPage('feedPage')">वापस Home</button>
-</div>
-</div>
-
-<script>
-let videos = JSON.parse(localStorage.getItem('bharatflix_videos')||'[]');
-if(videos.length==0){
-videos=[
-{ id:'1', title:'Bharat Ke Veer - Desh Bhakti Song', channel:'Bharat Music', views:1250, likes:89, desc:'भारत का गर्व', url:'https://www.w3schools.com/html/mov_bbb.mp4', comments:['जय हिंद भैया जी!'] },
-{ id:'2', title:'Street Food India - Agra Chaat', channel:'Food Bharat', views:890, likes:45, desc:'आगरा की चाट', url:'https://www.w3schools.com/html/mov_bbb.mp4', comments:[] }
-];
-save();
-}
-let current=null;
-
-function save(){localStorage.setItem('bharatflix_videos',JSON.stringify(videos));}
-
-function render(list=videos){
-document.getElementById('feed').innerHTML=list.map(v=>`
-<div class="card" onclick="playVideo('${v.id}')">
-<video src="${v.url}" muted></video>
-<div class="info">
-<h4>${v.title}</h4>
-<p>${v.channel}</p>
-<p>${v.views} views • ${v.likes} likes</p>
-</div>
-</div>
-`).join('');
-}
-render();
-
-function playVideo(id){
-current=videos.find(x=>x.id==id);
-current.views++;
-save();
-document.getElementById('mainVideo').src=current.url;
-document.getElementById('wTitle').innerText=current.title;
-document.getElementById('wChannel').innerText=current.channel+" • "+current.views+" views";
-document.getElementById('wViews').innerText=current.views+" views";
-document.getElementById('wDesc').innerText=current.desc;
-document.getElementById('likeCount').innerText=current.likes;
-document.getElementById('commentList').innerHTML=current.comments.map(c=>`<p style="background:#181818;padding:8px;margin:5px 0;border-radius:8px">👤 ${c}</p>`).join('');
-showPage('watchPage');
-document.getElementById('suggestion').innerHTML=videos.filter(x=>x.id!=id).map(v=>`
-<div class="card" style="margin-bottom:10px" onclick="playVideo('${v.id}')">
-<video src="${v.url}" muted style="height:90px"></video>
-<div class="info"><h4 style="font-size:12px">${v.title}</h4><p>${v.channel}</p></div>
-</div>
-`).join('');
-}
-
-function searchVideo(q){
-let f=videos.filter(v=>v.title.toLowerCase().includes(q.toLowerCase())||v.channel.toLowerCase().includes(q.toLowerCase()));
-render(f);
-}
-
-function showPage(id){
-document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-document.getElementById(id).classList.add('active');
-}
-
-function openUpload(){showPage('uploadPage');}
-
-function doUpload(){
-let title=document.getElementById('vTitle').value;
-let channel=document.getElementById('vChannel').value;
-let desc=document.getElementById('vDesc').value;
-let link=document.getElementById('vLink').value;
-let file=document.getElementById('vFile').files[0];
-if(!title){alert("भैया जी Title तो लिखो");return;}
-let url=link||"https://www.w3schools.com/html/mov_bbb.mp4";
-if(file){url=URL.createObjectURL(file);}
-let newV={id:Date.now().toString(),title,channel:channel||"BharatFlix User",views:0,likes:0,desc:desc||"BharatFlix Video",url,comments:[]};
-videos.unshift(newV);
-save();render();showPage('feedPage');
-alert("हो गया भैया जी! Upload सफल!");
-}
-
-function likeCurrent(){
-if(!current)return;
-current.likes++;save();
-document.getElementById('likeCount').innerText=current.likes;
-render();
-}
-function subscribeCurrent(){alert("भैया जी Subscribed! 🔔 "+current.channel+" को Subscribe कर लिया!");}
-function shareCurrent(){
-if(navigator.share){navigator.share({title:current.title,url:location.href});}
-else{alert("Link Copy: "+location.href);}
-}
-function addComment(){
-let c=document.getElementById('commentInput').value;
-if(!c)return;
-current.comments.push(c);
-document.getElementById('commentInput').value='';
-document.getElementById('commentList').innerHTML=current.comments.map(x=>`<p style="background:#181818;padding:8px;margin:5px 0;border-radius:8px">👤 ${x}</p>`).join('');
-save();
-}
-function showTop(){
-let sorted=[...videos].sort((a,b)=>b.views-a.views);
-render(sorted);
-showPage('feedPage');
-}
-</script>
 </body>
 </html>
