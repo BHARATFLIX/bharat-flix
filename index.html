@@ -4,100 +4,74 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bharat Flix - भारत का अपना OTT</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@700;900&display=swap" rel="stylesheet">
 <style>
-  *{margin:0; padding:0; box-sizing:border-box;}
-  body{
-    min-height:100vh;
-    background: linear-gradient(180deg, #FF9933 0%, #FF9933 33%, #FFFFFF 33%, #FFFFFF 66%, #138808 66%, #138808 100%);
-    display:flex; align-items:center; justify-content:center;
-    font-family:'Noto Sans Devanagari', sans-serif;
-    padding:20px;
-  }
-  .card{
-    width:100%; max-width:380px;
-    background:white;
-    border-radius:28px;
-    padding:70px 22px 28px 22px;
-    box-shadow:0 20px 50px rgba(0,0,0,0.4);
-    border:3.5px solid #FFD700;
-    position:relative;
-    text-align:center;
-  }
-  .b-logo{
-    width:110px; height:110px;
-    background: linear-gradient(180deg, #FF9933, #fff, #138808);
-    border:3px solid #FFD700;
-    border-radius:22px;
-    display:flex; align-items:center; justify-content:center;
-    font-size:70px; font-weight:900; color:#E8B500;
-    text-shadow: 0 2px 0 #fff, 0 4px 8px rgba(0,0,0,0.5);
-    position:absolute; top:-55px; left:50%; transform:translateX(-50%);
-    box-shadow:0 12px 30px rgba(0,0,0,0.4);
-  }
-  h1{
-    font-size:30px; font-weight:900; letter-spacing:1px;
-    background: linear-gradient(to bottom, #FF6F00, #FFD600, #FF6F00);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom:4px;
-  }
-  .sub{color:#2E7D32; font-weight:700; font-size:14px; margin-bottom:18px;}
-  .swagat-title{
-    font-size:19px; font-weight:900; color:#BF360C;
-    margin:15px 0 12px 0; line-height:1.4;
-  }
-  .parivar-box{
-    background:#FFF8E1;
-    border-left:5px solid #FF9933;
-    border-right:5px solid #138808;
-    border-radius:12px;
-    padding:14px 12px;
-    font-size:15px; line-height:1.7; color:#333; font-weight:600;
-  }
-  .install-btn{
-    display:block;
-    margin-top:22px;
-    background: linear-gradient(to right, #FF8F00, #FFD600);
-    color:#000;
-    text-decoration:none;
-    padding:18px 10px;
-    font-size:21px; font-weight:900;
-    border-radius:50px;
-    box-shadow:0 8px 20px rgba(255,143,0,0.6);
-    animation: chamak 1.3s infinite;
-  }
-  @keyframes chamak{
-    0%{ transform:scale(1); }
-    50%{ transform:scale(1.06); box-shadow:0 0 28px #FF8F00; }
-    100%{ transform:scale(1); }
-  }
-  .note{font-size:11px; color:gray; margin-top:14px;}
+body{margin:0; font-family:Arial, sans-serif; background:linear-gradient(to bottom, #ff9933 0%, #ff9933 35%, #ffffff 35%, #ffffff 65%, #138808 65%, #138808 100%); min-height:100vh; display:flex; justify-content:center; align-items:center; padding:15px;}
+.card{background:white; width:100%; max-width:380px; border-radius:30px; border:3px solid #ffcc00; text-align:center; padding:25px 20px 20px; position:relative; margin-top:60px; box-shadow:0 10px 30px rgba(0,0,0,0.2);}
+.logo{width:110px; height:110px; background:linear-gradient(to bottom, #ff9933, white, #138808); border-radius:25px; border:4px solid #ffcc00; display:flex; justify-content:center; align-items:center; font-size:65px; font-weight:900; color:#e6b800; position:absolute; top:-55px; left:50%; transform:translateX(-50%); box-shadow:0 5px 15px rgba(0,0,0,0.2);}
+.title{color:#f7b500; font-size:32px; font-weight:900; margin-top:60px; letter-spacing:1px;}
+.sub{color:#0a8a0a; font-weight:bold; margin:5px 0 15px; font-size:16px;}
+.welcome{color:#c0392b; font-size:19px; font-weight:800; line-height:1.4; margin-bottom:18px;}
+.msgbox{background:#fdf6e3; border-left:5px solid #ff9933; border-right:5px solid #138808; border-radius:15px; padding:12px; font-weight:600; line-height:1.5; color:#333; margin-bottom:20px;}
+
+/* आपका वही कलर, और हिलने वाला */
+.install-btn{background:linear-gradient(90deg, #ff8c00, #ffcc00); border:none; width:100%; padding:15px; border-radius:50px; font-size:20px; font-weight:900; color:black; cursor:pointer; box-shadow:0 4px 10px rgba(0,0,0,0.2); animation: hilna 2s infinite;}
+@keyframes hilna{
+0%,100%{transform:translateX(0) scale(1);}
+10%,30%,50%{transform:translateX(-4px) scale(1.02);}
+20%,40%{transform:translateX(4px) scale(1.02);}
+}
+.install-btn:active{transform:scale(0.97);}
+
+.footer{font-size:12px; color:gray; margin-top:12px; font-weight:600;}
+.ad-box{width:100%; border-radius:15px; overflow:hidden; background:black; margin-bottom:15px; border:2px solid #ffcc00;}
+.ad-box video{width:100%; display:block; max-height:350px;}
 </style>
 </head>
 <body>
-
 <div class="card">
-  <div class="b-logo">B</div>
-  
-  <h1>BHARAT FLIX</h1>
-  <div class="sub">🇮🇳 भारत का अपना OTT 🇮🇳</div>
+<div class="logo">B</div>
+<div class="title">BHARAT FLIX</div>
+<div class="sub">🇮🇳 भारत का अपना OTT 🇮🇳</div>
 
-  <div class="swagat-title">भारत फ्लिक्स में आपका स्वागत है!<br>हमेशा जुड़े रहिए भारत फ्लिक्स से,<br>ये आपका अपना प्लेटफॉर्म है।</div>
-
-  <div class="parivar-box">
-    🙏 ये आपका खुद का प्लेटफॉर्म है,<br>
-    यहाँ सब अपने हैं।<br>
-    ये बहुत बड़ा परिवार होने वाला है!
-  </div>
-
-  <!-- आपका फाइनल APK लिंक - सीधा डाउनलोड -->
-  <a class="install-btn" href="https://drive.google.com/uc?export=download&id=134vw8oxdPhHCqcwgEu0gjW7sID9AqmZ1">
-    📲 अभी इंस्टॉल करें - यहाँ टच करें
-  </a>
-
-  <div class="note">✅ सिर्फ 15MB | 100% सुरक्षित | Made in Bharat<br>टच करते ही डाउनलोड शुरू होगा</div>
+<div class="ad-box">
+<video src="ad-new.mp4" autoplay muted loop controls playsinline></video>
 </div>
 
+<div class="welcome">भारत फ्लिक्स में आपका स्वागत है!<br>हमेशा जुड़े रहिए भारत फ्लिक्स से,<br>ये आपका अपना प्लेटफॉर्म है।</div>
+
+<div class="msgbox">🙏 ये आपका खुद का प्लेटफॉर्म है,<br>यहाँ सब अपने हैं।<br>ये बहुत बड़ा परिवार होने वाला है!</div>
+
+<button class="install-btn" id="installBtn">📱 अभी इंस्टॉल करें - यहाँ टच करें</button>
+
+<div class="footer">✅ सिर्फ 15MB | 100% सुरक्षित | Made in Bharat<br>टच करते ही डाउनलोड शुरू होगा</div>
+</div>
+
+<script>
+let deferredPrompt;
+const btn = document.getElementById('installBtn');
+window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferredPrompt = e; });
+btn.addEventListener('click', async () => {
+  btn.style.animation = 'none';
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    btn.innerHTML = "⏳ Installing...";
+    const { outcome } = await deferredPrompt.userChoice;
+    if (outcome === 'accepted') {
+      btn.innerHTML = "✅ Open - अब खोलें";
+      setTimeout(()=>{ window.location.href = "/login.html"; }, 1000);
+    } else {
+      btn.innerHTML = "📱 अभी इंस्टॉल करें - यहाँ टच करें";
+      btn.style.animation = 'hilna 2s infinite';
+    }
+    deferredPrompt = null;
+  } else {
+    btn.innerHTML = "⏳ Installing...";
+    setTimeout(()=>{
+      btn.innerHTML = "✅ Open - अब खोलें";
+      window.location.href = "/login.html";
+    }, 2000);
+  }
+});
+</script>
 </body>
 </html>
