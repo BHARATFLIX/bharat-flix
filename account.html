@@ -9,10 +9,8 @@ body{background:#000;color:#fff;font-family:sans-serif;text-align:center;padding
 .card{background:#111;padding:20px;border-radius:15px;border:1px solid #333;margin-top:15px;}
 input{width:92%;padding:12px;margin:8px 0;border-radius:8px;border:none;font-size:16px;}
 button{padding:12px 25px;background:orange;color:#000;border:none;border-radius:10px;font-size:17px;font-weight:bold;margin:5px;}
-.btn2{background:#00ff00;} .btn3{background:#444;color:#fff;font-size:13px;}
 .box{display:flex;justify-content:space-around;margin-top:15px;}
 .b{background:#222;padding:12px;border-radius:10px;width:45%;}
-a{color:orange;text-decoration:none;}
 </style>
 </head>
 <body>
@@ -23,35 +21,19 @@ a{color:orange;text-decoration:none;}
 <div class="card">
 <input id="name" placeholder="* नाम (जरूरी है)">
 <input id="mobile" type="number" placeholder="* मोबाइल (जरूरी है)">
-<input id="email" placeholder="ईमेल (मर्जी)">
+<input id="email" placeholder="ईमेल (मर्जी है)">
 <input id="photo" type="file" accept="image/*">
-<button onclick="makeID()">1. ID बनाओ</button>
+<button onclick="makeID()">ID बनाओ और Home जाओ</button>
 <h2 id="myid" style="color:yellow;"></h2>
-
-<hr style="margin:15px 0; border:1px solid #333;">
-
-<p>अब फॉर्म भरो - सीट बुक करो (Unlimited)</p>
-<a href="https://docs.google.com/forms/d/e/1FAIpQLSc5JEo1wTIMYwG7iQ_k2A9y1FRTiwpfEPQsZdlkYYy0TJHSpQ/viewform?usp=dialog" target="_blank">
-<button class="btn2">2. FORM भरो</button>
-</a>
-
-<br><br>
-<button onclick="goHome()">3. मैंने Form भर दिया - Home खोलो</button>
-
-<br><br>
-<a href="https://docs.google.com/spreadsheets/d/1TNdqP1lZGU3Nl2TfZn6tNudX7udofOPkwfKJA2ouagc/edit?usp=drivesdk" target="_blank">
-<button class="btn3">Seat Sheet देखो</button>
-</a>
 </div>
 
 <div class="card">
-<h3>Counting (इस फोन में)</h3>
+<h3>Seat Counting</h3>
 <div class="box">
 <div class="b"><h2 id="active" style="color:#00ff00;">0</h2>Active ID</div>
 <div class="b"><h2 id="deleted" style="color:#ff4444;">0</h2>Delete ID</div>
 </div>
-<p style="font-size:11px;color:#aaa;margin-top:10px;">असली Unlimited Counting आपकी Google Sheet में होगी भैया जी<br>लिंक: Sheet में Responses में सब आ जाएगा</p>
-<p id="reason" style="font-size:12px;color:#aaa;"></p>
+<p id="reason" style="font-size:12px;color:#aaa;margin-top:10px;"></p>
 <button onclick="del()" style="background:#ff4444;color:#fff;font-size:14px;">ID Delete करो</button>
 </div>
 
@@ -68,20 +50,14 @@ let id="BF-"+Math.floor(1000+Math.random()*9000);
 users.push({id:id,name:n,mobile:m});
 localStorage.setItem('bf_users',JSON.stringify(users));
 localStorage.setItem('bf_last_id',id);
-document.getElementById('myid').innerText=n+" की ID बन गई: "+id+" \nअब Form भरो";
-count();
-}
-
-function goHome(){
-let last=localStorage.getItem('bf_last_id');
-if(!last){alert("पहले ID तो बनाओ भैया जी");return;}
-// Home page खोलो
 localStorage.setItem('bf_login','yes');
-window.location.href="index.html";
+document.getElementById('myid').innerText=n+" की ID बन गई: "+id;
+count();
+setTimeout(()=>{ window.location.href="index.html"; }, 1000);
 }
 
 function del(){
-let id=prompt("कौन सी ID Delete करनी है?");
+let id=prompt("कौन सी ID Delete करनी है? (जैसे BF-1234)");
 if(!id) return;
 let r=prompt("क्यों Delete कर रहे हो?");
 if(!r) r="कारण नहीं बताया";
