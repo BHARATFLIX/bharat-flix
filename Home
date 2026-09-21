@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bharat Flix</title>
+<script>
+// ताला भैया जी - ID नहीं बनी तो वापस भेज देंगे
+if(localStorage.getItem('bharat_id_done') !== 'yes'){
+  window.location.href = "index.html";
+}
+</script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Roboto,Arial,sans-serif;}
 body{background:#ffffff; padding-bottom:90px;}
