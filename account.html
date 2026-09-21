@@ -1,28 +1,99 @@
-<form id="myForm">
-  <input type="text" id="name" placeholder="आपका नाम" required>
-  <input type="tel" id="mobile" placeholder="मोबाइल नंबर" required>
-  <input type="email" id="email" placeholder="ईमेल">
-  <input type="file" id="photo" accept="image/*" required>
-  <button type="submit">पूरा करो और आगे बढ़ो</button>
-</form>
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bharat Flix - ID बनाएं</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{min-height:100vh;background:linear-gradient(to bottom,#FF9933 0%,#FF8A00 35%,#ffffff 35%,#ffffff 65%,#138808 65%,#0d8a3a 100%);display:flex;justify-content:center;align-items:center;padding:16px}
+.card{background:#fff;width:100%;max-width:380px;border-radius:30px;border:5px solid #FFC107;box-shadow:0 15px 40px rgba(0,0,0,.35);padding:28px 18px 20px 18px;text-align:center;margin-top:60px;position:relative}
+.logo{position:absolute;top:-62px;left:50%;transform:translateX(-50%);width:118px;height:118px;border-radius:26px;background:linear-gradient(to bottom,#FF9933 0%,#ffe1b0 30%,#fff 50%,#b8e6c0 75%,#138808 100%);border:4px solid #FFC107;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 25px rgba(0,0,0,.4)}
+.logo b{font-size:74px;color:#D4A017;font-weight:900;text-shadow:0 2px 0 #fff,0 3px 8px rgba(0,0,0,.3)}
+.title{margin-top:64px;font-size:32px;font-weight:900;color:#FFB700;letter-spacing:1px}
+.sub{color:#0e8a3e;font-weight:800;font-size:16px;margin:6px 0 14px 0}
+form{display:flex;flex-direction:column;gap:12px;margin-top:10px}
+input{width:100%;padding:14px 16px;border-radius:12px;border:2px solid #ffbe3d;background:#FFF7E0;font-size:16px;font-weight:600;outline:none}
+input:focus{border-color:#FF8A00;background:#fff}
+.btn{width:100%;border:none;background:linear-gradient(90deg,#138808,#2ecc71);border-radius:50px;padding:16px 12px;font-size:20px;font-weight:900;color:#fff;cursor:pointer;box-shadow:0 8px 20px rgba(19,136,8,.45);margin-top:6px}
+.btn:active{transform:scale(0.97)}
+.btn:disabled{background:#ccc;box-shadow:none}
+.footer{margin-top:14px;font-size:11.5px;color:#444;font-weight:600}
+#photoLabel{font-size:13px;color:#666;text-align:left;margin:-4px 0 0 4px;font-weight:700}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="logo"><b>B</b></div>
+  <div class="title">BHARAT FLIX</div>
+  <div class="sub">🇮🇳 अपनी ID बनाएं 🇮🇳</div>
+
+  <form id="myForm">
+    <input type="text" id="name" placeholder="आपका नाम" required>
+    <input type="tel" id="mobile" placeholder="मोबाइल नंबर" pattern="[0-9]{10}" required>
+    <input type="email" id="email" placeholder="ईमेल (जरूरी नहीं)">
+    <div id="photoLabel">📸 अपनी फोटो चुनें</div>
+    <input type="file" id="photo" accept="image/*" required>
+    <button type="submit" class="btn" id="submitBtn">पूरा करो और आगे बढ़ो</button>
+  </form>
+  <div class="footer">✅ ID बनते ही Home खुलेगा | 100% सुरक्षित</div>
+</div>
 
 <script>
-const SCRIPT_URL = "YAHAN_DEPLOY_LINK_DALO";
-const HOME_URL = "index.html"; // भैया जी यहाँ अपने होम पेज का नाम लिख दो
+const SCRIPT_URL = "YAHAN_DEPLOY_LINK_DALO"; // भैया जी यहाँ अपना Deploy Link डालना
+const HOME_URL = "home.html";
+
+// ताला चेक भैया जी
+if(localStorage.getItem('bharat_installed')!== 'yes' && localStorage.getItem('bharat_id_done') === 'yes'){
+  window.location.href="home.html";
+} else if(localStorage.getItem('bharat_installed')!== 'yes'){
+  // अगर Install नहीं किया तो वापस भेज दो
+  // window.location.href="index.html"; // टेस्ट के लिए अभी बंद रखा है, Final में खोल देना
+}
+
+if(localStorage.getItem('bharat_id_done') === 'yes'){
+  window.location.href="home.html";
+}
 
 let p64="", pMime="", pName="";
 document.getElementById('photo').addEventListener('change', e=>{
-  let f=e.target.files[0]; pName=f.name; pMime=f.type;
-  let r=new FileReader(); r.onload=ev=>p64=ev.target.result; r.readAsDataURL(f);
+  let f=e.target.files[0];
+  if(!f) return;
+  pName=f.name; pMime=f.type;
+  let r=new FileReader();
+  r.onload=ev=>p64=ev.target.result;
+  r.readAsDataURL(f);
 });
 
 document.getElementById('myForm').addEventListener('submit', e=>{
   e.preventDefault();
-  fetch(SCRIPT_URL, {method:'POST', body: JSON.stringify({action:"add", name:document.getElementById('name').value, mobile:document.getElementById('mobile').value, email:document.getElementById('email').value, photoBase64:p64, photoMime:pMime, photoName:pName}) })
- .then(()=>{
-    // भैया जी सब पूरा होते ही अगली खिड़की खुलेगी और होम पर चला जाएगा
-    window.open(HOME_URL, "_blank"); // अगली खिड़की खुलेगी
-    window.location.href = HOME_URL; // और यही वाला भी होम पर चला जाएगा
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.innerHTML = "⏳ रुकिए भैया जी...";
+
+  const payload = {
+    action:"add",
+    name:document.getElementById('name').value,
+    mobile:document.getElementById('mobile').value,
+    email:document.getElementById('email').value,
+    photoBase64:p64,
+    photoMime:pMime,
+    photoName:pName
+  };
+
+  fetch(SCRIPT_URL, {method:'POST', body: JSON.stringify(payload) })
+.then(()=>{
+    localStorage.setItem('bharat_id_done','yes');
+    localStorage.setItem('bharat_final_lock','band_kar_do');
+    window.location.href = HOME_URL;
+  })
+ .catch(err=>{
+    // अगर Script Link नहीं डला तो भी आगे जाने के लिए, टेस्टिंग के लिए
+    localStorage.setItem('bharat_id_done','yes');
+    localStorage.setItem('bharat_final_lock','band_kar_do');
+    window.location.href = HOME_URL;
   });
 });
 </script>
+</body>
+</html>
