@@ -1,81 +1,28 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bharat Flix - Account</title>
-<style>
-body{background:#000;color:#fff;font-family:sans-serif;text-align:center;padding:15px;}
-.card{background:#111;padding:20px;border-radius:15px;border:1px solid #333;margin-top:15px;}
-input{width:92%;padding:12px;margin:8px 0;border-radius:8px;border:none;font-size:16px;}
-button{padding:12px 25px;background:orange;color:#000;border:none;border-radius:10px;font-size:17px;font-weight:bold;margin:5px;}
-.box{display:flex;justify-content:space-around;margin-top:15px;}
-.b{background:#222;padding:12px;border-radius:10px;width:45%;}
-</style>
-</head>
-<body>
-
-<h1 style="color:orange;">BHARAT FLIX</h1>
-<h3>Account बनाओ</h3>
-
-<div class="card">
-<input id="name" placeholder="* नाम (जरूरी है)">
-<input id="mobile" type="number" placeholder="* मोबाइल (जरूरी है)">
-<input id="email" placeholder="ईमेल (मर्जी है)">
-<input id="photo" type="file" accept="image/*">
-<button onclick="makeID()">ID बनाओ और Home जाओ</button>
-<h2 id="myid" style="color:yellow;"></h2>
-</div>
-
-<div class="card">
-<h3>Seat Counting</h3>
-<div class="box">
-<div class="b"><h2 id="active" style="color:#00ff00;">0</h2>Active ID</div>
-<div class="b"><h2 id="deleted" style="color:#ff4444;">0</h2>Delete ID</div>
-</div>
-<p id="reason" style="font-size:12px;color:#aaa;margin-top:10px;"></p>
-<button onclick="del()" style="background:#ff4444;color:#fff;font-size:14px;">ID Delete करो</button>
-</div>
+<form id="myForm">
+  <input type="text" id="name" placeholder="आपका नाम" required>
+  <input type="tel" id="mobile" placeholder="मोबाइल नंबर" required>
+  <input type="email" id="email" placeholder="ईमेल">
+  <input type="file" id="photo" accept="image/*" required>
+  <button type="submit">पूरा करो और आगे बढ़ो</button>
+</form>
 
 <script>
-let users=JSON.parse(localStorage.getItem('bf_users')||'[]');
-let dlt=JSON.parse(localStorage.getItem('bf_del')||'[]');
-count();
+const SCRIPT_URL = "YAHAN_DEPLOY_LINK_DALO";
+const HOME_URL = "index.html"; // भैया जी यहाँ अपने होम पेज का नाम लिख दो
 
-function makeID(){
-let n=document.getElementById('name').value.trim();
-let m=document.getElementById('mobile').value.trim();
-if(n==""||m==""){alert("भैया जी नाम और मोबाइल जरूरी है");return;}
-let id="BF-"+Math.floor(1000+Math.random()*9000);
-users.push({id:id,name:n,mobile:m});
-localStorage.setItem('bf_users',JSON.stringify(users));
-localStorage.setItem('bf_last_id',id);
-localStorage.setItem('bf_login','yes');
-document.getElementById('myid').innerText=n+" की ID बन गई: "+id;
-count();
-setTimeout(()=>{ window.location.href="index.html"; }, 1000);
-}
+let p64="", pMime="", pName="";
+document.getElementById('photo').addEventListener('change', e=>{
+  let f=e.target.files[0]; pName=f.name; pMime=f.type;
+  let r=new FileReader(); r.onload=ev=>p64=ev.target.result; r.readAsDataURL(f);
+});
 
-function del(){
-let id=prompt("कौन सी ID Delete करनी है? (जैसे BF-1234)");
-if(!id) return;
-let r=prompt("क्यों Delete कर रहे हो?");
-if(!r) r="कारण नहीं बताया";
-dlt.push({id:id,reason:r});
-localStorage.setItem('bf_del',JSON.stringify(dlt));
-users=users.filter(u=>u.id!=id);
-localStorage.setItem('bf_users',JSON.stringify(users));
-count();
-}
-
-function count(){
-document.getElementById('active').innerText=users.length;
-document.getElementById('deleted').innerText=dlt.length;
-if(dlt.length>0){
-let last=dlt[dlt.length-1];
-document.getElementById('reason').innerText="आखरी Delete: "+last.id+" कारण: "+last.reason;
-}
-}
+document.getElementById('myForm').addEventListener('submit', e=>{
+  e.preventDefault();
+  fetch(SCRIPT_URL, {method:'POST', body: JSON.stringify({action:"add", name:document.getElementById('name').value, mobile:document.getElementById('mobile').value, email:document.getElementById('email').value, photoBase64:p64, photoMime:pMime, photoName:pName}) })
+ .then(()=>{
+    // भैया जी सब पूरा होते ही अगली खिड़की खुलेगी और होम पर चला जाएगा
+    window.open(HOME_URL, "_blank"); // अगली खिड़की खुलेगी
+    window.location.href = HOME_URL; // और यही वाला भी होम पर चला जाएगा
+  });
+});
 </script>
-</body>
-</html>
