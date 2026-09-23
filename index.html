@@ -2,142 +2,64 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bharat Flix</title>
+<title>BharatFlix - YouTube Final Look</title>
+<link rel="manifest" href="manifest.json">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Roboto,Arial}
-body{background:#fff;padding-bottom:70px}
-.header{padding:10px 12px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:white;z-index:99}
-.left{display:flex;align-items:center;gap:10px}
-.logo{width:54px;height:54px;border-radius:50%;background:radial-gradient(circle at 30% 30%, #fff 0%, #ffcc80 20%, #ff9933 40%, #fff 50%, #a8d5a2 65%, #138808 90%);display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:900;color:#5d3a00;text-shadow:0 1px 0 #fff, 0 2px 4px rgba(0,0,0,.4);box-shadow:inset -2px -2px 6px rgba(0,0,0,.2), inset 2px 2px 6px rgba(255,255,255,.8), 0 3px 8px rgba(0,0,0,.25);border:1px solid #ddd}
-.bf{font-size:26px;font-weight:900}.bharat{color:#ff6b00}.flix{color:#18802a}
-.right{display:flex;align-items:center;gap:10px}
-.b-small{width:34px;height:34px;border-radius:50%;background:#3c2fc8;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;box-shadow:0 2px 4px rgba(0,0,0,.2)}
-.install{background:#157a3b;color:#fff;padding:7px 14px;border-radius:20px;font-size:13px;font-weight:700;text-decoration:none}
-.search{margin:8px 12px;background:#f2f2f2;border-radius:24px;padding:10px 14px;display:flex;gap:10px;align-items:center}.search input{border:none;background:transparent;width:100%;outline:none;font-size:15px}
-.chips{display:flex;gap:8px;overflow-x:auto;padding:6px 12px;scrollbar-width:none}.chip{padding:6px 14px;background:#f2f2f2;border-radius:8px;font-size:14px;font-weight:500;border:none;white-space:nowrap}.chip.active{background:#0f0f0f;color:#fff}
-.player{width:100%;aspect-ratio:16/9;background:#000;position:relative;display:flex;align-items:center;justify-content:center}
-.player img{width:100%;height:100%;object-fit:cover}
-.play-btn{position:absolute;width:68px;height:68px;border-radius:50%;border:3px solid #fff;background:rgba(0,0,0,.3);color:#fff;display:flex;align-items:center;justify-content:center;font-size:28px}
-.bar{position:absolute;bottom:0;left:0;right:0;padding:6px 10px;display:flex;justify-content:space-between;color:#fff;font-size:11px;background:linear-gradient(transparent,rgba(0,0,0,.8))}
-.content{padding:10px 12px}
-.title{font-size:16.5px;font-weight:700;line-height:1.3}
-.subtext{font-size:13px;color:#606060;margin-top:2px}
-.channel-row{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
-.ch{display:flex;align-items:center;gap:8px}
-.ch-ico{width:36px;height:36px;border-radius:50%;background:#1a237e;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800}
-.subs{font-size:12px;color:#606060}
-.sub-btn{background:#0f0f0f;color:#fff;border:none;padding:7px 14px;border-radius:20px;font-weight:700;font-size:13px}
-.yt-actions{display:flex;gap:8px;overflow-x:auto;padding:12px 0 8px;scrollbar-width:none}
-.yt-btn{background:#f2f2f2;border:none;padding:7px 12px;border-radius:20px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:5px;white-space:nowrap}
-.ad{margin:10px 12px;border:1.5px dashed #1e7d32;border-radius:12px;padding:10px;text-align:center;color:#1e7d32;font-weight:700;font-size:12px;background:#f6fff6}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #e5e5e5;display:flex;justify-content:space-around;padding:6px 0 8px}
-.btm{font-size:10px;text-align:center;color:#606060}.btm.active{color:#000}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.65);display:none;align-items:center;justify-content:center;z-index:9999;padding:14px}.modal.open{display:flex}
-.box{background:#fff;width:100%;max-width:400px;border-radius:16px;padding:18px;max-height:90vh;overflow:auto}
-.box h3{margin-bottom:8px}.box input,.box select{width:100%;padding:11px;margin:6px 0;border-radius:10px;border:1px solid #ccc}
-.box button{width:100%;padding:12px;border:none;border-radius:10px;background:#157a3b;color:#fff;font-weight:700;margin-top:8px}
-.note{font-size:11px;color:#d00000;font-weight:700;margin-bottom:6px}
-.pending{background:#fff8db;border-left:4px solid orange;padding:8px;margin:6px 0;border-radius:6px}
+body{margin:0;background:#0f0f0f;color:#fff;font-family:Roboto,Arial}
+.header{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;position:sticky;top:0;background:#0f0f0f;z-index:10}
+.logo{font-weight:700;font-size:18px} .logo span{background:red;padding:2px 6px;border-radius:4px;margin-left:4px}
+.right{display:flex;gap:14px;align-items:center} .b{width:32px;height:32px;background:#ff6a00;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700}
+.video{width:100%;aspect-ratio:16/9;background:#000} video{width:100%;height:100%}
+.info{padding:12px 16px} .title{font-size:18px;font-weight:700;line-height:1.3}
+.meta{color:#aaa;font-size:14px;margin-top:6px;display:flex;gap:12px;align-items:center}
+.sub-row{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+.channel{display:flex;gap:10px;align-items:center} .sub-btn{background:#fff;color:#000;border:none;padding:8px 16px;border-radius:20px;font-weight:700}
+.actions{display:flex;gap:8px;overflow-x:auto;padding:12px 16px}
+.a-btn{background:#272727;border:none;color:#fff;padding:8px 14px;border-radius:20px;white-space:nowrap;display:flex;gap:6px;align-items:center}
+.final{padding:16px;display:flex;flex-direction:column;gap:10px}
+.btn{padding:15px;border-radius:28px;text-align:center;text-decoration:none;font-weight:700;font-size:16px}
+.red{background:red;color:#fff} .black{background:#272727;color:#fff;border:1px solid #444} .green{background:#0f9d58;color:#fff}
+.nav{position:fixed;bottom:0;width:100%;display:flex;justify-content:space-around;background:#0f0f0f;padding:10px 0;border-top:1px solid #222;font-size:12px;text-align:center}
 </style>
 </head>
 <body>
 
 <div class="header">
-  <div class="left"><div class="logo">B</div><div class="bf"><span class="bharat">BHARAT</span> <span class="flix">FLIX</span></div></div>
-  <div class="right"><div class="b-small" onclick="openModal('channelModal')">B</div><div onclick="openModal('shahanshahModal')">⚙️</div><a class="install" href="https://drive.usercontent.google.com/download?id=134vw8oxdPhHCqcwgEu0gjW7sID9AqmZ1&export=download&confirm=t">Install APK</a></div>
+  <div class="logo">BharatFlix<span>Flix</span></div>
+  <div class="right">🔍 🔔 <div class="b">B</div> <a href="account.html" style="text-decoration:none">⚙️</a></div>
 </div>
 
-<div class="search">🔍<input id="sInput" placeholder="Search Bharat Flix" onkeyup="doSearch()"></div>
-<div class="chips">
-  <button class="chip active" onclick="filterC('All',this)">All</button>
-  <button class="chip" onclick="filterC('Bhakti',this)">Bhakti</button>
-  <button class="chip" onclick="filterC('News',this)">News</button>
-  <button class="chip" onclick="filterC('Movie',this)">Movie</button>
-  <button class="chip" onclick="filterC('Music',this)">Music</button>
+<div class="video"><video id="v" controls poster="icon.png" src="ad-new.mp4"></video></div>
+
+<div class="info">
+  <div class="title">BharatFlix पर आपका स्वागत है! YouTube जैसा Final Look 🔥</div>
+  <div class="meta"><span>1.2M views • 2 days ago</span><span>• #BharatFlix</span></div>
+  <div class="sub-row">
+    <div class="channel"><div class="b">B</div><div><div style="font-weight:700">BharatFlix Official</div><div style="font-size:12px;color:#aaa">1.5M subscribers</div></div></div>
+    <button class="sub-btn">Subscribe</button>
+  </div>
 </div>
 
-<div class="ad">Advertisement - AdSense यहाँ लगेगा</div>
-
-<div id="videoList"></div>
-
-<div class="bottom">
-  <div class="btm active" onclick="location.reload()">🏠<br>Home</div>
-  <div class="btm" onclick="openModal('uploadModal')">▶️<br>Shorts</div>
-  <div class="btm" onclick="openModal('uploadModal')">⊕<br>Create+</div>
-  <div class="btm" onclick="alert('Subscriptions जल्द')">📺<br>Subscriptions</div>
-  <div class="btm" onclick="openModal('channelModal')">👤<br>You</div>
+<!-- YouTube वाले Button - आपने जो Follow किये थे -->
+<div class="actions">
+  <button class="a-btn">👍 24K | 👎</button>
+  <button class="a-btn">🔗 Share</button>
+  <button class="a-btn">⬇️ Download</button>
+  <button class="a-btn">🔖 Save</button>
+  <button class="a-btn">🎬 Remix</button>
 </div>
 
-<!-- UPLOAD MODAL - SENSOR INSIDE -->
-<div class="modal" id="uploadModal"><div class="box">
-  <h3>Upload Video</h3>
-  <div class="note">⛔ गंदी / Watermark / Copyright / लड़ाई-झगड़ा वाली वीडियो पब्लिक नहीं डाल सकता! केवल Reporter!</div>
-  <input id="vTitle" placeholder="Video Title">
-  <select id="vCat"><option>Bhakti</option><option>News</option><option>Movie</option><option>Music</option><option>Adult/Gandi</option><option>Watermark</option><option>Copyright</option><option>Fight/Ladai</option></select>
-  <input type="file" id="vFile" accept="video/*">
-  <select id="vRole"><option value="public">मैं Public हूँ</option><option value="reporter">मैं Reporter हूँ</option></select>
-  <button onclick="uploadSensor()">Upload</button>
-  <button style="background:#eee;color:#333" onclick="closeM('uploadModal')">Close</button>
-</div></div>
+<!-- आपके 3 Button - Install + Form + Seat -->
+<div class="final">
+  <a class="btn red" href="https://drive.google.com/uc?export=download&id=134vw8oxdPhHCqcwgEu0gjW7sID9AqmZ1">⬇️ App Install करो - Drive से</a>
+  <a class="btn black" href="https://docs.google.com/forms/d/e/1FAIpQLSemVqI495aFqQ-jpURcTDtR4oxHfIJ4Nn9Sn1_XMG1JhElseQ/viewform?usp=sharing&ouid=111213312838653848647">📝 अपना Channel बनाओ</a>
+  <a class="btn green" href="https://docs.google.com/spreadsheets/d/1-U4mJuNcVZ2IkoftStyc6OGplT24n1Eq4nz6zlwGxfw/edit?usp=drivesdk">💺 Seat List देखो</a>
+  <p style="text-align:center;color:#666;font-size:11px">Ad: <span id="ad">Ad Loading...</span> | Safe System ON ✅</p>
+</div>
 
-<div class="modal" id="channelModal"><div class="box">
-  <h3>Channel बनाओ</h3>
-  <input id="cName" placeholder="Channel Name">
-  <button onclick="makeChannel()">Create Channel</button>
-  <button style="background:#eee;color:#333" onclick="closeM('channelModal')">Close</button>
-  <div id="chList" style="margin-top:10px;font-size:13px"></div>
-</div></div>
+<div style="padding:0 16px 80px 16px"><a href="niyam.html" style="color:#3ea6ff;text-decoration:none;font-size:14px">📜 BharatFlix के नियम देखें</a></div>
 
-<div class="modal" id="shahanshahModal"><div class="box">
-  <h3>👑 शहंशाह Panel</h3>
-  <input type="password" id="sPass" placeholder="Password 1234">
-  <button onclick="loginS()">Login</button>
-  <div id="sArea" style="display:none"><h4 style="margin-top:10px">Pending Approval</h4><div id="pList"></div></div>
-  <button style="background:#eee;color:#333" onclick="closeM('shahanshahModal')">Close</button>
-</div></div>
+<div class="nav"><div>🏠<br>Home</div><div>▶️<br>Shorts</div><div>➕</div><div>📺<br>Subs</div><div>👤<br>You</div></div>
 
-<script>
-let videos=JSON.parse(localStorage.getItem('bf_final')||'[]');
-let pending=JSON.parse(localStorage.getItem('bf_final_pending')||'[]');
-let channels=JSON.parse(localStorage.getItem('bf_final_ch')||'[]');
-if(videos.length==0){videos=[{title:'Ganga Aarti - Sacred Morning Prayer',cat:'Bhakti',views:'1.2M views • 3 days ago',channel:'Bharat Flix Official',subs:'1.05M subscribers',likes:'24K',thumb:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900',video:'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',approved:true}];}
-function render(list=videos){
- let h=''; list.filter(v=>v.approved).forEach(v=>{
-  h+=`<div><div class="player" onclick="window.open('${v.video}','_blank')"><img src="${v.thumb}"><div class="play-btn">▶</div><div class="bar"><span>0:12 / 8:34</span><span>⛶</span></div></div><div class="content"><div class="title">${v.title}</div><div class="subtext">${v.views}</div><div class="channel-row"><div class="ch"><div class="ch-ico">B</div><div><div style="font-weight:700;font-size:14px">${v.channel}</div><div class="subs">${v.subs}</div></div></div><button class="sub-btn">Subscribe</button></div><div class="yt-actions"><button class="yt-btn">👍 ${v.likes}</button><button class="yt-btn">👎</button><button class="yt-btn">↗ Share</button><button class="yt-btn">⬇ Download</button><button class="yt-btn">🔖 Save</button><button class="yt-btn">🔀 Remix</button><button class="yt-btn">⋯ More</button></div></div></div>`;
- }); document.getElementById('videoList').innerHTML=h;
-}
-render();
-function openModal(id){document.getElementById(id).classList.add('open'); if(id=='shahanshahModal')renderP(); if(id=='channelModal')showCh();}
-function closeM(id){document.getElementById(id).classList.remove('open');}
-function filterC(cat,el){document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));el.classList.add('active'); if(cat=='All')render(videos); else render(videos.filter(v=>v.cat==cat));}
-function doSearch(){let q=document.getElementById('sInput').value.toLowerCase(); render(videos.filter(v=>v.title.toLowerCase().includes(q)));}
-function makeChannel(){let n=document.getElementById('cName').value; if(!n)return alert('नाम लिखो'); channels.push({name:n}); localStorage.setItem('bf_final_ch',JSON.stringify(channels)); alert('Channel बन गया: '+n); showCh();}
-function showCh(){document.getElementById('chList').innerHTML=channels.map(c=>'• '+c.name).join('<br>')||'कोई चैनल नहीं';}
-function uploadSensor(){
- let title=document.getElementById('vTitle').value.toLowerCase();
- let cat=document.getElementById('vCat').value; let role=document.getElementById('vRole').value;
- let banned=['Adult/Gandi','Watermark','Copyright','Fight/Ladai'];
- let badWords=['gandi','xxx','porn','nude','watermark','copyright','ladai','jhagda','fight','kill'];
- let isBad = badWords.some(w=>title.includes(w));
- let isBannedCat = banned.includes(cat);
- if((isBannedCat || isBad) && role!='reporter'){
-   alert('⛔ ये वीडियो Public नहीं डाल सकता! ये '+cat+' टाइप की है, केवल Reporter ही डाल सकता है और शहंशाह Approve करेगा!');
-   return;
- }
- let file=document.getElementById('vFile').files[0]; let url=file?URL.createObjectURL(file):videos[0].video;
- let newV={title:document.getElementById('vTitle').value||'My Video',cat,views:'0 views • Just now',channel:role=='reporter'?'Reporter':'Public User',subs:role=='reporter'?'Reporter Channel':'Public',likes:'0',thumb:'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=900',video:url,approved:false};
- if(role=='reporter' || isBannedCat || isBad){
-   pending.unshift(newV); localStorage.setItem('bf_final_pending',JSON.stringify(pending));
-   alert('वीडियो शहंशाह के पास गई है Approval के लिए 👑');
- }else{
-   newV.approved=true; videos.unshift(newV); localStorage.setItem('bf_final',JSON.stringify(videos)); render(); alert('Upload हो गया!');
- }
- closeM('uploadModal');
-}
-function loginS(){if(document.getElementById('sPass').value!='1234'){alert('गलत पासवर्ड');return;} document.getElementById('sArea').style.display='block'; renderP();}
-function renderP(){let h=''; if(pending.length==0)h='कोई Pending नहीं'; pending.forEach((v,i)=>{h+=`<div class="pending"><b>${v.title}</b> (${v.cat}) - ${v.channel}<br><button onclick="approve(${i})" style="width:auto;padding:5px 10px;background:green;margin-right:5px">✔ Approve</button><button onclick="reject(${i})" style="width:auto;padding:5px 10px;background:red">✖ Ban</button></div>`}); document.getElementById('pList').innerHTML=h;}
-function approve(i){let v=pending.splice(i,1)[0]; v.approved=true; videos.unshift(v); localStorage.setItem('bf_final',JSON.stringify(videos)); localStorage.setItem('bf_final_pending',JSON.stringify(pending)); render(); renderP();}
-function reject(i){pending.splice(i,1); localStorage.setItem('bf_final_pending',JSON.stringify(pending)); renderP(); alert('Ban कर दिया');}
-</script>
 </body>
 </html>
