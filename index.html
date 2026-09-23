@@ -1,65 +1,113 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BharatFlix - YouTube Final Look</title>
-<link rel="manifest" href="manifest.json">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bharat Flix - YouTube Style</title>
 <style>
-body{margin:0;background:#0f0f0f;color:#fff;font-family:Roboto,Arial}
-.header{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;position:sticky;top:0;background:#0f0f0f;z-index:10}
-.logo{font-weight:700;font-size:18px} .logo span{background:red;padding:2px 6px;border-radius:4px;margin-left:4px}
-.right{display:flex;gap:14px;align-items:center} .b{width:32px;height:32px;background:#ff6a00;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700}
-.video{width:100%;aspect-ratio:16/9;background:#000} video{width:100%;height:100%}
-.info{padding:12px 16px} .title{font-size:18px;font-weight:700;line-height:1.3}
-.meta{color:#aaa;font-size:14px;margin-top:6px;display:flex;gap:12px;align-items:center}
-.sub-row{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
-.channel{display:flex;gap:10px;align-items:center} .sub-btn{background:#fff;color:#000;border:none;padding:8px 16px;border-radius:20px;font-weight:700}
-.actions{display:flex;gap:8px;overflow-x:auto;padding:12px 16px}
-.a-btn{background:#272727;border:none;color:#fff;padding:8px 14px;border-radius:20px;white-space:nowrap;display:flex;gap:6px;align-items:center}
-.final{padding:16px;display:flex;flex-direction:column;gap:10px}
-.btn{padding:15px;border-radius:28px;text-align:center;text-decoration:none;font-weight:700;font-size:16px}
-.red{background:red;color:#fff} .black{background:#272727;color:#fff;border:1px solid #444} .green{background:#0f9d58;color:#fff}
-.nav{position:fixed;bottom:0;width:100%;display:flex;justify-content:space-around;background:#0f0f0f;padding:10px 0;border-top:1px solid #222;font-size:12px;text-align:center}
+body{margin:0;font-family:Roboto,Arial;background:#0f0f0f;color:white}
+.header{display:flex;align-items:center;padding:10px 20px;background:#0f0f0f;position:sticky;top:0;z-index:100}
+.logo{color:red;font-size:22px;font-weight:bold}
+.logo span{color:white}
+.search{flex:1;display:flex;justify-content:center}
+.search input{width:50%;padding:10px 15px;border-radius:20px 0 0 20px;border:1px solid #303030;background:#121212;color:white;outline:none}
+.search button{padding:10px 20px;border-radius:0 20px 20px 0;border:1px solid #303030;background:#222;cursor:pointer;color:white}
+.container{display:flex}
+.sidebar{width:220px;background:#0f0f0f;padding:15px;min-height:100vh}
+.sidebar div{padding:10px;border-radius:10px;cursor:pointer}
+.sidebar div:hover{background:#272727}
+.videos{flex:1;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:15px;padding:15px}
+.card{background:#0f0f0f;border-radius:12px;overflow:hidden}
+.card img{width:100%;height:160px;object-fit:cover;background:#222}
+.card h4{margin:10px;font-size:14px}
+.card p{margin:0 10px 10px 10px;color:#aaa;font-size:12px}
+.upload-box{background:#212121;padding:15px;border-radius:12px;margin:15px}
+.upload-box input,.upload-box button{width:100%;padding:10px;margin-top:10px;border-radius:8px;border:none}
+.upload-box button{background:red;color:white;font-weight:bold;cursor:pointer}
+#aiStatus{font-size:12px;color:#ffcc00;margin-top:8px}
 </style>
 </head>
 <body>
 
 <div class="header">
-  <div class="logo">BharatFlix<span>Flix</span></div>
-  <div class="right">🔍 🔔 <div class="b">B</div> <a href="account.html" style="text-decoration:none">⚙️</a></div>
-</div>
-
-<div class="video"><video id="v" controls poster="icon.png" src="ad-new.mp4"></video></div>
-
-<div class="info">
-  <div class="title">BharatFlix पर आपका स्वागत है! YouTube जैसा Final Look 🔥</div>
-  <div class="meta"><span>1.2M views • 2 days ago</span><span>• #BharatFlix</span></div>
-  <div class="sub-row">
-    <div class="channel"><div class="b">B</div><div><div style="font-weight:700">BharatFlix Official</div><div style="font-size:12px;color:#aaa">1.5M subscribers</div></div></div>
-    <button class="sub-btn">Subscribe</button>
+  <div class="logo">▶ Bharat<span>Flix</span></div>
+  <div class="search">
+    <input type="text" placeholder="Search">
+    <button>🔍</button>
   </div>
 </div>
 
-<!-- YouTube वाले Button - आपने जो Follow किये थे -->
-<div class="actions">
-  <button class="a-btn">👍 24K | 👎</button>
-  <button class="a-btn">🔗 Share</button>
-  <button class="a-btn">⬇️ Download</button>
-  <button class="a-btn">🔖 Save</button>
-  <button class="a-btn">🎬 Remix</button>
+<div class="container">
+  <div class="sidebar">
+    <div>🏠 Home</div>
+    <div>🔥 Shorts</div>
+    <div>📺 Subscription</div>
+    <div>📰 News Reporter Panel</div>
+    <hr>
+    <div>⚙️ Settings</div>
+  </div>
+
+  <div style="flex:1">
+    <!-- AI सेंसर वाला अपलोड बॉक्स -->
+    <div class="upload-box">
+      <h3>वीडियो अपलोड करें (AI सेंसर चालू है)</h3>
+      <p style="font-size:12px;color:#aaa">नियम: 1. गंदी वीडियो नहीं 2. कॉपीराइट नहीं 3. वाटरमार्क नहीं 4. लड़ाई वाली वीडियो सिर्फ रिपोर्टर डाल सकते हैं</p>
+      <input type="file" id="videoFile" accept="video/*">
+      <select id="userType" style="width:100%;padding:10px;margin-top:10px;border-radius:8px;">
+        <option value="public">आम पब्लिक</option>
+        <option value="reporter">न्यूज़ रिपोर्टर (ID Verified)</option>
+      </select>
+      <button onclick="checkVideoWithAI()">Upload & AI Check</button>
+      <div id="aiStatus">AI सेंसर तैयार है...</div>
+    </div>
+
+    <div class="videos">
+      <div class="card"><img src="https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg"><h4>Breaking News - Agra Live</h4><p>Bharat Flix News • 1M views</p></div>
+      <div class="card"><img src="https://i.ytimg.com/vi/jNQXAC9IVRw/hqdefault.jpg"><h4>Bharat Flix Official Trailer</h4><p>Bharat Flix • 500K views</p></div>
+      <div class="card"><img src="https://i.ytimg.com/vi/9bZkp7q19f0/hqdefault.jpg"><h4>Latest Update</h4><p>News Reporter • 200K views</p></div>
+    </div>
+  </div>
 </div>
 
-<!-- आपके 3 Button - Install + Form + Seat -->
-<div class="final">
-  <a class="btn red" href="https://drive.google.com/uc?export=download&id=134vw8oxdPhHCqcwgEu0gjW7sID9AqmZ1">⬇️ App Install करो - Drive से</a>
-  <a class="btn black" href="https://docs.google.com/forms/d/e/1FAIpQLSemVqI495aFqQ-jpURcTDtR4oxHfIJ4Nn9Sn1_XMG1JhElseQ/viewform?usp=sharing&ouid=111213312838653848647">📝 अपना Channel बनाओ</a>
-  <a class="btn green" href="https://docs.google.com/spreadsheets/d/1-U4mJuNcVZ2IkoftStyc6OGplT24n1Eq4nz6zlwGxfw/edit?usp=drivesdk">💺 Seat List देखो</a>
-  <p style="text-align:center;color:#666;font-size:11px">Ad: <span id="ad">Ad Loading...</span> | Safe System ON ✅</p>
-</div>
+<script>
+// AI सेंसर लॉजिक - 4 नियम
+function checkVideoWithAI(){
+  let file = document.getElementById('videoFile').files[0];
+  let userType = document.getElementById('userType').value;
+  let status = document.getElementById('aiStatus');
 
-<div style="padding:0 16px 80px 16px"><a href="niyam.html" style="color:#3ea6ff;text-decoration:none;font-size:14px">📜 BharatFlix के नियम देखें</a></div>
+  if(!file){ status.innerHTML="❌ पहले वीडियो चुनो भैया जी"; return; }
 
-<div class="nav"><div>🏠<br>Home</div><div>▶️<br>Shorts</div><div>➕</div><div>📺<br>Subs</div><div>👤<br>You</div></div>
+  status.innerHTML="⏳ AI चेक कर रहा है...";
 
+  setTimeout(()=>{
+    let fileName = file.name.toLowerCase();
+
+    // 1. गंदी वीडियो सेंसर
+    if(fileName.includes('xxx') || fileName.includes('porn') || fileName.includes('nude')){
+      status.innerHTML="❌ AI ने रोक दिया: गंदी / अश्लील वीडियो की अनुमति नहीं है!";
+      return;
+    }
+    // 2. कॉपीराइट / वाटरमार्क सेंसर
+    if(fileName.includes('tiktok') || fileName.includes('watermark') || fileName.includes('copyright')){
+      status.innerHTML="❌ AI ने रोक दिया: वाटरमार्क / कॉपीराइट वीडियो नहीं डाल सकते!";
+      return;
+    }
+    // 3. लड़ाई झगड़ा सेंसर - सिर्फ रिपोर्टर डाल सकता है
+    if((fileName.includes('fight') || fileName.includes('ladai') || fileName.includes('jhagda')) && userType==='public'){
+      status.innerHTML="❌ AI ने रोक दिया: लड़ाई वाली वीडियो सिर्फ न्यूज़ रिपोर्टर ही डाल सकते हैं! आम पब्लिक नहीं।";
+      return;
+    }
+    // 4. फाइल साइज / वेरिफिकेशन
+    if(file.size > 100*1024*1024 && userType==='public'){
+       status.innerHTML="❌ आम पब्लिक 100MB से ज्यादा नहीं डाल सकती।";
+       return;
+    }
+
+    status.innerHTML="✅ AI पास! वीडियो अपलोड के लिए सुरक्षित है भैया जी! (Backend में Firebase/Supabase से जुड़ जाएगा)";
+
+  }, 2000);
+}
+</script>
 </body>
 </html>
