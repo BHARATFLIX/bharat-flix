@@ -1,110 +1,173 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bharat Flix - Ganga Aarti</title>
-<meta name="theme-color" content="#15803d">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bharat Flix - Shahanshah Control</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
-body{background:#f8f8f8;padding-bottom:80px}
-.header{background:white;border-radius:0 0 20px 20px;box-shadow:0 2px 10px rgba(0,0,0,0.08);padding:12px 16px 14px;position:relative}
-.logo-row{display:flex;align-items:center;gap:10px}
-.logo-icon{width:58px;height:58px;border-radius:50%;background:linear-gradient(to bottom,#ff9933 0%,#fff 50%,#138808 100%);display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:900;color:#d4a017;box-shadow:0 2px 6px rgba(0,0,0,0.2);border:2px solid #eee}
-.logo-text{font-size:28px;font-weight:900;letter-spacing:0.5px}
-.logo-text .bharat{color:#ff6b00}.logo-text .flix{color:#0a7a3e}
-.header-actions{position:absolute;right:16px;top:62px;display:flex;align-items:center;gap:8px}
-.b-icon{width:36px;height:36px;background:#4b2cf0;border-radius:50%;color:white;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;border:2px solid white;box-shadow:0 2px 6px rgba(0,0,0,0.2)}
-.gear{font-size:24px}
-.install-btn{background:#15803d;color:white;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:700;border:none;cursor:pointer;text-decoration:none;display:inline-block}
-.search-wrap{margin:14px 16px 10px}
-.search-bar{width:100%;background:#efefef;border-radius:24px;padding:12px 18px;display:flex;align-items:center;gap:10px}
-.search-bar input{border:none;background:transparent;width:100%;outline:none;font-size:16px;color:#555}
-.categories{display:flex;gap:8px;overflow-x:auto;padding:6px 16px 12px;scrollbar-width:none}
-.cat{padding:8px 18px;border-radius:20px;background:#e8e8e8;border:none;font-weight:600;font-size:14px;white-space:nowrap;cursor:pointer}
-.cat.active{background:#15803d;color:white}
-.video-card{margin:8px 12px;background:black;border-radius:16px;overflow:hidden;position:relative;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center}
-.time{position:absolute;bottom:10px;left:10px;color:white;font-size:12px;background:rgba(0,0,0,0.6);padding:2px 6px;border-radius:4px}
-.info{padding:14px 16px;background:white;margin-bottom:10px}
-.title{font-size:19px;font-weight:700;line-height:1.3;margin-bottom:6px}
-.meta{color:#666;font-size:14px;margin-bottom:12px}
-.channel-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
-.ch-left{display:flex;align-items:center;gap:10px}
-.ch-icon{width:42px;height:42px;border-radius:50%;background:#1a237e;color:white;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px}
-.ch-name{font-weight:700;font-size:15px}.ch-sub{font-size:12px;color:#666}
-.sub-btn{background:#e53935;color:white;border:none;padding:8px 18px;border-radius:20px;font-weight:700;font-size:14px}
-.actions{display:flex;gap:8px;overflow-x:auto}
-.act{display:flex;align-items:center;gap:5px;background:#f1f1f1;padding:7px 12px;border-radius:20px;font-size:13px;font-weight:600;white-space:nowrap;border:none}
-.ad-box{margin:12px;background:#fff;border:1px dashed #15803d;border-radius:12px;padding:12px;text-align:center}
-.ad-box small{color:#15803d;font-weight:700}
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:space-around;padding:10px 0 14px;border-top:1px solid #eee}
-.nav-item{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11px;color:#666;font-weight:600}
-.nav-item.active{color:#000}.nav-item span.icon{font-size:22px}
+*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}
+body{background:#f1f1f1;padding-bottom:80px}
+.header{background:white;padding:14px;border-radius:0 0 20px 20px;box-shadow:0 8px 20px rgba(0,0,0,.15);position:sticky;top:0;z-index:99}
+.logo{font-size:28px;font-weight:900;text-shadow:2px 2px 0px #ccc, 4px 4px 8px rgba(0,0,0,.2)}
+.bharat{color:#ff6b00}.flix{color:#15803d}
+.btn-3d{background:linear-gradient(145deg, #ffffff, #e6e6e6);border:none;padding:8px 18px;border-radius:25px;font-weight:800;font-size:13px;box-shadow: 5px 5px 10px #bebebe, -5px -5px 10px #ffffff, inset 1px 1px 2px white;cursor:pointer;margin:3px;transition:.1s}
+.btn-3d:active{box-shadow: inset 5px 5px 10px #bebebe, inset -5px -5px 10px #ffffff}
+.btn-green{background:linear-gradient(145deg, #16a34a, #15803d);color:white;box-shadow: 5px 5px 10px #bebebe, -5px -5px 10px #ffffff}
+.btn-red{background:linear-gradient(145deg, #ef4444, #b91c1c);color:white}
+.video-card{margin:12px;background:white;border-radius:18px;overflow:hidden;box-shadow:8px 8px 15px #d1d1d1, -8px -8px 15px #ffffff}
+.video-thumb{aspect-ratio:16/9;background:#000;display:flex;align-items:center;justify-content:center;position:relative}
+.video-thumb img{width:100%;height:100%;object-fit:cover}
+.play{position:absolute;width:65px;height:65px;border-radius:50%;background:rgba(255,255,255,.9);display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 4px 15px rgba(0,0,0,.3);border:3px solid white}
+.ad-box{margin:12px;background:white;border:2px dashed #16a34a;border-radius:14px;padding:12px;text-align:center;box-shadow:inset 2px 2px 5px #e0e0e0}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:space-around;padding:10px;border-radius:20px 20px 0 0;box-shadow:0 -5px 20px rgba(0,0,0,.1)}
+.nav{font-weight:700;font-size:11px;text-align:center}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;z-index:999;padding:15px}.modal.open{display:flex}
+.box{background:white;width:100%;max-width:420px;border-radius:20px;padding:20px;max-height:90vh;overflow:auto;box-shadow:15px 15px 30px rgba(0,0,0,.3)}
+.box input,.box select{width:100%;padding:12px;margin:7px 0;border-radius:12px;border:2px solid #ddd;box-shadow:inset 2px 2px 5px #eee}
+.pending{background:#fff3cd;border-left:5px solid #ff9800;padding:10px;margin:8px 0;border-radius:8px}
 </style>
+<!-- ADSENSE - यहाँ आपका Adsense कोड लगेगा -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXX" crossorigin="anonymous"></script>
 </head>
 <body>
 <div class="header">
-  <div class="logo-row">
-    <div class="logo-icon">B</div>
-    <div class="logo-text"><span class="bharat">BHARAT</span> <span class="flix">FLIX</span></div>
+  <div style="display:flex;justify-content:space-between;align-items:center">
+    <div class="logo"><span class="bharat">BHARAT</span> <span class="flix">FLIX</span></div>
+    <div style="display:flex;gap:5px"><button class="btn-3d" onclick="openModal('shahanshahModal')">👑 शहंशाह</button></div>
   </div>
-  <div class="header-actions">
-    <div class="b-icon">B</div>
-    <div class="gear">⚙️</div>
-    <a class="install-btn" href="https://drive.google.com/uc?export=download&id=134vw8oxdPhHCqcwgEu0gjW7sID9AqmZ1">Install APK</a>
+  <div style="margin-top:12px;display:flex;flex-wrap:wrap">
+    <button class="btn-3d" onclick="openModal('channelModal')">+ चैनल</button>
+    <button class="btn-3d btn-red" onclick="checkRoleAndUpload()">+ वीडियो अपलोड</button>
+    <a class="btn-3d btn-green" style="text-decoration:none" href="https://drive.usercontent.google.com/download?id=134vw8oxdPhHCqcwgEu0gjW7sID9AqmZ1&export=download&confirm=t">⬇ Install APK</a>
   </div>
 </div>
-<div class="search-wrap">
-  <div class="search-bar">🔍<input type="text" placeholder="Search Bharat Flix"></div>
-</div>
-<div class="categories">
-  <button class="cat active">All</button>
-  <button class="cat">Bhakti</button>
-  <button class="cat">News</button>
-  <button class="cat">Movie</button>
-  <button class="cat">Music</button>
-  <button class="cat">Gaming</button>
-</div>
-<div class="video-card">
-  <video id="mainVideo" style="width:100%;height:100%;object-fit:cover" poster="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800" controls>
-    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
-  </video>
-  <div class="time">0:12 / 8:34</div>
-</div>
+
+<!-- ADS TOP -->
 <div class="ad-box">
-  <small>Advertisement</small>
-  <div style="margin-top:8px;">
-    <p style="color:#999;font-size:13px;">यहाँ आपका Ad दिखेगा - AdSense कोड यहाँ पेस्ट करें</p>
+  <small style="font-weight:800;color:green">ADVERTISEMENT</small>
+  <div style="margin-top:6px">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXX" data-ad-slot="1234567890" data-ad-format="auto"></ins>
+    <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+    <p style="font-size:12px;color:#888">Ads यहाँ दिखेंगे (AdSense Approve होने के बाद)</p>
   </div>
 </div>
-<div class="info">
-  <div class="title">Ganga Aarti - Sacred Morning Prayer | Peaceful Devotional Live</div>
-  <div class="meta">1.2M views • 3 days ago</div>
-  <div class="channel-row">
-    <div class="ch-left">
-      <div class="ch-icon">B</div>
-      <div><div class="ch-name">Bharat Flix Official</div><div class="ch-sub">1.05M subscribers</div></div>
-    </div>
-    <button class="sub-btn">Subscribe</button>
-  </div>
-  <div class="actions">
-    <button class="act">👍 24K</button>
-    <button class="act">👎 Dislike</button>
-    <button class="act">↗ Share</button>
-    <button class="act">⬇ Download</button>
-    <button class="act">🔖 Save</button>
-  </div>
-</div>
-<div class="ad-box">
-  <small>Advertisement</small>
-  <div style="margin-top:8px;"><p style="color:#999;font-size:13px;">नीचे वाला Ad</p></div>
-</div>
+
+<div id="videoList"></div>
+
+<!-- ADS BOTTOM -->
+<div class="ad-box"><small style="font-weight:800;color:green">ADVERTISEMENT BOTTOM</small><p style="font-size:12px;color:#888">Ads</p></div>
+
 <div class="bottom-nav">
-  <div class="nav-item active"><span class="icon">🏠</span>Home</div>
-  <div class="nav-item"><span class="icon">✨</span>Shorts</div>
-  <div class="nav-item"><span class="icon">⊕</span>Create+</div>
-  <div class="nav-item"><span class="icon">📺</span>Subscriptions</div>
-  <div class="nav-item"><span class="icon">👤</span>You</div>
+  <div class="nav" onclick="location.reload()">🏠<br>Home</div>
+  <div class="nav" onclick="openModal('shahanshahModal')">👑<br>शहंशाह Panel</div>
+  <div class="nav" onclick="checkRoleAndUpload()">⊕<br>Upload</div>
+  <div class="nav" onclick="alert('जल्द आएगा')">👤<br>You</div>
 </div>
+
+<!-- UPLOAD MODAL WITH SENSOR -->
+<div class="modal" id="uploadModal"><div class="box">
+  <h3>वीडियो अपलोड (सेंसर चालू)</h3>
+  <p style="font-size:11px;color:red;font-weight:700">नोट: गंदी, वाटरमार्क, कॉपीराइट, धमकी वाली वीडियो पब्लिक नहीं डाल सकता, केवल रिपोर्टर!</p>
+  <input id="vTitle" placeholder="वीडियो टाइटल लिखो">
+  <select id="vCat"><option>All</option><option>Bhakti</option><option>News</option><option>Movie</option><option>Music</option><option>Adult/Gandi</option><option>Watermark</option><option>Copyright</option><option>Threat/Dhamki</option></select>
+  <input id="vThumb" placeholder="Thumbnail Link">
+  <input type="file" id="vFile" accept="video/*">
+  <select id="vRole"><option value="public">मैं पब्लिक हूँ</option><option value="reporter">मैं रिपोर्टर हूँ (ID है)</option></select>
+  <button class="btn-3d btn-green" style="width:100%;margin-top:10px" onclick="uploadWithSensor()">सेंसर चेक करके अपलोड करो</button>
+  <button class="btn-3d" style="width:100%" onclick="closeModal('uploadModal')">बंद</button>
+</div></div>
+
+<!-- SHAHANSHAH MODAL -->
+<div class="modal" id="shahanshahModal"><div class="box">
+  <h3>👑 शहंशाह कंट्रोल पैनल</h3>
+  <input type="password" id="shahPass" placeholder="शहंशाह पासवर्ड डालो (1234)">
+  <button class="btn-3d btn-green" style="width:100%" onclick="loginShahanshah()">लॉगिन करो</button>
+  <div id="shahArea" style="display:none;margin-top:15px">
+    <h4>Pending Videos (Approval के लिए)</h4>
+    <div id="pendingList"></div>
+    <hr style="margin:10px 0">
+    <h4>Public को कितनी वीडियो दिखानी है?</h4>
+    <input type="number" id="publicLimit" value="4"><button class="btn-3d" onclick="saveLimit()">सेव करो</button>
+    <p style="font-size:11px;margin-top:5px">आपने 4 बोला था, तो पब्लिक को सिर्फ 4 वीडियो ही दिखेंगी, बाकी शहंशाह अप्रूवल के बाद!</p>
+  </div>
+  <button class="btn-3d" style="width:100%;margin-top:10px" onclick="closeModal('shahanshahModal')">बंद</button>
+</div></div>
+
+<div class="modal" id="channelModal"><div class="box"><h3>चैनल बनाओ</h3><input id="cName" placeholder="चैनल नाम"><button class="btn-3d btn-green" style="width:100%" onclick="createChannel()">बनाओ</button><button class="btn-3d" style="width:100%" onclick="closeModal('channelModal')">बंद</button></div></div>
+
+<script>
+let videos = JSON.parse(localStorage.getItem('bharat_v2')||'[]');
+let pending = JSON.parse(localStorage.getItem('bharat_pending')||'[]');
+let publicLimit = localStorage.getItem('bharat_limit')||4;
+if(videos.length==0){ videos=[{title:'Ganga Aarti Live',cat:'Bhakti',views:'1M',thumb:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800',video:'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',channel:'Official',approved:true}]; }
+
+const bannedCats = ['Adult/Gandi','Watermark','Copyright','Threat/Dhamki'];
+const gandiWords = ['gandi','xxx','porn','nude','abuse','gaali','dhamki','kill'];
+
+function render(){
+  let show = videos.filter(v=>v.approved).slice(0,publicLimit);
+  let html=''; show.forEach(v=>{
+    html+=`<div class="video-card"><div class="video-thumb" onclick="window.open('${v.video}')"><img src="${v.thumb}"><div class="play">▶</div></div><div style="padding:12px"><b>${v.title}</b><br><small style="color:green">✔ शहंशाह Approved • ${v.cat} • ${v.channel}</small></div></div>`;
+  });
+  document.getElementById('videoList').innerHTML=html || '<p style="text-align:center;padding:20px">कोई वीडियो नहीं</p>';
+}
+render();
+
+function openModal(id){document.getElementById(id).classList.add('open'); if(id=='shahanshahModal')renderPending();}
+function closeModal(id){document.getElementById(id).classList.remove('open');}
+function checkRoleAndUpload(){openModal('uploadModal');}
+function createChannel(){let n=document.getElementById('cName').value; if(n){alert('चैनल बन गया: '+n); closeModal('channelModal');}}
+
+function uploadWithSensor(){
+  let title=document.getElementById('vTitle').value.toLowerCase();
+  let cat=document.getElementById('vCat').value;
+  let thumb=document.getElementById('vThumb').value||'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800';
+  let role=document.getElementById('vRole').value;
+  let file=document.getElementById('vFile').files[0];
+  let videoUrl = file? URL.createObjectURL(file) : 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
+
+  // 1. सेंसर चेक
+  let isGandi = gandiWords.some(w=>title.includes(w));
+  let isBannedCat = bannedCats.includes(cat);
+
+  if(isBannedCat && role!=='reporter'){
+    alert('⛔ ये '+cat+' वाली वीडियो पब्लिक नहीं डाल सकता! केवल रिपोर्टर ही डाल सकता है! शहंशाह नियम!');
+    return;
+  }
+  if(isGandi && role!=='reporter'){
+    alert('⛔ गंदी/धमकी वाली भाषा है! केवल रिपोर्टर डाल सकता है, और शहंशाह अप्रूव करेगा!');
+    return;
+  }
+
+  let newV={title:document.getElementById('vTitle').value,cat,thumb,video:videoUrl,channel:role=='reporter'?'Reporter':'Public User',approved: role=='reporter'? false : true, views:'0'};
+
+  if(role=='reporter' || isBannedCat || isGandi){
+    pending.unshift(newV);
+    localStorage.setItem('bharat_pending',JSON.stringify(pending));
+    alert('वीडियो शहंशाह के पास Approval के लिए गई है! 👑');
+  } else {
+    videos.unshift(newV);
+    localStorage.setItem('bharat_v2',JSON.stringify(videos));
+    render();
+    alert('वीडियो अपलोड हो गई (पब्लिक लिमिट '+publicLimit+' में दिखेगी)');
+  }
+  closeModal('uploadModal');
+}
+
+function loginShahanshah(){
+  if(document.getElementById('shahPass').value!=='1234'){alert('गलत पासवर्ड! 1234 डालो'); return;}
+  document.getElementById('shahArea').style.display='block';
+  renderPending();
+}
+function renderPending(){
+  let h=''; if(pending.length==0)h='<p>कोई Pending नहीं</p>';
+  pending.forEach((v,i)=>{
+    h+=`<div class="pending"><b>${v.title}</b> (${v.cat})<br><small>${v.channel}</small><br><button class="btn-3d btn-green" onclick="approve(${i})">✔ Approve</button> <button class="btn-3d btn-red" onclick="reject(${i})">✖ Reject/Ban</button></div>`;
+  });
+  document.getElementById('pendingList').innerHTML=h;
+}
+function approve(i){ let v=pending.splice(i,1)[0]; v.approved=true; videos.unshift(v); localStorage.setItem('bharat_v2',JSON.stringify(videos)); localStorage.setItem('bharat_pending',JSON.stringify(pending)); render(); renderPending(); alert('Approved!');}
+function reject(i){ pending.splice(i,1); localStorage.setItem('bharat_pending',JSON.stringify(pending)); renderPending(); alert('Ban कर दिया!');}
+function saveLimit(){ publicLimit=document.getElementById('publicLimit').value; localStorage.setItem('bharat_limit',publicLimit); render(); alert('अब पब्लिक को सिर्फ '+publicLimit+' वीडियो दिखेंगी');}
+</script>
 </body>
 </html>
