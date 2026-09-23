@@ -1,86 +1,110 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BharatFlix - YouTube Final Look</title>
-<link rel="manifest" href="manifest.json">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bharat Flix - Ganga Aarti</title>
+<meta name="theme-color" content="#15803d">
 <style>
-body{margin:0;background:#0f0f0f;color:#fff;font-family:Roboto,Arial}
-.header{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;position:sticky;top:0;background:#0f0f0f;z-index:10}
-.logo{font-weight:700;font-size:18px}.logo span{background:red;padding:2px 6px;border-radius:4px;margin-left:4px}
-.right{display:flex;gap:14px;align-items:center}.b{width:32px;height:32px;background:#ff6a00;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700}
-.video{width:100%;aspect-ratio:16/9;background:#000} video{width:100%;height:100%}
-.info{padding:12px 16px}.title{font-size:18px;font-weight:700;line-height:1.3}
-.meta{color:#aaa;font-size:14px;margin-top:6px;display:flex;gap:12px;align-items:center}
-.sub-row{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
-.channel{display:flex;gap:10px;align-items:center}.sub-btn{background:#fff;color:#000;border:none;padding:8px 16px;border-radius:20px;font-weight:700}
-.actions{display:flex;gap:8px;overflow-x:auto;padding:12px 16px}
-.a-btn{background:#272727;border:none;color:#fff;padding:8px 14px;border-radius:20px;white-space:nowrap;display:flex;gap:6px;align-items:center}
-.final{padding:16px;display:flex;flex-direction:column;gap:10px}
-.btn{padding:15px;border-radius:28px;text-align:center;text-decoration:none;font-weight:700;font-size:16px}
-.red{background:red;color:#fff}.black{background:#272727;color:#fff;border:1px solid #444}.green{background:#0f9d58;color:#fff}
-.nav{position:fixed;bottom:0;width:100%;display:flex;justify-content:space-around;background:#0f0f0f;padding:10px 0;border-top:1px solid #222;font-size:12px;text-align:center}
+*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+body{background:#f8f8f8;padding-bottom:80px}
+.header{background:white;border-radius:0 0 20px 20px;box-shadow:0 2px 10px rgba(0,0,0,0.08);padding:12px 16px 14px;position:relative}
+.logo-row{display:flex;align-items:center;gap:10px}
+.logo-icon{width:58px;height:58px;border-radius:50%;background:linear-gradient(to bottom,#ff9933 0%,#fff 50%,#138808 100%);display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:900;color:#d4a017;box-shadow:0 2px 6px rgba(0,0,0,0.2);border:2px solid #eee}
+.logo-text{font-size:28px;font-weight:900;letter-spacing:0.5px}
+.logo-text .bharat{color:#ff6b00}.logo-text .flix{color:#0a7a3e}
+.header-actions{position:absolute;right:16px;top:62px;display:flex;align-items:center;gap:8px}
+.b-icon{width:36px;height:36px;background:#4b2cf0;border-radius:50%;color:white;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;border:2px solid white;box-shadow:0 2px 6px rgba(0,0,0,0.2)}
+.gear{font-size:24px}
+.install-btn{background:#15803d;color:white;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:700;border:none;cursor:pointer;text-decoration:none;display:inline-block}
+.search-wrap{margin:14px 16px 10px}
+.search-bar{width:100%;background:#efefef;border-radius:24px;padding:12px 18px;display:flex;align-items:center;gap:10px}
+.search-bar input{border:none;background:transparent;width:100%;outline:none;font-size:16px;color:#555}
+.categories{display:flex;gap:8px;overflow-x:auto;padding:6px 16px 12px;scrollbar-width:none}
+.cat{padding:8px 18px;border-radius:20px;background:#e8e8e8;border:none;font-weight:600;font-size:14px;white-space:nowrap;cursor:pointer}
+.cat.active{background:#15803d;color:white}
+.video-card{margin:8px 12px;background:black;border-radius:16px;overflow:hidden;position:relative;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center}
+.time{position:absolute;bottom:10px;left:10px;color:white;font-size:12px;background:rgba(0,0,0,0.6);padding:2px 6px;border-radius:4px}
+.info{padding:14px 16px;background:white;margin-bottom:10px}
+.title{font-size:19px;font-weight:700;line-height:1.3;margin-bottom:6px}
+.meta{color:#666;font-size:14px;margin-bottom:12px}
+.channel-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.ch-left{display:flex;align-items:center;gap:10px}
+.ch-icon{width:42px;height:42px;border-radius:50%;background:#1a237e;color:white;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px}
+.ch-name{font-weight:700;font-size:15px}.ch-sub{font-size:12px;color:#666}
+.sub-btn{background:#e53935;color:white;border:none;padding:8px 18px;border-radius:20px;font-weight:700;font-size:14px}
+.actions{display:flex;gap:8px;overflow-x:auto}
+.act{display:flex;align-items:center;gap:5px;background:#f1f1f1;padding:7px 12px;border-radius:20px;font-size:13px;font-weight:600;white-space:nowrap;border:none}
+.ad-box{margin:12px;background:#fff;border:1px dashed #15803d;border-radius:12px;padding:12px;text-align:center}
+.ad-box small{color:#15803d;font-weight:700}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:space-around;padding:10px 0 14px;border-top:1px solid #eee}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11px;color:#666;font-weight:600}
+.nav-item.active{color:#000}.nav-item span.icon{font-size:22px}
 </style>
 </head>
 <body>
-
 <div class="header">
-  <div class="logo">BharatFlix<span>Flix</span></div>
-  <div class="right">🔍 🔔 <div class="b">B</div> <a href="account.html" style="text-decoration:none">⚙️</a></div>
-</div>
-
-<div class="video"><video id="v" controls poster="icon.png"></video></div>
-
-<div class="info">
-  <div class="title">BharatFlix पर आपका स्वागत है! YouTube जैसा Final Look 🔥</div>
-  <div class="meta"><span>1.2M views • 2 days ago</span><span>• #BharatFlix</span></div>
-  <div class="sub-row">
-    <div class="channel"><div class="b">B</div><div><div style="font-weight:700">BharatFlix Official</div><div style="font-size:12px;color:#aaa">1.5M subscribers</div></div></div>
-    <button class="sub-btn">Subscribe</button>
+  <div class="logo-row">
+    <div class="logo-icon">B</div>
+    <div class="logo-text"><span class="bharat">BHARAT</span> <span class="flix">FLIX</span></div>
+  </div>
+  <div class="header-actions">
+    <div class="b-icon">B</div>
+    <div class="gear">⚙️</div>
+    <a class="install-btn" href="https://drive.google.com/uc?export=download&id=134vw8oxdPhHCqcwgEu0gjW7sID9AqmZ1">Install APK</a>
   </div>
 </div>
-
-<div class="actions">
-  <button class="a-btn">👍 24K | 👎</button>
-  <button class="a-btn">🔗 Share</button>
-  <button class="a-btn">⬇️ Download</button>
-  <button class="a-btn">🔖 Save</button>
-  <button class="a-btn">🎬 Remix</button>
+<div class="search-wrap">
+  <div class="search-bar">🔍<input type="text" placeholder="Search Bharat Flix"></div>
 </div>
-
-<div class="final">
-  <label for="fileInput" class="btn red">⬇️ Video Upload Karo</label>
-  <input type="file" id="fileInput" hidden accept="video/*">
-  <a class="btn black" href="https://docs.google.com/forms/d/e/1FAIpQLSemVqI495aFqQ-jpURcTDtR4oxHfIJ4Nn9Sn1_XMG1JhElseQ/viewform?usp=sharing&ouid=111213312838653848647">📝 अपना Channel बनाओ</a>
-  <a class="btn green" href="https://docs.google.com/spreadsheets/d/1-U4mJuNcVZ2IkoftStyc6OGplT24n1Eq4nz6zlwGxfw/edit?usp=drivesdk">💺 Seat List देखो</a>
-  <p id="status" style="text-align:center;color:#0f9d58;font-size:13px">Safe System ON ✅ - Upload karke dekho</p>
+<div class="categories">
+  <button class="cat active">All</button>
+  <button class="cat">Bhakti</button>
+  <button class="cat">News</button>
+  <button class="cat">Movie</button>
+  <button class="cat">Music</button>
+  <button class="cat">Gaming</button>
 </div>
-
-<div style="padding:0 16px 80px 16px"><a href="niyam.html" style="color:#3ea6ff;text-decoration:none;font-size:14px">📜 BharatFlix के नियम देखें</a></div>
-
-<div class="nav"><div>🏠<br>Home</div><div>▶️<br>Shorts</div><div>➕</div><div>📺<br>Subs</div><div>👤<br>You</div></div>
-
-<!-- YEH 2 LINE IMPORTANT HAI BHAYA JI - ISSE HI CHALEGA -->
-<script type="module">
-  import { checkVideoSafety } from './src/sensor.js';
-  const fileInput = document.getElementById('fileInput');
-  const video = document.getElementById('v');
-  const status = document.getElementById('status');
-  fileInput.addEventListener('change', async (e) => {
-    let file = e.target.files[0];
-    if(!file) return;
-    status.innerText = "Guard Check ho raha hai...";
-    let safe = await checkVideoSafety(file);
-    if(safe){
-      status.innerText = "Safe hai ✅ Video chal rahi hai";
-      video.src = URL.createObjectURL(file);
-      video.play();
-    } else {
-      status.innerText = "❌ Ye video allowed nahi hai";
-      alert("Bhaiya ji ye video safe nahi hai!");
-    }
-  });
-</script>
-
+<div class="video-card">
+  <video id="mainVideo" style="width:100%;height:100%;object-fit:cover" poster="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800" controls>
+    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+  </video>
+  <div class="time">0:12 / 8:34</div>
+</div>
+<div class="ad-box">
+  <small>Advertisement</small>
+  <div style="margin-top:8px;">
+    <p style="color:#999;font-size:13px;">यहाँ आपका Ad दिखेगा - AdSense कोड यहाँ पेस्ट करें</p>
+  </div>
+</div>
+<div class="info">
+  <div class="title">Ganga Aarti - Sacred Morning Prayer | Peaceful Devotional Live</div>
+  <div class="meta">1.2M views • 3 days ago</div>
+  <div class="channel-row">
+    <div class="ch-left">
+      <div class="ch-icon">B</div>
+      <div><div class="ch-name">Bharat Flix Official</div><div class="ch-sub">1.05M subscribers</div></div>
+    </div>
+    <button class="sub-btn">Subscribe</button>
+  </div>
+  <div class="actions">
+    <button class="act">👍 24K</button>
+    <button class="act">👎 Dislike</button>
+    <button class="act">↗ Share</button>
+    <button class="act">⬇ Download</button>
+    <button class="act">🔖 Save</button>
+  </div>
+</div>
+<div class="ad-box">
+  <small>Advertisement</small>
+  <div style="margin-top:8px;"><p style="color:#999;font-size:13px;">नीचे वाला Ad</p></div>
+</div>
+<div class="bottom-nav">
+  <div class="nav-item active"><span class="icon">🏠</span>Home</div>
+  <div class="nav-item"><span class="icon">✨</span>Shorts</div>
+  <div class="nav-item"><span class="icon">⊕</span>Create+</div>
+  <div class="nav-item"><span class="icon">📺</span>Subscriptions</div>
+  <div class="nav-item"><span class="icon">👤</span>You</div>
+</div>
 </body>
 </html>
