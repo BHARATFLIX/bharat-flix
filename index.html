@@ -27,17 +27,21 @@
 #myAd{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:99999;display:flex;align-items:center;justify-content:center;flex-direction:column}
 #myAd video{width:100%;height:100%;object-fit:contain}
 #closeBox{position:absolute;bottom:25px;left:0;width:100%;text-align:center}
-.skip{background:#fff;color:#000;border:none;padding:10px 25px;border-radius:30px;font-weight:bold;font-size:16px}
+.skip{background:#fff;color:#000;border:none;padding:10px 25px;border-radius:30px;font-weight:bold;font-size:16px;margin:3px}
 #installBtn{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,#FF9933,#FF6A00 50%,#138808);color:#fff;border:2px solid #fff;padding:14px 32px;border-radius:50px;font-size:17px;font-weight:900;box-shadow:0 5px 20px #0008;z-index:90;display:none;animation:pop 1s infinite}
 @keyframes pop{0%{transform:translateX(-50%) scale(1)}50%{transform:translateX(-50%) scale(1.05)}100%{transform:translateX(-50%) scale(1)}}
 </style>
 </head>
 <body>
 
-<!-- AD - ad-new.mp4 -->
+<!-- AD - ad-new.mp4 - UPDATED WITH AUDIO BUTTON -->
 <div id="myAd">
   <video id="adVideo" autoplay muted playsinline><source src="ad-new.mp4" type="video/mp4"></video>
-  <div id="closeBox"><button class="skip" onclick="closeAd()">Skip Ad ✕</button><p id="timerText" style="color:#fff;margin-top:8px;font-size:13px">Ad 8 सेकंड में बंद होगा... Click करके आवाज 🔊</p></div>
+  <div id="closeBox">
+    <button class="skip" onclick="unmuteAd()" style="background:#FF9933;color:#fff">🔊 आवाज चालू करें</button>
+    <button class="skip" onclick="closeAd()">Skip Ad ✕</button>
+    <p id="timerText" style="color:#fff;margin-top:8px;font-size:13px">Ad 8 सेकंड में बंद होगा... Ad पर Click करो तो आवाज आएगी</p>
+  </div>
 </div>
 
 <!-- INSTALL BUTTON - AAPKA LOGO WALA -->
@@ -103,10 +107,11 @@
 <div class="bottom"><div onclick="btnHome()">🏠<br>Home</div><div onclick="btnShorts()">◍<br>Shorts</div><div onclick="btnUploadIcon()">➕<br>Upload+</div><div onclick="btnSubs()">📺<br>Subs</div><div onclick="btnProfile()">👤<br>Profile</div></div>
 
 <script>
-// === AD + INSTALL FINAL ===
+// === AD + INSTALL FINAL - ONLY AUDIO FIX ADDED ===
 let t=8;let ad=document.getElementById('myAd');let adVideo=document.getElementById('adVideo');
-ad.addEventListener('click',()=>{adVideo.muted=false;adVideo.play();});
-let timer=setInterval(()=>{t--;let tx=document.getElementById('timerText');if(tx)tx.innerText="Ad "+t+" सेकंड में बंद होगा...";if(t<=0){closeAd()}},1000);
+function unmuteAd(){ adVideo.muted=false; adVideo.volume=1.0; adVideo.play(); document.getElementById('timerText').innerText="🔊 आवाज चालू हो गई भैया जी!"; }
+ad.addEventListener('click',unmuteAd);
+let timer=setInterval(()=>{t--;let tx=document.getElementById('timerText');if(tx && adVideo.muted)tx.innerText="Ad "+t+" सेकंड में बंद होगा... Click करके आवाज 🔊";if(t<=0){closeAd()}},1000);
 function closeAd(){ad.style.display='none';clearInterval(timer);adVideo.pause();}
 
 let deferredPrompt;
