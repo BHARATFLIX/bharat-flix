@@ -40,7 +40,7 @@
   <div id="closeBox">
     <button class="skip" onclick="unmuteAd()" style="background:#FF9933;color:#fff">🔊 आवाज चालू करें</button>
     <button class="skip" onclick="closeAd()">Skip Ad ✕</button>
-    <p id="timerText" style="color:#fff;margin-top:8px;font-size:13px">Ad 8 सेकंड में बंद होगा... Ad पर Click करो तो आवाज आएगी</p>
+    <p id="timerText" style="color:#fff;margin-top:8px;font-size:13px">Ad 25 सेकंड में बंद होगा... Ad पर Click करो तो आवाज आएगी</p>
   </div>
 </div>
 
@@ -107,10 +107,11 @@
 <div class="bottom"><div onclick="btnHome()">🏠<br>Home</div><div onclick="btnShorts()">◍<br>Shorts</div><div onclick="btnUploadIcon()">➕<br>Upload+</div><div onclick="btnSubs()">📺<br>Subs</div><div onclick="btnProfile()">👤<br>Profile</div></div>
 
 <script>
-// === AD + INSTALL FINAL - ONLY AUDIO FIX ADDED ===
-let t=8;let ad=document.getElementById('myAd');let adVideo=document.getElementById('adVideo');
+// === AD + INSTALL FINAL - 25 SECOND WALA ===
+let t=25;let ad=document.getElementById('myAd');let adVideo=document.getElementById('adVideo');
 function unmuteAd(){ adVideo.muted=false; adVideo.volume=1.0; adVideo.play(); document.getElementById('timerText').innerText="🔊 आवाज चालू हो गई भैया जी!"; }
 ad.addEventListener('click',unmuteAd);
+adVideo.onended=function(){ closeAd(); };
 let timer=setInterval(()=>{t--;let tx=document.getElementById('timerText');if(tx && adVideo.muted)tx.innerText="Ad "+t+" सेकंड में बंद होगा... Click करके आवाज 🔊";if(t<=0){closeAd()}},1000);
 function closeAd(){ad.style.display='none';clearInterval(timer);adVideo.pause();}
 
