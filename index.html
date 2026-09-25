@@ -1,197 +1,153 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="manifest" href="manifest.json">
-<title>BharatFlix - Final Lock 100%</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BharatFlix - Final All in One</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box} body{background:#f5f5f5;font-family:system-ui}
-.header{background:#fff;padding:12px 14px;border-radius:0 0 18px 18px;box-shadow:0 2px 10px #0001}
-.logo-row{display:flex;align-items:center;gap:12px}
-.logo-row img{width:52px;height:58px}
-.bharat{font-size:42px;font-weight:900;background:linear-gradient(90deg,#FF9933 0 33%,#fff 33% 66%,#138808 66% 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;-webkit-text-stroke:1px #000;filter:drop-shadow(0 3px 0 #000) drop-shadow(2px 2px 4px #0005)}
-.top-bar{display:flex;justify-content:flex-end;gap:18px;font-size:22px;padding:8px 4px}
-.video-box{width:96%;margin:14px auto;background:#000;border-radius:18px;aspect-ratio:9/11;position:relative;overflow:hidden}
-.action-scroll{display:flex;gap:8px;overflow-x:auto;padding:12px;background:#fff;white-space:nowrap;scrollbar-width:none}
-.action-scroll::-webkit-scrollbar{display:none}
-.action-scroll button{flex:0 0 auto;border:1px solid #e5e5e5;background:#f2f2f2;padding:8px 14px;border-radius:20px;font-weight:600;font-size:13px;cursor:pointer}
-.action-scroll button.active{background:#000;color:#fff}
-.action-scroll.sub{background:#ff0000;color:#fff;border:none}
-.sensor-row{display:flex;gap:8px;padding:12px;overflow-x:auto;background:#fff;margin-top:8px}
-.sensor{flex:0 0 auto;padding:8px 12px;border-radius:12px;font-size:11px;font-weight:700;display:flex;align-items:center;gap:6px}
-.s1{background:#d1fae5;color:#065f46}.s2{background:#dbeafe;color:#1e40af}.s3{background:#fde7f8;color:#6b21a8}.s4{background:#ffedd5;color:#9a3412}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #ddd;z-index:99}
-.bottom div{cursor:pointer;text-align:center;font-size:12px}
-/* AD + INSTALL BUTTON - FINAL ADD */
-#myAd{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:99999;display:flex;align-items:center;justify-content:center;flex-direction:column}
-#myAd video{width:100%;height:100%;object-fit:contain}
-#closeBox{position:absolute;bottom:25px;left:0;width:100%;text-align:center}
-.skip{background:#fff;color:#000;border:none;padding:10px 25px;border-radius:30px;font-weight:bold;font-size:16px;margin:3px}
-#installBtn{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,#FF9933,#FF6A00 50%,#138808);color:#fff;border:2px solid #fff;padding:14px 32px;border-radius:50px;font-size:17px;font-weight:900;box-shadow:0 5px 20px #0008;z-index:90;display:none;animation:pop 1s infinite}
-@keyframes pop{0%{transform:translateX(-50%) scale(1)}50%{transform:translateX(-50%) scale(1.05)}100%{transform:translateX(-50%) scale(1)}}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Roboto,Arial}
+body{background:#fff;padding-top:62px;padding-bottom:75px}
+.header{position:fixed;top:0;left:0;right:0;z-index:9999;background:#fff;height:60px;display:flex;justify-content:space-between;align-items:center;padding:0 12px;box-shadow:0 2px 8px #0002;border-radius:0 0 16px 16px}
+.logo{font-size:28px;font-weight:900}.logo b:first-child{color:#ff6a00}.logo b:last-child{color:#138808}
+.h-icons{display:flex;gap:14px;font-size:20px;align-items:center}
+.avatar{width:30px;height:30px;background:#3b82f6;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold}
+.player-wrap{width:100%;background:#000;aspect-ratio:16/9;position:relative;display:flex;align-items:center;justify-content:center}
+.play-btn{width:75px;height:75px;background:red;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:35px;cursor:pointer;z-index:2}
+.bottom-bar{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,#000);color:#fff;font-size:11px;padding:10px}
+.info{padding:10px 12px}.title{font-size:16px;font-weight:700}.sub{font-size:13px;color:#606060;margin-top:4px}
+.action-row{display:flex;gap:8px;overflow-x:auto;padding:12px 0;white-space:nowrap;scrollbar-width:none}.action-row::-webkit-scrollbar{display:none}
+.act-btn{background:#f2f2f2;border:none;border-radius:20px;padding:8px 14px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px;cursor:pointer;flex-shrink:0}
+.act-btn.active{background:#000;color:#fff}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #ddd;z-index:9999;text-align:center}
+.bottom-nav div{font-size:11px;cursor:pointer}.bottom-nav b{font-size:22px;display:block}
+#uploadModal,#payModal{display:none;position:fixed;inset:0;background:#000a;z-index:10000;align-items:center;justify-content:center}
+.modal{background:#fff;width:92%;max-width:380px;padding:18px;border-radius:16px}
+.modal input,.modal button{width:100%;padding:12px;margin-top:10px;border-radius:8px;border:1px solid #ccc}
+.modal button{background:red;color:#fff;border:none;font-weight:bold}
 </style>
 </head>
 <body>
 
-<!-- AD - ad-new.mp4 - UPDATED WITH AUDIO BUTTON -->
-<div id="myAd">
-  <video id="adVideo" autoplay muted playsinline><source src="ad-new.mp4" type="video/mp4"></video>
-  <div id="closeBox">
-    <button class="skip" onclick="unmuteAd()" style="background:#FF9933;color:#fff">🔊 आवाज चालू करें</button>
-    <button class="skip" onclick="closeAd()">Skip Ad ✕</button>
-    <p id="timerText" style="color:#fff;margin-top:8px;font-size:13px">Ad 25 सेकंड में बंद होगा... Ad पर Click करो तो आवाज आएगी</p>
-  </div>
-</div>
-
-<!-- INSTALL BUTTON - AAPKA LOGO WALA -->
-<button id="installBtn">📲 BharatFlix Install करें</button>
-
 <div class="header">
-  <div class="logo-row">
-    <img src="logo.png">
-    <div class="bharat">BharatFlix</div>
-  </div>
-  <div class="top-bar"><span onclick="btnSearch()">🔍</span> <span onclick="btnBell()">🔔</span> <span onclick="btnSetting()">⚙️</span> <span onclick="btnUploadIcon()">📤</span> <span style="background:#3b82f6;color:#fff;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center">B</span></div>
+<div class="logo"><b>Bharat</b><b>Flix</b></div>
+<div class="h-icons"><span>🔍</span><span>🔔</span><span>⚙️</span><div class="avatar">B</div></div>
 </div>
 
-<div class="video-box" id="videoBox">
-  <img id="previewImg" style="width:100%;height:100%;object-fit:contain;display:none">
-  <div id="mapPlace">
-    <img src="logo.png" style="position:absolute;width:100%;height:100%;object-fit:contain;opacity:0.15">
-    <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">
-      <div style="width:85%;aspect-ratio:0.85;background:linear-gradient(to bottom,#FF9933 33%,white 33%,white 66%,#138808 66%);-webkit-mask:url('https://upload.wikimedia.org/wikipedia/commons/8/86/India_map.svg') no-repeat center/contain;mask:url('https://upload.wikimedia.org/wikipedia/commons/8/86/India_map.svg') no-repeat center/contain;display:flex;align-items:center;justify-content:center">
-        <div style="width:38%;aspect-ratio:1;background:#0b3d91;border-radius:50%;display:flex;align-items:center;justify-content:center">☸️</div>
-      </div>
-    </div>
-  </div>
-  <button id="playBtn" onclick="playCurrent()" style="position:absolute;top:52%;left:50%;transform:translate(-50%,-50%);width:76px;height:76px;background:#ff0000;border:none;border-radius:50%;color:#fff;font-size:32px">▶</button>
-  <div id="videoInfo" style="position:absolute;bottom:8px;left:10px;color:#fff;font-size:12px;background:#0008;padding:4px 8px;border-radius:8px">0:42 / 5:18 • LIVE • 1.2M views • Lib: 760230</div>
+<div class="player-wrap" id="playerWrap">
+<div class="play-btn" onclick="playFirst()">▶</div>
+<div class="bottom-bar">0:42 / 5:18 • LIVE • 1.2M views • Lib: 760230</div>
 </div>
 
-<div style="background:#fff;padding:12px"><b id="vTitle">Independence Day Special | Rise of United India</b><br><small style="color:#666">BharatFlix • <span id="subCount">2.8M</span> subscribers • #India #Tiranga</small></div>
+<div class="info">
+<h3 class="title" id="vTitle">Independence Day Special | Rise of United India</h3>
+<p class="sub">BharatFlix • 2.8M subscribers • 1.2M views</p>
 
-<div class="action-scroll">
-  <button id="likeBtn" onclick="doLike()">👍 Like 42K</button>
-  <button id="dislikeBtn" onclick="doDislike()">👎 Dislike</button>
-  <button onclick="doShare()">↗️ Share</button>
-  <button onclick="doDownload()">⬇️ Download</button>
-  <button onclick="doThanks()">💰 Thanks</button>
-  <button onclick="doClip()">✂️ Clip</button>
-  <button id="saveBtn" onclick="doSave()">🔖 Save</button>
-  <button onclick="doRemix()">🎬 Remix</button>
-  <button onclick="doReport()">🚩 Report</button>
-  <button id="subBtn" class="sub" onclick="doSubscribe()">🔔 Subscribe</button>
-  <button onclick="doJoin()">👥 Join</button>
-  <button onclick="doMore()">⋯ More</button>
+<!-- 12 BUTTON + THANKS + JOIN -->
+<div class="action-row">
+  <button class="act-btn" id="likeBtn" onclick="doLike()">👍 <span id="likeCount">2.8K</span></button>
+  <button class="act-btn" onclick="doDislike()">👎</button>
+  <button class="act-btn" onclick="shareCurrent()">📤 Share</button>
+  <button class="act-btn" onclick="doRemix()">🔗 Remix</button>
+  <button class="act-btn" style="background:#138808;color:#fff" onclick="downloadCurrent()">⬇️ Download</button>
+  <button class="act-btn" onclick="openJoin()" style="border:1px solid #3b82f6;color:#3b82f6">🔵 Join</button>
+  <button class="act-btn" onclick="openThanks()">🙏 Thanks</button>
+  <button class="act-btn" onclick="doClip()">✂️ Clip</button>
+  <button class="act-btn" onclick="saveVideo()">🔖 Save</button>
+  <button class="act-btn" onclick="doReport()">🚩 Report</button>
+  <button class="act-btn" onclick="showComment()">💬 1.2K</button>
+  <button class="act-btn">⋯ More</button>
 </div>
 
-<div class="sensor-row">
-  <div class="sensor s1">🛡️ Copyright Protected</div>
-  <div class="sensor s2">💧 Watermark ON</div>
-  <div class="sensor s3">🧠 Clean Content AI</div>
-  <div class="sensor s4">🚫 Public Block ON - Lib 760230</div>
+<div id="videoList"></div>
 </div>
 
-<div style="background:#fff;margin:8px;padding:12px;border-radius:12px;border:1px solid #13880822">
-  <b>📤 Upload (AI + Godam 760230)</b><br>
-  <input type="file" id="videoInput" accept="video/*" style="margin-top:10px">
-  <div style="display:flex;gap:6px;margin-top:8px"><input type="password" id="bunnyKey" placeholder="Bunny API Key (सिर्फ पहली बार)" style="flex:1;padding:8px"><button onclick="saveKey()" style="background:#138808;color:#fff;border:none;padding:8px 12px;border-radius:8px">Save</button></div>
-  <p id="status" style="margin-top:8px;font-size:12px;color:#d00"></p>
-  <p id="godamStatus" style="font-size:11px;color:#065f46"></p>
+<!-- BOTTOM - SIRF YAHI 1 UPLOAD RAHEGA - YOUTUBE JAISA -->
+<div class="bottom-nav">
+<div onclick="location.reload()"><b>🏠</b>Home</div>
+<div><b>◐</b>Shorts</div>
+<div onclick="openUpload()"><b style="background:#000;color:#fff;width:44px;height:28px;border-radius:20px;display:flex;align-items:center;justify-content:center;margin:auto">+</b>Upload</div>
+<div><b>📺</b>Subs</div>
+<div><b>👤</b>Profile</div>
 </div>
 
-<div id="myVideos" style="background:#fff;margin:8px;padding:12px;border-radius:12px"></div>
+<!-- UPLOAD MODAL -->
+<div id="uploadModal"><div class="modal">
+<h3>Upload - BharatFlix</h3>
+<input id="vName" placeholder="Video ka naam likho">
+<input type="file" id="vFile" accept="video/*">
+<button onclick="doUpload()">Upload Karo - Direct Cloud</button>
+<button style="background:#eee;color:#000" onclick="closeUpload()">Band Karo</button>
+<p id="msg" style="font-size:12px;margin-top:6px"></p>
+</div></div>
 
-<div style="height:80px"></div>
-<div class="bottom"><div onclick="btnHome()">🏠<br>Home</div><div onclick="btnShorts()">◍<br>Shorts</div><div onclick="btnUploadIcon()">➕<br>Upload+</div><div onclick="btnSubs()">📺<br>Subs</div><div onclick="btnProfile()">👤<br>Profile</div></div>
+<!-- THANKS / JOIN MODAL -->
+<div id="payModal"><div class="modal" style="text-align:center">
+<h3 id="payTitle">🙏 Thanks</h3>
+<p id="paySub" style="font-size:13px;color:#666">BharatFlix ko Support karo</p>
+<div id="payOptions" style="display:grid;gap:10px;margin-top:12px"></div>
+<button style="background:#eee;color:#000" onclick="closePay()">Band Karo</button>
+</div></div>
 
 <script>
-// === AD + INSTALL FINAL - 25 SECOND WALA ===
-let t=25;let ad=document.getElementById('myAd');let adVideo=document.getElementById('adVideo');
-function unmuteAd(){ adVideo.muted=false; adVideo.volume=1.0; adVideo.play(); document.getElementById('timerText').innerText="🔊 आवाज चालू हो गई भैया जी!"; }
-ad.addEventListener('click',unmuteAd);
-adVideo.onended=function(){ closeAd(); };
-let timer=setInterval(()=>{t--;let tx=document.getElementById('timerText');if(tx && adVideo.muted)tx.innerText="Ad "+t+" सेकंड में बंद होगा... Click करके आवाज 🔊";if(t<=0){closeAd()}},1000);
-function closeAd(){ad.style.display='none';clearInterval(timer);adVideo.pause();}
+const CLOUD="xuwsza3g"; const PRESET="bharatflix";
+const MY_UPI="bharatflix@upi"; // <-- भैया जी यहाँ अपना PhonePe/GPay UPI डाल दो, पैसा सीधा आएगा
+let videos=JSON.parse(localStorage.getItem('bf_final')||'[]'); let currentUrl=""; let liked=false;
 
-let deferredPrompt;
-window.addEventListener('beforeinstallprompt',(e)=>{e.preventDefault();deferredPrompt=e;document.getElementById('installBtn').style.display='block';});
-document.getElementById('installBtn').addEventListener('click',async()=>{
-  if(deferredPrompt){deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;document.getElementById('installBtn').style.display='none';}
-  else{alert('भैया जी, ऊपर 3 dot पर क्लिक करके Add to Home Screen करो 📲');}
-});
-if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{});}
+function openUpload(){document.getElementById('uploadModal').style.display='flex'}
+function closeUpload(){document.getElementById('uploadModal').style.display='none'}
+function closePay(){document.getElementById('payModal').style.display='none'}
 
-// ====== 85% AI SENSORS - SAME AS YOURS ======
-const badWords = ["xxx","porn","nude","sex","gali"];
-const copyrightList = ["tseries","yrf","sony"];
-const LIBRARY_ID = "760230";
-let BUNNY_KEY = localStorage.getItem('bharat_bunny_key')||"";
-let currentGuid = null;
-let likes = 42000; let liked=false, disliked=false, saved=false, subscribed=false;
-
-if(BUNNY_KEY){ document.getElementById('bunnyKey').value=BUNNY_KEY; document.getElementById('godamStatus').innerText="✅ गोदाम 760230 कनेक्ट है"; }
-
-function saveKey(){ let k=document.getElementById('bunnyKey').value.trim(); if(!k){alert("चाबी डालो भैया जी");return;} localStorage.setItem('bharat_bunny_key',k); BUNNY_KEY=k; document.getElementById('godamStatus').innerText="✅ सेव हो गया भैया जी!"; alert("हो गया!"); }
-
-function doLike(){ liked=!liked; disliked=false; document.getElementById('likeBtn').classList.toggle('active',liked); document.getElementById('dislikeBtn').classList.remove('active'); document.getElementById('likeBtn').innerText = liked? `👍 Liked ${likes+1}` : `👍 Like 42K`; }
-function doDislike(){ disliked=!disliked; liked=false; document.getElementById('dislikeBtn').classList.toggle('active',disliked); document.getElementById('likeBtn').classList.remove('active'); document.getElementById('likeBtn').innerText = `👍 Like 42K`; }
-function doShare(){ if(navigator.share){ navigator.share({title:'BharatFlix', text:document.getElementById('vTitle').innerText, url:location.href}); } else { navigator.clipboard.writeText(location.href); alert("लिंक कॉपी हो गया भैया जी! ✅\n"+location.href); } }
-function doDownload(){ if(!currentGuid){ alert("पहले वीडियो अपलोड करो भैया जी"); return; } alert("Download शुरू! Godam 760230 से डाउनलोड हो रहा है"); }
-function doThanks(){ let amt=prompt("Thanks कितना भेजना है? (₹10, ₹50, ₹100)"); if(amt) alert(`धन्यवाद भैया जी! ₹${amt} Thanks भेज दिया! 🙏`); }
-function doClip(){ let s=prompt("Clip कहाँ से कहाँ तक? (0:10 - 0:30)"); if(s) alert(`Clip बन गया: ${s} ✅`); }
-function doSave(){ saved=!saved; document.getElementById('saveBtn').classList.toggle('active',saved); document.getElementById('saveBtn').innerText = saved? "✅ Saved" : "🔖 Save"; alert(saved? "Save हो गया!" : "Unsave हो गया"); }
-function doRemix(){ alert("Remix Studio खुल रहा है भैया जी! 🎬"); }
-function doReport(){ let r=prompt("Report क्यों करना है?"); if(r) alert("Report भेज दिया भैया जी, AI चेक करेगा 🛡️"); }
-function doSubscribe(){ subscribed=!subscribed; document.getElementById('subBtn').innerText = subscribed? "✅ Subscribed" : "🔔 Subscribe"; document.getElementById('subCount').innerText = subscribed? "2.8M+1" : "2.8M"; alert(subscribed? "Subscribe हो गया! 🔔" : "Unsubscribe हो गया"); }
-function doJoin(){ alert("Join Membership - ₹59/Month - जल्दी आएगा!"); }
-function doMore(){ alert("More Options:\n• Quality\n• Speed\n• Report\n• Godam ID: 760230"); }
-
-function btnSearch(){ let q=prompt("क्या Search करना है?"); if(q) alert(`"${q}" Search हो रहा है...`); }
-function btnBell(){ alert("🔔 Notifications: 3 नए वीडियो!"); }
-function btnSetting(){ alert("⚙️ Settings: Godam 760230 Connected ✅"); }
-function btnHome(){ window.scrollTo(0,0); }
-function btnShorts(){ alert("Shorts जल्द आएंगे भैया जी!"); }
-function btnUploadIcon(){ document.getElementById('videoInput').click(); }
-function btnSubs(){ alert("आपने "+(subscribed?1:0)+" चैनल Subscribe किया है"); }
-function btnProfile(){ alert(`Profile: BharatFlix User\nLibrary: ${LIBRARY_ID}\nVideos: ${JSON.parse(localStorage.getItem('bharat_vids')||'[]').length}`); }
-
-document.getElementById('videoInput').addEventListener('change', async function(e){
-  const file = e.target.files[0]; if(!file) return;
-  const name = file.name.toLowerCase();
-  const status = document.getElementById('status');
-  if(badWords.some(w=>name.includes(w))){ status.innerText="❌ AI Sensor: गंदी वीडियो Block!"; return; }
-  if(copyrightList.some(w=>name.includes(w))){ status.innerText="❌ Copyright Sensor: Block!"; return; }
-  if(!BUNNY_KEY){ status.innerText="❌ पहले API Key Save करो भैया जी!"; return; }
-  status.innerText="✅ AI Check PASS! Godam 760230 में भेज रहे हैं...";
-  const url = URL.createObjectURL(file);
-  document.getElementById('previewImg').src=url; document.getElementById('previewImg').style.display='block'; document.getElementById('mapPlace').style.display='none';
-  try{
-    let createRes = await fetch(`https://video.bunnycdn.com/library/${LIBRARY_ID}/videos`,{method:"POST",headers:{"AccessKey":BUNNY_KEY,"Content-Type":"application/json"},body:JSON.stringify({title:file.name})});
-    if(!createRes.ok) throw new Error(await createRes.text());
-    let data = await createRes.json(); let guid=data.guid; currentGuid=guid;
-    status.innerText="⬆️ Upload 0%...";
-    let uploadRes = await fetch(`https://video.bunnycdn.com/library/${LIBRARY_ID}/videos/${guid}`,{method:"PUT",headers:{"AccessKey":BUNNY_KEY},body:file});
-    if(!uploadRes.ok) throw new Error(await uploadRes.text());
-    status.innerText="✅ Godam 760230 में सेव! ID: "+guid;
-    document.getElementById('vTitle').innerText=file.name;
-    let vids=JSON.parse(localStorage.getItem('bharat_vids')||"[]"); vids.unshift({guid:guid,title:file.name,date:new Date().toLocaleString()}); localStorage.setItem('bharat_vids',JSON.stringify(vids)); showMyVideos();
-    playBunnyVideo(guid);
-  }catch(err){ status.innerText="❌ Error: "+err.message; }
-});
-
-function playBunnyVideo(guid){ currentGuid=guid; document.getElementById('videoBox').innerHTML=`<iframe src="https://iframe.mediadelivery.net/embed/${LIBRARY_ID}/${guid}?autoplay=true&preload=true" style="width:100%;height:100%;border:0" allow="autoplay;fullscreen"></iframe>`; }
-function playCurrent(){ if(currentGuid) playBunnyVideo(currentGuid); else alert("पहले वीडियो Upload करो भैया जी!"); }
-
-function showMyVideos(){
-  let vids=JSON.parse(localStorage.getItem('bharat_vids')||"[]");
-  if(vids.length==0){ document.getElementById('myVideos').innerHTML="<small style='color:#888'>अभी कोई वीडियो नहीं है</small>"; return; }
-  let h="<b>📚 मेरे वीडियो - Godam 760230</b><br><br>";
-  vids.forEach(v=>{ h+=`<div style="border:1px solid #eee;padding:8px;border-radius:8px;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center"><div><b>${v.title}</b><br><small>${v.date}</small></div><button onclick="playBunnyVideo('${v.guid}')" style="background:red;color:#fff;border:none;padding:6px 12px;border-radius:20px">Play</button></div>`; });
-  document.getElementById('myVideos').innerHTML=h;
+async function doUpload(){
+ const file=document.getElementById('vFile').files[0]; const title=document.getElementById('vName').value||"BharatFlix Video";
+ if(!file) return alert("Video chun lo bhaiya ji");
+ document.getElementById('msg').innerText="Upload ho raha hai bhaiya ji...";
+ const fd=new FormData(); fd.append('file',file); fd.append('upload_preset',PRESET);
+ try{
+  let r=await fetch(`https://api.cloudinary.com/v1_1/${CLOUD}/video/upload`,{method:'POST',body:fd}); let d=await r.json();
+  if(!d.secure_url){ fd.set('upload_preset','ml_default'); r=await fetch(`https://api.cloudinary.com/v1_1/${CLOUD}/video/upload`,{method:'POST',body:fd}); d=await r.json(); }
+  if(d.secure_url){ currentUrl=d.secure_url; videos.unshift({title,url:d.secure_url}); localStorage.setItem('bf_final',JSON.stringify(videos)); document.getElementById('msg').innerText="Ho gaya ✅"; render(); autoDownload(d.secure_url,title); setTimeout(closeUpload,1000); }
+  else { document.getElementById('msg').innerText="Error: "+(d.error?.message||'preset check karo'); }
+ }catch(e){document.getElementById('msg').innerText="Network error"}
 }
-showMyVideos();
+function render(){document.getElementById('videoList').innerHTML=videos.map(v=>`<div onclick="playVideo('${v.url}','${v.title.replace(/'/g,'')}')" style="display:flex;gap:10px;margin:12px 0;cursor:pointer"><div style="width:140px;height:80px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;border-radius:8px">▶</div><div><b style="font-size:13px">${v.title}</b><br><small style="color:#666">Click to play</small></div></div>`).join('');}
+function playVideo(url,title){currentUrl=url; document.getElementById('playerWrap').innerHTML=`<video src="${url}" controls autoplay style="width:100%;height:100%"></video><div class="bottom-bar">${title}</div>`; document.getElementById('vTitle').innerText=title; window.scrollTo(0,0);}
+function playFirst(){if(videos[0]) playVideo(videos[0].url,videos[0].title);}
+function autoDownload(url,name){const a=document.createElement('a'); a.href=url; a.download=(name||'video')+'.mp4'; a.target='_blank'; document.body.appendChild(a); a.click(); a.remove();}
+function downloadCurrent(){if(!currentUrl) return alert("Pehle video play karo bhaiya ji"); autoDownload(currentUrl, document.getElementById('vTitle').innerText);}
+function shareCurrent(){if(currentUrl){ if(navigator.share) navigator.share({title:'BharatFlix', url:currentUrl}); else prompt("Link copy karo:", currentUrl);}}
+function doLike(){ liked=!liked; document.getElementById('likeBtn').classList.toggle('active'); document.getElementById('likeCount').innerText= liked?"2.9K":"2.8K"; }
+function doDislike(){ alert("Dislike ho gaya bhaiya ji"); }
+function doRemix(){ alert("Remix - Shorts banega isse"); }
+function doClip(){ alert("Clip bana rahe hain 5 sec ka"); }
+function saveVideo(){ alert("Save ho gaya Library me bhaiya ji"); }
+function doReport(){ alert("Report bhej diya"); }
+function showComment(){ alert("Comments: Jai Hind 🇮🇳 Bahut badhiya video"); }
+
+// THANKS / JOIN - KAMAI WALA
+function openThanks(){
+ document.getElementById('payModal').style.display='flex';
+ document.getElementById('payTitle').innerText='🙏 Thanks';
+ document.getElementById('paySub').innerText='Support karo - Patna se bhi chalega';
+ document.getElementById('payOptions').innerHTML=`
+  <button onclick="payNow(20)" style="padding:12px;border-radius:10px;border:1px solid #ddd;background:#fff">₹20 💛</button>
+  <button onclick="payNow(50)" style="padding:12px;border-radius:10px;border:1px solid #ddd;background:#fff">₹50 🧡</button>
+  <button onclick="payNow(100)" style="padding:12px;border-radius:10px;border:1px solid #ff6a00;background:#fff3e0;font-weight:bold">₹100 🔥 Best</button>
+  <button onclick="payNow(500)" style="padding:12px;border-radius:10px;border:1px solid #ddd;background:#fff">₹500 💎 VIP</button>`;
+}
+function openJoin(){
+ document.getElementById('payModal').style.display='flex';
+ document.getElementById('payTitle').innerText='🔵 Join Membership';
+ document.getElementById('paySub').innerText='Monthly Support - YouTube jaisa';
+ document.getElementById('payOptions').innerHTML=`
+  <div onclick="payNow(29,'JOIN-FAN')" style="border:1px solid #ddd;border-radius:12px;padding:12px;text-align:left;cursor:pointer"><b>₹29 / महीना - Fan</b><br><small>Badge + Emoji</small></div>
+  <div onclick="payNow(59,'JOIN-PRO')" style="border:1px solid #138808;border-radius:12px;padding:12px;text-align:left;background:#f0fff0;cursor:pointer"><b>₹59 / महीना - Pro ⭐</b><br><small>Early Videos</small></div>
+  <div onclick="payNow(119,'JOIN-VIP')" style="border:1px solid #ff6a00;border-radius:12px;padding:12px;text-align:left;cursor:pointer"><b>₹119 / महीना - VIP 👑</b><br><small>Naam video me</small></div>`;
+}
+function payNow(amount, plan){
+ const upiLink = `upi://pay?pa=${MY_UPI}&pn=BharatFlix&am=${amount}&cu=INR&tn=${plan||'Thanks'}`;
+ window.location.href = upiLink;
+ setTimeout(()=>{ alert(`UPI App nahi khula to is ID par bhejo bhaiya ji: ${MY_UPI} - ₹${amount}`); }, 1200);
+}
+render();
 </script>
 </body>
 </html>
