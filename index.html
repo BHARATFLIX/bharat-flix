@@ -7,49 +7,57 @@
 <link rel="manifest" href="manifest.json">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Roboto,Arial}
-body{background:#fff}
-.header{position:sticky;top:0;z-index:99;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-bottom:1px solid #eee}
+body{background:#fff;color:#0f0f0f}
+.header{position:sticky;top:0;z-index:99;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-bottom:1px solid #e5e5e5}
 .left{display:flex;align-items:center;gap:8px}
-.logo{width:38px;height:38px;background:gold;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px}
-.bharat{font-size:26px;font-weight:900}
-.bharat span:nth-child(1){color:#ff7a00}.bharat span:nth-child(2){color:#222}.bharat span:nth-child(3){color:#0a8a00}
-.right{display:flex;align-items:center;gap:12px}
-.install{background:#ff6a00;color:#fff;border:none;padding:6px 12px;border-radius:18px;font-weight:700;font-size:13px}
-.profile{width:30px;height:30px;background:#1a73e8;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700}
+.left img{width:36px;height:44px;object-fit:contain}
+.bharat{font-size:26px;font-weight:900;letter-spacing:-0.5px}
+.bharat .s1{color:#ff6a00}.bharat .s2{color:#111}.bharat .s3{color:#11a400}
+.right{display:flex;align-items:center;gap:14px;font-size:18px}
+.install{background:#ff6a00;color:#fff;border:none;padding:6px 14px;border-radius:20px;font-weight:700;font-size:13px}
+.profile{width:30px;height:30px;background:#1a73e8;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
 .video-wrap{width:100%;background:#000;aspect-ratio:16/9;position:relative}
 .video-wrap img{width:100%;height:100%;object-fit:cover}
-.controls{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.7));padding:8px 10px;display:flex;align-items:center;gap:10px;color:#fff}
-.progress{flex:1;height:4px;background:#555;border-radius:2px}
-.progress i{display:block;width:42%;height:100%;background:#ff0000;border-radius:2px}
-.info{padding:12px}
+.controls{position:absolute;bottom:0;left:0;right:0;display:flex;align-items:center;gap:10px;padding:8px 10px;background:linear-gradient(transparent,rgba(0,0,0,.7));color:#fff;font-size:13px}
+.progress{flex:1;height:4px;background:#ffffff66;border-radius:2px}
+.progress i{display:block;width:38%;height:100%;background:#ff0000}
+.info{padding:12px 12px 0}
 .title{font-size:16px;font-weight:600;line-height:1.3}
 .meta{font-size:13px;color:#606060;margin-top:4px}
-.actions{display:flex;gap:8px;overflow-x:auto;padding:12px 12px 4px;scrollbar-width:none}
+.channel-row{display:flex;align-items:center;justify-content:space-between;padding:12px;gap:10px}
+.ch-left{display:flex;align-items:center;gap:10px}
+.ch-logo{width:36px;height:36px;border-radius:50%;background:#ff6a00;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700}
+.ch-name{font-size:14px;font-weight:600}
+.ch-subs{font-size:12px;color:#606060}
+.btn-subscribe{background:#0f0f0f;color:#fff;border:none;padding:8px 16px;border-radius:20px;font-weight:600;font-size:14px}
+
+/* सारे बटन - एक भी नहीं छूटेगा */
+.actions{display:flex;gap:8px;padding:10px 12px;overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}
 .actions::-webkit-scrollbar{display:none}
-.actions button{white-space:nowrap;border:1px solid #ddd;background:#f2f2f2;padding:8px 14px;border-radius:20px;font-size:13px;font-weight:500;display:flex;align-items:center;gap:6px}
-.actions button.join{background:#000;color:#fff;border-color:#000}
+.actions button{white-space:nowrap;border:none;background:#f2f2f2;padding:8px 14px;border-radius:20px;font-size:13px;font-weight:500;display:flex;align-items:center;gap:6px;flex-shrink:0}
+.actions button.money{background:#def1ff;border:1px solid #3ea6ff;color:#065fd4} /* पैसे वाले बटन नीले */
+.actions button.join-money{background:#0f0f0f;color:#fff}
+
 .upnext{padding:12px}
-.upnext h3{font-size:16px;margin-bottom:10px}
+.upnext h3{font-size:16px;margin-bottom:12px}
 .card{display:flex;gap:10px;margin-bottom:14px}
 .thumb{width:168px;height:94px;border-radius:8px;background:#ddd;position:relative;overflow:hidden;flex-shrink:0}
 .thumb img{width:100%;height:100%;object-fit:cover}
-.time{position:absolute;bottom:4px;right:4px;background:#000;color:#fff;font-size:11px;padding:2px 4px;border-radius:4px}
-.ctext{flex:1}
-.ctext b{font-size:13px;display:block;line-height:1.3}
-.ctext span{font-size:12px;color:#606060}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #ddd;display:flex;justify-content:space-around;padding:6px 0 10px;z-index:99}
-.b-item{text-align:center;font-size:11px;color:#606060}
+.time{position:absolute;bottom:4px;right:4px;background:rgba(0,0,0,.8);color:#fff;font-size:11px;padding:2px 4px;border-radius:4px}
+.ctext b{font-size:13px;display:block;line-height:1.25}
+.ctext span{font-size:12px;color:#606060;margin-top:2px;display:block}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #ddd;display:flex;justify-content:space-around;padding:6px 0 8px;z-index:99}
+.b-item{text-align:center;font-size:11px;color:#606060;line-height:1.1}
 .b-item.active{color:#ff6a00}
-.upload{width:52px;height:52px;background:#ff6a00;border-radius:14px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:28px;margin-top:-18px;box-shadow:0 4px 10px rgba(0,0,0,.3)}
+.upload{width:52px;height:52px;background:#ff6a00;border-radius:14px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:30px;margin-top:-18px;box-shadow:0 4px 12px rgba(0,0,0,.3)}
 </style>
 </head>
 <body>
 
-<!-- HEADER - आपकी फोटो जैसा -->
 <div class="header">
   <div class="left">
-    <div class="logo">🦁</div>
-    <div class="bharat"><span>Bha</span><span>rat</span><span>Flix</span></div>
+    <img src="logo.png" alt="Ashok">
+    <div class="bharat"><span class="s1">Bha</span><span class="s2">rat</span><span class="s3">Flix</span></div>
   </div>
   <div class="right">
     <span>🔍</span><span>🔔</span><span>⚙️</span>
@@ -58,9 +66,8 @@ body{background:#fff}
   </div>
 </div>
 
-<!-- VIDEO - हिमालय वाली -->
 <div class="video-wrap">
-  <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800" alt="Himalayan">
+  <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800" alt="Himalaya">
   <div class="controls"><span>⏸️</span><span>1:24</span><div class="progress"><i></i></div><span>5:47</span><span>CC</span><span>⚙️</span><span>⛶</span></div>
 </div>
 
@@ -69,45 +76,48 @@ body{background:#fff}
   <div class="meta">2.4M views • 3 days ago • #Himachal #Travel #Nature #BharatFlix</div>
 </div>
 
-<!-- 12 BUTTON - पूरे जैसा आपने बोला -->
-<div class="actions">
-  <button>👍 12K Like</button>
-  <button>👎 98 Dislike</button>
-  <button>↗️ Share</button>
-  <button>⬇️ Download</button>
-  <button>❤️ Thanks</button>
-  <button>✂️ Clip</button>
-  <button>🔖 Save</button>
-  <button>🎬 Remix</button>
-  <button>🚩 Report</button>
-  <button class="join">💎 Join</button>
-  <button>💾 Save to...</button>
-  <button>⋯ More</button>
+<div class="channel-row">
+  <div class="ch-left">
+    <div class="ch-logo">B</div>
+    <div><div class="ch-name">BharatFlix • 1.2M</div><div class="ch-subs">@bharatflix</div></div>
+  </div>
+  <button class="btn-subscribe">Subscribe</button>
 </div>
 
-<!-- UP NEXT -->
+<!-- यूट्यूब के सारे बटन - पैसे वाले भी -->
+<div class="actions">
+  <button>👍 12K</button>
+  <button>👎</button>
+  <button>↗️ Share</button>
+  <button>🔄 Remix</button>
+  <button>⬇️ Download</button>
+  <button>✂️ Clip</button>
+  <button>🔖 Save</button>
+  <button>🚩 Report</button>
+  <!-- पैसे कमाने वाले बटन -->
+  <button class="money">❤️ Super Thanks</button>
+  <button class="money">💎 Thanks</button>
+  <button class="join-money">⭐ Join</button>
+  <button>💾 Save to...</button>
+</div>
+
 <div class="upnext">
   <h3>Up next</h3>
   <div class="card"><div class="thumb"><img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=300"><div class="time">12:34</div></div><div class="ctext"><b>Kerala Backwaters Houseboat Tour | Alleppey Vlog</b><span>Bharat Travel • 1.1M views • 1 week ago</span></div></div>
   <div class="card"><div class="thumb"><img src="https://images.unsplash.com/photo-1682686580391-615b1f28e5d7?w=300"><div class="time">10:22</div></div><div class="ctext"><b>Rajasthan Desert Safari | Jaisalmer Adventure in 4K</b><span>Desert Diaries • 870K views • 2 weeks ago</span></div></div>
   <div class="card"><div class="thumb"><img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?w=300"><div class="time">15:07</div></div><div class="ctext"><b>Delhi Street Food Tour | Chandni Chowk Special</b><span>Foodie Bharat • 3.2M views • 5 days ago</span></div></div>
-  <div style="height:80px"></div>
+  <div style="height:90px"></div>
 </div>
 
-<!-- BOTTOM - नीचे वाले बटन जो गायब थे -->
 <div class="bottom">
   <div class="b-item active">🏠<br>Home</div>
-  <div class="b-item">🎬<br>Shorts</div>
-  <div class="b-item"><div class="upload">+</div>Upload+</div>
+  <div class="b-item">🎞️<br>Shorts</div>
+  <div class="b-item"><div class="upload">+</div></div>
   <div class="b-item">📚<br>Subs</div>
   <div class="b-item">👤<br>You</div>
 </div>
 
 <script>
-// Install Logic - ऊपर वाला Install बटन
 let promptEvent;
 window.addEventListener('beforeinstallprompt', e=>{e.preventDefault();promptEvent=e;document.getElementById('installBtn').style.display='block';});
-document.getElementById('installBtn').addEventListener('click', async()=>{if(promptEvent){promptEvent.prompt();await promptEvent.userChoice;promptEvent=null;document.getElementById('installBtn').style.display='none';}});
-</script>
-</body>
-</html>
+document.getElementById('installBtn')?.addEventListener('click', async()=>{if(promptEvent){promptEvent
