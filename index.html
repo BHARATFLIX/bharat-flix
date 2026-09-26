@@ -3,27 +3,45 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BharatFlix</title>
+<title>BharatFlix - Final</title>
 <link rel="manifest" href="manifest.json">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Roboto,Arial}
-body{background:#fff;color:#0f0f0f}
-.header{position:sticky;top:0;z-index:99;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-bottom:1px solid #e5e5e5}
-.left{display:flex;align-items:center;gap:8px}
-.left img{width:36px;height:44px;object-fit:contain}
-.bharat{font-size:26px;font-weight:900;letter-spacing:-0.5px}
-.bharat .s1{color:#ff6a00}.bharat .s2{color:#111}.bharat .s3{color:#11a400}
-.right{display:flex;align-items:center;gap:14px;font-size:18px}
+body{background:#fff;color:#0f0f0f;padding-bottom:80px}
+
+/* भैया जी का खास हेडर - चिपका हुआ रहेगा - कभी नहीं भागेगा */
+.header{
+  position:sticky; /* यही जादू है - चिपका रहेगा */
+  top:0;
+  left:0;
+  right:0;
+  z-index:9999;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:6px 12px;
+  border-bottom:1px solid #e5e5e5;
+  box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+.left{display:flex;align-items:center;gap:10px}
+.left img{width:54px;height:auto;object-fit:contain}
+.bharat{font-size:32px;font-weight:900;letter-spacing:-1px;filter:drop-shadow(2px 3px 2px rgba(0,0,0,.15))}
+.bharat .s1{color:#ff7a00}.bharat .s2{color:#222}.bharat .s3{color:#11a400}
+.right{display:flex;align-items:center;gap:14px;font-size:20px}
 .install{background:#ff6a00;color:#fff;border:none;padding:6px 14px;border-radius:20px;font-weight:700;font-size:13px}
-.profile{width:30px;height:30px;background:#1a73e8;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
+.profile{width:32px;height:32px;background:#1a73e8;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px}
+
 .video-wrap{width:100%;background:#000;aspect-ratio:16/9;position:relative}
 .video-wrap img{width:100%;height:100%;object-fit:cover}
 .controls{position:absolute;bottom:0;left:0;right:0;display:flex;align-items:center;gap:10px;padding:8px 10px;background:linear-gradient(transparent,rgba(0,0,0,.7));color:#fff;font-size:13px}
 .progress{flex:1;height:4px;background:#ffffff66;border-radius:2px}
-.progress i{display:block;width:38%;height:100%;background:#ff0000}
+.progress i{display:block;width:38%;height:100%;background:#f00}
+
 .info{padding:12px 12px 0}
 .title{font-size:16px;font-weight:600;line-height:1.3}
 .meta{font-size:13px;color:#606060;margin-top:4px}
+
 .channel-row{display:flex;align-items:center;justify-content:space-between;padding:12px;gap:10px}
 .ch-left{display:flex;align-items:center;gap:10px}
 .ch-logo{width:36px;height:36px;border-radius:50%;background:#ff6a00;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700}
@@ -31,11 +49,10 @@ body{background:#fff;color:#0f0f0f}
 .ch-subs{font-size:12px;color:#606060}
 .btn-subscribe{background:#0f0f0f;color:#fff;border:none;padding:8px 16px;border-radius:20px;font-weight:600;font-size:14px}
 
-/* सारे बटन - एक भी नहीं छूटेगा */
 .actions{display:flex;gap:8px;padding:10px 12px;overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}
 .actions::-webkit-scrollbar{display:none}
 .actions button{white-space:nowrap;border:none;background:#f2f2f2;padding:8px 14px;border-radius:20px;font-size:13px;font-weight:500;display:flex;align-items:center;gap:6px;flex-shrink:0}
-.actions button.money{background:#def1ff;border:1px solid #3ea6ff;color:#065fd4} /* पैसे वाले बटन नीले */
+.actions button.money{background:#def1ff;border:1px solid #3ea6ff;color:#065fd4}
 .actions button.join-money{background:#0f0f0f;color:#fff}
 
 .upnext{padding:12px}
@@ -46,7 +63,8 @@ body{background:#fff;color:#0f0f0f}
 .time{position:absolute;bottom:4px;right:4px;background:rgba(0,0,0,.8);color:#fff;font-size:11px;padding:2px 4px;border-radius:4px}
 .ctext b{font-size:13px;display:block;line-height:1.25}
 .ctext span{font-size:12px;color:#606060;margin-top:2px;display:block}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #ddd;display:flex;justify-content:space-around;padding:6px 0 8px;z-index:99}
+
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #ddd;display:flex;justify-content:space-around;padding:6px 0 8px;z-index:9998}
 .b-item{text-align:center;font-size:11px;color:#606060;line-height:1.1}
 .b-item.active{color:#ff6a00}
 .upload{width:52px;height:52px;background:#ff6a00;border-radius:14px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:30px;margin-top:-18px;box-shadow:0 4px 12px rgba(0,0,0,.3)}
@@ -54,26 +72,27 @@ body{background:#fff;color:#0f0f0f}
 </head>
 <body>
 
+<!-- चिपका हुआ हेडर - हमेशा दिखेगा -->
 <div class="header">
   <div class="left">
-    <img src="logo.png" alt="Ashok">
+    <img src="ashok-full-gold.png" alt="Ashok Stambh">
     <div class="bharat"><span class="s1">Bha</span><span class="s2">rat</span><span class="s3">Flix</span></div>
   </div>
   <div class="right">
     <span>🔍</span><span>🔔</span><span>⚙️</span>
-    <button class="install" id="installBtn" style="display:none">Install</button>
+    <button class="install" id="installBtn">Install</button>
     <div class="profile">B</div>
   </div>
 </div>
 
 <div class="video-wrap">
-  <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800" alt="Himalaya">
+  <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800" alt="Video">
   <div class="controls"><span>⏸️</span><span>1:24</span><div class="progress"><i></i></div><span>5:47</span><span>CC</span><span>⚙️</span><span>⛶</span></div>
 </div>
 
 <div class="info">
   <div class="title">Himalayan Peaks | Travel Through Himachal | Nature Documentary in 4K</div>
-  <div class="meta">2.4M views • 3 days ago • #Himachal #Travel #Nature #BharatFlix</div>
+  <div class="meta">2.4M views • 3 days ago • #Himachal #Travel #Nature</div>
 </div>
 
 <div class="channel-row">
@@ -84,40 +103,20 @@ body{background:#fff;color:#0f0f0f}
   <button class="btn-subscribe">Subscribe</button>
 </div>
 
-<!-- यूट्यूब के सारे बटन - पैसे वाले भी -->
 <div class="actions">
-  <button>👍 12K</button>
-  <button>👎</button>
-  <button>↗️ Share</button>
-  <button>🔄 Remix</button>
-  <button>⬇️ Download</button>
-  <button>✂️ Clip</button>
-  <button>🔖 Save</button>
-  <button>🚩 Report</button>
-  <!-- पैसे कमाने वाले बटन -->
-  <button class="money">❤️ Super Thanks</button>
-  <button class="money">💎 Thanks</button>
-  <button class="join-money">⭐ Join</button>
-  <button>💾 Save to...</button>
+  <button>👍 12K</button><button>👎</button><button>↗️ Share</button><button>🔄 Remix</button><button>⬇️ Download</button><button>✂️ Clip</button><button>🔖 Save</button><button>🚩 Report</button>
+  <button class="money">❤️ Super Thanks</button><button class="money">💎 Thanks</button><button class="join-money">⭐ Join</button>
 </div>
 
 <div class="upnext">
   <h3>Up next</h3>
-  <div class="card"><div class="thumb"><img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=300"><div class="time">12:34</div></div><div class="ctext"><b>Kerala Backwaters Houseboat Tour | Alleppey Vlog</b><span>Bharat Travel • 1.1M views • 1 week ago</span></div></div>
-  <div class="card"><div class="thumb"><img src="https://images.unsplash.com/photo-1682686580391-615b1f28e5d7?w=300"><div class="time">10:22</div></div><div class="ctext"><b>Rajasthan Desert Safari | Jaisalmer Adventure in 4K</b><span>Desert Diaries • 870K views • 2 weeks ago</span></div></div>
-  <div class="card"><div class="thumb"><img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?w=300"><div class="time">15:07</div></div><div class="ctext"><b>Delhi Street Food Tour | Chandni Chowk Special</b><span>Foodie Bharat • 3.2M views • 5 days ago</span></div></div>
-  <div style="height:90px"></div>
+  <div class="card"><div class="thumb"><img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=300"><div class="time">12:34</div></div><div class="ctext"><b>Kerala Backwaters Houseboat Tour</b><span>Bharat Travel • 1.1M views</span></div></div>
+  <div class="card"><div class="thumb"><img src="https://images.unsplash.com/photo-1682686580391-615b1f28e5d7?w=300"><div class="time">10:22</div></div><div class="ctext"><b>Rajasthan Desert Safari | Jaisalmer</b><span>Desert Diaries • 870K views</span></div></div>
 </div>
 
 <div class="bottom">
-  <div class="b-item active">🏠<br>Home</div>
-  <div class="b-item">🎞️<br>Shorts</div>
-  <div class="b-item"><div class="upload">+</div></div>
-  <div class="b-item">📚<br>Subs</div>
-  <div class="b-item">👤<br>You</div>
+  <div class="b-item active">🏠<br>Home</div><div class="b-item">🎞️<br>Shorts</div><div class="b-item"><div class="upload">+</div></div><div class="b-item">📚<br>Subs</div><div class="b-item">👤<br>You</div>
 </div>
 
-<script>
-let promptEvent;
-window.addEventListener('beforeinstallprompt', e=>{e.preventDefault();promptEvent=e;document.getElementById('installBtn').style.display='block';});
-document.getElementById('installBtn')?.addEventListener('click', async()=>{if(promptEvent){promptEvent
+</body>
+</html>
