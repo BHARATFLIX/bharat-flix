@@ -3,37 +3,111 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BharatFlix</title>
 <link rel="manifest" href="manifest.json">
-<title>BharatFlix - Look Final</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box} body{background:#f5f5f5;font-family:system-ui}
-.header{background:#fff;padding:12px 14px;border-radius:0 0 18px 18px;box-shadow:0 2px 10px #0001}
-.logo-row{display:flex;align-items:center;gap:12px}
-.logo-row img{width:52px;height:58px;object-fit:contain}
-.bharat{font-size:42px;font-weight:900;background:linear-gradient(90deg,#FF9933 0 33%,#ffffff 33% 66%,#138808 66% 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;-webkit-text-stroke:1.2px #000;filter:drop-shadow(0 3px 0 #000) drop-shadow(2px 2px 4px #0005)}
-.top-bar{display:flex;justify-content:flex-end;gap:18px;font-size:22px;padding:8px 4px}
-.video-box{width:96%;margin:14px auto;background:#000;border-radius:18px;aspect-ratio:16/9;position:relative;overflow:hidden}
-.action-scroll{display:flex;gap:8px;overflow-x:auto;padding:12px;background:#fff;white-space:nowrap;scrollbar-width:none}
-.action-scroll::-webkit-scrollbar{display:none}
-.action-scroll button{flex:0 0 auto;border:1px solid #e5e5e5;background:#f2f2f2;padding:8px 14px;border-radius:20px;font-weight:600;font-size:13px}
-.sensor-row{display:flex;gap:8px;padding:12px;overflow-x:auto;background:#fff;margin-top:8px}
-.sensor{flex:0 0 auto;padding:8px 12px;border-radius:12px;font-size:11px;font-weight:700;display:flex;align-items:center;gap:6px}
-.s1{background:#d1fae5;color:#065f46}.s2{background:#dbeafe;color:#1e40af}.s3{background:#fde7f8;color:#6b21a8}.s4{background:#ffedd5;color:#9a3412}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #ddd;z-index:99}
-.bottom div{text-align:center;font-size:12px}
-#myAd{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:99999;display:flex;align-items:center;justify-content:center;flex-direction:column}
-#myAd video{width:100%;height:100%;object-fit:contain}
-#closeBox{position:absolute;bottom:25px;left:0;width:100%;text-align:center}
-.skip{background:#fff;color:#000;border:none;padding:10px 25px;border-radius:30px;font-weight:bold;font-size:16px;margin:3px}
-#installBtn{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,#FF9933,#FF6A00 50%,#138808);color:#fff;border:2px solid #fff;padding:14px 32px;border-radius:50px;font-size:17px;font-weight:900;box-shadow:0 5px 20px #0008;z-index:90;animation:pop 1s infinite}
-@keyframes pop{0%{transform:translateX(-50%) scale(1)}50%{transform:translateX(-50%) scale(1.05)}100%{transform:translateX(-50%) scale(1)}}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Roboto,Arial}
+body{background:#fff}
+.header{position:sticky;top:0;z-index:99;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-bottom:1px solid #eee}
+.left{display:flex;align-items:center;gap:8px}
+.logo{width:38px;height:38px;background:gold;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px}
+.bharat{font-size:26px;font-weight:900}
+.bharat span:nth-child(1){color:#ff7a00}.bharat span:nth-child(2){color:#222}.bharat span:nth-child(3){color:#0a8a00}
+.right{display:flex;align-items:center;gap:12px}
+.install{background:#ff6a00;color:#fff;border:none;padding:6px 12px;border-radius:18px;font-weight:700;font-size:13px}
+.profile{width:30px;height:30px;background:#1a73e8;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700}
+.video-wrap{width:100%;background:#000;aspect-ratio:16/9;position:relative}
+.video-wrap img{width:100%;height:100%;object-fit:cover}
+.controls{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.7));padding:8px 10px;display:flex;align-items:center;gap:10px;color:#fff}
+.progress{flex:1;height:4px;background:#555;border-radius:2px}
+.progress i{display:block;width:42%;height:100%;background:#ff0000;border-radius:2px}
+.info{padding:12px}
+.title{font-size:16px;font-weight:600;line-height:1.3}
+.meta{font-size:13px;color:#606060;margin-top:4px}
+.actions{display:flex;gap:8px;overflow-x:auto;padding:12px 12px 4px;scrollbar-width:none}
+.actions::-webkit-scrollbar{display:none}
+.actions button{white-space:nowrap;border:1px solid #ddd;background:#f2f2f2;padding:8px 14px;border-radius:20px;font-size:13px;font-weight:500;display:flex;align-items:center;gap:6px}
+.actions button.join{background:#000;color:#fff;border-color:#000}
+.upnext{padding:12px}
+.upnext h3{font-size:16px;margin-bottom:10px}
+.card{display:flex;gap:10px;margin-bottom:14px}
+.thumb{width:168px;height:94px;border-radius:8px;background:#ddd;position:relative;overflow:hidden;flex-shrink:0}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.time{position:absolute;bottom:4px;right:4px;background:#000;color:#fff;font-size:11px;padding:2px 4px;border-radius:4px}
+.ctext{flex:1}
+.ctext b{font-size:13px;display:block;line-height:1.3}
+.ctext span{font-size:12px;color:#606060}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #ddd;display:flex;justify-content:space-around;padding:6px 0 10px;z-index:99}
+.b-item{text-align:center;font-size:11px;color:#606060}
+.b-item.active{color:#ff6a00}
+.upload{width:52px;height:52px;background:#ff6a00;border-radius:14px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:28px;margin-top:-18px;box-shadow:0 4px 10px rgba(0,0,0,.3)}
 </style>
 </head>
 <body>
 
-<div id="myAd">
-  <video id="adVideo" autoplay muted playsinline><source src="ad-new.mp4" type="video/mp4"></video>
-  <div id="closeBox">
-    <button class="skip" onclick="unmuteAd()" style="background:#FF9933;color:#fff">🔊 आवाज चालू करें</button>
-    <button class="skip" onclick="closeAd()">Skip Ad ✕</button>
-    <p id="timerText" style="
+<!-- HEADER - आपकी फोटो जैसा -->
+<div class="header">
+  <div class="left">
+    <div class="logo">🦁</div>
+    <div class="bharat"><span>Bha</span><span>rat</span><span>Flix</span></div>
+  </div>
+  <div class="right">
+    <span>🔍</span><span>🔔</span><span>⚙️</span>
+    <button class="install" id="installBtn" style="display:none">Install</button>
+    <div class="profile">B</div>
+  </div>
+</div>
+
+<!-- VIDEO - हिमालय वाली -->
+<div class="video-wrap">
+  <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800" alt="Himalayan">
+  <div class="controls"><span>⏸️</span><span>1:24</span><div class="progress"><i></i></div><span>5:47</span><span>CC</span><span>⚙️</span><span>⛶</span></div>
+</div>
+
+<div class="info">
+  <div class="title">Himalayan Peaks | Travel Through Himachal | Nature Documentary in 4K</div>
+  <div class="meta">2.4M views • 3 days ago • #Himachal #Travel #Nature #BharatFlix</div>
+</div>
+
+<!-- 12 BUTTON - पूरे जैसा आपने बोला -->
+<div class="actions">
+  <button>👍 12K Like</button>
+  <button>👎 98 Dislike</button>
+  <button>↗️ Share</button>
+  <button>⬇️ Download</button>
+  <button>❤️ Thanks</button>
+  <button>✂️ Clip</button>
+  <button>🔖 Save</button>
+  <button>🎬 Remix</button>
+  <button>🚩 Report</button>
+  <button class="join">💎 Join</button>
+  <button>💾 Save to...</button>
+  <button>⋯ More</button>
+</div>
+
+<!-- UP NEXT -->
+<div class="upnext">
+  <h3>Up next</h3>
+  <div class="card"><div class="thumb"><img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=300"><div class="time">12:34</div></div><div class="ctext"><b>Kerala Backwaters Houseboat Tour | Alleppey Vlog</b><span>Bharat Travel • 1.1M views • 1 week ago</span></div></div>
+  <div class="card"><div class="thumb"><img src="https://images.unsplash.com/photo-1682686580391-615b1f28e5d7?w=300"><div class="time">10:22</div></div><div class="ctext"><b>Rajasthan Desert Safari | Jaisalmer Adventure in 4K</b><span>Desert Diaries • 870K views • 2 weeks ago</span></div></div>
+  <div class="card"><div class="thumb"><img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?w=300"><div class="time">15:07</div></div><div class="ctext"><b>Delhi Street Food Tour | Chandni Chowk Special</b><span>Foodie Bharat • 3.2M views • 5 days ago</span></div></div>
+  <div style="height:80px"></div>
+</div>
+
+<!-- BOTTOM - नीचे वाले बटन जो गायब थे -->
+<div class="bottom">
+  <div class="b-item active">🏠<br>Home</div>
+  <div class="b-item">🎬<br>Shorts</div>
+  <div class="b-item"><div class="upload">+</div>Upload+</div>
+  <div class="b-item">📚<br>Subs</div>
+  <div class="b-item">👤<br>You</div>
+</div>
+
+<script>
+// Install Logic - ऊपर वाला Install बटन
+let promptEvent;
+window.addEventListener('beforeinstallprompt', e=>{e.preventDefault();promptEvent=e;document.getElementById('installBtn').style.display='block';});
+document.getElementById('installBtn').addEventListener('click', async()=>{if(promptEvent){promptEvent.prompt();await promptEvent.userChoice;promptEvent=null;document.getElementById('installBtn').style.display='none';}});
+</script>
+</body>
+</html>
