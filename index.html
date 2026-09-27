@@ -1,56 +1,147 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BharatFlix</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BharatFlix - Final</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Roboto,Arial,sans-serif}
-body{background:#fff;color:#0f0f0f;padding-bottom:68px}
-.header{position:sticky;top:0;z-index:999;background:#fff;padding:6px 8px 8px;border-radius:0 0 16px 16px;box-shadow:0 2px 10px rgba(0,0,0,.08)}
-.top{display:flex;align-items:center;gap:8px}
-.gold{width:54px;height:66px;flex-shrink:0;background:linear-gradient(180deg,#FFD700,#DAA520 20%,#B8860B 50%,#FFC107 80%,#8B6914 100%);-webkit-mask:url('https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg') center/contain no-repeat;mask:url('https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg') center/contain no-repeat;filter:drop-shadow(0 2px 3px #8B6914) brightness(1.15)}
-.gold-w{text-align:center;line-height:1}.gold-w span{font-size:8.5px;font-weight:800;color:#7a5e10;display:block;margin-top:2px}
-.logo{font-size:52px;font-weight:900;letter-spacing:-1.5px;filter:drop-shadow(2px 3px 2px rgba(0,0,0,.18));line-height:1}
-.logo .o{color:#ff6a00}.logo .w{color:#fff;-webkit-text-stroke:1px #222;text-shadow:2px 3px 0 #222}.logo .g{color:#12a400}
-.row2{display:flex;gap:5px;margin-top:6px;align-items:center}
-.p{height:34px;min-width:38px;background:#f2f2f2;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;border:none}
-.p.search{flex:1;justify-content:flex-start;padding-left:12px;gap:6px}
-.p.b{width:36px;background:#1a73e8;color:#fff;border-radius:50%;font-weight:800;font-size:16px}
-.p.i{background:#ff6a00;color:#fff;font-weight:700;padding:0 14px;min-width:70px;font-size:13px}
-.video{margin:6px 8px 6px;border-radius:12px;overflow:hidden;aspect-ratio:16/8.2;background:#000;position:relative}
-.video img{width:100%;height:100%;object-fit:cover}
-.play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:rgba(0,0,0,.6);border:2px solid #fff;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:26px}
-.time{position:absolute;bottom:0;left:0;right:0;padding:6px;background:linear-gradient(transparent,rgba(0,0,0,.7));color:#fff;display:flex;gap:8px;align-items:center;font-size:11px}
-.bar{flex:1;height:3px;background:rgba(255,255,255,.4);border-radius:2px}.bar i{display:block;width:32%;height:100%;background:#ff0000}
-.slogan{margin:6px 8px;padding:8px 10px;background:linear-gradient(90deg,#fff3e0,#e8f5e9);border-left:4px solid #ff6a00;border-radius:8px;font-weight:800;font-size:13px;display:flex;align-items:center;gap:6px}
-.actions{display:flex;gap:4px;padding:6px 8px;overflow-x:auto;white-space:nowrap}.actions::-webkit-scrollbar{display:none}
-.actions button{height:30px;padding:0 10px;border:none;border-radius:16px;background:#f2f2f2;font-size:11.5px;font-weight:600;flex-shrink:0}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #e5e5e5;display:flex;justify-content:space-around;padding:6px 0 4px;border-radius:16px 16px 0 0;z-index:999}
-.bi{font-size:10px;text-align:center;color:#606060}.bi.ac{color:#0f0f0f;font-weight:700}
-.up{padding:8px}.card{display:flex;gap:8px;margin-bottom:10px}
-.th{width:148px;height:84px;border-radius:8px;overflow:hidden;position:relative;flex-shrink:0;background:#ddd}.th img{width:100%;height:100%;object-fit:cover}
-.th s{position:absolute;bottom:3px;right:3px;background:rgba(0,0,0,.8);color:#fff;font-size:10px;padding:1px 4px;border-radius:3px;font-style:normal}
+*{margin:0; padding:0; box-sizing:border-box; font-family:Roboto, sans-serif;}
+body{background:#000; display:flex; justify-content:center;}
+.mobile{width:390px; background:#fff; min-height:100vh; position:relative; padding-bottom:80px;}
+
+/* HEADER - CHIPKA HUA STICKY */
+.header{
+  position:sticky; top:0; z-index:1000;
+  background:#fff; display:flex; align-items:center;
+  padding:8px 12px; gap:10px;
+  border-bottom:1px solid #eee;
+}
+.header img{height:46px;}
+.logo{line-height:1;}
+.logo b{font-size:30px; font-weight:900; text-shadow:1px 1px 0 #000;}
+.logo .b1{color:#FF6A00;} .logo .b2{color:#00A651;}
+.tricolor{display:flex; height:5px; margin-top:3px; width:100%;}
+.t1{flex:1; background:#FF6A00;} .t2{flex:1; background:#fff; border:1px solid #ddd; display:flex; align-items:center; justify-content:center; font-size:8px;} .t3{flex:1; background:#00A651;}
+
+/* SEARCH BAR - BHI CHIPKA HUA */
+.search-bar{
+  position:sticky; top:62px; z-index:999;
+  background:#fff; display:flex; gap:6px;
+  padding:8px 10px; align-items:center;
+}
+.search-box{flex:1; background:#f2f2f2; border-radius:20px; padding:8px 12px; display:flex; align-items:center; gap:8px; font-size:14px;}
+.icon-circle{width:32px; height:32px; background:#f2f2f2; border-radius:50%; display:flex; align-items:center; justify-content:center;}
+.install{background:#FF6A00; color:#fff; padding:7px 14px; border-radius:20px; font-weight:700; font-size:13px;}
+.profile{background:#1a73e8; color:#fff; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:900;}
+
+/* VIDEO */
+.video-wrap{padding:8px;}
+.video-wrap img{width:100%; border-radius:12px; aspect-ratio:16/9; object-fit:cover;}
+.title{font-size:16px; font-weight:700; padding:10px 12px;}
+.channel{display:flex; align-items:center; gap:10px; padding:0 12px 10px;}
+.channel .c-logo{width:36px; height:36px; background:#FF6A00; border-radius:50%; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:900;}
+
+/* ACTION BUTTONS - YOUTUBE JAISE KHISAKNE WALE */
+.action-row{
+  display:flex; gap:10px; overflow-x:auto;
+  padding:8px 12px; scrollbar-width:none;
+  -ms-overflow-style:none; border-bottom:1px solid #eee;
+}
+.action-row::-webkit-scrollbar{display:none;}
+.action-btn{
+  min-width:82px; height:72px; background:#f2f2f2;
+  border-radius:14px; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:4px;
+  font-size:13px; font-weight:600; flex-shrink:0;
+}
+
+/* UP NEXT */
+.upnext{padding:12px;}
+.up-item{display:flex; gap:10px; margin-bottom:14px;}
+.up-item img{width:130px; height:74px; border-radius:10px; object-fit:cover;}
+
+/* BOTTOM NAV */
+.bottom{
+  position:fixed; bottom:0; width:390px;
+  background:#fff; display:flex; justify-content:space-around;
+  padding:8px 0 20px; border-top:1px solid #eee; z-index:1000;
+}
+.bottom div{text-align:center; font-size:11px;}
+.create-btn{width:52px; height:52px; background:#1a73e8; border-radius:50%; color:#fff; display:flex; align-items:center; justify-content:center; font-size:30px; margin-top:-20px;}
 </style>
 </head>
 <body>
-<div class="header">
-<div class="top">
-<div class="gold-w"><div class="gold"></div><span>Satyameva Jayate</span></div>
-<div class="logo"><span class="o">Bha</span><span class="w">rat</span><span class="g">Flix</span></div>
+<div class="mobile">
+
+  <!-- GOLDEN HEADER - SAME TO SAME -->
+  <div class="header">
+    <img src="https://i.ibb.co/placeholder-golden-ashoka.png" alt="Ashoka">
+    <div class="logo" style="flex:1">
+      <b><span class="b1">Bharat</span><span class="b2">Flix</span></b>
+      <div class="tricolor"><div class="t1"></div><div class="t2">☸️</div><div class="t3"></div></div>
+      <div style="font-size:8px; letter-spacing:1px;">Satyameva Jayate</div>
+    </div>
+  </div>
+
+  <!-- SEARCH BAR WITH BELL + SETTING -->
+  <div class="search-bar">
+    <div class="search-box">🔍 Search BharatFlix</div>
+    <div class="icon-circle">🎤</div>
+    <div class="icon-circle">🔔</div>
+    <div class="icon-circle">⚙️</div>
+    <div class="install">Install</div>
+    <div class="profile">B</div>
+  </div>
+
+  <!-- VIDEO -->
+  <div class="video-wrap">
+    <img src="https://images.unsplash.com/photo-1548013146-72479768bada" alt="Taj">
+  </div>
+  <div class="title">BharatFlix Aapka Apna Swadeshi Platform</div>
+  <div class="channel">
+    <div class="c-logo">B</div>
+    <div><b>BharatFlix Official ✓</b><br><small>1.2M views • 3 days ago</small></div>
+  </div>
+
+  <!-- 12 BUTTONS - 4 DIKHENGE, BAAKI KHISKENGE -->
+  <div class="action-row">
+    <div class="action-btn">👍<br>Like</div>
+    <div class="action-btn">👎<br>Dislike</div>
+    <div class="action-btn">↗️<br>Share</div>
+    <div class="action-btn">♻️<br>Remix</div>
+    <div class="action-btn">⬇️<br>Download</div>
+    <div class="action-btn">✂️<br>Clip</div>
+    <div class="action-btn">❤️<br>Thanks</div>
+    <div class="action-btn">🚩<br>Cut</div>
+    <div class="action-btn">💰<br>Monetization</div>
+    <div class="action-btn">⭐<br>Earn</div>
+  </div>
+
+  <!-- UP NEXT -->
+  <div class="upnext">
+    <b>Up next ⛶</b><br><br>
+    <div class="up-item">
+      <img src="https://images.unsplash.com/photo-1532667449560-72a95c8d381b">
+      <div><b>Red Fort History</b><br><small>BharatFlix History • 850K • 1 week</small></div>
+    </div>
+    <div class="up-item">
+      <img src="https://images.unsplash.com/photo-1514222137183-45a0d7bba68d">
+      <div><b>Gateway of India</b><br><small>BharatFlix Travel • 620K • 2 weeks</small></div>
+    </div>
+    <div class="up-item">
+      <img src="https://images.unsplash.com/photo-1547153760-18fc86324498">
+      <div><b>Kathak Dance</b><br><small>BharatFlix Culture • 410K • 5 days</small></div>
+    </div>
+  </div>
+
+  <!-- BOTTOM -->
+  <div class="bottom">
+    <div>🏠<br>Home</div>
+    <div>⚬<br>Shorts</div>
+    <div><div class="create-btn">+</div>Create</div>
+    <div>🔔<br>Subscriptions</div>
+    <div>👤<br>You</div>
+  </div>
+
 </div>
-<div class="row2">
-<div class="p search">🔍 Search</div><div class="p">🔔</div><div class="p">⚙️</div><button class="p i">Install</button><div class="p b">B</div>
-</div>
-</div>
-<div class="video"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800"><div class="play">▶</div><div class="time"><span>0:12</span><div class="bar"><i></i></div><span>5:34 🔊 ⛶</span></div></div>
-<div class="slogan">🇮🇳 BharatFlix Aapka Apna Swadeshi Platform</div>
-<div class="actions"><button style="background:#ff0000;color:#fff">⬆️ Upload</button><button>👍 12K</button><button>👎</button><button>↗️ Share</button><button>✨ Remix</button><button>⬇️ Download</button><button>✂️ Clip</button><button>🔖 Save</button><button>💖 Thanks</button><button>⭐ Join</button></div>
-<div class="up">
-<h3 style="font-size:13px;margin-bottom:8px">Up next</h3>
-<div class="card"><div class="th"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400"><s>8:21</s></div><div><b style="font-size:12px">Leh Ladakh Roadtrip | Hidden Village | 4K</b><br><span style="font-size:10px;color:#606060">BharatFlix • 342K views</span></div></div>
-<div class="card"><div class="th"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400"><s>12:45</s></div><div><b style="font-size:12px">Spiti Valley Winter | Snow Desert</b><br><span style="font-size:10px;color:#606060">Travel • 128K views</span></div></div>
-</div>
-<div class="bottom"><div class="bi ac">🏠<br>Home</div><div class="bi">🎞️<br>Shorts</div><div class="bi">➕<br>Create</div><div class="bi">📺<br>Subs</div><div class="bi">👤<br>You</div></div>
 </body>
 </html>
