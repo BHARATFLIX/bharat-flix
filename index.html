@@ -5,159 +5,124 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BharatFlix - आपका अपना स्वदेशी प्लेटफॉर्म</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Roboto,Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Roboto,Arial}
 body{background:#fff;color:#0f0f0f;padding-bottom:85px}
 
-/* चिपका हुआ हेडर - कभी नहीं भागेगा */
-.header{
-  position:sticky;top:0;z-index:9999;
-  background:#fff;padding:10px 14px 12px;
-  box-shadow:0 2px 12px rgba(0,0,0,.12);
-  border-radius:0 0 18px 18px;
+/* चिपका हुआ हेडर - कभी ऊपर नहीं भागेगा */
+.header{position:sticky;top:0;z-index:9999;background:#fff;padding:10px 12px 12px;box-shadow:0 3px 15px rgba(0,0,0,.15);border-radius:0 0 18px 18px}
+.top-row{display:flex;align-items:center;gap:10px}
+.gold-ashok{
+  width:62px;height:76px;
+  background:linear-gradient(180deg,#FFEB3B 0%,#FFD700 20%,#FFC107 40%,#FF9800 70%,#FF8F00 100%);
+  -webkit-mask:url('https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg') center/contain no-repeat;
+  mask:url('https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg') center/contain no-repeat;
+  filter:drop-shadow(0 3px 6px rgba(255,140,0,.7)) drop-shadow(0 0 10px rgba(255,215,0,.5));
+  flex-shrink:0;
 }
-.top-row{display:flex;align-items:center;gap:12px}
-.top-row img{width:66px;height:78px;object-fit:contain;filter:drop-shadow(2px 4px 4px rgba(0,0,0,.3))}
-.logo-text{font-size:44px;font-weight:900;letter-spacing:-1px;line-height:1;
-  filter:drop-shadow(3px 4px 3px rgba(0,0,0,.25))}
-.logo-text .c1{color:#ff7a00;text-shadow:0 1px 0 #d85c00,0 2px 0 #b34d00}
-.logo-text .c2{color:#111;text-shadow:0 1px 0 #999}
-.logo-text .c3{color:#11a400;text-shadow:0 1px 0 #0a7a00}
+.logo{font-size:38px;font-weight:900;letter-spacing:-1px;filter:drop-shadow(2px 3px 3px rgba(0,0,0,.25))}
+.logo .o{color:#ff7a00}.logo .w{color:#222}.logo .g{color:#11a400}
 
-/* भारत फ्लिक्स के नीचे वाला बार - आपने बोला था */
-.second-row{display:flex;gap:10px;margin-top:12px;overflow-x:auto;padding-bottom:2px}
+/* भारत फ्लिक्स के नीचे - छोटा, कटेगा नहीं - आपका बताया क्रम */
+.second-row{display:flex;gap:6px;margin-top:10px;overflow-x:auto;align-items:center}
 .second-row::-webkit-scrollbar{display:none}
-.pill{background:#efefef;border-radius:28px;min-width:64px;height:48px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
-.pill.profile{background:#e8e8e8}
-.pill.profile b{width:42px;height:42px;background:#1a73e8;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px}
-.pill.install{background:#ff6a00;color:#fff;font-size:15px;font-weight:700;padding:0 20px;min-width:88px;border:none}
+.pill{height:36px;min-width:44px;background:#efefef;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;border:none}
+.pill.b{width:36px;height:36px;background:#1a73e8;color:#fff;border-radius:50%;font-weight:800;font-size:16px}
+.pill.install{background:#ff6a00;color:#fff;font-size:13px;font-weight:700;padding:0 16px;min-width:72px}
 
-/* वीडियो */
-.video-wrap{margin:14px;border-radius:18px;overflow:hidden;background:#000;aspect-ratio:16/9;position:relative}
+/* वीडियो + प्ले बटन बीच में */
+.video-wrap{margin:12px;border-radius:16px;overflow:hidden;aspect-ratio:16/9;background:#000;position:relative}
 .video-wrap img{width:100%;height:100%;object-fit:cover}
-.badge{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.75);color:#fff;font-size:11px;padding:4px 8px;border-radius:6px;font-weight:600}
-.timebar{position:absolute;bottom:0;left:0;right:0;padding:10px 12px;background:linear-gradient(transparent,rgba(0,0,0,.85));color:#fff;display:flex;align-items:center;gap:10px;font-size:12px}
-.progress{flex:1;height:4px;background:#ffffff55;border-radius:2px}
-.progress i{display:block;width:38%;height:100%;background:#ff0000;border-radius:2px}
+.play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:64px;height:64px;background:rgba(0,0,0,.6);border:2.5px solid #fff;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:28px;backdrop-filter:blur(3px)}
+.badge{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.75);color:#fff;font-size:11px;padding:4px 8px;border-radius:6px}
+.timebar{position:absolute;bottom:0;left:0;right:0;padding:8px 10px;background:linear-gradient(transparent,rgba(0,0,0,.8));color:#fff;display:flex;align-items:center;gap:8px;font-size:12px}
+.prog{flex:1;height:4px;background:#ffffff66;border-radius:2px}.prog i{display:block;width:40%;height:100%;background:red}
 
-/* आपका बोला हुआ नारा - पर्वत वीडियो के नीचे */
-.swadeshi{
-  margin:10px 14px;padding:10px 14px;
-  background:linear-gradient(90deg,#fff3e0 0%,#e8f5e9 100%);
-  border-left:5px solid #ff6a00;border-radius:10px;
-  font-size:15px;font-weight:700;display:flex;align-items:center;gap:6px;flex-wrap:wrap
-}
-.swadeshi b{color:#ff6a00}
-.swadeshi .green{color:#0fa600;font-weight:800}
+/* आपका नारा - वीडियो के नीचे */
+.swadeshi{margin:10px 12px;padding:10px 14px;background:linear-gradient(90deg,#fff3e0,#e8f5e9);border-left:5px solid #ff6a00;border-radius:10px;font-weight:700;font-size:14px}
+.swadeshi .gr{color:#0fa600;font-weight:800}
 
-.title-box{padding:0 14px}
-.v-title{font-size:16px;font-weight:700;line-height:1.35}
-.v-meta{font-size:13px;color:#606060;margin-top:4px}
+.title-box{padding:0 12px}
+.vt{font-size:15px;font-weight:700;line-height:1.3}
+.vm{font-size:12px;color:#606060;margin-top:3px}
 
-.ch-row{display:flex;justify-content:space-between;align-items:center;padding:12px 14px}
-.ch-left{display:flex;align-items:center;gap:10px}
-.ch-icon{width:40px;height:40px;background:#1a73e8;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px}
-.ch-name{font-weight:700;font-size:14px}
-.ch-handle{font-size:12px;color:#606060}
-.sub-btn{background:#0f0f0f;color:#fff;border:none;padding:9px 18px;border-radius:22px;font-weight:700;font-size:14px}
+.ch-row{display:flex;justify-content:space-between;align-items:center;padding:10px 12px}
+.ch-left{display:flex;align-items:center;gap:8px}
+.ci{width:36px;height:36px;background:#1a73e8;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800}
 
-.actions{display:flex;gap:8px;padding:8px 14px;overflow-x:auto}
+.actions{display:flex;gap:6px;padding:8px 12px;overflow-x:auto}
 .actions::-webkit-scrollbar{display:none}
-.actions button{flex-shrink:0;white-space:nowrap;background:#f2f2f2;border:none;padding:8px 14px;border-radius:20px;font-size:12px;font-weight:600;display:flex;align-items:center;gap:5px}
+.actions button{flex-shrink:0;white-space:nowrap;background:#f2f2f2;border:none;padding:7px 12px;border-radius:20px;font-size:12px;font-weight:600}
 .actions button.blue{background:#dbeaff;border:1px solid #3ea6ff;color:#065fd4}
 .actions button.black{background:#0f0f0f;color:#fff}
 
-.upnext{padding:14px 14px 0}
-.upnext h3{font-size:16px;margin-bottom:12px}
-.video-list{display:flex;gap:12px;overflow-x:auto;padding-bottom:10px}
-.video-list::-webkit-scrollbar{display:none}
-.v-card{min-width:220px;width:220px}
-.v-card .thumb{width:100%;height:124px;border-radius:12px;overflow:hidden;position:relative;background:#ddd}
-.v-card .thumb img{width:100%;height:100%;object-fit:cover}
-.v-card .dur{position:absolute;bottom:6px;right:6px;background:rgba(0,0,0,.8);color:#fff;font-size:11px;padding:2px 6px;border-radius:4px}
-.v-card b{font-size:12px;display:block;margin-top:6px;line-height:1.25}
-.v-card span{font-size:11px;color:#606060}
+.upnext{padding:12px}
+.card{display:flex;gap:10px;margin-bottom:12px}
+.thumb{width:160px;height:90px;border-radius:10px;overflow:hidden;position:relative;flex-shrink:0;background:#ddd}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.thumb s{position:absolute;bottom:4px;right:4px;background:rgba(0,0,0,.8);color:#fff;font-size:10px;padding:2px 5px;border-radius:4px;font-style:normal}
 
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #ddd;display:flex;justify-content:space-around;align-items:center;padding:8px 0 10px;z-index:9998;border-radius:22px 22px 0 0;box-shadow:0 -2px 10px rgba(0,0,0,.08)}
-.b-item{text-align:center;font-size:11px;color:#606060;line-height:1.1}
-.b-item.active{color:#000;font-weight:700}
-.plus{width:68px;height:48px;background:#ff6a00;border-radius:24px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:28px;box-shadow:0 4px 12px rgba(255,106,0,.4)}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #ddd;display:flex;justify-content:space-around;align-items:center;padding:6px 0 8px;z-index:9998;border-radius:20px 20px 0 0}
+.bi{text-align:center;font-size:10px;color:#606060}.bi.ac{color:#000;font-weight:700}
+.plus{width:64px;height:42px;background:#ff6a00;border-radius:20px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:26px}
 </style>
 </head>
 <body>
 
-<!-- हेडर - ऊपर अशोक स्तंभ + भारतफ्लिक्स, नीचे सर्च नोटिफिकेशन सेटिंग प्रोफाइल इंस्टॉल -->
 <div class="header">
   <div class="top-row">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg" alt="Ashok Stambh" style="filter:sepia(1) saturate(3) brightness(1.1) drop-shadow(2px 3px 4px rgba(0,0,0,.3))">
-    <div class="logo-text"><span class="c1">Bha</span><span class="c2">rat</span><span class="c3">Flix</span></div>
+    <div class="gold-ashok"></div>
+    <div class="logo"><span class="o">Bha</span><span class="w">rat</span><span class="g">Flix</span></div>
   </div>
   <div class="second-row">
     <div class="pill">🔍</div>
     <div class="pill">🔔</div>
     <div class="pill">⚙️</div>
-    <div class="pill profile"><b>B</b></div>
-    <button class="pill install" id="installBtn">Install</button>
+    <button class="pill install" id="inst">Install</button>
+    <div class="pill b">B</div>
   </div>
 </div>
 
-<!-- पर्वत वाली वीडियो -->
 <div class="video-wrap">
-  <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900" alt="Himalaya">
+  <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800" alt="Himalaya">
+  <div class="play-btn">▶</div>
   <div class="badge">4K • HDR</div>
-  <div class="timebar"><span>⏸️ 0:42</span><div class="progress"><i></i></div><span>-32:18</span><span>CC</span><span>⛶</span></div>
+  <div class="timebar"><span>0:42</span><div class="prog"><i></i></div><span>-32:18</span></div>
 </div>
 
-<!-- आपका बोला हुआ - वीडियो के नीचे -->
-<div class="swadeshi">
-  <b>BharatFlix</b> - आपका अपना <span class="green">स्वदेशी प्लेटफॉर्म</span> 🇮🇳
-</div>
+<div class="swadeshi">BharatFlix - आपका अपना <span class="gr">स्वदेशी प्लेटफॉर्म</span> 🇮🇳</div>
 
 <div class="title-box">
-  <div class="v-title">Himalayan Peaks | Travel Through Himachal | Nature Documentary in 4K</div>
-  <div class="v-meta">2.4M views • 3 days ago • #Himachal #Travel</div>
+  <div class="vt">Himalayan Peaks | Travel Through Himachal | Nature Documentary in 4K</div>
+  <div class="vm">2.4M views • 3 days ago • #Himachal #Travel</div>
 </div>
 
 <div class="ch-row">
-  <div class="ch-left">
-    <div class="ch-icon">B</div>
-    <div><div class="ch-name">BharatFlix • 1.2M</div><div class="ch-handle">@bharatflix</div></div>
-  </div>
-  <button class="sub-btn">Subscribe</button>
+  <div class="ch-left"><div class="ci">B</div><div><div style="font-weight:700;font-size:14px">BharatFlix • 1.2M</div><div style="font-size:11px;color:#666">@bharatflix</div></div></div>
+  <button style="background:#000;color:#fff;border:none;padding:8px 18px;border-radius:20px;font-weight:700">Subscribe</button>
 </div>
 
-<!-- A to Z सारे बटन - एक भी नहीं छूटा -->
 <div class="actions">
-  <button>👍 12K</button><button>👎 Dislike</button><button>↗️ Share</button><button>✨ Remix</button><button>⬇️ Download</button><button>✂️ Clip</button><button>🔖 Save</button><button>🚩 Report</button>
+  <button>👍 12K</button><button>👎</button><button>↗️ Share</button><button>✨ Remix</button><button>⬇️ Download</button><button>✂️ Clip</button><button>🔖 Save</button><button>🚩 Report</button>
   <button class="blue">🎁 Super Thanks</button><button class="blue">💎 Thanks</button><button class="black">⭐ Join</button>
 </div>
 
 <div class="upnext">
-  <h3>Up next</h3>
-  <div class="video-list">
-    <div class="v-card"><div class="thumb"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300"><span class="dur">18:22</span></div><b>Spiti Valley Road Trip | Ladakh Journey</b><span>BharatFlix • 820K views</span></div>
-    <div class="v-card"><div class="thumb"><img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=300"><span class="dur">22:05</span></div><b>Kedarnath Temple | Himalayan Pilgrimage</b><span>1.1M views • 2 weeks ago</span></div>
-    <div class="v-card"><div class="thumb"><img src="https://images.unsplash.com/photo-1583243536446-933d0d7e0bf0?w=300"><span class="dur">14:37</span></div><b>Tawang Monastery | Arunachal Culture</b><span>543K views • 5 days ago</span></div>
-  </div>
+  <h3 style="font-size:15px;margin-bottom:10px">Up next</h3>
+  <div class="card"><div class="thumb"><img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=300"><s>18:22</s></div><div><b style="font-size:12px">Spiti Valley Road Trip | Ladakh</b><br><span style="font-size:11px;color:#666">BharatFlix • 820K views</span></div></div>
+  <div class="card"><div class="thumb"><img src="https://images.unsplash.com/photo-1682686580391-615b1f28e5d7?w=300"><s>22:05</s></div><div><b style="font-size:12px">Kedarnath Temple | Himalayan Guide</b><br><span style="font-size:11px;color:#666">1.1M views • 2 weeks ago</span></div></div>
 </div>
 
-<!-- बॉटम - देसी यूट्यूब -->
 <div class="bottom">
-  <div class="b-item active">🏠<br>Home</div>
-  <div class="b-item">🎞️<br>Shorts</div>
-  <div class="b-item"><div class="plus">+</div></div>
-  <div class="b-item">📺<br>Subs</div>
-  <div class="b-item">👤<br>You</div>
+  <div class="bi ac">🏠<br>Home</div><div class="bi">🎞️<br>Shorts</div><div class="bi"><div class="plus">+</div></div><div class="bi">📺<br>Subs</div><div class="bi">👤<br>You</div>
 </div>
 
 <script>
-// Install बटन काम करेगा
-let deferredPrompt;
-window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e});
-document.getElementById('installBtn').addEventListener('click',async()=>{
-  if(deferredPrompt){deferredPrompt.prompt(); await deferredPrompt.userChoice; deferredPrompt=null;}
-  else alert('BharatFlix - आपका अपना स्वदेशी प्लेटफॉर्म 🇮🇳 Install हो रहा है!');
-});
+let p=null;
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();p=e});
+document.getElementById('inst').onclick=async()=>{
+  if(p){p.prompt();await p.userChoice;p=null}else alert('BharatFlix Install हो रहा है 🇮🇳');
+};
+document.querySelector('.play-btn').onclick=()=>alert('▶️ Video Play - BharatFlix आपका अपना स्वदेशी प्लेटफॉर्म');
 </script>
-
 </body>
 </html>
