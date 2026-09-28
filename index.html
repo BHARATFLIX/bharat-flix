@@ -1,84 +1,134 @@
 <!DOCTYPE html>
-<html>
+<html lang="hi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BharatFlix</title>
+<title>BharatFlix - Aapka Apna Swadeshi Media Platform 🇮🇳</title>
 <style>
-body{margin:0;background:#000;display:flex;justify-content:center;font-family:Arial}
-.box{width:390px;background:#fff;min-height:100vh;padding-bottom:80px}
-.top{padding:10px;display:flex;align-items:center;gap:8px}
-.logo{font-size:22px;font-weight:900}
-.logo b{color:#FF7A00}
-.logo f{color:green}
-.video{margin:10px;background:#000;height:200px;border-radius:12px;position:relative;display:flex;align-items:center;justify-content:center}
-.video img{width:100%;height:100%;object-fit:cover;border-radius:12px;opacity:0.7}
-.play{position:absolute;width:60px;height:60px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px}
-.title{padding:10px;font-weight:700}
-.channel{padding:0 10px;display:flex;align-items:center;gap:8px}
-.cicon{width:30px;height:30px;background:blue;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center}
-.sub{margin-left:auto;background:#000;color:#fff;padding:6px 12px;border-radius:20px;font-size:12px}
-.row{display:flex;gap:8px;padding:10px;overflow:auto}
-.btn{background:#eee;padding:8px 12px;border-radius:10px;font-size:12px}
-.next{padding:10px;border-top:1px solid #eee;margin-top:10px}
-.item{display:flex;gap:10px;margin-bottom:10px}
-.thumb{width:120px;height:70px;background:#000;border-radius:8px;overflow:hidden}
-.thumb img{width:100%;height:100%;object-fit:cover}
-.bottom{position:fixed;bottom:0;width:390px;background:#fff;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #ccc}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Roboto,Arial}
+body{background:#fff;padding-bottom:70px}
+/* HEADER ONLY 3D - FIXED */
+.header{position:sticky;top:0;z-index:100;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:10px 12px;box-shadow:0 2px 8px rgba(0,0,0,0.15)}
+.logo-left{display:flex;align-items:center;gap:8px}
+.ashok{width:38px;height:38px;filter:drop-shadow(2px 3px 2px rgba(0,0,0,0.4))}
+.bharatflix-3d{font-weight:900;font-size:26px;letter-spacing:-0.5px;
+text-shadow:2px 2px 0 #000, 3px 3px 0 rgba(0,0,0,0.3)}
+.bharat{color:#FF9933}
+.fli{color:#ffffff;-webkit-text-stroke:0.5px #000}
+.x{color:#138808}
+.header-right{display:flex;align-items:center;gap:10px}
+.icon-circle{width:36px;height:36px;background:#f2f2f2;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px}
+.install-btn{background:#3ea6ff;color:#000;padding:8px 16px;border-radius:20px;font-weight:700;font-size:14px}
+.profile{width:32px;height:32px;background:#7c4dff;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff}
+
+/* SEARCH */
+.search-wrap{display:flex;align-items:center;gap:8px;padding:10px 12px}
+.search-box{flex:1;display:flex;align-items:center;background:#f2f2f2;border-radius:24px;padding:8px 14px}
+.search-box input{flex:1;border:none;background:transparent;outline:none;font-size:15px}
+
+/* VIDEO - PLAIN FLAT */
+.video-box{position:relative;width:100%;aspect-ratio:16/9;background:#000;overflow:hidden}
+.map-bg{width:100%;height:100%;background:linear-gradient(to bottom, #FF9933 0%, #FF9933 33%, #ffffff 33%, #ffffff 66%, #138808 66%, #138808 100%);display:flex;align-items:center;justify-content:center;position:relative}
+.map-bg::after{content:'🇮🇳';font-size:120px;opacity:0.9}
+.play-btn{position:absolute;width:64px;height:64px;background:rgba(255,255,255,0.95);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 4px 10px rgba(0,0,0,0.3)}
+
+/* INFO */
+.info{padding:10px 12px}
+.title{font-size:18px;font-weight:700;line-height:1.3}
+.channel-row{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
+.ch-left{display:flex;align-items:center;gap:8px}
+.ch-logo{width:40px;height:40px;background:linear-gradient(45deg,#FF9933,#138808);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900}
+.subs{font-size:12px;color:#606060}
+.btns{display:flex;gap:8px}
+.sub-btn{background:#ff0000;color:#fff;padding:8px 16px;border-radius:20px;font-weight:700;border:none}
+.join-btn{background:#f2f2f2;padding:8px 16px;border-radius:20px;font-weight:600;border:none}
+
+/* 12 BUTTONS - 4-5 VISIBLE SWIPE */
+.action-scroll{display:flex;gap:8px;overflow-x:auto;padding:10px 12px;white-space:nowrap;scrollbar-width:none}
+.action-scroll::-webkit-scrollbar{display:none}
+.action-btn{flex-shrink:0;background:#f2f2f2;padding:8px 14px;border-radius:20px;display:flex;align-items:center;gap:6px;font-size:14px;font-weight:500}
+.swipe-hint{font-size:11px;color:#606060;padding:0 12px;margin-top:-4px}
+
+/* BOTTOM NAV */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;align-items:center;padding:8px 0;border-top:1px solid #ddd;z-index:99}
+.nav-item{display:flex;flex-direction:column;align-items:center;font-size:10px;gap:2px}
+.nav-item .ic{font-size:22px}
+.upload-btn{width:48px;height:36px;background:linear-gradient(90deg,#FF9933,#fff,#138808);border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900;border:2px solid #000}
 </style>
 </head>
 <body>
-<div class="box">
-<div class="top">
-<img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg" width="28">
-<div class="logo"><b>Bharat</b> <f>Flix</f></div>
+
+<!-- HEADER ONLY 3D -->
+<div class="header">
+  <div class="logo-left">
+    <img class="ashok" src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg" alt="Ashok Stambh">
+    <div class="bharatflix-3d"><span class="bharat">Bharat</span><span class="fli">Fli</span><span class="x">x</span></div>
+  </div>
+  <div class="header-right">
+    <div class="icon-circle">🎤</div>
+    <div class="icon-circle">🔔</div>
+    <div class="icon-circle">⚙️</div>
+    <div class="install-btn">Install</div>
+    <div class="profile">👤</div>
+  </div>
 </div>
 
-<div class="video">
-<img src="https://images.unsplash.com/photo-1548013146-72479768bada?w=800">
-<div class="play">▶️</div>
+<!-- SEARCH -->
+<div class="search-wrap">
+  <div class="search-box">
+    🔍 <input type="text" placeholder="Search BharatFlix">
+  </div>
 </div>
 
-<div class="title">Bharat Flix Aapka Apna Swadeshi Platform 🇮🇳</div>
-
-<div class="channel">
-<div class="cicon">M</div>
-<div><b style="font-size:13px">Media App ✔</b><br><span style="font-size:10px;color:#666">1.2M subscribers</span></div>
-<div class="sub">Subscribe</div>
+<!-- VIDEO - PLAIN -->
+<div class="video-box">
+  <div class="map-bg"></div>
+  <div class="play-btn">▶️</div>
 </div>
 
-<div class="row">
-<div class="btn">👍 Like</div>
-<div class="btn">👎 Dislike</div>
-<div class="btn">↗️ Share</div>
-<div class="btn">⬇️ Download</div>
-<div class="btn">🔖 Save</div>
+<!-- TITLE WITH FLAG -->
+<div class="info">
+  <div class="title">BharatFlix Aapka Apna Swadeshi Media Platform 🇮🇳</div>
+  <div class="channel-row">
+    <div class="ch-left">
+      <div class="ch-logo">B</div>
+      <div>
+        <div style="font-weight:700;font-size:15px">BharatFlix Media</div>
+        <div class="subs">124K subscribers</div>
+      </div>
+    </div>
+    <div class="btns">
+      <button class="sub-btn">Subscribe</button>
+      <button class="join-btn">Join</button>
+    </div>
+  </div>
 </div>
 
-<div class="next">
-<b>Up next</b>
-<div class="item">
-<div class="thumb"><img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?w=400"></div>
-<div><b style="font-size:12px">Red Fort Delhi Tour</b><br><span style="font-size:10px">820K views</span></div>
+<!-- 12 BUTTONS - 4-5 VISIBLE THEN SWIPE LEFT -->
+<div class="action-scroll">
+  <div class="action-btn">👍 12K</div>
+  <div class="action-btn">👎</div>
+  <div class="action-btn">↗️ Share</div>
+  <div class="action-btn">⬇️ Download</div>
+  <div class="action-btn">🔖 Save</div>
+  <div class="action-btn">✂️ Clip</div>
+  <div class="action-btn">🙏 Thanks</div>
+  <div class="action-btn">💾 Remix</div>
+  <div class="action-btn">🚩 Report</div>
+  <div class="action-btn">📝 Transcript</div>
+  <div class="action-btn">⭐ Super Thanks</div>
+  <div class="action-btn">⋯ More</div>
 </div>
-<div class="item">
-<div class="thumb"><img src="https://images.unsplash.com/photo-1529253355930-ddbe423a2ac7?w=400"></div>
-<div><b style="font-size:12px">Gateway of India Mumbai</b><br><span style="font-size:10px">540K views</span></div>
-</div>
-<div class="item">
-<div class="thumb"><img src="https://images.unsplash.com/photo-1561361058-c24cecae35ca?w=400"></div>
-<div><b style="font-size:12px">Varanasi Ganga Aarti</b><br><span style="font-size:10px">1.1M views</span></div>
-</div>
+<div class="swipe-hint">← Swipe left to see more • 12 actions total</div>
+
+<!-- BOTTOM NAVIGATION - 5 BUTTONS -->
+<div class="bottom-nav">
+  <div class="nav-item"><div class="ic">🏠</div><div>Home</div></div>
+  <div class="nav-item"><div class="ic">🎬</div><div>Shorts</div></div>
+  <div class="nav-item"><div class="upload-btn">+</div></div>
+  <div class="nav-item"><div class="ic">📺</div><div>Subscriptions</div></div>
+  <div class="nav-item"><div class="ic">👤</div><div>You</div></div>
 </div>
 
-<div class="bottom">
-<div>⌂ Home</div>
-<div>◫ Shorts</div>
-<div>+</div>
-<div>◧ Subs</div>
-<div>▭ Library</div>
-</div>
-
-</div>
 </body>
 </html>
