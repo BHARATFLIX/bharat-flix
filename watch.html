@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BharatFlix Watch - HD Play</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Roboto,sans-serif}
+body{max-width:390px;margin:0 auto;background:#000;color:#fff}
+.header{padding:10px;background:#fff;color:#000;display:flex;align-items:center;gap:8px;font-weight:900}
+.header a{color:#000;text-decoration:none;font-size:20px}
+.video-box{width:100%;aspect-ratio:16/9;background:#111;display:flex;align-items:center;justify-content:center}
+video{width:100%;height:100%}
+.list{padding:10px}
+.item{background:#1a1a1a;margin-bottom:10px;border-radius:10px;padding:10px;display:flex;gap:10px}
+.item video{width:100px;height:60px;border-radius:6px;object-fit:cover}
+.item b{font-size:13px}
+</style>
+</head>
+<body>
+<div class="header"><a href="index.html">←</a> BharatFlix HD Player 🇮🇳</div>
+<div class="video-box">
+  <video id="mainPlayer" controls autoplay playsinline></video>
+</div>
+<div class="list" id="videoList">⏳ Videos लोड हो रही हैं...</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+
+const firebaseConfig={apiKey:"AIzaSyCCevL_8GSXw0S7u9ujcrQJmiTfpTn87qE",authDomain:"bharatflix-82578.firebaseapp.com",projectId:"bharatflix-82578",storageBucket:"bharatflix-82578.firebasestorage.app",messagingSenderId:"858704386202",appId:"1:858704386202:web:9cfd17f85b3593d5516723"};
+const app=initializeApp(firebaseConfig);
+const db=getFirestore(app);
+
+async function loadVideos(){
+  const q = query(collection(db,"videos"), orderBy("createdAt","desc"));
+  const snap = await getDocs(q);
+  let html="";
+  let firstUrl="";
+  snap.forEach(doc=>{
+    let d=doc.data();
+    if(!firstUrl) firstUrl=d.url;
+    html+=`<div class="item" onclick="document.getElementById('mainPlayer').src='${d.url}'">
+      <video src="${d.url}"></video>
+      <div><b>${d.title}</b><br><small>${d.quality||'1080p HD'}</small></div>
+    </div>`;
+  });
+  document.getElementById('videoList').innerHTML=html||"कोई Video नहीं मिली भैया जी";
+  if(firstUrl) document.getElementById('mainPlayer').src=firstUrl;
+}
+loadVideos();
+</script>
+</body>
+</html>
