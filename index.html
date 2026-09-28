@@ -2,89 +2,70 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BharatFlix - FINAL LOCK</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>BharatFlix - FINAL</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Roboto, Arial, sans-serif}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Roboto,Arial,sans-serif}
 body{background:#000;display:flex;justify-content:center}
-.mobile{width:390px;background:#fff;min-height:100vh;position:relative;padding-top:112px;padding-bottom:90px}
-.fixed{position:fixed;top:0;width:390px;background:#fff;z-index:9999;box-shadow:0 2px 6px rgba(0,0,0,.08)}
-.head{display:flex;align-items:center;gap:10px;padding:8px 12px}
-.search{display:flex;gap:6px;padding:8px 10px;align-items:center;border-top:1px solid #f0f0f0;border-bottom:1px solid #f0f0f0}
-.sbox{flex:1;background:#f1f1f1;border-radius:24px;padding:10px 14px;font-size:14px}
-.ic{width:36px;height:36px;background:#f1f1f1;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.install{background:#FF6A00;color:#fff;padding:8px 14px;border-radius:20px;font-weight:700;font-size:13px;white-space:nowrap}
-.user{width:36px;height:36px;background:#6a1b9a;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;overflow:hidden}
+.mobile{width:390px;background:#fff;min-height:100vh;padding-bottom:90px;position:relative}
+.top{padding:10px 12px 6px;background:#fff}
+.head{display:flex;align-items:center;gap:10px}
+.head img{width:62px;height:62px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.3))}
+.logo{font-size:42px;font-weight:900;letter-spacing:-1px}
+.logo span:first-child{color:#FF6A00;text-shadow:1px 1px 0 #000,2px 2px 0 #000,-1px -1px 0 #000}
+.logo span:last-child{color:#00A651;text-shadow:1px 1px 0 #000,2px 2px 0 #000,-1px -1px 0 #000}
+.line{display:flex;height:5px;margin:6px 2px 2px;border-radius:10px;overflow:hidden}
+.o{flex:1;background:#FF9933}.w{flex:1;background:#fff;display:flex;justify-content:center;align-items:center}.g{flex:1;background:#138808}
+.satya{text-align:center;font-size:11px;color:#555}
+
+.search{display:flex;gap:7px;padding:10px 12px;align-items:center}
+.sbox{flex:1;background:#f1f1f1;border-radius:24px;padding:11px 14px;color:#666;font-size:14px}
+.icon{width:36px;height:36px;background:#f1f1f1;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.install{background:#FF6A00;color:#fff;padding:9px 16px;border-radius:20px;font-weight:700;font-size:14px}
+.user{width:36px;height:36px;background:#6a1b9a;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;overflow:hidden}
 .user img{width:100%;height:100%;object-fit:cover}
-.action{display:flex;gap:10px;overflow-x:auto;padding:12px;scrollbar-width:none;scroll-snap-type:x mandatory;border-top:1px solid #eee}
-.action::-webkit-scrollbar{display:none}
-.abtn{min-width:88px;height:76px;background:#f1f1f1;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;scroll-snap-align:start;font-size:13px;font-weight:600;line-height:1.2}
-.bottom{position:fixed;bottom:0;width:390px;background:#fff;display:flex;justify-content:space-around;padding:6px 0 18px;border-top:1px solid #ddd;z-index:9999;font-size:11px;text-align:center}
-.plus{width:54px;height:54px;background:#1a73e8;border-radius:50%;color:#fff;display:flex;align-items:center;justify-content:center;font-size:32px;margin:-24px auto 2px}
+
+.vbox{margin:8px 12px;border-radius:14px;overflow:hidden;position:relative}
+.vbox img{width:100%;height:208px;object-fit:cover;display:block}
+.time{position:absolute;right:8px;bottom:8px;background:rgba(0,0,0,.85);color:#fff;padding:2px 6px;border-radius:4px;font-size:12px}
+
+.title{padding:10px 12px;font-weight:700;font-size:16px}
+.row{display:flex;gap:8px;padding:0 12px;align-items:center}
+.b{width:32px;height:32px;background:#ff6a00;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900}
+.actions{display:flex;gap:8px;overflow-x:auto;padding:12px;scrollbar-width:none}
+.actions::-webkit-scrollbar{display:none}
+.a{white-space:nowrap;background:#f2f2f2;border-radius:20px;padding:8px 14px;font-weight:600;font-size:13px;flex-shrink:0}
+
+.up{padding:12px}
+.card{display:flex;gap:10px;margin-bottom:14px}
+.t{width:142px;height:80px;border-radius:10px;overflow:hidden;position:relative;flex-shrink:0}
+.t img{width:100%;height:100%;object-fit:cover}
+.t span{position:absolute;right:4px;bottom:4px;background:#000;color:#fff;font-size:10px;padding:1px 4px;border-radius:3px}
+
+.bottom{position:fixed;bottom:0;width:390px;background:#fff;display:flex;justify-content:space-around;align-items:flex-end;padding:6px 0 12px;border-top:1px solid #ddd;z-index:999}
+.bi{text-align:center;font-size:11px}
+.plus{width:54px;height:54px;background:#1a73e8;border-radius:50%;color:#fff;display:flex;align-items:center;justify-content:center;font-size:32px;margin:-26px auto 4px}
 </style>
 </head>
 <body>
 <div class="mobile">
-<div class="fixed">
-  <!-- हेडर लॉक - सुनहरा शेर -->
-  <div class="head">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg" style="height:48px;filter:sepia(100%) saturate(600%) hue-rotate(10deg) brightness(1.2)">
-    <div style="flex:1;line-height:1">
-      <b style="font-size:32px"><span style="color:#FF8C00;-webkit-text-stroke:0.8px #000">Bharat</span><span style="color:#00A651;-webkit-text-stroke:0.8px #000">Flix</span></b>
-      <div style="display:flex;height:5px;margin-top:4px"><div style="flex:1;background:#FF6A00"></div><div style="flex:0.7;background:#fff;display:flex;align-items:center;justify-content:center;border:1px solid #ddd;font-size:10px">☸️</div><div style="flex:1;background:#00A651"></div></div>
-      <div style="font-size:8px;color:#666">सत्यमेव जयते</div>
-    </div>
-  </div>
-  <!-- सर्च बार लॉक -->
-  <div class="search">
-    <div class="sbox">🔍 भारतफ्लिक्स खोजें</div>
-    <div class="ic">🎤</div>
-    <div class="ic">🔔</div>
-    <div class="ic">⚙️</div>
-    <div class="install">Install</div>
-    <div class="user" id="userPic">U</div>
-  </div>
+<div class="top">
+<div class="head">
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg" style="filter: sepia(100%) saturate(500%) hue-rotate(10deg) brightness(1.1) contrast(1.2);">
+<div class="logo"><span>Bharat</span> <span>Flix</span></div>
+</div>
+<div class="line"><div class="o"></div><div class="w">☸️</div><div class="g"></div></div>
+<div class="satya">Satyameva Jayate</div>
 </div>
 
-<img src="https://images.unsplash.com/photo-1548013146-72479768bada?w=800" style="width:100%;display:block">
-
-<!-- चैनल पट्टी लॉक -->
-<div style="display:flex;align-items:center;gap:10px;padding:12px 12px 10px;">
-  <img src="https://i.pravatar.cc/100" style="width:38px;height:38px;border-radius:50%;">
-  <div style="flex:1;line-height:1.2">
-    <div style="font-weight:700;font-size:14px;">भारत फ्लिक्स ऑफिशियल <span style="color:#1a73e8;font-size:12px">✓</span></div>
-    <div style="font-size:12px;color:#666;">1.2M subscribers</div>
-  </div>
-  <div style="background:#000;color:#fff;padding:8px 16px;border-radius:20px;font-weight:700;font-size:13px;">Subscribe</div>
+<div class="search">
+<div class="sbox">🔍 Search BharatFlix</div><div class="icon">🎤</div><div class="icon">🔔</div><div class="icon">⚙️</div><div class="install">Install</div><div class="user" id="upic">U</div>
 </div>
 
-<!-- 12 बटन लॉक - 4 दिखेंगे बाकी खिसक के -->
-<div class="action">
-  <div class="abtn">👍<br>Like</div><div class="abtn">👎<br>Dislike</div><div class="abtn">↗️<br>Share</div><div class="abtn">♻️<br>Remix</div><div class="abtn">⬇️<br>Download</div><div class="abtn">✂️<br>Clip</div><div class="abtn">❤️<br>Thanks</div><div class="abtn">✂️<br>Cut</div><div class="abtn">💰<br>Monetization</div><div class="abtn">⭐<br>Earn</div><div class="abtn">🔖<br>Save</div><div class="abtn">🚩<br>Report</div>
-</div>
+<div class="vbox"><img src="https://images.unsplash.com/photo-1548013146-72479768bada?w=800"><div class="time">12:34</div></div>
+<div class="title">BharatFlix Aapka Apna Swadeshi Platform</div>
+<div class="row"><div class="b">B</div><div><div style="font-weight:700;font-size:13px">BharatFlix Official ✔</div><div style="font-size:11px;color:#666">1.2M subscribers • 3.5M views • 2 days ago</div></div></div>
+<div class="actions"><div class="a">👍 Like</div><div class="a">👎 Dislike</div><div class="a">↗ Share</div><div class="a">♻ Remix</div><div class="a">🔖 Save</div></div>
 
-<div style="padding:14px"><b>यहाँ आपका वीडियो का टाइटल आएगा</b><br><span style="font-size:13px;color:#666">#BharatFlix #FinalLock</span></div>
-
-<!-- बॉटम लॉक -->
-<div class="bottom">
-  <div>🏠<br>Home</div><div>◫<br>Shorts</div><div><div class="plus">+</div>Create</div><div>🔔<br>Subscriptions</div><div>📚<br>Library</div>
-</div>
-</div>
-
-<script>
-// ===== इंजन वाला फोटो सिस्टम - इसी में लगा दिया है =====
-function setUserPhoto(photoUrl){
-  const p = document.getElementById('userPic');
-  p.innerHTML = `<img src="${photoUrl}">`;
-  p.style.background = "none";
-  localStorage.setItem('userPhoto', photoUrl); // सेव ताकि दोबारा आए
-}
-// अगर पहले से फोटो सेव है तो अपने आप दिखा दो
-const saved = localStorage.getItem('userPhoto');
-if(saved){ setUserPhoto(saved); }
-
-// टेस्ट के लिए ये लाइन चला के देख लो - आपका फोटो आ जाएगा
-// setUserPhoto('https://i.pravatar.cc/150?img=12');
-</script>
-</body>
-</html>
+<div class="up"><b>Up next</b>
+<div class="card" style="margin-top:12px"><div class="t"><img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?w=400"><span>08:42</span></div><div><div
