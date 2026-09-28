@@ -1,76 +1,84 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BharatFlix FINAL LOCK</title>
+<title>BharatFlix</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Roboto,Arial,sans-serif}
-body{background:#000;display:flex;justify-content:center}
-.mobile{width:100%;max-width:390px;background:#fff;min-height:100vh;position:relative;padding-bottom:90px}
-.top{padding:8px 12px 6px;background:#fff}
-.head{display:flex;align-items:center;gap:8px}
-.head img{width:32px;height:32px;filter:sepia(100%) saturate(600%) hue-rotate(5deg) brightness(1.15)}
-.logo{font-size:24px;font-weight:900}
-.logo .b{color:#FF7A00}
-.logo .f{color:#138808}
-.line{display:flex;height:5px;margin:6px 0 3px}
-.o{flex:1;background:#FF9933;border-radius:10px 0 0 10px}
-.w{width:50px;background:#fff;display:flex;justify-content:center;align-items:center;font-size:12px}
-.g{flex:1;background:#138808;border-radius:0 10px 10px 0}
-.satya{text-align:center;font-size:10px;color:#555}
-.search{display:flex;gap:6px;padding:10px;align-items:center;border-top:1px solid #f0f0f0;border-bottom:1px solid #f0f0f0}
-.sbox{flex:1;background:#f1f1f1;border-radius:24px;padding:10px 12px;font-size:13px;color:#666}
-.ic{width:32px;height:32px;background:#f1f1f1;border-radius:50%;display:flex;align-items:center;justify-content:center}
-.install{background:#FF6A00;color:#fff;padding:7px 12px;border-radius:20px;font-weight:700;font-size:12px}
-.user{width:32px;height:32px;background:#6a1b9a;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900}
-.vbox{margin:10px;border-radius:12px;overflow:hidden;position:relative;background:#000}
-.vbox img{width:100%;height:220px;object-fit:cover;display:block}
-.dur{position:absolute;right:7px;bottom:7px;background:rgba(0,0,0,.85);color:#fff;font-size:11px;padding:3px 6px;border-radius:4px}
-.vtitle{padding:6px 12px 8px;font-weight:700;font-size:14px;display:flex;align-items:center;gap:6px}
-.crow{display:flex;gap:8px;padding:6px 12px;align-items:center}
-.bicon{width:32px;height:32px;background:#1a73e8;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900}
-.subsmall{background:#000;color:#fff;padding:7px 14px;border-radius:20px;font-weight:700;font-size:12px;margin-left:auto}
-.actions{display:flex;gap:8px;overflow-x:auto;padding:12px}
-.abtn{min-width:70px;height:60px;background:#f1f1f1;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:11px;font-weight:600;border:1px solid #e8e8e8}
-.up{padding:12px;border-top:1px solid #f0f0f0}
-.card{display:flex;gap:10px;margin-bottom:12px}
-.thumb{width:135px;height:76px;border-radius:10px;overflow:hidden;position:relative;background:#000}
+body{margin:0;background:#000;display:flex;justify-content:center;font-family:Arial}
+.box{width:390px;background:#fff;min-height:100vh;padding-bottom:80px}
+.top{padding:10px;display:flex;align-items:center;gap:8px}
+.logo{font-size:22px;font-weight:900}
+.logo b{color:#FF7A00}
+.logo f{color:green}
+.video{margin:10px;background:#000;height:200px;border-radius:12px;position:relative;display:flex;align-items:center;justify-content:center}
+.video img{width:100%;height:100%;object-fit:cover;border-radius:12px;opacity:0.7}
+.play{position:absolute;width:60px;height:60px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px}
+.title{padding:10px;font-weight:700}
+.channel{padding:0 10px;display:flex;align-items:center;gap:8px}
+.cicon{width:30px;height:30px;background:blue;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.sub{margin-left:auto;background:#000;color:#fff;padding:6px 12px;border-radius:20px;font-size:12px}
+.row{display:flex;gap:8px;padding:10px;overflow:auto}
+.btn{background:#eee;padding:8px 12px;border-radius:10px;font-size:12px}
+.next{padding:10px;border-top:1px solid #eee;margin-top:10px}
+.item{display:flex;gap:10px;margin-bottom:10px}
+.thumb{width:120px;height:70px;background:#000;border-radius:8px;overflow:hidden}
 .thumb img{width:100%;height:100%;object-fit:cover}
-.tm{position:absolute;right:4px;bottom:4px;background:rgba(0,0,0,.85);color:#fff;font-size:9px;padding:2px 4px;border-radius:3px}
-.bottom{position:fixed;bottom:0;width:100%;max-width:390px;background:#fff;display:flex;justify-content:space-around;align-items:flex-end;padding:6px 0 12px;border-top:1px solid #ddd}
-.bitem{text-align:center;font-size:10px}
-.plus{width:48px;height:48px;background:#1a73e8;border-radius:50%;color:#fff;display:flex;align-items:center;justify-content:center;font-size:26px;margin:-24px auto 3px}
+.bottom{position:fixed;bottom:0;width:390px;background:#fff;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #ccc}
 </style>
 </head>
 <body>
-<div class="mobile">
+<div class="box">
 <div class="top">
-<div class="head">
-<img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg">
-<div class="logo"><span class="b">Bharat</span> <span class="f">Flix</span></div>
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg" width="28">
+<div class="logo"><b>Bharat</b> <f>Flix</f></div>
 </div>
-<div class="line"><div class="o"></div><div class="w">☸️</div><div class="g"></div></div>
-<div class="satya">Satyameva Jayate</div>
-</div>
-<div class="search">
-<div class="sbox">🔍 Search BharatFlix</div>
-<div class="ic">🎤</div>
-<div class="ic">🔔</div>
-<div class="ic">⚙️</div>
-<div class="install">Install</div>
-<div class="user">U</div>
-</div>
-<div class="vbox">
+
+<div class="video">
 <img src="https://images.unsplash.com/photo-1548013146-72479768bada?w=800">
-<div class="dur">12:34</div>
-<div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:68px;height:68px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px">▶️</div>
+<div class="play">▶️</div>
 </div>
-<div class="vtitle"><span>Bharat Flix Aapka Apna Swadeshi Platform</span></div>
-<div class="crow"><div class="bicon">M</div><div><div style="font-weight:700;font-size:13px">Media App ✔</div><div style="font-size:10px;color:#666">1.2M subscribers</div></div><div class="subsmall">Subscribe</div></div>
-<div class="actions"><div class="abtn">👍<br>Like</div><div class="abtn">👎<br>Dislike</div><div class="abtn">↗️<br>Share</div><div class="abtn">♻️<br>Remix</div><div class="abtn">⬇️<br>Download</div><div class="abtn">🔖<br>Save</div></div>
-<div class="up">
-<h3 style="font-size:15px;font-weight:800;margin-bottom:10px">Up next</h3>
-<div class="card"><div class="thumb"><img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?w=400"><div class="tm">08:42</div></div><div><div style="font-weight:700;font-size:12px">Red Fort History</div><div style="font-size:10px;color:#666">820K views</div></div></div>
-<div class="card"><div class="thumb"><img src="https://images.unsplash.com/photo-1529253355930-ddbe423a2ac7?w=400"><div class="tm">10:15</div></div><div><div style="font-weight:700;font-size:12px">Gateway of India</div><div style="font-size:10px;color:#666">540K views</div></div></div>
-<div class="card"><div class="thumb"><img src="https://images.unsplash.com/photo-1561361058-c24cecae35ca?w=400"><div class="tm">15:20</div></div><div><div style="font-weight:700;font-size:12px">Varanasi Ghat
+
+<div class="title">Bharat Flix Aapka Apna Swadeshi Platform 🇮🇳</div>
+
+<div class="channel">
+<div class="cicon">M</div>
+<div><b style="font-size:13px">Media App ✔</b><br><span style="font-size:10px;color:#666">1.2M subscribers</span></div>
+<div class="sub">Subscribe</div>
+</div>
+
+<div class="row">
+<div class="btn">👍 Like</div>
+<div class="btn">👎 Dislike</div>
+<div class="btn">↗️ Share</div>
+<div class="btn">⬇️ Download</div>
+<div class="btn">🔖 Save</div>
+</div>
+
+<div class="next">
+<b>Up next</b>
+<div class="item">
+<div class="thumb"><img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?w=400"></div>
+<div><b style="font-size:12px">Red Fort Delhi Tour</b><br><span style="font-size:10px">820K views</span></div>
+</div>
+<div class="item">
+<div class="thumb"><img src="https://images.unsplash.com/photo-1529253355930-ddbe423a2ac7?w=400"></div>
+<div><b style="font-size:12px">Gateway of India Mumbai</b><br><span style="font-size:10px">540K views</span></div>
+</div>
+<div class="item">
+<div class="thumb"><img src="https://images.unsplash.com/photo-1561361058-c24cecae35ca?w=400"></div>
+<div><b style="font-size:12px">Varanasi Ganga Aarti</b><br><span style="font-size:10px">1.1M views</span></div>
+</div>
+</div>
+
+<div class="bottom">
+<div>⌂ Home</div>
+<div>◫ Shorts</div>
+<div>+</div>
+<div>◧ Subs</div>
+<div>▭ Library</div>
+</div>
+
+</div>
+</body>
+</html>
