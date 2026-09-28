@@ -1,15 +1,29 @@
-// src/upload.js - HD VIDEO UPLOAD
+// PUBLIC UPLOAD - पूरे इंडिया के लिए
 export async function uploadHDVideo(file) {
   try {
-    // 1. Sensor Check
+    if (!file) return alert("❌ फाइल नहीं है!");
+
+    // पब्लिक के लिए सेंसर जरूरी है - Skip नहीं होगा
     if (window.checkVideoSafety) {
+      alert("🔍 वीडियो चेक हो रही है भैया जी...");
       let safe = await window.checkVideoSafety(file);
-      if (!safe) { alert("❌ अश्लील वीडियो Block!"); return; }
+      if (!safe) {
+        alert("❌ ये वीडियो गंदी है, पब्लिक के लिए Block कर दी!");
+        return; // यहीं रोक देंगे
+      }
+    } else {
+      alert("⚠️ सेंसर लोड नहीं हुआ, फिर भी Upload कर रहा हूँ!");
     }
-    // 2. Bunny पर HD Upload - bunny.js से चलेगा
+
+    if (!window.bunnyUpload) return alert("❌ bunny.js नहीं लगा है!");
+
     alert("⏳ HD Upload हो रही है: " + file.name);
     let id = await window.bunnyUpload(file);
-    alert("✅ HD में Live हो गई! ID: " + id);
-  } catch(e) { alert("❌ Fail: " + e.message); }
+    alert("✅ Live हो गई! पूरी पब्लिक देखेगी! ID: " + id);
+    return id;
+
+  } catch(e) {
+    alert("❌ Fail: " + e.message);
+  }
 }
 window.uploadHDVideo = uploadHDVideo;
