@@ -2,54 +2,254 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>BharatFlix - FINAL 100% LOCK</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BharatFlix FINAL LOCK Open</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Roboto,Arial,sans-serif}
-body{background:#000;display:flex;justify-content:center}
-.mobile{width:100%;max-width:390px;background:#fff;min-height:100vh;position:relative;padding-bottom:90px}
-.top{padding:10px 12px 6px;background:#fff;position:sticky;top:0;z-index:100;background:#fff}
-.head{display:flex;align-items:center;gap:8px;overflow:hidden}
-.head img{width:38px;height:38px;flex-shrink:0;object-fit:contain;filter: sepia(100%) saturate(600%) hue-rotate(5deg) brightness(1.15)}
-.logo{font-size:26px;font-weight:900;letter-spacing:-0.5px;white-space:nowrap;flex-shrink:0}
-.logo .b{color:#FF7A00;-webkit-text-stroke:0.5px #000}
-.logo .f{color:#138808;-webkit-text-stroke:0.5px #000}
-.line{display:flex;align-items:center;height:5px;margin:6px 0 3px}
-.line .o{flex:1;height:100%;background:#FF9933;border-radius:10px 0 0 10px}
-.line .w{width:50px;height:100%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;border-top:1px solid #eee;border-bottom:1px solid #eee}
-.line .g{flex:1;height:100%;background:#138808;border-radius:0 10px 10px 0}
-.satya{text-align:center;font-size:10px;color:#555}
-.search{display:flex;gap:6px;padding:10px 10px;align-items:center;border-top:1px solid #f0f0f0;border-bottom:1px solid #f0f0f0;background:#fff}
-.sbox{flex:1;background:#f1f1f1;border-radius:24px;padding:10px 14px;font-size:13px;color:#666;white-space:nowrap;overflow:hidden}
-.ic{width:32px;height:32px;background:#f1f1f1;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px}
-.install{background:#FF6A00;color:#fff;padding:7px 12px;border-radius:20px;font-weight:700;font-size:12px;white-space:nowrap}
-.user{width:32px;height:32px;background:#6a1b9a;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0;overflow:hidden;font-size:13px}
-.user img{width:100%;height:100%;object-fit:cover}
-.vbox{margin:10px;border-radius:12px;overflow:hidden;position:relative;background:#000}
-.vbox img{width:100%;height:210px;object-fit:cover;display:block}
-.dur{position:absolute;right:7px;bottom:7px;background:rgba(0,0,0,.85);color:#fff;font-size:11px;padding:2px 5px;border-radius:4px;font-weight:600}
-.vtitle{padding:6px 12px 8px;font-weight:700;font-size:15px;display:flex;align-items:center;gap:6px;line-height:1.3}
-.crow{display:flex;gap:8px;padding:6px 12px;align-items:center}
-.bicon{width:32px;height:32px;background:#1a73e8;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;flex-shrink:0}
-.cname{font-weight:700;font-size:13px}
-.cmeta{font-size:11px;color:#666}
-.subbtn{margin-left:auto;background:#000;color:#fff;padding:8px 16px;border-radius:20px;font-weight:700;font-size:12px}
-.actions{display:flex;gap:8px;overflow-x:auto;padding:12px 12px;scrollbar-width:none;scroll-snap-type:x mandatory}
-.actions::-webkit-scrollbar{display:none}
-.abtn{min-width:78px;height:68px;background:#f1f1f1;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;scroll-snap-align:start;font-size:12px;font-weight:600;line-height:1.2;border:1px solid #e8e8e8}
-.desc{padding:10px 12px;font-size:13px;color:#333;background:#f9f9f9;margin:8px 12px;border-radius:10px}
-.up{padding:14px 12px 0}
-.up h3{font-size:15px;font-weight:800;margin-bottom:12px}
-.card{display:flex;gap:10px;margin-bottom:14px}
-.thumb{width:140px;height:78px;border-radius:10px;overflow:hidden;position:relative;flex-shrink:0;background:#000}
-.thumb img{width:100%;height:100%;object-fit:cover}
-.thumb .tm{position:absolute;right:4px;bottom:4px;background:rgba(0,0,0,.85);color:#fff;font-size:9px;padding:2px 4px;border-radius:3px}
-.ctitle{font-weight:700;font-size:12px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.csmall{font-size:10px;color:#666;margin-top:3px}
-.bottom{position:fixed;bottom:0;width:100%;max-width:390px;background:#fff;display:flex;justify-content:space-around;align-items:flex-end;padding:8px 0 14px;border-top:1px solid #ddd;z-index:9999}
-.bitem{text-align:center;font-size:10px;color:#333}
-.bitem b{font-size:18px;display:block}
-.plus{width:50px;height:50px;background:#1a73e8;border-radius:50%;color:#fff;display:flex;align-items:center;justify-content:center;font-size:28px;margin:-26px auto 4px;box-shadow:0 4px 10px rgba(26,115,232,.4)}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Roboto, Arial, sans-serif;
+}
+body {
+  background: #000;
+  display: flex;
+  justify-content: center;
+}
+.mobile {
+  width: 100%;
+  max-width: 390px;
+  background: #fff;
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 90px;
+}
+.top {
+  padding: 8px 12px 6px;
+  background: #fff;
+}
+.head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow: visible;
+}
+.head img {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  object-fit: contain;
+  flex-shrink: 0;
+  display: block;
+  filter: sepia(100%) saturate(600%) hue-rotate(5deg) brightness(1.15);
+}
+.logo {
+  font-size: 24px;
+  font-weight: 900;
+  white-space: nowrap;
+  line-height: 1;
+}
+.logo .b {
+  color: #FF7A00;
+  -webkit-text-stroke: 0.4px #000;
+}
+.logo .f {
+  color: #138808;
+  -webkit-text-stroke: 0.4px #000;
+}
+.line {
+  display: flex;
+  height: 5px;
+  margin: 6px 0 3px;
+}
+.o {
+  flex: 1;
+  background: #FF9933;
+  border-radius: 10px 0 0 10px;
+}
+.w {
+  width: 50px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+}
+.g {
+  flex: 1;
+  background: #138808;
+  border-radius: 0 10px 10px 0;
+}
+.satya {
+  text-align: center;
+  font-size: 10px;
+  color: #555;
+}
+.search {
+  display: flex;
+  gap: 6px;
+  padding: 10px 10px;
+  align-items: center;
+  border-top: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
+}
+.sbox {
+  flex: 1;
+  background: #f1f1f1;
+  border-radius: 24px;
+  padding: 10px 12px;
+  font-size: 13px;
+  color: #666;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.ic {
+  width: 32px;
+  height: 32px;
+  background: #f1f1f1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.install {
+  background: #FF6A00;
+  color: #fff;
+  padding: 7px 12px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 12px;
+}
+.user {
+  width: 32px;
+  height: 32px;
+  background: #6a1b9a;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.user img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.vbox {
+  margin: 10px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  background: #000;
+}
+.vbox img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.7);
+}
+.dur {
+  position: absolute;
+  right: 7px;
+  bottom: 7px;
+  background: rgba(0,0,0,.85);
+  color: #fff;
+  font-size: 11px;
+  padding: 3px 6px;
+  border-radius: 4px;
+  z-index: 5;
+}
+.vtitle {
+  padding: 6px 12px 8px;
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.crow {
+  display: flex;
+  gap: 8px;
+  padding: 6px 12px;
+  align-items: center;
+}
+.bicon {
+  width: 32px;
+  height: 32px;
+  background: #1a73e8;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+}
+.subsmall {
+  background: #000;
+  color: #fff;
+  padding: 7px 14px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 12px;
+  margin-left: auto;
+}
+.actions {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 12px;
+}
+.actions::-webkit-scrollbar {
+  display: none;
+}
+.abtn {
+  min-width: 70px;
+  height: 60px;
+  background: #f1f1f1;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 600;
+  border: 1px solid #e8e8e8;
+}
+.bottom {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  max-width: 390px;
+  background: #fff;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  padding: 6px 0 12px;
+  border-top: 1px solid #ddd;
+  z-index: 9999;
+}
+.bitem {
+  text-align: center;
+  font-size: 10px;
+}
+.plus {
+  width: 48px;
+  height: 48px;
+  background: #1a73e8;
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  margin: -24px auto 3px;
+}
 </style>
 </head>
 <body>
@@ -65,44 +265,66 @@ body{background:#000;display:flex;justify-content:center}
 
 <div class="search">
 <div class="sbox">🔍 Search BharatFlix</div>
-<div class="ic">🎤</div><div class="ic">🔔</div><div class="ic">⚙️</div>
+<div class="ic">🎤</div>
+<div class="ic">🔔</div>
+<div class="ic">⚙️</div>
 <div class="install">Install</div>
 <div class="user" id="upic">U</div>
 </div>
 
-<div class="vbox"><img src="https://images.unsplash.com/photo-1548013146-72479768bada?w=800"><div class="dur">12:34</div></div>
+<div class="vbox">
+<img src="https://images.unsplash.com/photo-1548013146-72479768bada?w=800">
+<div class="dur">12:34</div>
+<div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;gap:12px;width:75%;z-index:4">
+<button style="background:#FF0000;color:#fff;border:2px solid #fff;padding:13px;border-radius:28px;font-weight:900;font-size:16px">🔔 SUBSCRIBE</button>
+<button style="background:#FFC107;color:#000;border:none;padding:11px;border-radius:28px;font-weight:800;font-size:15px">🙏 PLEASE SUBSCRIBE</button>
+</div>
+</div>
 
-<div class="vtitle"><span>Bharat Flix Aapka Apna Swadeshi Platform</span><img src="https://upload.wikimedia.org/wikipedia/commons/b/bc/Flag_of_India.png" style="width:26px;height:17px;border-radius:2px;border:1px solid #ddd;flex-shrink:0;object-fit:cover"></div>
+<div class="vtitle">
+<span>Bharat Flix Aapka Apna Swadeshi Platform</span>
+<img src="https://upload.wikimedia.org/wikipedia/commons/b/bc/Flag_of_India.png" style="width:24px;height:16px;border-radius:2px;border:1px solid #ddd">
+</div>
 
-<div class="crow"><div class="bicon">M</div><div style="flex:1"><div class="cname">Media Channel <span style="color:#1a73e8">✔</span></div><div class="cmeta">1.2M subscribers • 3.5M views • 2 days ago</div></div><div class="subbtn">Subscribe</div></div>
+<div class="crow">
+<div class="bicon">M</div>
+<div>
+<div style="font-weight:700;font-size:13px">Media App ✔</div>
+<div style="font-size:10px;color:#666">1.2M subscribers • 3.5M views</div>
+</div>
+<div class="subsmall">Subscribe</div>
+</div>
 
-<!-- 12 बटन - पूरे हैं, 4 दिखेंगे बाकी खिसक के -->
 <div class="actions">
-<div class="abtn">👍<br>Like</div><div class="abtn">👎<br>Dislike</div><div class="abtn">↗️<br>Share</div><div class="abtn">♻️<br>Remix</div><div class="abtn">⬇️<br>Download</div><div class="abtn">✂️<br>Clip</div><div class="abtn">❤️<br>Thanks</div><div class="abtn">✂️<br>Cut</div><div class="abtn">💰<br>Monetization</div><div class="abtn">⭐<br>Earn</div><div class="abtn">🔖<br>Save</div><div class="abtn">🚩<br>Report</div>
+<div class="abtn">👍<br>Like</div>
+<div class="abtn">👎<br>Dislike</div>
+<div class="abtn">↗️<br>Share</div>
+<div class="abtn">♻️<br>Remix</div>
+<div class="abtn">⬇️<br>Download</div>
+<div class="abtn">🔖<br>Save</div>
 </div>
 
-<div class="desc"><b>यहाँ आपका वीडियो का टाइटल आएगा</b><br><span style="font-size:12px;color:#666">#BharatFlix #FinalLock #Swadeshi</span></div>
-
-<div class="up"><h3>Up next</h3>
-<div class="card"><div class="thumb"><img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?w=400"><div class="tm">08:42</div></div><div><div class="ctitle">Red Fort - History of Delhi in 8 Minutes</div><div class="csmall">Media Channel • 820K views • 1 week ago</div></div></div>
-<div class="card"><div class="thumb"><img src="https://images.unsplash.com/photo-1529253355930-ddbe423a2ac7?w=400"><div class="tm">10:15</div></div><div><div class="ctitle">Gateway of India - Mumbai Landmarks Tour</div><div class="csmall">Media Channel • 540K views • 3 days ago</div></div></div>
-<div class="card"><div class="thumb"><img src="https://images.unsplash.com/photo-1561361058-c24cecae35ca?w=400"><div class="tm">15:20</div></div><div><div class="ctitle">Varanasi Ghats - Spiritual Journey on Ganges</div><div class="csmall">Media Channel • 1.1M views • 5 days ago</div></div></div>
+<div style="padding:10px 12px">
+<button style="width:100%;background:#FF0000;color:#fff;border:none;padding:14px;border-radius:28px;font-weight:900;font-size:16px">🔔 SUBSCRIBE</button>
 </div>
 
-<div class="bottom"><div class="bitem"><b>⌂</b><br>Home</div><div class="bitem"><b>◫</b><br>Shorts</div><div class="bitem"><div class="plus">+</div>Create</div><div class="bitem"><b>◧</b><br>Subscriptions</div><div class="bitem"><b>▭</b><br>Library</div></div>
+<div class="bottom">
+<div class="bitem">⌂<br>Home</div>
+<div class="bitem">◫<br>Shorts</div>
+<div class="bitem"><div class="plus">+</div>Create</div>
+<div class="bitem">◧<br>Subs</div>
+<div class="bitem">▭<br>Library</div>
 </div>
 
+</div>
 <script>
-// U में फोटो इंजन - आपका फोटो आएगा
 function setUserPhoto(url){
   const p=document.getElementById('upic');
   p.innerHTML=`<img src="${url}">`;
-  p.style.background="none";
   localStorage.setItem('bharatflix_photo',url);
 }
-const saved=localStorage.getItem('bharatflix_photo');
-if(saved){ setUserPhoto(saved); }
-// टेस्ट: setUserPhoto('https://i.pravatar.cc/100');
+let s=localStorage.getItem('bharatflix_photo');
+if(s)setUserPhoto(s);
 </script>
 </body>
 </html>
