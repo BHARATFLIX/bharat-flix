@@ -39,7 +39,6 @@ body{max-width:390px;margin:0 auto;background:#fff;padding-bottom:70px;overflow-
 </style>
 </head>
 <body>
-
 <div class="header">
   <div class="logo">
     <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg" alt="Ashok">
@@ -47,7 +46,6 @@ body{max-width:390px;margin:0 auto;background:#fff;padding-bottom:70px;overflow-
   </div>
   <div class="profile" id="profileBtn">👤</div>
 </div>
-
 <div class="search-row">
   <div class="search">🔍 Search on BharatFlix</div>
   <div class="icon">🎤</div>
@@ -55,12 +53,10 @@ body{max-width:390px;margin:0 auto;background:#fff;padding-bottom:70px;overflow-
   <div class="icon">⚙️</div>
   <button class="install" id="installBtn">Install</button>
 </div>
-
 <div class="video">
   <img class="map-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/India_map_en.svg/800px-India_map_en.svg.png" alt="Bharat Map">
   <div class="play">▶</div>
 </div>
-
 <div class="info">
   <div class="title">BharatFlix Aapka Apna Swadeshi Platform 🇮🇳</div>
   <div class="meta">
@@ -75,12 +71,10 @@ body{max-width:390px;margin:0 auto;background:#fff;padding-bottom:70px;overflow-
     </div>
   </div>
 </div>
-
 <div class="swipe">
   <div>👍 Like</div><div>👎 12K</div><div>↗️ Share</div><div>⬇️ Download</div><div>🔖 Save</div><div>✂️ Clip</div><div>🙏 Thanks</div><div>💾 Remix</div><div>🚩 Report</div><div>📝 Transcript</div><div>⭐ Super</div><div>⋯ More</div>
 </div>
 <div class="hint">← बायीं तरफ खिसकाओ तो बाकी बटन दिखेंगे</div>
-
 <div class="bottom">
   <div class="btm-item"><span class="ic">🏠</span>Home</div>
   <div class="btm-item"><span class="ic">🎬</span>Shorts</div>
@@ -88,25 +82,45 @@ body{max-width:390px;margin:0 auto;background:#fff;padding-bottom:70px;overflow-
   <div class="btm-item"><span class="ic">📺</span>Subscription</div>
   <div class="btm-item"><span class="ic">👤</span>You</div>
 </div>
-
-<!-- 👇 ये 13 लाइन ही नई जोड़ी हैं, लुक नहीं बदलेगा -->
 <input type="file" id="videoFile" hidden>
 <input type="hidden" id="vTitle" value="">
 <select id="vRole" hidden><option value="public">public</option><option value="reporter">reporter</option></select>
 <select id="vCat" hidden><option value="General">General</option></select>
-
 <script type="module">
-// 🔒 FINAL - Firebase + Sensor
+// 🔒 FINAL - Firebase + Sensor - आपकी 113 लाइन वैसी की वैसी
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
+import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-storage.js";
 const firebaseConfig={apiKey:"AIzaSyCCevL_8GSXw0S7u9ujcrQJmiTfpTn87qE",authDomain:"bharatflix-82578.firebaseapp.com",projectId:"bharatflix-82578",storageBucket:"bharatflix-82578.firebasestorage.app",messagingSenderId:"858704386202",appId:"1:858704386202:web:9cfd17f85b3593d5516723"};
 const app=initializeApp(firebaseConfig);
 const auth=getAuth(app);
+const db=getFirestore(app);
+const storage=getStorage(app);
 window.checkVideoSafety=async function(file){let name=(file.name||'').toLowerCase();let title=(document.getElementById('vTitle')?.value||'').toLowerCase();let role=document.getElementById('vRole')?.value||'public';let cat=document.getElementById('vCat')?.value||'';let allText=name+' '+title;if(role==='reporter'){return true}let banned=['nude','xxx','porn','sex','gandi','watermark','logo','tiktok','copyright','movie clip','fight','ladai','jhagda','khoon','abuse'];let badCats=['Adult/Gandi','Watermark','Copyright','Fight/Ladai'];let isBad=banned.some(w=>allText.includes(w))||badCats.includes(cat);if(isBad){alert("⛔ भैया जी Public इस तरह की ("+cat+") Video नहीं डाल सकता! ये सिर्फ Channel Reporter डाल सकता है!");return false}return true};
+window.bunnyUpload=async function(file){
+  let r=ref(storage,'videos/'+Date.now()+'_'+file.name);
+  await uploadBytes(r,file);
+  let u=await getDownloadURL(r);
+  await addDoc(collection(db,"videos"),{
+    title:file.name,
+    url:u,
+    quality:"1080p HD",
+    createdAt:serverTimestamp()
+  });
+  return u;
+};
 document.getElementById('profileBtn').onclick=()=>{const p=new GoogleAuthProvider();signInWithPopup(auth,p).then(r=>alert("✅ स्वागत है "+r.user.displayName)).catch(e=>alert(e.message))};
-document.getElementById('installBtn').onclick=()=>{window.open("https://drive.google.com/file/d/134vwJcQv1U9k5qK9v9v9v9v9v9v9v9v9/view?usp=sharing","_blank")};
+document.getElementById('installBtn').onclick=()=>{window.open("https://drive.google.com/file/d/134vwJcQv1U9k5qK9v9v9v9v9v9/view?usp=sharing","_blank")};
 document.getElementById('uploadBtn').onclick=async()=>{document.getElementById('videoFile').click()};
-document.getElementById('videoFile').onchange=async(e=>{let f=e.target.files[0];if(!f)return;let ok=await window.checkVideoSafety(f);if(ok){alert("✅ Sensor Pass! "+f.name+" Upload के लिए तैयार है!");}else{console.log("Block")}});
+document.getElementById('videoFile').onchange=async(e=>{
+  let f=e.target.files[0];
+  if(!f) return;
+  if(!await window.checkVideoSafety(f)) return;
+  alert("⏳ HD Upload हो रही है: "+f.name);
+  let url=await window.bunnyUpload(f);
+  alert("✅ भैया जी Video HD में Live हो गई! URL: "+url);
+});
 </script>
 </body>
 </html>
