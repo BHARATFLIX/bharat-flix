@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BharatFlix - Aapka Apna Swadeshi Platform 🇮🇳</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#FF6A00">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Roboto,Arial,sans-serif}
 body{max-width:390px;margin:0 auto;background:#fff;padding-bottom:70px;overflow-x:hidden}
@@ -40,13 +42,14 @@ body{max-width:390px;margin:0 auto;background:#fff;padding-bottom:70px;overflow-
   <div class="search">🔍 Search on BharatFlix</div><div class="icon">🎤</div><div class="icon">🔔</div><div class="icon">⚙️</div><button class="install">Install</button>
 </div>
 
-<!-- YOUTUBE JESA PLAYER -->
+<!-- YOUTUBE JESA PLAYER + SKIP AD -->
 <div class="video" id="videoBox">
-  <video id="myVideo" poster="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/India_map_en.svg/800px-India_map_en.svg.png" controls>
-    <source src="ad-new.mp4">
+  <video id="myVideo" poster="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/India_map_en.svg/800px-India_map_en.svg.png" controls playsinline>
+    <source src="ad-new.mp4" type="video/mp4">
     आपकी वीडियो नहीं मिली भैया जी
   </video>
   <div class="play" id="playBtn">▶</div>
+  <div id="skipBox" style="position:absolute;bottom:10px;right:10px;background:rgba(0,0,0,0.8);color:#fff;padding:8px 14px;border-radius:4px;font-size:12px;font-weight:700;display:none;z-index:5;cursor:pointer;border:1px solid #fff;">Ad - 5s</div>
 </div>
 
 <div class="info">
@@ -62,25 +65,4 @@ body{max-width:390px;margin:0 auto;background:#fff;padding-bottom:70px;overflow-
 <div class="hint">← बायीं तरफ खिसकाओ तो बाकी बटन दिखेंगे</div>
 
 <div class="bottom">
-  <div class="btm-item"><span class="ic">🏠</span>Home</div><div class="btm-item"><span class="ic">🎬</span>Shorts</div><div class="btm-item"><div class="upload">+</div>Upload</div><div class="btm-item"><span class="ic">📺</span>Subscription</div><div class="btm-item"><span class="ic">👤</span>You</div>
-</div>
-
-<script>
-// YouTube जैसा चलाने का जादू भैया जी
-const video = document.getElementById('myVideo');
-const btn = document.getElementById('playBtn');
-const box = document.getElementById('videoBox');
-
-function playVideo(){
-  video.play();
-  btn.style.display='none';
-}
-btn.addEventListener('click', playVideo);
-box.addEventListener('click', playVideo);
-
-video.addEventListener('pause', ()=>{ btn.style.display='flex'; });
-video.addEventListener('play', ()=>{ btn.style.display='none'; });
-</script>
-
-</body>
-</html>
+  <div class="btm-item"><span class="ic">🏠</span>Home</div><div class="btm-item"><span class="ic">🎬</span>Shorts</div><div class="btm-item"><div class="upload">+</div>Upload</div><div class="btm-item">
