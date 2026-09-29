@@ -1,27 +1,105 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>BharatFlix - Aapka Apna Swadeshi Platform 🇮🇳</title>
+<style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Roboto,Arial,sans-serif}
 body{max-width:390px;margin:0 auto;background:#fff;padding-bottom:70px;overflow-x:hidden}
+
+/* HEADER - CHIPKA - MEDIUM */
 .header{position:sticky;top:0;left:0;right:0;background:#fff;z-index:999;display:flex;align-items:center;justify-content:space-between;padding:8px 10px;box-shadow:0 1px 3px rgba(0,0,0,0.1)}
 .logo{display:flex;align-items:center;gap:6px;font-weight:900;font-size:24px}
 .logo img{width:32px;height:32px}
-.b{color:#FF9933;text-shadow:1.5px 1.5px 0 #000}.f{color:#138808;text-shadow:1.5px 1.5px 0 #000}
+.b{color:#FF9933;text-shadow:1.5px 1.5px 0 #000} .f{color:#138808;text-shadow:1.5px 1.5px 0 #000}
 .profile{width:36px;height:36px;border-radius:50%;background:#e1e1e1;display:flex;align-items:center;justify-content:center;border:1px solid #ddd;flex-shrink:0}
+
+/* SEARCH ROW - KUCH NAHI KATEGA */
 .search-row{display:flex;align-items:center;gap:6px;padding:8px 10px;background:#fff;flex-wrap:nowrap}
 .search{flex:1;background:#f2f2f2;border-radius:24px;padding:9px 14px;display:flex;align-items:center;gap:8px;font-size:14px;color:#606060;min-width:0}
 .icon{width:36px;height:36px;background:#f2f2f2;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
 .install{padding:8px 14px;background:#0b57d0;color:#fff;border:none;border-radius:20px;font-weight:700;font-size:12px;flex-shrink:0}
+
+/* VIDEO - MEDIUM + PLAY */
 .video{width:96%;margin:8px auto;aspect-ratio:16/10.5;background:#fff;border-radius:12px;overflow:hidden;position:relative;box-shadow:0 2px 10px rgba(0,0,0,0.12);border:1px solid #eee}
 .map-img{width:100%;height:100%;object-fit:contain;padding:8px}
-.play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:64px;height:64px;background:rgba(0,0,0,0.85);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:26px;cursor:pointer}
-.info{padding:8px 12px}.title{font-size:15px;font-weight:700;line-height:1.3}
+.play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:64px;height:64px;background:rgba(0,0,0,0.85);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:26px}
+
+/* INFO */
+.info{padding:8px 12px}
+.title{font-size:15px;font-weight:700;line-height:1.3}
 .meta{display:flex;align-items:center;gap:8px;margin-top:8px}
 .b-logo{width:38px;height:38px;background:linear-gradient(135deg,#FF9933,#138808);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:20px;flex-shrink:0}
-.ch-name{font-size:13px;flex:1}.ch-name b{font-size:14px;display:block}
-.btns{display:flex;gap:6px;margin-left:auto}.btns button{padding:7px 14px;border-radius:20px;border:none;font-weight:700;font-size:12px;cursor:pointer}
-.sub{background:#FF0000;color:#fff}.join{background:#000;color:#fff}
+.ch-name{font-size:13px;flex:1}
+.ch-name b{font-size:14px;display:block}
+.btns{display:flex;gap:6px;margin-left:auto}
+.btns button{padding:7px 14px;border-radius:20px;border:none;font-weight:700;font-size:12px}
+.sub{background:#FF0000;color:#fff} .join{background:#000;color:#fff}
+
+/* 12 CHOTE BUTTON - SWIPE */
 .swipe{display:flex;gap:6px;overflow-x:auto;padding:10px 10px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .swipe::-webkit-scrollbar{display:none}
-.swipe div{flex:0 0 auto;background:#f2f2f2;border-radius:20px;padding:7px 12px;font-size:11px;font-weight:600;display:flex;align-items:center;gap:4px;white-space:nowrap;cursor:pointer}
+.swipe div{flex:0 0 auto;background:#f2f2f2;border-radius:20px;padding:7px 12px;font-size:11px;font-weight:600;display:flex;align-items:center;gap:4px;white-space:nowrap}
 .hint{font-size:10px;color:#888;padding:0 12px 6px}
+
+/* BOTTOM 5 */
 .bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:390px;background:#fff;border-top:1px solid #ddd;display:flex;justify-content:space-around;align-items:center;padding:6px 0 8px;z-index:999}
-.btm-item{display:flex;flex-direction:column;align-items:center;font-size:10px;gap:2px;color:#606060;cursor:pointer}
+.btm-item{display:flex;flex-direction:column;align-items:center;font-size:10px;gap:2px;color:#606060}
+.btm-item .ic{font-size:22px}
 .upload{background:linear-gradient(90deg,#FF9933,#138808);width:42px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px;font-weight:900}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg" alt="Ashok">
+    <span><span class="b">Bharat</span><span class="f">Flix</span></span>
+  </div>
+  <div class="profile">👤</div>
+</div>
+
+<div class="search-row">
+  <div class="search">🔍 Search on BharatFlix</div>
+  <div class="icon">🎤</div>
+  <div class="icon">🔔</div>
+  <div class="icon">⚙️</div>
+  <button class="install">Install</button>
+</div>
+
+<div class="video">
+  <img class="map-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/India_map_en.svg/800px-India_map_en.svg.png" alt="Bharat Map">
+  <div class="play">▶</div>
+</div>
+
+<div class="info">
+  <div class="title">BharatFlix Aapka Apna Swadeshi Platform 🇮🇳</div>
+  <div class="meta">
+    <div class="b-logo">B</div>
+    <div class="ch-name">
+      <b>BharatFlix Official</b>
+      <span style="color:#606060;font-size:12px">1.2M subscribers • 45K views • 2 days ago</span>
+    </div>
+    <div class="btns">
+      <button class="sub">Subscribe</button>
+      <button class="join">Join</button>
+    </div>
+  </div>
+</div>
+
+<div class="swipe">
+  <div>👍 Like</div><div>👎 12K</div><div>↗️ Share</div><div>⬇️ Download</div><div>🔖 Save</div><div>✂️ Clip</div><div>🙏 Thanks</div><div>💾 Remix</div><div>🚩 Report</div><div>📝 Transcript</div><div>⭐ Super</div><div>⋯ More</div>
+</div>
+<div class="hint">← बायीं तरफ खिसकाओ तो बाकी बटन दिखेंगे</div>
+
+<div class="bottom">
+  <div class="btm-item"><span class="ic">🏠</span>Home</div>
+  <div class="btm-item"><span class="ic">🎬</span>Shorts</div>
+  <div class="btm-item"><div class="upload">+</div>Upload</div>
+  <div class="btm-item"><span class="ic">📺</span>Subscription</div>
+  <div class="btm-item"><span class="ic">👤</span>You</div>
+</div>
+
+</body>
+</html>
