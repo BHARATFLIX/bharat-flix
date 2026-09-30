@@ -110,7 +110,7 @@ document.getElementById('fileInput').onchange=function(){if(this.files[0]){let u
 // इंस्टॉल वाला - अब डायरेक्ट होम स्क्रीन पर जाएगा
 if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
 let dp=null; window.addEventListener('beforeinstallprompt', e=>{e.preventDefault(); dp=e; document.getElementById('installBtn').style.background='#138808';});
-document.getElementById('installBtn').onclick=async()=>{if(dp){dp.prompt(); let r=await dp.userChoice; if(r.outcome==='accepted')document.getElementById('installBtn').innerText='✓ Installed 🇮🇳'; dp=null;}else alert('भैया जी क्रोम के ऊपर 3 बिंदु दबाओ > Install App / Add to Home Screen दबाओ - आपका logo.png वाला लोगो सीधा होम स्क्रीन पर आ जाएगा 🇮🇳');};
+document.getElementById('installBtn').onclick=async()=>{if(dp){dp.prompt(); let r=await dp.userChoice; if(r.outcome==='accepted')document.getElementById('installBtn').innerText='✓ Installed 🇮🇳'; dp=null;}};
 </script>
 </body>
 </html>
