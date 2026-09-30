@@ -78,10 +78,10 @@ function playAd(){video.play(); playBtn.style.display='none'; skipBox.style.disp
 playBtn.onclick=playAd;
 skipBox.onclick=(e)=>{e.stopPropagation(); if(skipBox.innerText.includes('Skip')) skipBox.style.display='none';};
 
-// यूट्यूब जैसे वीडियो की लिस्ट
+// यूट्यूब जैसे वीडियो की लिस्ट - सिर्फ टाइटल बदला है
 let videos=[
  {title:"श्री राम भजन - जय श्री राम 🚩", cat:"धार्मिक", views:"1.2 लाख", thumb:"https://i.ytimg.com/vi/9bZkp7q19f0/hqdefault.jpg", src:"ad-new.mp4"},
- {title:"देसी कॉमेडी - अनुपशहर वाला 😂", cat:"कॉमेडी", views:"89 हजार", thumb:"https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg", src:"ad-new.mp4"},
+ {title:"BharatFlix Aapka Apna Swadeshi Platform 🇮🇳", cat:"स्वदेशी", views:"89 हजार", thumb:"https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg", src:"ad-new.mp4"},
  {title:"भारतफ्लिक्स फिल्म ट्रेलर 🔥", cat:"फिल्म", views:"2.5 लाख", thumb:"https://i.ytimg.com/vi/JGwWNGJdvx8/hqdefault.jpg", src:"ad-new.mp4"},
  {title:"भजन - राधे राधे 🙏", cat:"धार्मिक", views:"56 हजार", thumb:"https://i.ytimg.com/vi/OPf0YbXqDm0/hqdefault.jpg", src:"ad-new.mp4"}
 ];
@@ -98,7 +98,7 @@ function showFeed(){
 showFeed();
 video.addEventListener('ended', ()=>{let n=(videos.findIndex(v=>v.title==document.getElementById('mainTitle').innerText)+1)%videos.length; document.getElementById('mainTitle').innerText=videos[n].title; video.src=videos[n].src; playAd();});
 
-// सारे बटन चालू
+// सारे बटन चालू - यूट्यूब की तरह
 document.getElementById('likeBtn').onclick=function(){this.innerText=this.innerText.includes('Liked')?'👍 Like':'👍 Liked ✓'; this.style.background=this.innerText.includes('Liked')?'#000':'#f2f2f2'; this.style.color=this.innerText.includes('Liked')?'#fff':'#000';};
 document.getElementById('subBtn').onclick=function(){this.innerText=this.innerText.includes('Subscribed')?'Subscribe':'Subscribed ✓';};
 document.getElementById('shareBtn').onclick=()=>{if(navigator.share)navigator.share({url:location.href}); else window.open('https://wa.me/?text='+location.href);};
@@ -107,10 +107,10 @@ document.getElementById('downloadBtn').onclick=()=>{let a=document.createElement
 document.getElementById('uploadBtn').onclick=()=>document.getElementById('fileInput').click();
 document.getElementById('fileInput').onchange=function(){if(this.files[0]){let u=URL.createObjectURL(this.files[0]); videos.unshift({title:this.files[0].name+' - यूजर वीडियो 🇮🇳', cat:'नया', views:'0', thumb:'https://i.ytimg.com/vi/9bZkp7q19f0/hqdefault.jpg', src:u}); showFeed(); video.src=u; playAd();}};
 
-// इंस्टॉल वाला
+// इंस्टॉल वाला - अब डायरेक्ट होम स्क्रीन पर जाएगा
 if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
-let dp=null; window.addEventListener('beforeinstallprompt', e=>{e.preventDefault(); dp=e;});
-document.getElementById('installBtn').onclick=async()=>{if(dp){dp.prompt(); let r=await dp.userChoice; if(r.outcome==='accepted')document.getElementById('installBtn').innerText='✓ Installed'; dp=null;}else alert('क्रोम के तीन बिंदु दबाकर इंस्टॉल ऐप दबाओ भैया जी');};
+let dp=null; window.addEventListener('beforeinstallprompt', e=>{e.preventDefault(); dp=e; document.getElementById('installBtn').style.background='#138808';});
+document.getElementById('installBtn').onclick=async()=>{if(dp){dp.prompt(); let r=await dp.userChoice; if(r.outcome==='accepted')document.getElementById('installBtn').innerText='✓ Installed 🇮🇳'; dp=null;}else alert('भैया जी क्रोम के ऊपर 3 बिंदु दबाओ > Install App / Add to Home Screen दबाओ - आपका logo.png वाला लोगो सीधा होम स्क्रीन पर आ जाएगा 🇮🇳');};
 </script>
 </body>
 </html>
