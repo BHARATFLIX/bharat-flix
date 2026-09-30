@@ -104,13 +104,4 @@ document.getElementById('subBtn').onclick=function(){this.innerText=this.innerTe
 document.getElementById('shareBtn').onclick=()=>{if(navigator.share)navigator.share({url:location.href}); else window.open('https://wa.me/?text='+location.href);};
 document.getElementById('saveBtn').onclick=function(){this.innerText=this.innerText.includes('Saved')?'🔖 Save':'✓ Saved';};
 document.getElementById('downloadBtn').onclick=()=>{let a=document.createElement('a'); a.href='ad-new.mp4'; a.download='BharatFlix.mp4'; a.click();};
-document.getElementById('uploadBtn').onclick=()=>document.getElementById('fileInput').click();
-document.getElementById('fileInput').onchange=function(){if(this.files[0]){let u=URL.createObjectURL(this.files[0]); videos.unshift({title:this.files[0].name+' - यूजर वीडियो 🇮🇳', cat:'नया', views:'0', thumb:'https://i.ytimg.com/vi/9bZkp7q19f0/hqdefault.jpg', src:u}); showFeed(); video.src=u; playAd();}};
-
-// इंस्टॉल वाला - अब डायरेक्ट होम स्क्रीन पर जाएगा
-if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
-let dp=null; window.addEventListener('beforeinstallprompt', e=>{e.preventDefault(); dp=e; document.getElementById('installBtn').style.background='#138808';});
-document.getElementById('installBtn').onclick=async()=>{if(dp){dp.prompt(); let r=await dp.userChoice; if(r.outcome==='accepted')document.getElementById('installBtn').innerText='✓ Installed 🇮🇳'; dp=null;}};
-</script>
-</body>
-</html>
+document.getElementById('uploadBtn').onclick=()=>document.getElementById('fileInput
