@@ -6,6 +6,7 @@
 <title>BharatFlix - Aapka Apna Swadeshi Platform 🇮🇳</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#FF6A00">
+<link rel="icon" href="logo.png">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Roboto,Arial,sans-serif}
 body{max-width:390px;margin:0 auto;background:#fff;padding-bottom:70px;overflow-x:hidden}
@@ -32,7 +33,7 @@ body{max-width:390px;margin:0 auto;background:#fff;padding-bottom:70px;overflow-
 <body>
 
 <div class="header">
-  <div class="logo"><img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg"><span><span class="b">Bharat</span><span class="f">Flix</span></span></div>
+  <div class="logo"><img src="logo.png"><span><span class="b">Bharat</span><span class="f">Flix</span></span></div>
   <div class="profile">👤</div>
 </div>
 
@@ -41,7 +42,7 @@ body{max-width:390px;margin:0 auto;background:#fff;padding-bottom:70px;overflow-
 </div>
 
 <div class="video" id="videoBox">
-  <video id="myVideo" poster="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/India_map_en.svg/800px-India_map_en.svg.png" controls playsinline>
+  <video id="myVideo" poster="logo.png" controls playsinline>
     <source src="ad-new.mp4" type="video/mp4">
   </video>
   <div class="play" id="playBtn">▶</div>
@@ -69,7 +70,6 @@ body{max-width:390px;margin:0 auto;background:#fff;padding-bottom:70px;overflow-
 <input type="file" id="fileInput" accept="video/*" style="display:none">
 
 <script>
-// वीडियो और विज्ञापन - 5 सेकंड बाद हटेगा
 const video=document.getElementById('myVideo');
 const playBtn=document.getElementById('playBtn');
 const skipBox=document.getElementById('skipBox');
@@ -78,7 +78,6 @@ function playAd(){video.play(); playBtn.style.display='none'; skipBox.style.disp
 playBtn.onclick=playAd;
 skipBox.onclick=(e)=>{e.stopPropagation(); if(skipBox.innerText.includes('Skip')) skipBox.style.display='none';};
 
-// यूट्यूब जैसे वीडियो की लिस्ट - सिर्फ टाइटल बदला है
 let videos=[
  {title:"श्री राम भजन - जय श्री राम 🚩", cat:"धार्मिक", views:"1.2 लाख", thumb:"https://i.ytimg.com/vi/9bZkp7q19f0/hqdefault.jpg", src:"ad-new.mp4"},
  {title:"BharatFlix Aapka Apna Swadeshi Platform 🇮🇳", cat:"स्वदेशी", views:"89 हजार", thumb:"https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg", src:"ad-new.mp4"},
@@ -98,7 +97,6 @@ function showFeed(){
 showFeed();
 video.addEventListener('ended', ()=>{let n=(videos.findIndex(v=>v.title==document.getElementById('mainTitle').innerText)+1)%videos.length; document.getElementById('mainTitle').innerText=videos[n].title; video.src=videos[n].src; playAd();});
 
-// सारे बटन चालू - यूट्यूब की तरह
 document.getElementById('likeBtn').onclick=function(){this.innerText=this.innerText.includes('Liked')?'👍 Like':'👍 Liked ✓'; this.style.background=this.innerText.includes('Liked')?'#000':'#f2f2f2'; this.style.color=this.innerText.includes('Liked')?'#fff':'#000';};
 document.getElementById('subBtn').onclick=function(){this.innerText=this.innerText.includes('Subscribed')?'Subscribe':'Subscribed ✓';};
 document.getElementById('shareBtn').onclick=()=>{if(navigator.share)navigator.share({url:location.href}); else window.open('https://wa.me/?text='+location.href);};
@@ -107,10 +105,32 @@ document.getElementById('downloadBtn').onclick=()=>{let a=document.createElement
 document.getElementById('uploadBtn').onclick=()=>document.getElementById('fileInput').click();
 document.getElementById('fileInput').onchange=function(){if(this.files[0]){let u=URL.createObjectURL(this.files[0]); videos.unshift({title:this.files[0].name+' - यूजर वीडियो 🇮🇳', cat:'नया', views:'0', thumb:'https://i.ytimg.com/vi/9bZkp7q19f0/hqdefault.jpg', src:u}); showFeed(); video.src=u; playAd();}};
 
-// इंस्टॉल वाला - अब डायरेक्ट होम स्क्रीन पर जाएगा
-if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
-let dp=null; window.addEventListener('beforeinstallprompt', e=>{e.preventDefault(); dp=e; document.getElementById('installBtn').style.background='#138808';});
-document.getElementById('installBtn').onclick=async()=>{if(dp){dp.prompt(); let r=await dp.userChoice; if(r.outcome==='accepted')document.getElementById('installBtn').innerText='✓ Installed 🇮🇳'; dp=null;}};
+// ✅ सही निर्णय वाला Install - अब डायरेक्ट होम स्क्रीन पर आइकॉन आएगा
+if('serviceWorker' in navigator){ navigator.serviceWorker.register('sw.js'); }
+let deferredPrompt=null;
+const installBtn=document.getElementById('installBtn');
+window.addEventListener('beforeinstallprompt', (e)=>{
+  e.preventDefault();
+  deferredPrompt=e;
+  installBtn.style.display='block';
+  installBtn.style.background='#138808';
+  installBtn.innerText='Install ✓';
+});
+installBtn.addEventListener('click', async ()=>{
+  if(deferredPrompt){
+    deferredPrompt.prompt();
+    const choice=await deferredPrompt.userChoice;
+    if(choice.outcome==='accepted'){
+      installBtn.innerText='✓ Installed 🇮🇳';
+      installBtn.style.background='#138808';
+    }
+    deferredPrompt=null;
+  }else{
+    // अगर पहले से install है या Chrome menu से करना पड़े तो hint
+    alert('भैया जी Chrome के 3 बिंदु > Add to Home screen / Install App दबाओ - आपका logo.png वाला आइकॉन सीधा आ जाएगा 🇮🇳');
+  }
+});
+window.addEventListener('appinstalled', ()=>{ installBtn.innerText='✓ Installed 🇮🇳'; installBtn.style.background='#138808'; });
 </script>
 </body>
 </html>
