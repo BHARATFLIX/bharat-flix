@@ -1,29 +1,23 @@
-// PUBLIC UPLOAD - पूरे इंडिया के लिए
-export async function uploadHDVideo(file) {
+// src/upload.js - FINAL SAFE - BharatFlix
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+
+async function uploadBharatFlixVideo(file) {
+  if (typeof checkVideoSafety === 'function') {
+    let safe = await checkVideoSafety(file);
+    if (!safe) return;
+  }
   try {
-    if (!file) return alert("❌ फाइल नहीं है!");
-
-    // पब्लिक के लिए सेंसर जरूरी है - Skip नहीं होगा
-    if (window.checkVideoSafety) {
-      alert("🔍 वीडियो चेक हो रही है भैया जी...");
-      let safe = await window.checkVideoSafety(file);
-      if (!safe) {
-        alert("❌ ये वीडियो गंदी है, पब्लिक के लिए Block कर दी!");
-        return; // यहीं रोक देंगे
-      }
-    } else {
-      alert("⚠️ सेंसर लोड नहीं हुआ, फिर भी Upload कर रहा हूँ!");
-    }
-
-    if (!window.bunnyUpload) return alert("❌ bunny.js नहीं लगा है!");
-
-    alert("⏳ HD Upload हो रही है: " + file.name);
-    let id = await window.bunnyUpload(file);
-    alert("✅ Live हो गई! पूरी पब्लिक देखेगी! ID: " + id);
-    return id;
-
-  } catch(e) {
-    alert("❌ Fail: " + e.message);
+    alert("Upload हो रहा है भैया जी...");
+    const storage = getStorage();
+    const storageRef = ref(storage, 'videos/' + Date.now() + '_' + file.name);
+    await uploadBytes(storageRef, file);
+    let url = await getDownloadURL(storageRef);
+    alert("✅ हो गया भैया जी!");
+    let player = document.getElementById('v');
+    if(player){ player.src = url; player.play(); }
+    return url;
+  } catch (e) {
+    alert("Fail: " + e.message);
   }
 }
-window.uploadHDVideo = uploadHDVideo;
+window.uploadBharatFlixVideo = uploadBharatFlixVideo;
