@@ -70,7 +70,6 @@ body{max-width:390px;margin:0 auto;background:#fff;padding-bottom:70px;overflow-
 <input type="file" id="fileInput" accept="video/*" style="display:none">
 
 <script>
-// --- VIDEO CODE FIX ---
 const video=document.getElementById('myVideo');
 const playBtn=document.getElementById('playBtn');
 const skipBox=document.getElementById('skipBox');
@@ -111,7 +110,6 @@ skipBox.onclick=(e)=>{
     isAd=false;
     skipBox.style.display='none';
     clearInterval(timer);
-    // Ad खत्म, अब main video चलेगा - यही ad logic है
   }
 };
 
@@ -148,7 +146,6 @@ video.addEventListener('ended', ()=>{
   playAd();
 });
 
-// --- ALL BUTTONS WORK ---
 document.getElementById('likeBtn').onclick=function(){const l=this.innerText.includes('Liked'); this.innerText=l?'👍 Like':'👍 Liked ✓'; this.style.background=l?'#f2f2f2':'#000'; this.style.color=l?'#000':'#fff';};
 document.getElementById('subBtn').onclick=function(){const s=this.innerText.includes('Subscribed'); this.innerText=s?'Subscribe':'Subscribed ✓'; this.style.background=s?'#FF0000':'#606060';};
 document.getElementById('shareBtn').onclick=()=>{if(navigator.share)navigator.share({title:'BharatFlix', url:location.href}); else window.open('https://wa.me/?text='+encodeURIComponent(location.href));};
@@ -160,7 +157,7 @@ document.getElementById('joinBtn').onclick=function(){this.innerText='Joined ✓
 document.getElementById('uploadBtn').onclick=()=>document.getElementById('fileInput').click();
 document.getElementById('fileInput').onchange=function(){if(this.files[0]){let u=URL.createObjectURL(this.files[0]); videos.unshift({title:this.files[0].name+' - यूजर वीडियो 🇮🇳', cat:'नया', views:'अभी', thumb:'https://i.ytimg.com/vi/9bZkp7q19f0/hqdefault.jpg', src:u}); showFeed(); video.src=u; playAd();}};
 
-// --- INSTALL 100% WORK ---
+// --- INSTALL 100% WORK - NO OK DABBA ---
 if('serviceWorker' in navigator){ navigator.serviceWorker.register('sw.js'); }
 let deferredPrompt=null;
 const installBtn=document.getElementById('installBtn');
@@ -179,8 +176,6 @@ installBtn.addEventListener('click', async ()=>{
       installBtn.innerText='✓ Installed 🇮🇳';
     }
     deferredPrompt=null;
-  } else {
-    alert('भैया जी, ऊपर 3 बिंदु ⋮ दबाओ > Add to Home Screen दबाओ, तिरंगा लोगो आ जाएगा 🇮🇳');
   }
 });
 window.addEventListener('appinstalled', ()=>{ installBtn.innerText='✓ Installed 🇮🇳'; installBtn.style.background='#138808'; });
