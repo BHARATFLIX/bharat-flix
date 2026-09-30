@@ -7,6 +7,16 @@
   "theme_color": "#FF6A00",
   "icons": [
     {
+      "src": "apk-icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "apk-icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
       "src": "app-icon.png",
       "sizes": "192x192",
       "type": "image/png"
