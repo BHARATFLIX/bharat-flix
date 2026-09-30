@@ -105,7 +105,7 @@ document.getElementById('downloadBtn').onclick=()=>{let a=document.createElement
 document.getElementById('uploadBtn').onclick=()=>document.getElementById('fileInput').click();
 document.getElementById('fileInput').onchange=function(){if(this.files[0]){let u=URL.createObjectURL(this.files[0]); videos.unshift({title:this.files[0].name+' - यूजर वीडियो 🇮🇳', cat:'नया', views:'0', thumb:'https://i.ytimg.com/vi/9bZkp7q19f0/hqdefault.jpg', src:u}); showFeed(); video.src=u; playAd();}};
 
-// ✅ सही निर्णय वाला Install - अब डायरेक्ट होम स्क्रीन पर आइकॉन आएगा
+// ✅ सही निर्णय वाला Install - अब कोई OK वाला डब्बा नहीं आएगा
 if('serviceWorker' in navigator){ navigator.serviceWorker.register('sw.js'); }
 let deferredPrompt=null;
 const installBtn=document.getElementById('installBtn');
@@ -125,9 +125,6 @@ installBtn.addEventListener('click', async ()=>{
       installBtn.style.background='#138808';
     }
     deferredPrompt=null;
-  }else{
-    // अगर पहले से install है या Chrome menu से करना पड़े तो hint
-    alert('भैया जी Chrome के 3 बिंदु > Add to Home screen / Install App दबाओ - आपका logo.png वाला आइकॉन सीधा आ जाएगा 🇮🇳');
   }
 });
 window.addEventListener('appinstalled', ()=>{ installBtn.innerText='✓ Installed 🇮🇳'; installBtn.style.background='#138808'; });
