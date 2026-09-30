@@ -1,13 +1,23 @@
 {
   "name": "BharatFlix - Aapka Apna Swadeshi Platform",
   "short_name": "BharatFlix",
-  "start_url": ".",
+  "description": "BharatFlix Aapka Apna Swadeshi Video Platform - 100% Made in India 🇮🇳",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#FF6A00",
   "icons": [
-    { "src": "apk-icon.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "apk-icon.png", "sizes": "512x512", "type": "image/png" },
-    { "src": "logo.png", "sizes": "192x192", "type": "image/png" }
+    {
+      "src": "logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
   ]
 }
