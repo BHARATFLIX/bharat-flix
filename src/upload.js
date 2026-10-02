@@ -1,72 +1,38 @@
-// src/upload.js - REAL UPLOAD - BharatFlix Cloudinary
+// src/upload.js - NO PRESET NEEDED - REAL UPLOAD FOR ALL INDIA
 async function uploadBharatFlixVideo(file) {
-  // 1. गंदी वीडियो चेक
-  if (typeof window.checkVideoSafety === 'function') {
-    let safe = await window.checkVideoSafety(file);
-    if (!safe) {
-      alert("❌ ये वीडियो BharatFlix के लायक नहीं है भैया जी!");
-      return null;
-    }
+  if(window.checkVideoSafety){
+    let ok = await window.checkVideoSafety(file);
+    if(!ok){ alert("❌ ये वीडियो नहीं चलेगी भैया जी"); return null; }
   }
 
-  // 2. Cloudinary की असली जानकारी
-  const CLOUD_NAME = "xuwsz3ag";
-  const UPLOAD_PRESET = "bharatflix_public";
-
-  const url = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/video/upload`;
-  
-  const formData = new FormData();
-  formData.append('file', file);
-  formData.append('upload_preset', UPLOAD_PRESET);
-  formData.append('folder', 'bharatflix_videos');
+  let box = document.getElementById('skipBox');
+  if(box){ box.style.display='block'; box.style.background='#FF9933'; box.innerText='⏳ सच में Upload हो रहा है भैया जी...'; }
 
   try {
-    // झूठा alert नहीं, सच का progress
-    let statusBox = document.getElementById('skipBox');
-    if(statusBox){
-        statusBox.style.display = 'block';
-        statusBox.style.background = '#FF9933';
-        statusBox.innerText = '⏳ Upload हो रहा है... 0%';
-    }
+    // ये बिना किसी Preset के काम करता है
+    let form = new FormData();
+    form.append('reqtype', 'fileupload');
+    form.append('fileToUpload', file);
 
-    let response = await fetch(url, {
+    let res = await fetch('https://catbox.moe/user/api.php', {
       method: 'POST',
-      body: formData
+      body: form
     });
 
-    let data = await response.json();
+    let url = await res.text();
     
-    if (data.error) {
-      throw new Error(data.error.message);
-    }
-
-    let videoUrl = data.secure_url;
-    
-    if(statusBox){
-        statusBox.innerText = '✅ हो गया भैया जी! 🇮🇳';
-        setTimeout(()=> statusBox.style.display='none', 2000);
+    if(url.startsWith('https://')){
+      if(box){ box.innerText='✅ हो गया भैया जी 🇮🇳'; setTimeout(()=>box.style.display='none',2000); }
+      let player = document.getElementById('myVideo');
+      if(player){ player.src = url.trim(); player.play(); }
+      alert("✅ वीडियो सच में Upload हो गया भैया जी! अब पूरे भारत में दिखेगा 🇮🇳\n\nLink: " + url);
+      return url.trim();
     } else {
-        alert("✅ वीडियो सच में अपलोड हो गया भैया जी! 🇮🇳");
+      throw new Error(url);
     }
-
-    // Player में चलाओ
-    let player = document.getElementById('myVideo');
-    if(player){ 
-        player.src = videoUrl; 
-        player.play();
-        // Ad बंद करो असली वीडियो के लिए
-        if(window.adPlayed !== undefined) window.adPlayed = true;
-        let playBtn = document.getElementById('playBtn');
-        if(playBtn) playBtn.style.display='none';
-    }
-
-    return videoUrl;
-
-  } catch (e) {
-    console.error(e);
-    alert("❌ Upload Fail: " + e.message + "\n\nभैया जी Cloudinary में जाकर Preset 'bharatflix_public' को Unsigned किया है ना? चेक कर लो।");
-    let statusBox = document.getElementById('skipBox');
-    if(statusBox) statusBox.style.display='none';
+  } catch(e){
+    if(box) box.style.display='none';
+    alert("❌ Error: " + e.message);
     return null;
   }
 }
