@@ -7,12 +7,11 @@ async function uploadBharatFlixVideo(file) {
   if(box){ box.style.display='block'; box.style.background='#FF9933'; box.innerText='⏳ सच में Upload हो रहा है भैया जी...'; }
 
   try {
+    // नया वाला सर्वर जो भारत में चलता है - कोई Proxy नहीं चाहिए
     let form = new FormData();
-    form.append('reqtype', 'fileupload');
-    form.append('fileToUpload', file);
+    form.append('file', file);
 
-    // Proxy लगाके Catbox को Bypass कर रहे हैं
-    let res = await fetch('https://corsproxy.io/?https://catbox.moe/user/api.php', { 
+    let res = await fetch('https://0x0.st', { 
       method: 'POST', 
       body: form 
     });
@@ -31,7 +30,8 @@ async function uploadBharatFlixVideo(file) {
     } else { throw new Error(url); }
   } catch(e){
     if(box) box.style.display='none';
-    alert("❌ Error: " + e.message + "\nकोई छोटी वीडियो (10 sec) Try करो");
+    alert("❌ Error: " + e.message + "\nएक बार पेज Refresh करके 5 sec की छोटी वीडियो Try करो");
+    console.log(e);
     return null;
   }
 }
