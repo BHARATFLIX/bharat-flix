@@ -87,7 +87,6 @@ body{max-width:390px;margin:0 auto;background:#fff;padding-bottom:70px;overflow-
 <div class="btm-item"><span class="ic">👤</span>You</div>
 </div>
 <input type="file" id="fileInput" accept="video/*" style="display:none">
-<!-- 100% YOUTUBE SYSTEM -->
 <script type="module" src="./src/firebase.js"></script>
 <script type="module" src="./src/sensor.js"></script>
 <script type="module" src="./src/upload.js"></script>
@@ -121,19 +120,29 @@ let videos=[
 {title:"भारतफ्लिक्स फिल्म ट्रेलर 🔥", cat:"फिल्म", views:"2.5 लाख", thumb:"https://i.ytimg.com/vi/JGwWNGJdvx8/hqdefault.jpg", src:"ad-new.mp4"},
 {title:"भजन - राधे राधे 🙏", cat:"धार्मिक", views:"56 हजार", thumb:"https://i.ytimg.com/vi/OPf0YbXqDm0/hqdefault.jpg", src:"ad-new.mp4"}
 ];
-function showFeed(){
-const feed=document.getElementById('videoFeed');feed.innerHTML='';
-videos.forEach((v)=>{
-let d=document.createElement('div');d.className='v-card';
-d.innerHTML=`<img src="${v.thumb}"><div class="v-info"><b>${v.title}</b><span>${v.cat} • ${v.views} • भारतफ्लिक्स</span></div>`;
-d.onclick=()=>{
-document.getElementById('mainTitle').innerText=v.title;
-document.getElementById('viewCount').innerText=v.cat+' • '+v.views;
-video.src=v.src;adPlayed=false;playAd();
-window.scrollTo({top:0,behavior:'smooth'});
-};
-feed.appendChild(d);
-});
+async function showFeed(){
+  const feed=document.getElementById('videoFeed');feed.innerHTML='';
+  let cloudVideos = [];
+  if(window.loadBharatFlixVideos){
+    try { cloudVideos = await window.loadBharatFlixVideos(); } catch(e){}
+  }
+  let allVideos = [...cloudVideos,...videos];
+  allVideos.forEach((v)=>{
+    let d=document.createElement('div');d.className='v-card';
+    let thumb = v.thumb || "https://i.ytimg.com/vi/9bZkp7q19f0/hqdefault.jpg";
+    let ch = v.channel || v.cat || "BharatFlix";
+    let vw = v.views || "नया";
+    d.innerHTML=`<img src="${thumb}"><div class="v-info"><b>${v.title}</b><span>${ch} • ${vw} • भारतफ्लिक्स</span></div>`;
+    d.onclick=()=>{
+      document.getElementById('mainTitle').innerText=v.title;
+      document.getElementById('viewCount').innerText=ch+' • '+vw;
+      let player=document.getElementById('myVideo');
+      player.src=v.src || v.url;
+      adPlayed=true;isAd=false;skipBox.style.display='none';player.play();
+      window.scrollTo({top:0,behavior:'smooth'});
+    };
+    feed.appendChild(d);
+  });
 }
 showFeed();
 video.addEventListener('ended', ()=>{
@@ -156,7 +165,7 @@ if(!this.files[0]) return;let file=this.files[0];
 if(window.checkVideoSafety){let ok=await window.checkVideoSafety(file);if(!ok){alert("❌ गंदी वीडियो!");return;}}
 if(window.uploadBharatFlixVideo){
 let url=await window.uploadBharatFlixVideo(file);
-if(url){videos.unshift({title:file.name+' - यूजर वीडियो 🇮🇳', cat:'नया', views:'अभी', thumb:'https://i.ytimg.com/vi/9bZkp7q19f0/hqdefault.jpg', src:url});showFeed();video.src=url;isAd=false;adPlayed=true;skipBox.style.display='none';video.play();}
+if(url){showFeed(); video.src=url;isAd=false;adPlayed=true;skipBox.style.display='none';video.play();}
 }else{let u=URL.createObjectURL(file);videos.unshift({title:file.name+' - यूजर वीडियो 🇮🇳', cat:'नया', views:'अभी', thumb:'https://i.ytimg.com/vi/9bZkp7q19f0/hqdefault.jpg', src:u});showFeed();video.src=u;isAd=false;adPlayed=true;skipBox.style.display='none';video.play();}
 };
 let deferredPrompt=null;
