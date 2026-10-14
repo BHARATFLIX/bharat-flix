@@ -4,13 +4,19 @@ async function uploadBharatFlixVideo(file) {
     if(!ok){ alert("❌ ये वीडियो नहीं चलेगी भैया जी"); return null; }
   }
   let box = document.getElementById('skipBox');
-  if(box){ box.style.display='block'; box.style.background='#FF9933'; box.innerText='⏳ सच में Upload हो रहा है...'; }
+  if(box){ box.style.display='block'; box.style.background='#FF9933'; box.innerText='⏳ सच में Upload हो रहा है भैया जी...'; }
 
   try {
     let form = new FormData();
     form.append('reqtype', 'fileupload');
     form.append('fileToUpload', file);
-    let res = await fetch('https://catbox.moe/user/api.php', { method: 'POST', body: form });
+
+    // Proxy लगाके Catbox को Bypass कर रहे हैं
+    let res = await fetch('https://corsproxy.io/?https://catbox.moe/user/api.php', { 
+      method: 'POST', 
+      body: form 
+    });
+    
     let url = (await res.text()).trim();
     
     if(url.startsWith('https://')){
@@ -25,7 +31,7 @@ async function uploadBharatFlixVideo(file) {
     } else { throw new Error(url); }
   } catch(e){
     if(box) box.style.display='none';
-    alert("❌ Error: " + e.message);
+    alert("❌ Error: " + e.message + "\nकोई छोटी वीडियो (10 sec) Try करो");
     return null;
   }
 }
