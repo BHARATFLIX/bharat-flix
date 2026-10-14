@@ -1,42 +1,57 @@
 async function uploadBharatFlixVideo(file) {
   let box = document.getElementById('skipBox');
-  if(box){ box.style.display='block'; box.style.background='#FF9933'; box.innerText='⏳ सच में Upload हो रहा है भैया जी...'; }
+  if(box){ box.style.display='block'; box.style.background='#FF9933'; box.innerText='⏳ 0% Upload हो रहा है भैया जी...'; }
 
-  try {
+  return new Promise((resolve, reject) => {
     const CLOUD_NAME = "xuwsz3ag";
     const UPLOAD_PRESET = "bharatflix";
-
+    
     let form = new FormData();
     form.append('file', file);
     form.append('upload_preset', UPLOAD_PRESET);
 
-    let res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/video/upload`, {
-      method: 'POST',
-      body: form
-    });
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/video/upload`);
 
-    let data = await res.json();
-    console.log(data);
-    let url = data.secure_url;
+    // यही % चलाएगा
+    xhr.upload.onprogress = function(e) {
+      if(e.lengthComputable){
+        let percent = Math.round((e.loaded / e.total) * 100);
+        if(box) box.innerText = `⏳ ${percent}% Upload हो रहा है भैया जी...`;
+        console.log(percent + "%");
+      }
+    };
 
-    if(!url) throw new Error(data.error?.message || "Preset नहीं बना है");
+    xhr.onload = async function() {
+      try {
+        let data = JSON.parse(xhr.responseText);
+        let url = data.secure_url;
+        if(!url) throw new Error(data.error?.message || "Preset बनाओ");
 
-    if(window.saveToBharatFlixDB){
-      await window.saveToBharatFlixDB({title: file.name, url: url, channel: "BharatFlix User 🇮🇳"});
-    }
+        if(window.saveToBharatFlixDB){
+          await window.saveToBharatFlixDB({title: file.name, url: url, channel: "BharatFlix User 🇮🇳"});
+        }
 
-    if(box){ box.innerText='✅ हो गया भैया जी 🇮🇳'; setTimeout(()=>box.style.display='none',2000); }
-    let player = document.getElementById('myVideo');
-    if(player){ player.src = url; }
+        if(box){ box.innerText='✅ हो गया भैया जी 🇮🇳 ' + '100%'; setTimeout(()=>box.style.display='none',2500); }
+        let player = document.getElementById('myVideo');
+        if(player){ player.src = url; }
 
-    alert("✅ फाइनल हो गया! बिना कार्ड के 🇮🇳\n" + url);
-    return url;
+        alert("✅ हो गया! 🇮🇳\n" + url);
+        resolve(url);
+      } catch(err){
+        if(box) box.style.display='none';
+        alert("❌ " + err.message);
+        reject(null);
+      }
+    };
 
-  } catch(e) {
-    if(box) box.style.display='none';
-    alert("❌ Error: " + e.message + "\nपहले 'bharatflix' नाम का Unsigned Preset बनाओ भैया जी");
-    console.log(e);
-    return null;
-  }
+    xhr.onerror = function(){
+      if(box) box.style.display='none';
+      alert("❌ नेटवर्क Error, फिर से Try करो");
+      reject(null);
+    };
+
+    xhr.send(form);
+  });
 }
 window.uploadBharatFlixVideo = uploadBharatFlixVideo;
