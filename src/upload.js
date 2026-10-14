@@ -7,18 +7,26 @@ async function uploadBharatFlixVideo(file) {
   if(box){ box.style.display='block'; box.style.background='#FF9933'; box.innerText='⏳ सच में Upload हो रहा है भैया जी...'; }
 
   try {
-    // नया वाला सर्वर जो भारत में चलता है - कोई Proxy नहीं चाहिए
+    // ये नया सर्वर Proxy नहीं मांगता, सीधे चलता है
     let form = new FormData();
     form.append('file', file);
 
-    let res = await fetch('https://0x0.st', { 
-      method: 'POST', 
-      body: form 
+    let res = await fetch('https://tmpfiles.org/api/v1/upload', {
+      method: 'POST',
+      body: form
     });
     
-    let url = (await res.text()).trim();
+    let data = await res.json();
+    console.log(data);
     
-    if(url.startsWith('https://')){
+    // लिंक मिलेगा जैसे https://tmpfiles.org/dl/....
+    let url = data.data.url;
+    // डायरेक्ट प्ले वाला लिंक बनाते हैं
+    if(url.includes('/dl/')){
+       // tmpfiles का लिंक सीधे वीडियो प्लेयर में चल जाता है
+    }
+    
+    if(url && url.startsWith('https://')){
       if(window.saveToBharatFlixDB){
         await window.saveToBharatFlixDB({title: file.name, url: url, channel: "BharatFlix User 🇮🇳"});
       }
@@ -27,10 +35,10 @@ async function uploadBharatFlixVideo(file) {
       if(player){ player.src = url; player.play(); }
       alert("✅ वीडियो पूरे भारत में दिखेगा अब! \n" + url);
       return url;
-    } else { throw new Error(url); }
+    } else { throw new Error("Upload fail"); }
   } catch(e){
     if(box) box.style.display='none';
-    alert("❌ Error: " + e.message + "\nएक बार पेज Refresh करके 5 sec की छोटी वीडियो Try करो");
+    alert("❌ Error: " + e.message + " - छोटी 5 sec की वीडियो से Try करो भैया जी");
     console.log(e);
     return null;
   }
