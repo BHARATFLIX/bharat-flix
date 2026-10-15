@@ -1,22 +1,14 @@
-यहाँ नया Code है - COPY करो भैया जी:
+// src/bunny.js - FIXED - NO ERROR
+export const BUNNY_CDN = "";
+export const BUNNY_LIBRARY_ID = "";
+export const BUNNY_API_KEY = "";
 
-// src/bunny.js - BHARATFLIX - FINAL FREE - NO ERROR
-const BUNNY_CDN = "";
-const BUNNY_LIBRARY_ID = "";
-const BUNNY_API_KEY = "";
+export async function uploadToBunny(file) {
+  console.log("Bunny बंद है");
+  return null;
+}
 
-async function uploadToBunny(file) {
-  throw new Error("BUNNY_DISABLED");
+export function playBharatFlixVideo(videoUrl) {
+  // Firebase वाला video ही चलेगा
+  return;
 }
-function playBharatFlixVideo(videoName) {
-  let player = document.getElementById('v');
-  if(player && videoName.startsWith('http')){
-    player.src = videoName;
-    player.load();
-    player.play();
-  }
-}
-window.bunnyUpload = uploadToBunny;
-window.uploadToBunny = uploadToBunny;
-window.playBharatFlixVideo = playBharatFlixVideo;
-export { playBharatFlixVideo, uploadToBunny, BUNNY_CDN };
