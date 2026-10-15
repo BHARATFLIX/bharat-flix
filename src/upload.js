@@ -1,8 +1,14 @@
-window.uploadBharatFlixVideo = function(file){
-  // 100MB से बड़ा है तो रोक दो
+window.uploadBharatFlixVideo = async function(file){
+  // 1. सबसे पहले Sensor Check 🇮🇳
+  if(window.checkVideoSafety){
+    let safe = await window.checkVideoSafety(file);
+    if(!safe) return null; // गंदी Video तो रोको
+  }
+
+  // 2. Size Check - 90MB
   if(file.size > 90 * 1024 * 1024){
     alert('❌ भैया जी वीडियो 90MB से बड़ा है! छोटा वीडियो चुनो 🇮🇳\nअभी: ' + Math.round(file.size/1024/1024) + 'MB');
-    return Promise.resolve(null);
+    return null;
   }
 
   let box = document.getElementById('skipBox');
@@ -15,44 +21,62 @@ window.uploadBharatFlixVideo = function(file){
     
     let xhr = new XMLHttpRequest();
     xhr.open('POST', 'https://api.cloudinary.com/v1_1/xuwsz3ag/video/upload');
-    xhr.timeout = 300000; // 5 मिनट timeout
-
-    let lastLoaded = 0;
-    let stuckTimer = null;
+    xhr.timeout = 300000;
 
     xhr.upload.onprogress = (e)=>{
       if(e.lengthComputable){
         let p = Math.round((e.loaded/e.total)*100);
-        if(box) box.innerText = `⏳ ${p}% हो रहा है... ${Math.round(e.loaded/1024/1024)}MB`;
-        
-        // अगर 20 सेकंड तक आगे नहीं बढ़ा तो फंसा हुआ मानो
-        if(e.loaded > lastLoaded){ lastLoaded = e.loaded; clearTimeout(stuckTimer); 
-          stuckTimer = setTimeout(()=>{ 
-            if(box) box.innerText = '⚠️ नेट slow, फिर से कोशिश...';
-          }, 20000);
-        }
+        if(box) box.innerText = `⏳ ${p}% हो रहा है... ${Math.round(e.loaded/1024/1024)}MB / ${Math.round(e.total/1024/1024)}MB`;
       }
     };
 
-    xhr.onload = ()=>{
-      clearTimeout(stuckTimer);
+    xhr.onload = async ()=>{
       try{
         let d = JSON.parse(xhr.responseText);
         if(d.secure_url){
-          if(box){ box.innerText='✅ 100% हो गया 🇮🇳'; box.style.background='#138808'; box.style.color='#fff'; setTimeout(()=>box.style.display='none',3000); }
-          if(window.saveToBharatFlixDB) window.saveToBharatFlixDB({title:file.name, url:d.secure_url, channel:"BharatFlix", views:"नया"});
-          alert('✅ Save हो गया भैया जी 🇮🇳');
-          resolve(d.secure_url); return;
+          if(box){ box.innerText='✅ 100% Upload, अब Save हो रहा है...'; box.style.background='#138808'; box.style.color='#fff'; }
+          
+          // 3. यहाँ था Error - अब सही कर दिया! FINAL SAVE
+          try {
+            if(window.saveToBharatFlixDB){
+              await window.saveToBharatFlixDB({
+                title: file.name, 
+                url: d.secure_url, 
+                channel: "BharatFlix User 🇮🇳", 
+                views: "नया"
+              });
+              if(box){ box.innerText='✅ FINAL Save हो गया 🇮🇳'; setTimeout(()=>box.style.display='none',3000); }
+              alert('✅ Save हो गया भैया जी 🇮🇳\nFirebase में चला गया!');
+            } else {
+              // अगर Firebase नहीं भी है तो भी Cloudinary URL तो मिला!
+              if(box) box.style.display='none';
+              alert('✅ Video Upload हो गया (Cloudinary) 🇮🇳\nURL: ' + d.secure_url.substring(0,50));
+            }
+          } catch(saveErr){
+            // Save Fail भी हो तो भी Video तो Upload है!
+            console.error("Save Error:", saveErr);
+            if(box) box.style.display='none';
+            alert('⚠️ Video Upload तो हो गया भैया जी! 🇮🇳\nपर Firebase Permission में Error है, Firebase Console में Rule को Allow करो।\n\nVideo URL: ' + d.secure_url);
+          }
+          
+          resolve(d.secure_url); 
+          return;
+        } else {
+          throw new Error("No secure_url");
         }
-      }catch(e){}
-      if(box) box.style.display='none';
-      alert('❌ Error: ' + xhr.responseText.substring(0,400));
-      resolve(null);
+      }catch(e){
+        console.error(e);
+        if(box) box.style.display='none';
+        alert('❌ Error: ' + xhr.responseText.substring(0,400));
+        resolve(null);
+      }
     };
 
-    xhr.ontimeout = ()=>{ if(box) box.style.display='none'; alert('❌ नेट बहुत slow है भैया जी, छोटा वीडियो या WiFi से करो'); resolve(null); };
+    xhr.ontimeout = ()=>{ if(box) box.style.display='none'; alert('❌ नेट बहुत slow है भैया जी, WiFi से करो'); resolve(null); };
     xhr.onerror = ()=>{ if(box) box.style.display='none'; alert('❌ नेटवर्क फेल, फिर से करो'); resolve(null); };
     
     xhr.send(fd);
   });
 }
+
+console.log("BharatFlix Upload FINAL Ready 🇮🇳 - Save Error Fixed");
