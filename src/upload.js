@@ -1,57 +1,40 @@
-async function uploadBharatFlixVideo(file) {
-  let box = document.getElementById('skipBox');
-  if(box){ box.style.display='block'; box.style.background='#FF9933'; box.innerText='⏳ 0% Upload हो रहा है भैया जी...'; }
-
-  return new Promise((resolve, reject) => {
-    const CLOUD_NAME = "xuwsz3ag";
-    const UPLOAD_PRESET = "bharatflix";
-    
-    let form = new FormData();
-    form.append('file', file);
-    form.append('upload_preset', UPLOAD_PRESET);
-
-    let xhr = new XMLHttpRequest();
-    xhr.open('POST', `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/video/upload`);
-
-    // यही % चलाएगा
-    xhr.upload.onprogress = function(e) {
+function uploadBharatFlixVideo(file){
+  let box=document.getElementById('skipBox');
+  if(box){box.style.display='block'; box.style.background='#FF9933'; box.innerText='⏳ 0% से शुरू भैया जी...';}
+  return new Promise((resolve)=>{
+    let fd=new FormData();
+    fd.append('file',file);
+    fd.append('upload_preset','bharatflix');
+    let xhr=new XMLHttpRequest();
+    xhr.open('POST','https://api.cloudinary.com/v1_1/xuwsz3ag/video/upload');
+    xhr.upload.onprogress=(e)=>{
       if(e.lengthComputable){
-        let percent = Math.round((e.loaded / e.total) * 100);
-        if(box) box.innerText = `⏳ ${percent}% Upload हो रहा है भैया जी...`;
-        console.log(percent + "%");
+        let p=Math.round(e.loaded/e.total*100);
+        if(box) box.innerText=`⏳ ${p}% Upload हो रहा है भैया जी...`;
       }
     };
-
-    xhr.onload = async function() {
-      try {
-        let data = JSON.parse(xhr.responseText);
-        let url = data.secure_url;
-        if(!url) throw new Error(data.error?.message || "Preset बनाओ");
-
-        if(window.saveToBharatFlixDB){
-          await window.saveToBharatFlixDB({title: file.name, url: url, channel: "BharatFlix User 🇮🇳"});
+    xhr.onload=()=>{
+      try{
+        let d=JSON.parse(xhr.responseText);
+        if(d.secure_url){
+          let url=d.secure_url;
+          if(window.saveToBharatFlixDB) window.saveToBharatFlixDB({title:file.name,url:url,channel:"BharatFlix"});
+          if(box){box.innerText='✅ 100% हो गया 🇮🇳'; setTimeout(()=>box.style.display='none',3000);}
+          let p=document.getElementById('myVideo'); if(p) p.src=url;
+          alert('✅ हो गया भैया जी 🇮🇳\n'+url);
+          resolve(url); return;
         }
-
-        if(box){ box.innerText='✅ हो गया भैया जी 🇮🇳 ' + '100%'; setTimeout(()=>box.style.display='none',2500); }
-        let player = document.getElementById('myVideo');
-        if(player){ player.src = url; }
-
-        alert("✅ हो गया! 🇮🇳\n" + url);
-        resolve(url);
-      } catch(err){
-        if(box) box.style.display='none';
-        alert("❌ " + err.message);
-        reject(null);
-      }
-    };
-
-    xhr.onerror = function(){
+      }catch(e){}
       if(box) box.style.display='none';
-      alert("❌ नेटवर्क Error, फिर से Try करो");
-      reject(null);
+      alert('❌ Error: '+xhr.responseText.substring(0,200));
+      resolve(null);
     };
-
-    xhr.send(form);
+    xhr.onerror=()=>{
+      if(box) box.style.display='none';
+      alert('❌ नेटवर्क धीमा है, फिर से Try करो');
+      resolve(null);
+    };
+    xhr.send(fd);
   });
 }
-window.uploadBharatFlixVideo = uploadBharatFlixVideo;
+window.uploadBharatFlixVideo=uploadBharatFlixVideo;
