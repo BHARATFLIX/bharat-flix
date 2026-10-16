@@ -4,20 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BharatFlix - Aapka Apna Swadeshi Platform 🇮🇳</title>
-<meta name="description" content="BharatFlix - Bharat Ka Apna Swadeshi Video Platform. FREE Upload, FREE Watch.">
-<link rel="canonical" href="https://bharatflix.github.io/bharat-flix/">
-<meta property="og:title" content="BharatFlix - Aapka Apna Swadeshi Platform">
-<meta property="og:description" content="Bharat Ka Apna YouTube Jaisa Video Platform - BharatFlix">
-<meta property="og:image" content="https://bharatflix.github.io/bharat-flix/logo.png">
-<meta property="og:url" content="https://bharatflix.github.io/bharat-flix/">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="description" content="BharatFlix - Bharat Ka Apna Swadeshi Video Platform">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#FF6A00">
 <link rel="icon" href="logo.png">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Roboto,Arial,sans-serif}
-body{max-width:400px;margin:0 auto;background:#fff;padding-bottom:80px;overflow-x:hidden}
+body{max-width:400px;margin:0 auto;background:#fff;padding-bottom:80px}
 .header{position:sticky;top:0;background:#fff;z-index:1002;display:flex;align-items:center;justify-content:space-between;padding:10px 12px;box-shadow:0 1px 4px rgba(0,0,0,0.12)}
 .logo{display:flex;align-items:center;gap:8px;font-weight:900;font-size:25px}
 .logo img{width:40px;height:40px}
@@ -27,7 +20,7 @@ body{max-width:400px;margin:0 auto;background:#fff;padding-bottom:80px;overflow-
 .search-row{position:sticky;top:52px;z-index:1001;background:#fff;display:flex;align-items:center;gap:6px;padding:8px 10px;box-shadow:0 1px 2px rgba(0,0,0,0.06)}
 .search{flex:1;background:#f2f2f2;border-radius:24px;padding:10px 14px;font-size:14px;color:#606060;cursor:pointer}
 .icon{width:38px;height:38px;background:#f2f2f2;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer}
-.install{padding:9px 16px;background:#0b57d0;color:#fff;border:none;border-radius:22px;font-weight:800;font-size:13px;cursor:pointer}
+.install{padding:9px 16px;background:#0b57d0;color:#fff;border:none;border-radius:22px;font-weight:800;cursor:pointer}
 .credit-one{display:none!important}
 .video-wrap{position:sticky;top:96px;z-index:1000;background:#fff;padding:6px 0 10px 0}
 .video{width:96%;margin:0 auto;aspect-ratio:16/10;background:#000;border-radius:14px;overflow:hidden;position:relative;box-shadow:0 3px 12px rgba(0,0,0,0.25)}
@@ -59,7 +52,6 @@ body{max-width:400px;margin:0 auto;background:#fff;padding-bottom:80px;overflow-
 #workerFormModal{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:400px;height:100%;background:#fff;z-index:20000;display:none;flex-direction:column}
 .modal-header{display:flex;align-items:center;justify-content:space-between;padding:14px;background:linear-gradient(90deg,#FF9933,#138808);color:#fff;font-weight:900}
 #workerFormModal iframe{flex:1;width:100%;border:0}
-.worker-join{background:linear-gradient(90deg,#138808,#0d8a3a);color:#fff;border:2px solid #FF9933;font-weight:900;padding:14px;border-radius:14px;text-align:center;cursor:pointer;margin-top:12px}
 </style>
 </head>
 <body>
@@ -74,9 +66,9 @@ body{max-width:400px;margin:0 auto;background:#fff;padding-bottom:80px;overflow-
   <div class="icon" id="setBtn">⚙️</div>
   <button class="install" id="installBtn">Install</button>
 </div>
-<div class="credit-one"><span>Credit</span><span id="creditText"></span></div>
+<div class="credit-one">FREE CREDIT</div>
 <div id="pop"><div class="pop-box" id="popContent"></div></div>
-<div id="workerFormModal"><div class="modal-header"><span>🇮🇳 WORKER REGISTRATION</span><span id="closeWorker" style="cursor:pointer;background:#fff;color:#000;padding:6px 12px;border-radius:20px">✕</span></div><iframe id="workerIframe" src=""></iframe></div>
+<div id="workerFormModal"><div class="modal-header"><span>🇮🇳 WORKER REGISTRATION</span><span id="closeWorker" style="cursor:pointer;background:#fff;color:#000;padding:6px 12px;border-radius:20px">✕</span></div><iframe id="workerIframe"></iframe></div>
 
 <div class="video-wrap">
   <div class="video" id="videoBox">
@@ -120,52 +112,40 @@ body{max-width:400px;margin:0 auto;background:#fff;padding-bottom:80px;overflow-
 </div>
 
 <input type="file" id="fileInput" accept="video/*" style="display:none">
-<script type="module">
-// SENSOR - पूरी जाँच
-const Censor = {
-  words: ["porn","xxx","nude","sex video","bra","bikini","sexy","fuck","desi bhabhi","chudai","nangi"],
-  check: function(name){
-    let n = name.toLowerCase();
-    for(let w of this.words){ if(n.includes(w)) return {ok:false, msg:"❌ सेंसर: गंदी वीडियो Block है भैया जी"}; }
-    if(name.length < 3) return {ok:false, msg:"❌ नाम बहुत छोटा"};
-    return {ok:true};
-  }
-};
-function toast(t){ let e=document.getElementById('toast'); e.innerText=t; e.style.display='block'; setTimeout(()=>e.style.display='none',3000); }
 
-// YOUTUBE जैसा Category System
-let currentCategory = "bhakti";
-function addFeed(title, url, cat="bhakti"){
-  let f=document.getElementById('videoFeed');
-  let d=document.createElement('div'); d.className='v-card'; d.dataset.cat=cat;
-  d.innerHTML=`<img src="logo.png"><div style="flex:1"><b style="font-size:13px">${title}</b><br><span style="font-size:11px;color:#606060">BharatFlix • ${cat} • भारत में Live 🇮🇳</span></div>`;
-  d.onclick=()=>{
-    let v=document.getElementById('myVideo');
-    v.src=url; v.play();
-    document.getElementById('mainTitle').innerText=title;
-    currentCategory=cat;
-    // Same category ko upar lao - YouTube jaisa
-    filterByCategory(cat);
-    window.scrollTo(0,0);
-  };
-  f.prepend(d);
+<script type="module">
+// ===== SENSOR - पूरी जाँच =====
+const SENSOR_WORDS = ["porn","xxx","nude","sex video","bra","bikini","sexy","fuck","desi bhabhi","chudai","nangi","sexy video","hot girl"];
+function checkSensor(name){
+  let n=name.toLowerCase();
+  for(let w of SENSOR_WORDS){ if(n.includes(w)) return false; }
+  return true;
 }
-function filterByCategory(cat){
-  document.querySelectorAll('.v-card').forEach(c=>{
-    if(c.dataset.cat===cat) c.style.order="-1";
-  });
+
+function toast(t){ let e=document.getElementById('toast'); e.innerText=t; e.style.display='block'; setTimeout(()=>e.style.display='none',3000); }
+function addFeed(title, url){
+  let f=document.getElementById('videoFeed');
+  let d=document.createElement('div'); d.className='v-card';
+  d.innerHTML=`<img src="logo.png"><div style="flex:1"><b style="font-size:13px">${title}</b><br><span style="font-size:11px;color:#606060">BharatFlix • अभी • भारत में Live 🇮🇳</span></div>`;
+  d.onclick=()=>{ let v=document.getElementById('myVideo'); v.src=url; v.play(); document.getElementById('mainTitle').innerText=title; document.getElementById('playBtn').style.display='none'; window.scrollTo(0,0); };
+  f.prepend(d);
 }
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs, query, orderBy, limit } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 const firebaseConfig = { apiKey: "AIzaSyAxxxxxxxxxxxxxxxxxxxxxxxxx", authDomain: "bharatflix-xxxx.firebaseapp.com", projectId: "bharatflix-xxxx", storageBucket: "bharatflix-xxxx.appspot.com", messagingSenderId: "0000000000", appId: "1:000:web:xxxx" };
-let db=null; try{ let app=initializeApp(firebaseConfig); db=getFirestore(app); }catch(e){}
-async function saveToGodam(title, url, cat){ if(!db) return; try{ await addDoc(collection(db,"videos"),{title, url, cat, time:Date.now()}); }catch(e){} }
-async function loadGodam(){ if(!db) return; try{ let q=query(collection(db,"videos"), orderBy("time","desc"), limit(30)); let snap=await getDocs(q); snap.forEach(doc=>{ let d=doc.data(); addFeed(d.title, d.url, d.cat||"bhakti"); }); }catch(e){} }
+let db=null; try{ db=getFirestore(initializeApp(firebaseConfig)); }catch(e){}
+
+// UPLOAD - SENSOR CHECK KE SAATH
+document.getElementById('uploadBtn').onclick=()=>document.getElementById('fileInput').click();
+document.getElementById('fileInput').onchange=e=>{
+  let file=e.target.files[0]; if(!file) return;
+  if(!checkSensor(file.name)){ alert("❌ सेंसर: गंदी वीडियो Block है भैया जी - अच्छी वीडियो डालो 🇮🇳"); return; }
+  if(file.size > 200*1024*1024){ alert("❌ 200MB से बड़ी नहीं"); return; }
+  window.uploadBharatFlixVideo(file);
+};
 
 window.uploadBharatFlixVideo = async function(file){
-  let check = Censor.check(file.name); if(!check.ok){ alert(check.msg); return; }
-  if(file.size > 200*1024*1024){ alert("❌ 200MB से बड़ी नहीं"); return; }
   let v=document.getElementById('myVideo'); let box=document.getElementById('skipBox');
   box.style.display='block'; box.innerText='⏳ Upload...';
   let localUrl = URL.createObjectURL(file);
@@ -179,78 +159,43 @@ window.uploadBharatFlixVideo = async function(file){
       let d=JSON.parse(xhr.responseText);
       if(d.secure_url){
         box.innerText='✅ 100% Live 🇮🇳'; setTimeout(()=>box.style.display='none',2000);
-        await saveToGodam(file.name, d.secure_url, currentCategory);
-        addFeed(file.name, d.secure_url, currentCategory);
-        toast('✅ भारत में Live हो गया 🇮🇳'); v.src=d.secure_url;
+        addFeed(file.name, d.secure_url); toast('✅ भारत में Live हो गया 🇮🇳'); v.src=d.secure_url;
+        if(db){ try{ await addDoc(collection(db,"videos"),{title:file.name, url:d.secure_url, time:Date.now()}); }catch(e){} }
       }
-    }catch(e){ box.style.display='none'; addFeed(file.name, localUrl, currentCategory); }
+    }catch(e){ box.style.display='none'; addFeed(file.name, localUrl); }
   };
-  xhr.onerror=()=>{ box.style.display='none'; addFeed(file.name, localUrl, currentCategory); toast('✅ Local में Save'); };
+  xhr.onerror=()=>{ box.style.display='none'; addFeed(file.name, localUrl); toast('✅ Local में Save'); };
   xhr.send(fd);
 };
 
-document.getElementById('uploadBtn').onclick=()=>document.getElementById('fileInput').click();
-document.getElementById('fileInput').onchange=e=>{ if(e.target.files[0]) window.uploadBharatFlixVideo(e.target.files[0]); };
-document.getElementById('playBtn').onclick=()=>{ document.getElementById('myVideo').play(); document.getElementById('playBtn').style.display='none'; };
+// BUTTONS
+document.getElementById('playBtn').onclick=()=>{document.getElementById('myVideo').play();document.getElementById('playBtn').style.display='none'};
 document.getElementById('myVideo').onpause=()=>document.getElementById('playBtn').style.display='flex';
 document.getElementById('myVideo').onplay=()=>document.getElementById('playBtn').style.display='none';
-
-const pop=document.getElementById('pop'), popContent=document.getElementById('popContent');
-function showPop(h){ popContent.innerHTML=h; pop.style.display='flex'; }
-pop.onclick=e=>{ if(e.target==pop) pop.style.display='none'; };
-
-// SAB BUTTON CHALU
-document.getElementById('likeBtn').onclick=()=>toast('👍 Liked');
-document.getElementById('dislikeBtn').onclick=()=>toast('👎 Disliked');
-document.getElementById('shareBtn').onclick=()=>{ navigator.clipboard.writeText(location.href); toast('🔗 Link Copy'); };
-document.getElementById('downloadBtn').onclick=()=>{ let v=document.getElementById('myVideo'); if(v.currentSrc){ let a=document.createElement('a'); a.href=v.currentSrc; a.download='BharatFlix.mp4'; a.click(); toast('⬇️ Download'); } };
-document.getElementById('saveBtn').onclick=()=>toast('🔖 Saved');
-document.getElementById('clipBtn').onclick=()=>toast('✂️ Clip');
-document.getElementById('thanksBtn').onclick=()=>toast('🙏 Thanks');
-document.getElementById('superThanksBtn').onclick=()=>toast('💖 Super Thanks');
-document.getElementById('remixBtn').onclick=()=>toast('💾 Remix');
-document.getElementById('reportBtn').onclick=()=>toast('🚩 Report भेज दिया');
-document.getElementById('searchBtn').onclick=()=>showPop(`<b>🔍 Search BharatFlix</b><br><br><input id="q" placeholder="जय श्री राम लिखो" style="width:100%;padding:12px;border:2px solid #FF9933;border-radius:12px"><br><br><button onclick="toast('🔍 Search: '+document.getElementById('q').value);pop.style.display='none'" style="background:#FF9933;color:#fff;padding:10px 18px;border:none;border-radius:22px;font-weight:800">Search</button>`);
-document.getElementById('setBtn').onclick=()=>showPop(`<b>⚙️ Settings</b><br><br><div onclick="document.body.style.background=document.body.style.background=='black'?'#fff':'black'; document.body.style.color=document.body.style.background=='black'?'#fff':'#000'; pop.style.display='none'" style="padding:14px;background:#f2f2f2;border-radius:12px;cursor:pointer">🌙 Dark Mode</div><br><div onclick="localStorage.clear();toast('🧹 Cache साफ');setTimeout(()=>location.reload(),800)" style="padding:14px;background:#f2f2f2;border-radius:12px;cursor:pointer">🧹 Cache साफ</div><br><button onclick="pop.style.display='none'" style="width:100%;padding:12px;background:#000;color:#fff;border-radius:12px;border:none">Close</button>`);
-document.getElementById('bellBtn').onclick=()=>toast('🔔 Notification ON');
-document.getElementById('micBtn').onclick=()=>document.getElementById('searchBtn').click();
-
-// PROFILE FREE - JOIN PAID (YouTube jaisa)
-const FINAL_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSemVqI495aFqQ-jpURcTDtR4oxHfIJ4Nn9Sn1_XMG1JhElseQ/viewform?embedded=true";
-function openWorkerForm(){ document.getElementById('workerIframe').src=FINAL_FORM_URL; document.getElementById('workerFormModal').style.display='flex'; pop.style.display='none'; }
-document.getElementById('closeWorker').onclick=()=>{ document.getElementById('workerFormModal').style.display='none'; document.getElementById('workerIframe').src=''; };
-function openProfile(){ showPop(`<b>👤 You - BharatFlix FREE</b><br>Profile से जुड़ना FREE है भैया जी<br><br><div class="worker-join" onclick="openWorkerForm()">📝 Worker Join - FREE</div><br><button onclick="pop.style.display='none'" style="width:100%;padding:12px;background:#000;color:#fff;border-radius:12px;border:none">Close</button>`); }
-document.getElementById('profileBtn').onclick=openProfile;
+const pop=document.getElementById('pop'),popContent=document.getElementById('popContent');
+function showPop(h){popContent.innerHTML=h;pop.style.display='flex'} pop.onclick=e=>{if(e.target==pop)pop.style.display='none'}
+document.getElementById('likeBtn').onclick=()=>toast('👍 Liked'); document.getElementById('dislikeBtn').onclick=()=>toast('👎 Disliked');
+document.getElementById('shareBtn').onclick=()=>{navigator.clipboard.writeText(location.href);toast('🔗 Link Copy')};
+document.getElementById('downloadBtn').onclick=()=>toast('⬇️ Download'); document.getElementById('saveBtn').onclick=()=>toast('🔖 Saved');
+document.getElementById('clipBtn').onclick=()=>toast('✂️ Clip'); document.getElementById('thanksBtn').onclick=()=>toast('🙏 Thanks');
+document.getElementById('superThanksBtn').onclick=()=>toast('💖 Super Thanks'); document.getElementById('remixBtn').onclick=()=>toast('💾 Remix');
+document.getElementById('reportBtn').onclick=()=>toast('🚩 Report');
+document.getElementById('searchBtn').onclick=()=>showPop(`<b>🔍 Search</b><br><br><input id="q" placeholder="जय श्री राम" style="width:100%;padding:12px;border:2px solid #FF9933;border-radius:12px"><br><br><button onclick="toast('🔍 '+document.getElementById('q').value);pop.style.display='none'" style="background:#FF9933;color:#fff;padding:10px 18px;border:none;border-radius:22px;font-weight:800">Search</button>`);
+document.getElementById('setBtn').onclick=()=>showPop(`<b>⚙️ Settings</b><br><br><div onclick="toast('🌙 Dark ON');pop.style.display='none'" style="padding:14px;background:#f2f2f2;border-radius:12px;cursor:pointer">🌙 Dark Mode</div><br><button onclick="pop.style.display='none'" style="width:100%;padding:12px;background:#000;color:#fff;border-radius:12px;border:none">Close</button>`);
+document.getElementById('bellBtn').onclick=()=>toast('🔔 Notification ON'); document.getElementById('micBtn').onclick=()=>document.getElementById('searchBtn').click();
+const FINAL_FORM_URL="https://docs.google.com/forms/d/e/1FAIpQLSemVqI495aFqQ-jpURcTDtR4oxHfIJ4Nn9Sn1_XMG1JhElseQ/viewform?embedded=true";
+function openWorkerForm(){document.getElementById('workerIframe').src=FINAL_FORM_URL;document.getElementById('workerFormModal').style.display='flex';pop.style.display='none'}
+document.getElementById('closeWorker').onclick=()=>{document.getElementById('workerFormModal').style.display='none';document.getElementById('workerIframe').src=''}
+document.getElementById('profileBtn').onclick=()=>showPop(`<b>👤 You - BharatFlix FREE</b><br>Profile से जुड़ना FREE है<br><br><div style="padding:14px;background:#138808;color:#fff;border-radius:12px;text-align:center;font-weight:900;cursor:pointer" onclick="openWorkerForm()">📝 Worker Join - FREE</div><br><button onclick="pop.style.display='none'" style="width:100%;padding:12px;background:#000;color:#fff;border-radius:12px;border:none">Close</button>`);
 document.getElementById('jobsBtn').onclick=openWorkerForm;
-document.getElementById('joinBtn').onclick=()=>{ showPop(`<b>💎 Join - Membership</b><br><br>YouTube जैसा Paid Join<br>Join से जुड़ने पर Support करना होगा<br><br><button onclick="toast('💎 ₹59 Join - Soon');pop.style.display='none'" style="background:#FF9933;color:#fff;padding:12px;width:100%;border:none;border-radius:12px;font-weight:900">₹59 / Month Join</button><br><br><button onclick="toast('💖 ₹99 Super Join');pop.style.display='none'" style="background:#138808;color:#fff;padding:12px;width:100%;border:none;border-radius:12px;font-weight:900">₹99 Super Join</button>`); };
-document.getElementById('subBtn').onclick=function(){ this.innerText=this.innerText=='Subscribe'?'Subscribed ✅':'Subscribe'; toast('✅ '+this.innerText); };
-document.getElementById('homeBtn').onclick=()=>window.scrollTo(0,0);
-document.getElementById('shortsBtn').onclick=()=>toast('🎬 Shorts जल्द आएगा');
-document.getElementById('subsBtn').onclick=()=>toast('📺 Subs');
+document.getElementById('joinBtn').onclick=()=>showPop(`<b>💎 Join - Membership</b><br>Join Paid है<br><br><button onclick="toast('💎 ₹59 Join');pop.style.display='none'" style="background:#FF9933;color:#fff;padding:12px;width:100%;border:none;border-radius:12px;font-weight:900">₹59 / Month</button>`);
+document.getElementById('subBtn').onclick=function(){this.innerText=this.innerText=='Subscribe'?'Subscribed ✅':'Subscribe';toast('✅ '+this.innerText)};
+document.getElementById('homeBtn').onclick=()=>window.scrollTo(0,0); document.getElementById('shortsBtn').onclick=()=>toast('🎬 Shorts जल्द'); document.getElementById('subsBtn').onclick=()=>toast('📺 Subs');
 
-// INSTALL - DIRECT HOME SCREEN - NO JHANJHAT - PLAY STORE JAISA
+// INSTALL DIRECT HOME SCREEN
 let deferredPrompt=null;
-window.addEventListener('beforeinstallprompt', e=>{
-  e.preventDefault();
-  deferredPrompt=e;
-  let btn=document.getElementById('installBtn');
-  btn.innerText='📲 Install App';
-  btn.style.background='#138808';
-});
-document.getElementById('installBtn').onclick=async()=>{
-  if(deferredPrompt){
-    deferredPrompt.prompt();
-    let choice=await deferredPrompt.userChoice;
-    if(choice.outcome=='accepted'){ toast('✅ Home Screen पर आ गया 🇮🇳 App जैसा'); }
-    deferredPrompt=null;
-    document.getElementById('installBtn').innerText='✅ Installed';
-    document.getElementById('installBtn').style.background='#000';
-  } else {
-    toast('✅ Already Installed - Home Screen पर देखो 🇮🇳');
-  }
-};
-
-loadGodam();
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;document.getElementById('installBtn').innerText='📲 Install App';document.getElementById('installBtn').style.background='#138808'});
+document.getElementById('installBtn').onclick=async()=>{if(deferredPrompt){deferredPrompt.prompt();let c=await deferredPrompt.userChoice;if(c.outcome=='accepted')toast('✅ Home Screen पर आ गया 🇮🇳');deferredPrompt=null;document.getElementById('installBtn').innerText='✅ Installed'}else{toast('✅ Home Screen पर देखो 🇮🇳')}}
 </script>
 </body>
 </html>
