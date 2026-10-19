@@ -41,8 +41,6 @@ body{max-width:400px;margin:0 auto;background:#fff;padding-bottom:80px}
 #workerFormModal{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:400px;height:100%;background:#fff;z-index:20000;display:none;flex-direction:column}
 .modal-header{display:flex;align-items:center;justify-content:space-between;padding:14px;background:linear-gradient(90deg,#FF9933,#138808);color:#fff;font-weight:900}
 #workerFormModal iframe{flex:1;width:100%;border:0}
-/* CREDIT LINE FIX */
-.credit-banner,.credit-bar{display:none !important}
 </style>
 </head>
 <body>
@@ -62,7 +60,6 @@ body{max-width:400px;margin:0 auto;background:#fff;padding-bottom:80px}
 <div class="video-wrap"><div class="video"><video id="myVideo" poster="logo.png" controls playsinline preload="metadata"><source src="ad-new.mp4" type="video/mp4"></video><div class="play" id="playBtn">▶</div><div id="skipBox">0%</div><div id="toast"></div></div></div>
 <div class="info"><div class="title" id="mainTitle">BharatFlix Aapka Apna Swadeshi Platform 🇮🇳 - Jay Shree Ram</div><div class="meta"><div class="b-logo">B</div><div class="ch-name"><b>BharatFlix Official</b><br><span style="color:#606060;font-size:12px">1.2M subscribers • 45K views</span></div><div class="btns"><button class="sub" id="subBtn">Subscribe</button><button class="join" id="joinBtn">Join FREE</button></div></div></div>
 <div class="swipe"><div id="likeBtn">👍 15K Like</div><div id="dislikeBtn">👎 12K</div><div id="shareBtn">↗️ Share</div><div id="downloadBtn">⬇️ Download</div><div id="saveBtn">🔖 Save</div><div id="clipBtn">✂️ Clip</div><div id="thanksBtn">🙏 Thanks</div><div id="superThanksBtn">💖 Super Thanks</div><div id="remixBtn">💾 Remix</div><div id="reportBtn">🚩 Report</div></div>
-<!-- CREDIT + SCROLL LINE HATA DI HAI -->
 <div class="feed" id="videoFeed"><div style="text-align:center;padding:20px;color:#888">⏳ पक्के गोदाम से ला रहे हैं... 🇮🇳</div></div>
 <div class="bottom"><div class="btm-item" id="homeBtn">🏠<span>Home</span></div><div class="btm-item" id="shortsBtn">🎬<span>Shorts</span></div><div class="btm-item" id="uploadBtn"><div class="upload">+</div>Upload</div><div class="btm-item" id="subsBtn">📺<span>Subs</span></div><div class="btm-item" id="jobsBtn">💼<span>Jobs</span></div></div>
 <input type="file" id="fileInput" accept="video/*" style="display:none">
@@ -130,17 +127,6 @@ document.getElementById('subBtn').onclick=function(){this.innerText=this.innerTe
 document.getElementById('homeBtn').onclick=()=>window.scrollTo(0,0);document.getElementById('shortsBtn').onclick=()=>toast('🎬 Shorts');document.getElementById('subsBtn').onclick=()=>toast('📺 Subs');
 let deferredPrompt=null;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;document.getElementById('installBtn').innerText='📲 Install App';document.getElementById('installBtn').style.background='#138808';});
 document.getElementById('installBtn').onclick=async()=>{if(deferredPrompt){deferredPrompt.prompt();let c=await deferredPrompt.userChoice;if(c.outcome=='accepted')toast('✅ Home Screen पर आ गया 🇮🇳');deferredPrompt=null;document.getElementById('installBtn').innerText='✅ Installed';}else{toast('Browser Menu > Add to Home Screen दबाओ');}};
-</script>
-<script>
-// FINAL PROTECTION: Credit Account line kabhi nahi dikhegi
-setInterval(()=>{
-  document.querySelectorAll('div,p,span').forEach(el=>{
-    let t = el.innerText||'';
-    if((t.includes('Credit Account') || t.includes('₹ 3 FREE') || t.includes('स्क्रॉल करो')) && el.offsetHeight < 120){
-      el.style.display='none';
-    }
-  });
-}, 1000);
 </script>
 </body>
 </html>
