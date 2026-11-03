@@ -7,7 +7,7 @@
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#FF9933">
 <link rel="icon" href="logo.png">
-<script type="importmap">{"imports":{"firebase/app":"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js","firebase/firestore":"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js","firebase/storage":"https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js"}}</script>
+<script type="importmap">{"imports":{"firebase/app":"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js","firebase/firestore":"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"}}</script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Roboto,Arial,sans-serif}
 body{max-width:400px;margin:0 auto;background:#fff;padding-bottom:80px}
@@ -66,12 +66,10 @@ body{max-width:400px;margin:0 auto;background:#fff;padding-bottom:80px}
 <script type="module">
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, addDoc, getDocs, query, orderBy, serverTimestamp } from 'firebase/firestore';
-import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 
 const firebaseConfig = {apiKey:"AIzaSyCCevL_8GSXw0S7u9ujcrQJmiTfpTn87qE",authDomain:"bharatflix-82578.firebaseapp.com",projectId:"bharatflix-82578",storageBucket:"bharatflix-82578.firebasestorage.app",messagingSenderId:"858704386202",appId:"1:858704386202:web:9cfd17f85b3593d5516723"};
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-const storage = getStorage(app);
 const videosCol = collection(db, "videos");
 
 const SENSOR = ["porn","xxx","nude","sex video","bra","bikini","sexy","fuck","bhabhi","chudai","nangi"];
@@ -97,38 +95,46 @@ loadFromGodam();
 
 document.getElementById('uploadBtn').onclick=()=>document.getElementById('fileInput').click();
 
-document.getElementById('fileInput').onchange=e=>{
-  let file=e.target.files[0];if(!file)return;
+document.getElementById('fileInput').onchange = e => {
+  let file = e.target.files[0]; if(!file) return;
   if(!checkSensor(file.name)){alert("❌ सेंसर: गंदी वीडियो Block");return;}
-  if(file.size>2048*1024*1024){toast("❌ 2GB से बड़ी नहीं");return;}
+  if(file.size > 100*1024*1024){ toast("⚠️ 100MB से बड़ी है, थोड़ी छोटी करो भैया जी"); }
 
-  let v=document.getElementById('myVideo');let box=document.getElementById('skipBox');
-  let localUrl=URL.createObjectURL(file);v.src=localUrl;v.play();document.getElementById('playBtn').style.display='none';
-  document.getElementById('mainTitle').innerText=file.name;box.style.display='block';box.innerText='⏳ पक्के गोदाम में...';
+  let v = document.getElementById('myVideo'); let box = document.getElementById('skipBox');
+  let localUrl = URL.createObjectURL(file); v.src = localUrl; v.play();
+  document.getElementById('playBtn').style.display='none';
+  document.getElementById('mainTitle').innerText = file.name;
+  box.style.display='block'; box.innerText='⏳ 0% भेज रहे हैं...';
 
-  const storageRef = ref(storage, 'bharatflix_videos/' + Date.now() + '_' + file.name);
-  const uploadTask = uploadBytesResumable(storageRef, file);
+  let formData = new FormData();
+  formData.append('file', file);
+  formData.append('upload_preset', 'ml_default');
 
-  uploadTask.on('state_changed',
-    (snapshot)=>{
-      let pct=Math.round((snapshot.bytesTransferred/snapshot.totalBytes)*100);
-      box.innerText=`⏳ ${pct}% पक्के गोदाम में...`;
-    },
-    (error)=>{
-      console.error(error);
-      box.innerText='❌ Error';
-      toast('❌ Fail: '+error.code);
-      if(error.code=='storage/unauthorized'){toast('❌ Firebase Storage Rule खोलो: test mode करो');}
-    },
-    async ()=>{
-      let downloadURL=await getDownloadURL(uploadTask.snapshot.ref);
+  let xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://api.cloudinary.com/v1_1/dwqkvhqwu/video/upload');
+
+  xhr.upload.onprogress = e => {
+    if(e.lengthComputable){
+      let pct = Math.round((e.loaded/e.total)*100);
+      box.innerText = `⏳ ${pct}% पक्के गोदाम में...`;
+    }
+  };
+
+  xhr.onload = async () => {
+    if(xhr.status==200){
+      let res = JSON.parse(xhr.responseText);
+      let downloadURL = res.secure_url;
       box.innerText='✅ Save हो गया 🇮🇳';setTimeout(()=>box.style.display='none',2500);
-      try{await addDoc(videosCol,{title:file.name,url:downloadURL,createdAt:serverTimestamp()});toast('✅ पक्के गोदाम में Save! 🇮🇳');}
-      catch(err){console.error(err);toast('✅ Live - DB Error');}
+      try{ await addDoc(videosCol,{title:file.name,url:downloadURL,createdAt:serverTimestamp()}); toast('✅ पक्के गोदाम में Save! 🇮🇳'); }
+      catch(err){ toast('✅ Live - DB Error'); }
       addFeedUI(file.name,downloadURL,true);
       v.src=downloadURL;
+    }else{
+      box.innerText='❌ Fail'; toast('❌ Error: '+xhr.responseText);
     }
-  );
+  };
+  xhr.onerror = ()=>{ box.innerText='❌ Network Error'; toast('❌ Internet Check करो'); };
+  xhr.send(formData);
 };
 
 document.getElementById('playBtn').onclick=()=>{document.getElementById('myVideo').play();document.getElementById('playBtn').style.display='none'};
@@ -142,7 +148,7 @@ document.getElementById('downloadBtn').onclick=()=>toast('⬇️ Download');docu
 document.getElementById('clipBtn').onclick=()=>toast('✂️ Clip');document.getElementById('thanksBtn').onclick=()=>toast('🙏 Thanks');
 document.getElementById('superThanksBtn').onclick=()=>toast('💖 Super Thanks');document.getElementById('remixBtn').onclick=()=>toast('💾 Remix');
 document.getElementById('reportBtn').onclick=()=>toast('🚩 Report');document.getElementById('searchBtn').onclick=()=>showPop(`<b>🔍 Search</b><br><br><input id="q" placeholder="जय श्री राम" style="width:100%;padding:12px;border:2px solid #FF9933;border-radius:12px"><br><br><button onclick="toast('🔍 '+document.getElementById('q').value);pop.style.display='none'" style="background:#FF9933;color:#fff;padding:10px 18px;border:none;border-radius:22px;font-weight:800">Search</button>`);
-document.getElementById('setBtn').onclick=()=>showPop(`<b>⚙️ Settings</b><br><br><div style="padding:14px;background:#f2f2f2;border-radius:12px">🇮🇳 BharatFlix v3 - Pakka Godam Direct (No Cloudinary) - 2GB Support</div><br><button onclick="pop.style.display='none'" style="width:100%;padding:12px;background:#000;color:#fff;border-radius:12px;border:none">Close</button>`);
+document.getElementById('setBtn').onclick=()=>showPop(`<b>⚙️ Settings</b><br><br><div style="padding:14px;background:#f2f2f2;border-radius:12px">🇮🇳 BharatFlix v3.1 - FREE Cloudinary - 100MB Support</div><br><button onclick="pop.style.display='none'" style="width:100%;padding:12px;background:#000;color:#fff;border-radius:12px;border:none">Close</button>`);
 document.getElementById('bellBtn').onclick=()=>toast('🔔 ON');document.getElementById('micBtn').onclick=()=>document.getElementById('searchBtn').click();
 const FORM="https://docs.google.com/forms/d/e/1FAIpQLSemVqI495aFqQ-jpURcTDtR4oxHfIJ4Nn9Sn1_XMG1JhElseQ/viewform?embedded=true";
 function openWorkerForm(){document.getElementById('workerIframe').src=FORM;document.getElementById('workerFormModal').style.display='flex';pop.style.display='none'}
