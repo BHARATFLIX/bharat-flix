@@ -11,15 +11,14 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Roboto,Arial,sans-serif}
 body{max-width:400px;margin:0 auto;background:#fff;padding-bottom:80px}
-.header{position:sticky;top:0;background:#fff;z-index:1002;display:flex;align-items:center;justify-content:space-between;padding:10px 12px;box-shadow:0 1px 4px rgba(0,0,0,.12)}
-.logo{display:flex;align-items:center;gap:8px;font-weight:900;font-size:24px}.logo img{width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid #FF9933;background:#fff}
+.header{position:sticky;top:0;background:#fff;z-index:1002;display:flex;align-items:center;justify-content:space-between;padding:7px 8px;gap:6px;box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.logo{display:flex;align-items:center;gap:6px;font-weight:900;font-size:18px;flex-shrink:0}.logo img{width:38px;height:38px;border-radius:50%;object-fit:cover;border:2px solid #FF9933;background:#fff}
 .b{color:#FF9933}.f{color:#138808}
-.profile{width:38px;height:38px;border-radius:50%;background:#eee;display:flex;align-items:center;justify-content:center;border:1px solid #ddd;cursor:pointer}
-.search-row{position:sticky;top:52px;z-index:1001;background:#fff;display:flex;align-items:center;gap:6px;padding:8px 10px}
-.search{flex:1;background:#f2f2f2;border-radius:24px;padding:10px 14px;font-size:14px;color:#606060;cursor:pointer}
-.icon{width:38px;height:38px;background:#f2f2f2;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer}
-.install{padding:9px 16px;background:#0b57d0;color:#fff;border:none;border-radius:22px;font-weight:800;cursor:pointer}
-/* VIDEO PLAYER - FINAL CLEAN - NO BLACK BAR - NO CROP - BALANCED */
+.search{flex:1;background:#f2f2f2;border-radius:20px;padding:8px 10px;font-size:12px;color:#606060;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.icon{width:32px;height:32px;background:#f2f2f2;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
+.install{padding:7px 10px;background:#0b57d0;color:#fff;border:none;border-radius:18px;font-weight:800;font-size:11px;cursor:pointer;white-space:nowrap;flex-shrink:0}
+.profile{width:32px;height:32px;border-radius:50%;background:#eee;display:flex;align-items:center;justify-content:center;border:1px solid #ddd;cursor:pointer;flex-shrink:0}
+/* VIDEO PLAYER - FINAL CLEAN */
 .video-wrap{position:relative;background:#fff;padding:6px 0 8px 0;z-index:999}
 .video{width:100%;margin:0 auto;background:#000;border-radius:14px;overflow:hidden;position:relative;box-shadow:0 3px 12px rgba(0,0,0,.25);aspect-ratio:16/9;max-height:60vh;min-height:220px;transition:all 0.3s ease}
 .video video{width:100%;height:100%;display:block;background:#000;object-fit:contain;object-position:center}
@@ -32,7 +31,7 @@ body{max-width:400px;margin:0 auto;background:#fff;padding-bottom:80px}
 .ch-name{flex:1;font-size:13px;line-height:1.2}
 .btns{display:flex;gap:6px}.btns button{padding:8px 14px;border-radius:22px;border:none;font-weight:800;font-size:12px;cursor:pointer}
 .sub{background:#FF0000;color:#fff}.join{background:#000;color:#fff}
-.category-bar{display:flex;gap:8px;overflow-x:auto;padding:10px 12px;scrollbar-width:none;background:#fff;border-bottom:1px solid #eee;position:sticky;top:88px;z-index:998}
+.category-bar{display:flex;gap:8px;overflow-x:auto;padding:10px 12px;scrollbar-width:none;background:#fff;border-bottom:1px solid #eee;position:sticky;top:52px;z-index:998}
 .category-bar::-webkit-scrollbar{display:none}
 .category-bar div{flex:0 0 auto;background:#f2f2f2;border-radius:8px;padding:7px 14px;font-size:12px;font-weight:800;white-space:nowrap;cursor:pointer;border:1px solid #e5e5e5}
 .category-bar div.active{background:#0f0f0f;color:#fff;border-color:#000}
@@ -46,15 +45,15 @@ body{max-width:400px;margin:0 auto;background:#fff;padding-bottom:80px}
 </style>
 </head>
 <body>
+
 <div class="header">
   <div class="logo"><img src="logo.png?v=v16-500" alt="BharatFlix"><span><span class="b">Bharat</span><span class="f">Flix</span></span></div>
-  <div class="profile" id="profileBtn">👤</div>
-</div>
-<div class="search-row">
-  <div class="search" id="searchBtn">🔍 Search on BharatFlix</div>
+  <div class="search" id="searchBtn">🔍 Search</div>
   <div class="icon" id="setBtn">⚙️</div>
   <button class="install" id="installBtn">Install</button>
+  <div class="profile" id="profileBtn">👤</div>
 </div>
+
 <div id="pop"><div class="pop-box" id="popContent"></div></div>
 <div class="video-wrap"><div class="video" id="videoBox"><video id="myVideo" poster="logo.png?v=v16-500" controls playsinline preload="metadata"><source src="ad-new.mp4" type="video/mp4"></video><div class="play" id="playBtn">▶</div><div id="skipBox"></div><div id="toast"></div></div></div>
 <div class="info"><div class="title" id="mainTitle">BharatFlix Aapka Apna Swadeshi Platform 🇮🇳 - Jay Shree Ram</div><div class="meta"><div class="b-logo">B</div><div class="ch-name"><b>BharatFlix Official</b><br><span style="color:#606060;font-size:12px">1.2M subscribers • 45K views</span></div><div class="btns"><button class="sub" id="subBtn">Subscribe</button><button class="join" id="joinBtn">Join</button></div></div></div>
@@ -123,28 +122,21 @@ document.getElementById('categoryBar').onclick = e=>{
     toast('📂 '+currentCat);
   }
 };
-
-// UPLOAD - FINAL v16 - 500MB READY - NO POPUP ERROR
 document.getElementById('uploadBtn').onclick=()=>document.getElementById('fileInput').click();
 document.getElementById('fileInput').onchange=async e=>{
   let file=e.target.files[0]; if(!file) return;
-  
-  // 500MB TAK ALLOW - CODE READY
   if(file.size>500*1024*1024){
     alert('⚠️ 500MB से बड़ी है!\nSize: '+(file.size/1024/1024).toFixed(1)+' MB\n\nछोटी वीडियो चुनो');
     e.target.value=''; return;
   }
-
   let clean=file.name.replace(/\.[^/.]+$/, "");
   let title=prompt("📝 टाइटल लिखो:", clean);
   if(title===null){e.target.value=''; return;}
   if(!title.trim()) title=clean;
-  
   let v=document.getElementById('myVideo'),box=document.getElementById('skipBox');
   document.getElementById('mainTitle').innerText="⏳ "+title+" भेज रहे हैं...";
   box.style.display='block'; box.innerText='⏳ भेज रहे हैं... 0%';
   document.getElementById('playBtn').style.display='none';
-  
   try{
     const name=Date.now()+'_'+file.name.replace(/[^a-zA-Z0-9.]/g,'_');
     box.innerText='⏳ 30% पक्के गोदाम...';
@@ -165,7 +157,7 @@ document.getElementById('fileInput').onchange=async e=>{
   }catch(err){
     if(err.message.includes('exceeded')){
       box.innerHTML='❌ Size Lock!<br><span style="font-size:10px">Supabase 50MB पर है</span>';
-      alert('❌ Supabase में अभी 50MB Lock है!\n\nआपका वीडियो: '+(file.size/1024/1024).toFixed(1)+' MB\n\nजाओ:\nsupabase.co > Storage > videos > Edit bucket > File size limit में 524288000 लिखो और Save करो\n\nफिर यही कोड 500MB तक लेगा!');
+      alert('❌ Supabase में अभी 50MB Lock है!\n\nआपका वीडियो: '+(file.size/1024/1024).toFixed(1)+' MB\n\nजाओ:\nsupabase.co > Storage > videos > Edit bucket > File size limit में 524288000 लिखो और Save करो');
     }else{
       box.innerText='❌ '+err.message;
     }
@@ -174,8 +166,6 @@ document.getElementById('fileInput').onchange=async e=>{
   }
   e.target.value='';
 };
-
-// VIDEO AUTO SIZE - CLEAN - NO BLACK BAR - NO CROP - BALANCED
 let mainVideo=document.getElementById('myVideo'),videoBox=document.getElementById('videoBox');
 mainVideo.addEventListener('loadedmetadata',function(){
   let w=this.videoWidth,h=this.videoHeight;
@@ -200,13 +190,13 @@ document.getElementById('dislikeBtn').onclick=()=>toast('👎 12K');
 document.getElementById('shareBtn').onclick=()=>{navigator.clipboard.writeText(location.href);toast('🔗 Copied')};
 document.getElementById('saveBtn').onclick=()=>toast('🔖 Saved');
 document.getElementById('searchBtn').onclick=()=>showPop(`<b>🔍 Search</b><br><br><input id="q" placeholder="जय श्री राम" style="width:100%;padding:12px;border:2px solid #FF9933;border-radius:12px"><br><br><button onclick="let qq=document.getElementById('q').value.toLowerCase();let found=allVideos.filter(v=>v.title.toLowerCase().includes(qq));if(found.length>0){allVideos=found;currentCat='All';renderVideos();toast('🔍 '+qq)}else toast('नहीं मिला');pop.style.display='none'" style="background:#FF9933;color:#fff;padding:10px 18px;border:none;border-radius:22px;font-weight:800">Search</button> <button onclick="location.reload()" style="padding:10px 14px;border:none;border-radius:22px">Reset</button>`);
-document.getElementById('setBtn').onclick=()=>showPop(`<b>⚙️ BharatFlix v16 FINAL</b><br><br>✅ Player CLEAN - No Black Bar<br>✅ No Crop - सर नहीं कटेगा<br>✅ Balanced - नीचे लिस्ट दिखेगी<br>✅ Upload 500MB Ready<br><br><button onclick="pop.style.display='none'" style="width:100%;padding:12px;background:#000;color:#fff;border-radius:12px;border:none">Close</button>`);
+document.getElementById('setBtn').onclick=()=>showPop(`<b>⚙️ BharatFlix v17 COMPACT</b><br><br>✅ Header YouTube जैसा - 1 लाइन में<br>✅ जगह बच गई - Video बड़ा दिखेगा<br>✅ Upload 500MB Ready<br><br><button onclick="pop.style.display='none'" style="width:100%;padding:12px;background:#000;color:#fff;border-radius:12px;border:none">Close</button>`);
 document.getElementById('profileBtn').onclick=()=>showPop(`<b>👤 You</b><br><br><div style="padding:14px;background:#138808;color:#fff;border-radius:12px;text-align:center;font-weight:900">🇮🇳 BharatFlix User</div><br><button onclick="pop.style.display='none'" style="width:100%;padding:12px;background:#000;color:#fff;border-radius:12px;border:none">Close</button>`);
 document.getElementById('homeBtn').onclick=()=>window.scrollTo(0,0);
 document.getElementById('shortsBtn').onclick=()=>toast('🎬 Shorts Coming Soon');
 document.getElementById('subsBtn').onclick=()=>toast('📺 Subs');
 document.getElementById('jobsBtn').onclick=()=>toast('💼 Jobs - Soon');
-let deferredPrompt=null;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;document.getElementById('installBtn').innerText='📲 Install App';document.getElementById('installBtn').style.background='#138808';});
+let deferredPrompt=null;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;document.getElementById('installBtn').innerText='Install';document.getElementById('installBtn').style.background='#138808';});
 document.getElementById('installBtn').onclick=async()=>{if(deferredPrompt){deferredPrompt.prompt();let c=await deferredPrompt.userChoice;if(c.outcome=='accepted')toast('✅ Home Screen पर आ गया 🇮🇳');deferredPrompt=null;document.getElementById('installBtn').innerText='✅ Installed';}else{toast('Browser Menu > Add to Home Screen दबाओ');}};
 document.getElementById('joinBtn').onclick=()=>showPop(`<b>Join BharatFlix 💎</b><br><br><button onclick="toast('💎 ₹59 Join Soon');pop.style.display='none'" style="background:#FF9933;color:#fff;padding:12px;width:100%;border:none;border-radius:12px;font-weight:900">₹59 / Month - Coming Soon</button>`);
 document.getElementById('subBtn').onclick=function(){this.innerText=this.innerText=='Subscribe'?'Subscribed ✅':'Subscribe';toast('✅ '+this.innerText)};
