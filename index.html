@@ -20,8 +20,8 @@ body{max-width:400px;margin:0 auto;background:#fff;padding-bottom:80px}
 .icon{width:38px;height:38px;background:#f2f2f2;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer}
 .install{padding:9px 16px;background:#0b57d0;color:#fff;border:none;border-radius:22px;font-weight:800;cursor:pointer}
 .video-wrap{position:sticky;top:96px;z-index:1000;background:#fff;padding:6px 0 10px 0}
-.video{width:96%;margin:0 auto;aspect-ratio:16/10;background:#000;border-radius:14px;overflow:hidden;position:relative;box-shadow:0 3px 12px rgba(0,0,0,.25)}
-.video video{width:100%;height:100%;object-fit:cover;display:block}
+.video{width:100%;margin:0 auto;aspect-ratio:16/9;background:#000;border-radius:14px;overflow:hidden;position:relative;box-shadow:0 3px 12px rgba(0,0,0,.25);min-height:230px}
+.video video{width:100%;height:100%;object-fit:contain;display:block;background:#000}
 .play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:70px;height:70px;background:rgba(0,0,0,.85);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:28px;z-index:2;cursor:pointer}
 #skipBox{position:absolute;bottom:12px;right:12px;background:rgba(0,0,0,.9);color:#fff;padding:8px 12px;border-radius:8px;font-size:13px;display:none;z-index:5}
 #toast{position:absolute;bottom:14px;left:12px;background:rgba(0,0,0,.8);color:#fff;padding:7px 12px;border-radius:8px;font-size:12px;display:none;z-index:3;max-width:75%}
@@ -92,13 +92,10 @@ document.getElementById('fileInput').onchange = async e => {
   let file = e.target.files[0]; if(!file) return;
   if(!checkSensor(file.name)){alert("❌ सेंसर: गंदी वीडियो Block");return;}
   if(file.size > 500*1024*1024){ toast("⚠️ 500MB से बड़ी है भैया जी"); return; }
-
   let v = document.getElementById('myVideo'); let box = document.getElementById('skipBox');
-  // *** FIX: अब लोकल वीडियो चलने नहीं लगेगा, सिर्फ अपलोड होगा ***
   document.getElementById('mainTitle').innerText = "⏳ अपलोड हो रहा है: " + file.name;
   box.style.display='block'; box.innerText='⏳ 0% भेज रहे हैं...';
   document.getElementById('playBtn').style.display='none';
-
   try{
     const name = Date.now()+'_'+file.name.replace(/[^a-zA-Z0-9.]/g,'_');
     box.innerText='⏳ 30% पक्के गोदाम में भेज रहे हैं...';
@@ -116,7 +113,7 @@ document.getElementById('fileInput').onchange = async e => {
     v.src=downloadURL; v.play();
     document.getElementById('mainTitle').innerText = file.name + " ✅";
   }catch(err){
-    box.innerText='❌ Fail: ' + err.message; toast('❌ Error: '+err.message + ' - Supabase में videos bucket Public बनाओ');
+    box.innerText='❌ Fail: ' + err.message; toast('❌ Error: '+err.message);
   }
 };
 document.getElementById('playBtn').onclick=()=>{document.getElementById('myVideo').play();document.getElementById('playBtn').style.display='none'};
@@ -130,7 +127,7 @@ document.getElementById('downloadBtn').onclick=()=>toast('⬇️ Download');docu
 document.getElementById('clipBtn').onclick=()=>toast('✂️ Clip');document.getElementById('thanksBtn').onclick=()=>toast('🙏 Thanks');
 document.getElementById('superThanksBtn').onclick=()=>toast('💖 Super Thanks');document.getElementById('remixBtn').onclick=()=>toast('💾 Remix');
 document.getElementById('reportBtn').onclick=()=>toast('🚩 Report');document.getElementById('searchBtn').onclick=()=>showPop(`<b>🔍 Search</b><br><br><input id="q" placeholder="जय श्री राम" style="width:100%;padding:12px;border:2px solid #FF9933;border-radius:12px"><br><br><button onclick="toast('🔍 '+document.getElementById('q').value);pop.style.display='none'" style="background:#FF9933;color:#fff;padding:10px 18px;border:none;border-radius:22px;font-weight:800">Search</button>`);
-document.getElementById('setBtn').onclick=()=>showPop(`<b>⚙️ Settings</b><br><br><div style="padding:14px;background:#f2f2f2;border-radius:12px">🇮🇳 BharatFlix v5.0 - Logo Fixed + Upload Fixed</div><br><button onclick="pop.style.display='none'" style="width:100%;padding:12px;background:#000;color:#fff;border-radius:12px;border:none">Close</button>`);
+document.getElementById('setBtn').onclick=()=>showPop(`<b>⚙️ Settings</b><br><br><div style="padding:14px;background:#f2f2f2;border-radius:12px">🇮🇳 BharatFlix v5.1 - Video Big Size Fixed</div><br><button onclick="pop.style.display='none'" style="width:100%;padding:12px;background:#000;color:#fff;border-radius:12px;border:none">Close</button>`);
 document.getElementById('bellBtn').onclick=()=>toast('🔔 ON');document.getElementById('micBtn').onclick=()=>document.getElementById('searchBtn').click();
 const FORM="https://docs.google.com/forms/d/e/1FAIpQLSemVqI495aFqQ-jpURcTDtR4oxHfIJ4Nn9Sn1_XMG1JhElseQ/viewform?embedded=true";
 function openWorkerForm(){document.getElementById('workerIframe').src=FORM;document.getElementById('workerFormModal').style.display='flex';pop.style.display='none'}
