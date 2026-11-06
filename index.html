@@ -4,56 +4,79 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BharatFlix 🇮🇳</title>
+<link rel="icon" href="logo.png">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Roboto,Arial,sans-serif}
-body{max-width:400px;margin:0 auto;background:#fff;padding-bottom:80px}
-.header{position:sticky;top:0;background:#fff;z-index:1002;display:flex;align-items:center;gap:6px;padding:7px 8px;box-shadow:0 1px 4px rgba(0,0,0,.12)}
-.logo{display:flex;align-items:center;gap:5px;font-weight:900;font-size:18px;flex-shrink:0}
-.logo img{width:36px;height:36px;border-radius:50%;border:2px solid #FF9933}
-.b{color:#FF9933}.f{color:#138808}
-.search{flex:1;background:#f2f2f2;border-radius:20px;padding:8px 10px;font-size:12px;color:#606060;cursor:pointer;min-width:0}
-.icon{width:32px;height:32px;background:#f2f2f2;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
-.profile{width:32px;height:32px;border-radius:50%;background:#eee;display:flex;align-items:center;justify-content:center;border:1px solid #ddd;cursor:pointer;flex-shrink:0}
-.install{padding:7px 10px;background:#0b57d0;color:#fff;border:none;border-radius:18px;font-weight:800;cursor:pointer;flex-shrink:0;font-size:11px}
-.video-wrap{position:sticky;top:48px;z-index:1000;background:#fff;padding:6px 0 10px 0}
-.video{width:96%;margin:0 auto;aspect-ratio:16/10;background:#000;border-radius:14px;overflow:hidden;position:relative}
+body{max-width:480px;margin:0 auto;background:#fff;padding-bottom:85px}
+.header{position:sticky;top:0;background:#fff;z-index:1002;display:flex;align-items:center;gap:7px;padding:8px 10px;box-shadow:0 1px 4px rgba(0,0,0,.12);flex-wrap:nowrap}
+.logo{display:flex;align-items:center;gap:5px;font-weight:900;font-size:19px;flex-shrink:0;cursor:pointer}
+.logo img{width:38px;height:38px;border-radius:50%;border:2px solid #FF9933;background:#fff;object-fit:cover}
+.b{color:#FF9933;text-shadow:1px 1px 0 #000}.f{color:#138808;text-shadow:1px 1px 0 #000}
+.search{flex:1;background:#f2f2f2;border-radius:20px;padding:9px 12px;font-size:13px;color:#606060;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.icon{width:34px;height:34px;background:#f2f2f2;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;font-size:16px}
+.profile{width:34px;height:34px;border-radius:50%;background:#eee;display:flex;align-items:center;justify-content:center;border:1px solid #ddd;cursor:pointer;flex-shrink:0;font-size:16px}
+.install{padding:8px 14px;background:#0b57d0;color:#fff;border:none;border-radius:20px;font-weight:800;cursor:pointer;flex-shrink:0;font-size:12px;white-space:nowrap}
+.video-wrap{position:sticky;top:50px;z-index:1000;background:#fff;padding:6px 0 10px 0}
+.video{width:96%;margin:0 auto;aspect-ratio:16/10;background:#000;border-radius:14px;overflow:hidden;position:relative;box-shadow:0 3px 12px rgba(0,0,0,.25)}
 .video video{width:100%;height:100%;object-fit:cover;display:block}
 .play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:70px;height:70px;background:rgba(0,0,0,.85);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:28px;z-index:2;cursor:pointer}
 #skipBox{position:absolute;bottom:12px;right:12px;background:rgba(0,0,0,.9);color:#fff;padding:8px 12px;border-radius:8px;font-size:13px;display:none;z-index:5}
-#toast{position:absolute;bottom:14px;left:12px;background:rgba(0,0,0,.8);color:#fff;padding:7px 12px;border-radius:8px;font-size:12px;display:none;z-index:3}
-.info{padding:10px 14px}.title{font-size:16px;font-weight:700}
+#toast{position:absolute;bottom:14px;left:12px;background:rgba(0,0,0,.85);color:#fff;padding:7px 12px;border-radius:8px;font-size:12px;display:none;z-index:3;max-width:75%}
+.info{padding:10px 14px}.title{font-size:16px;font-weight:700;line-height:1.3}
 .meta{display:flex;align-items:center;gap:10px;margin-top:10px}
-.b-logo{width:40px;height:40px;background:linear-gradient(135deg,#FF9933,#138808);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900}
-.ch-name{flex:1;font-size:13px}
+.b-logo{width:40px;height:40px;background:linear-gradient(135deg,#FF9933,#138808);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:18px}
+.ch-name{flex:1;font-size:13px;line-height:1.2}
 .btns{display:flex;gap:6px}.btns button{padding:8px 16px;border-radius:22px;border:none;font-weight:800;font-size:12px;cursor:pointer}
 .sub{background:#FF0000;color:#fff}.join{background:#000;color:#fff}
-.swipe{display:flex;gap:8px;overflow-x:auto;padding:12px}.swipe div{flex:0 0 auto;background:#f2f2f2;border-radius:22px;padding:9px 14px;font-size:12px;font-weight:700;white-space:nowrap;cursor:pointer}
+.swipe{display:flex;gap:8px;overflow-x:auto;padding:12px;scrollbar-width:none}.swipe::-webkit-scrollbar{display:none}
+.swipe div{flex:0 0 auto;background:#f2f2f2;border-radius:22px;padding:9px 14px;font-size:12px;font-weight:700;white-space:nowrap;cursor:pointer;border:1px solid #e5e5e5}
 .feed{padding:8px}.v-card{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid #eee;cursor:pointer}.v-card video{width:168px;height:94px;border-radius:12px;object-fit:cover;background:#000}
-.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:400px;background:#fff;border-top:1px solid #ddd;display:flex;justify-content:space-around;padding:8px 0;z-index:999}
-.btm-item{display:flex;flex-direction:column;align-items:center;font-size:11px;color:#606060;cursor:pointer}
-.upload{background:linear-gradient(90deg,#FF9933,#138808);width:46px;height:34px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;font-weight:900}
-#pop{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:400px;height:100%;background:rgba(0,0,0,.75);z-index:10000;display:none;align-items:center;justify-content:center}
-.pop-box{background:#fff;width:90%;border-radius:18px;padding:18px}
+.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:#fff;border-top:1px solid #ddd;display:flex;justify-content:space-around;padding:8px 0;z-index:999}
+.btm-item{display:flex;flex-direction:column;align-items:center;font-size:11px;color:#606060;cursor:pointer;gap:2px}.upload{background:linear-gradient(90deg,#FF9933,#138808);width:50px;height:36px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;font-weight:900}
+#pop{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;height:100%;background:rgba(0,0,0,.75);z-index:10000;display:none;align-items:center;justify-content:center}
+.pop-box{background:#fff;width:90%;border-radius:18px;padding:18px;max-height:85%;overflow-y:auto}
+#workerFormModal{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;height:100%;background:#fff;z-index:20000;display:none;flex-direction:column}
+.modal-header{display:flex;align-items:center;justify-content:space-between;padding:14px;background:linear-gradient(90deg,#FF9933,#138808);color:#fff;font-weight:900}
+#workerFormModal iframe{flex:1;width:100%;border:0}
 </style>
 </head>
 <body>
 <div class="header">
-  <div class="logo"><img src="logo.png?v=final"><span><span class="b">Bharat</span><span class="f">Flix</span></span></div>
-  <div class="search" id="searchBtn">🔍 Search</div>
+  <div class="logo"><img src="logo.png?v=final" alt="logo"><span><span class="b">Bharat</span><span class="f">Flix</span></span></div>
+  <div class="search" id="searchBtn">🔍 Se...</div>
   <div class="icon" id="micBtn">🎤</div>
   <div class="icon" id="bellBtn">🔔</div>
   <div class="icon" id="setBtn">⚙️</div>
   <button class="install" id="installBtn">Install</button>
   <div class="profile" id="profileBtn">👤</div>
 </div>
+
 <div id="pop"><div class="pop-box" id="popContent"></div></div>
-<div class="video-wrap"><div class="video"><video id="myVideo" poster="logo.png" controls playsinline preload="metadata"></video><div class="play" id="playBtn">▶</div><div id="skipBox"></div><div id="toast"></div></div></div>
-<div class="info"><div class="title" id="mainTitle">BharatFlix Aapka Apna Swadeshi Platform 🇮🇳</div><div class="meta"><div class="b-logo">B</div><div class="ch-name"><b>BharatFlix Official</b><br><span style="color:#606060;font-size:12px">1.2M • 45K views</span></div><div class="btns"><button class="sub" id="subBtn">Subscribe</button><button class="join" id="joinBtn">Join FREE</button></div></div></div>
-<div class="swipe"><div id="likeBtn">👍 15K Like</div><div id="dislikeBtn">👎 12K</div><div id="shareBtn">↗️ Share</div><div id="downloadBtn">⬇️ Download</div></div>
-<div class="feed" id="videoFeed"><div style="text-align:center;padding:20px;color:#888">⏳ ला रहे हैं... 🇮🇳</div></div>
+<div id="workerFormModal"><div class="modal-header"><span>🇮🇳 WORKER REGISTRATION</span><span id="closeWorker" style="cursor:pointer;background:#fff;color:#000;padding:6px 12px;border-radius:20px">✕</span></div><iframe id="workerIframe"></iframe></div>
+
+<div class="video-wrap"><div class="video"><video id="myVideo" poster="logo.png?v=final" controls playsinline preload="metadata"></video><div class="play" id="playBtn">▶</div><div id="skipBox">0%</div><div id="toast"></div></div></div>
+
+<div class="info"><div class="title" id="mainTitle">BharatFlix Aapka Apna Swadeshi Platform 🇮🇳 - Jay Shree Ram</div><div class="meta"><div class="b-logo">B</div><div class="ch-name"><b>BharatFlix Official</b><br><span style="color:#606060;font-size:12px">1.2M subscribers • 45K views</span></div><div class="btns"><button class="sub" id="subBtn">Subscribe</button><button class="join" id="joinBtn">Join FREE</button></div></div></div>
+
+<div class="swipe">
+<div id="likeBtn">👍 15K Like</div>
+<div id="dislikeBtn">👎 12K</div>
+<div id="shareBtn">↗️ Share</div>
+<div id="downloadBtn">⬇️ Download</div>
+<div id="saveBtn">🔖 Save</div>
+<div id="clipBtn">✂️ Clip</div>
+<div id="thanksBtn">🙏 Thanks</div>
+<div id="superThanksBtn">💖 Super Thanks</div>
+<div id="remixBtn">💾 Remix</div>
+<div id="reportBtn">🚩 Report</div>
+</div>
+
+<div class="feed" id="videoFeed"><div style="text-align:center;padding:20px;color:#888">⏳ पक्के गोदाम से ला रहे हैं... 🇮🇳</div></div>
+
 <div class="bottom"><div class="btm-item" id="homeBtn">🏠<span>Home</span></div><div class="btm-item" id="shortsBtn">🎬<span>Shorts</span></div><div class="btm-item" id="uploadBtn"><div class="upload">+</div>Upload</div><div class="btm-item" id="subsBtn">📺<span>Subs</span></div><div class="btm-item" id="jobsBtn">💼<span>Jobs</span></div></div>
 <input type="file" id="fileInput" accept="video/*" style="display:none">
+
 <script>
 const SUPA_URL = "https://dvaawuhwetwmmziucyow.supabase.co";
 const SUPA_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR2YWF3dWh3ZXR3bW16aXVjeW93Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM3MjM2NDcsImV4cCI6MjEwOTI5OTY0N30.2tqmnZbn_4_LKSet1JPKdTNKpzgy6y_i03V_AajCktI";
@@ -61,62 +84,91 @@ const supa = supabase.createClient(SUPA_URL, SUPA_KEY);
 function toast(t){let e=document.getElementById('toast');e.innerText=t;e.style.display='block';setTimeout(()=>e.style.display='none',3500);}
 function addFeedUI(title,url,isNew=false){
   let f=document.getElementById('videoFeed');
-  if(f.innerHTML.includes('ला रहे'))f.innerHTML="";
+  if(f.innerHTML.includes('पक्के गोदाम से'))f.innerHTML="";
   let d=document.createElement('div');d.className='v-card';
-  d.innerHTML=`<video src="${url}" muted preload="metadata"></video><div style="flex:1"><b style="font-size:13px">${title}</b><br><span style="font-size:11px;color:#138808;font-weight:700">● पक्का गोदाम ✅</span></div>`;
+  d.innerHTML='<video src="'+url+'" muted preload="metadata"></video><div style="flex:1"><b style="font-size:13px">'+title+'</b><br><span style="font-size:11px;color:#138808;font-weight:700">● पक्का गोदाम ✅</span><br><span style="font-size:11px;color:#606060">BharatFlix • Live</span></div>';
   d.onclick=()=>{let v=document.getElementById('myVideo');v.src=url;v.play();document.getElementById('mainTitle').innerText=title;document.getElementById('playBtn').style.display='none';window.scrollTo(0,0);};
   if(isNew)f.prepend(d);else f.appendChild(d);
 }
 async function loadFromGodam(){
-  const {data,error} = await supa.from('videos').select('*').order('created_at',{ascending:false});
-  if(error){document.getElementById('videoFeed').innerHTML=error.message;return;}
-  if(!data || data.length==0){document.getElementById('videoFeed').innerHTML=`<div style="text-align:center;padding:30px"><b>स्वागत!</b><br><button onclick="document.getElementById('uploadBtn').click()" style="background:linear-gradient(90deg,#FF9933,#138808);color:#fff;border:none;padding:12px 24px;border-radius:24px;font-weight:900;margin-top:10px">+ पहली वीडियो डालो</button></div>`;return;}
-  document.getElementById('videoFeed').innerHTML="";data.forEach(r=>{if(r.video_url)addFeedUI(r.title,r.video_url);});
+  try{
+    const {data,error} = await supa.from('videos').select('*').order('created_at',{ascending:false});
+    if(error) throw error;
+    if(!data || data.length==0){document.getElementById('videoFeed').innerHTML='<div style="text-align:center;padding:30px"><p style="font-size:40px">🇮🇳</p><b>BharatFlix में स्वागत!</b><p style="font-size:12px;color:#888">पहली वीडियो डालो</p><br><button onclick="document.getElementById(\'uploadBtn\').click()" style="background:linear-gradient(90deg,#FF9933,#138808);color:#fff;border:none;padding:12px 24px;border-radius:24px;font-weight:900">+ पहली वीडियो डालो</button></div>';return;}
+    document.getElementById('videoFeed').innerHTML="";data.forEach(row=>{if(row.video_url)addFeedUI(row.title,row.video_url);});
+  }catch(e){document.getElementById('videoFeed').innerHTML='<div style="text-align:center;padding:20px">🇮🇳 पक्का गोदाम तैयार! Error: '+e.message+'</div>';}
 }
 loadFromGodam();
 document.getElementById('uploadBtn').onclick=()=>document.getElementById('fileInput').click();
 document.getElementById('fileInput').onchange = async e => {
   let file = e.target.files[0]; if(!file) return;
   let v = document.getElementById('myVideo'); let box = document.getElementById('skipBox');
+  document.getElementById('mainTitle').innerText = "⏳ अपलोड हो रहा है: " + file.name;
   box.style.display='block'; box.innerText='⏳ 0% भेज रहे हैं...';
   document.getElementById('playBtn').style.display='none';
-  document.getElementById('mainTitle').innerText = "⏳ अपलोड: "+file.name;
   try{
     const name = Date.now()+'_'+file.name.replace(/[^a-zA-Z0-9.]/g,'_');
-    box.innerText='⏳ 50% गोदाम में भेज रहे हैं...';
+    box.innerText='⏳ 50% पक्के गोदाम में...';
     const {error: upErr} = await supa.storage.from('videos').upload(name, file);
     if(upErr) throw upErr;
     box.innerText='⏳ 80% लिंक बना रहे हैं...';
     const {data: urlData} = supa.storage.from('videos').getPublicUrl(name);
     const downloadURL = urlData.publicUrl;
-    box.innerText='⏳ 95% DB में सेव कर रहे हैं...';
-    // FIXED: सिर्फ 2 column भेज रहे हैं - telegram_id हटाया!
+    box.innerText='⏳ 95% सेव...';
     const {error: dbErr} = await supa.from('videos').insert([{title: file.name, video_url: downloadURL}]);
     if(dbErr) throw dbErr;
-    box.innerText='✅ हो गया! 🇮🇳';setTimeout(()=>box.style.display='none',3000);
-    toast('✅ Save हो गया! 🇮🇳');
+    box.innerText='✅ Save हो गया! 🇮🇳';setTimeout(()=>box.style.display='none',3000);
+    toast('✅ Save! 🇮🇳');
     addFeedUI(file.name,downloadURL,true);
     v.src=downloadURL; v.play();
-    document.getElementById('mainTitle').innerText = file.name + " ✅ पक्का गोदाम में!";
-  }catch(err){
-    box.innerText='❌ '+err.message;
-    toast('❌ '+err.message);
-  }
+    document.getElementById('mainTitle').innerText = file.name + " ✅";
+  }catch(err){box.innerText='❌ '+err.message;toast('❌ '+err.message);}
 };
 document.getElementById('playBtn').onclick=()=>{document.getElementById('myVideo').play();document.getElementById('playBtn').style.display='none'};
 document.getElementById('myVideo').onpause=()=>document.getElementById('playBtn').style.display='flex';
 document.getElementById('myVideo').onplay=()=>document.getElementById('playBtn').style.display='none';
 const pop=document.getElementById('pop'),popContent=document.getElementById('popContent');
 function showPop(h){popContent.innerHTML=h;pop.style.display='flex'}pop.onclick=e=>{if(e.target==pop)pop.style.display='none'}
-document.getElementById('searchBtn').onclick=()=>showPop(`<b>Search</b><br>काम कर रहा है`);
-document.getElementById('setBtn').onclick=()=>showPop(`<b>Fix v7</b><br>telegram_id column हटाया, अब चलेगा`);
-document.getElementById('bellBtn').onclick=()=>toast('🔔 ON');
+document.getElementById('likeBtn').onclick=()=>toast('👍 Liked 15K');
+document.getElementById('dislikeBtn').onclick=()=>toast('👎 12K Dislike');
+document.getElementById('shareBtn').onclick=()=>{navigator.clipboard.writeText(location.href);toast('🔗 Link Copied!')};
+document.getElementById('downloadBtn').onclick=()=>toast('⬇️ Download शुरू...');
+document.getElementById('saveBtn').onclick=()=>toast('🔖 Save हो गया!');
+document.getElementById('clipBtn').onclick=()=>toast('✂️ Clip बनाओ');
+document.getElementById('thanksBtn').onclick=()=>toast('🙏 Thanks!');
+document.getElementById('superThanksBtn').onclick=()=>toast('💖 Super Thanks ₹50');
+document.getElementById('remixBtn').onclick=()=>toast('💾 Remix बनाओ');
+document.getElementById('reportBtn').onclick=()=>toast('🚩 Report किया');
+const FORM="https://docs.google.com/forms/d/e/1FAIpQLSemVqI495aFqQ-jpURcTDtR4oxHfIJ4N9Sn1_XMG1JhElseQ/viewform?embedded=true";
+function openWorkerForm(){document.getElementById('workerIframe').src=FORM;document.getElementById('workerFormModal').style.display='flex';pop.style.display='none'}
+document.getElementById('closeWorker').onclick=()=>{document.getElementById('workerFormModal').style.display='none';document.getElementById('workerIframe').src=''}
+document.getElementById('searchBtn').onclick=()=>showPop('<b>🔍 Search</b><br><br><input id="q" placeholder="जय श्री राम" style="width:100%;padding:12px;border:2px solid #FF9933;border-radius:12px"><br><br><button onclick="toast(\'🔍 \'+document.getElementById(\'q\').value);pop.style.display=\'none\'" style="background:#FF9933;color:#fff;padding:10px 18px;border:none;border-radius:22px;font-weight:800">Search</button>');
+document.getElementById('setBtn').onclick=()=>showPop('<div style="padding:14px;background:#f2f2f2;border-radius:12px">🇮🇳 BharatFlix v10<br>✅ Install बटन वापस चालू<br>✅ सारे बटन वापस<br>✅ telegram_id हटाया</div><br><button onclick="pop.style.display=\'none\'" style="width:100%;padding:12px;background:#000;color:#fff;border-radius:12px;border:none">Close</button>');
+document.getElementById('bellBtn').onclick=()=>toast('🔔 Notification ON');
 document.getElementById('micBtn').onclick=()=>document.getElementById('searchBtn').click();
-document.getElementById('profileBtn').onclick=()=>showPop(`<b>👤 You FREE</b>`);
-document.getElementById('jobsBtn').onclick=()=>toast('💼 Jobs');
-document.getElementById('subBtn').onclick=function(){this.innerText=this.innerText=='Subscribe'?'Subscribed ✅':'Subscribe'};
-document.getElementById('homeBtn').onclick=()=>window.scrollTo(0,0);
-document.getElementById('installBtn').onclick=()=>toast('Add to Home Screen');
+document.getElementById('profileBtn').onclick=()=>showPop('<b>👤 You - FREE</b><br>Profile FREE है<br><br><div style="padding:14px;background:#138808;color:#fff;border-radius:12px;text-align:center;font-weight:900;cursor:pointer" onclick="openWorkerForm()">📝 Worker Join - FREE</div><br><button onclick="pop.style.display=\'none\'" style="width:100%;padding:12px;background:#000;color:#fff;border-radius:12px;border:none">Close</button>');
+document.getElementById('jobsBtn').onclick=openWorkerForm;
+document.getElementById('joinBtn').onclick=()=>showPop('<b>Join</b><br><br><button onclick="toast(\'💎 ₹59 Join\');pop.style.display=\'none\'" style="background:#FF9933;color:#fff;padding:12px;width:100%;border:none;border-radius:12px;font-weight:900">₹59 / Month - Join</button>');
+document.getElementById('subBtn').onclick=function(){this.innerText=this.innerText=='Subscribe'?'Subscribed ✅':'Subscribe';toast('✅ '+this.innerText)};
+document.getElementById('homeBtn').onclick=()=>window.scrollTo(0,0);document.getElementById('shortsBtn').onclick=()=>toast('🎬 Shorts जल्दी आएगा');document.getElementById('subsBtn').onclick=()=>toast('📺 Subs');
+let deferredPrompt=null;
+window.addEventListener('beforeinstallprompt',e=>{
+  e.preventDefault();deferredPrompt=e;
+  let btn=document.getElementById('installBtn');
+  btn.innerText='📲 Install';btn.style.background='#138808';btn.style.display='block';
+  toast('📲 Install बटन चालू! दबाओ!');
+});
+document.getElementById('installBtn').onclick=async()=>{
+  if(deferredPrompt){
+    deferredPrompt.prompt();
+    let c=await deferredPrompt.userChoice;
+    if(c.outcome=='accepted')toast('✅ Home Screen पर आ गया 🇮🇳 जय श्री राम');
+    deferredPrompt=null;
+    document.getElementById('installBtn').innerText='✅ Installed';
+  }else{
+    toast('ऊपर 3 बिंदु ⋮ > Add to Home Screen > Install दबाओ');
+    showPop('<b>📲 Install कैसे करें?</b><br><br>1. ऊपर Browser में 3 बिंदु (⋮) दबाओ<br>2. Add to Home Screen / Install App दबाओ<br>3. Install दबाओ<br><br>फिर App बन जाएगा 🇮🇳');
+  }
 };
 </script>
 </body>
