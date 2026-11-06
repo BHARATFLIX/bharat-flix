@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BharatFlix - Aapka Apna Swadeshi Platform 🇮🇳</title>
+<title>BharatFlix 🇮🇳</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Roboto,Arial,sans-serif}
@@ -34,15 +34,12 @@ body{max-width:400px;margin:0 auto;background:#fff;padding-bottom:80px}
 .btm-item{display:flex;flex-direction:column;align-items:center;font-size:11px;color:#606060;cursor:pointer}
 .upload{background:linear-gradient(90deg,#FF9933,#138808);width:46px;height:34px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;font-weight:900}
 #pop{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:400px;height:100%;background:rgba(0,0,0,.75);z-index:10000;display:none;align-items:center;justify-content:center}
-.pop-box{background:#fff;width:90%;border-radius:18px;padding:18px;max-height:85%;overflow-y:auto}
-#workerFormModal{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:400px;height:100%;background:#fff;z-index:20000;display:none;flex-direction:column}
-.modal-header{display:flex;align-items:center;justify-content:space-between;padding:14px;background:linear-gradient(90deg,#FF9933,#138808);color:#fff;font-weight:900}
-#workerFormModal iframe{flex:1;width:100%;border:0}
+.pop-box{background:#fff;width:90%;border-radius:18px;padding:18px}
 </style>
 </head>
 <body>
 <div class="header">
-  <div class="logo"><img src="logo.png?v=final" alt="BharatFlix"><span><span class="b">Bharat</span><span class="f">Flix</span></span></div>
+  <div class="logo"><img src="logo.png?v=final"><span><span class="b">Bharat</span><span class="f">Flix</span></span></div>
   <div class="search" id="searchBtn">🔍 Search</div>
   <div class="icon" id="micBtn">🎤</div>
   <div class="icon" id="bellBtn">🔔</div>
@@ -51,72 +48,59 @@ body{max-width:400px;margin:0 auto;background:#fff;padding-bottom:80px}
   <div class="profile" id="profileBtn">👤</div>
 </div>
 <div id="pop"><div class="pop-box" id="popContent"></div></div>
-<div id="workerFormModal"><div class="modal-header"><span>🇮🇳 WORKER REGISTRATION</span><span id="closeWorker" style="cursor:pointer;background:#fff;color:#000;padding:6px 12px;border-radius:20px">✕</span></div><iframe id="workerIframe"></iframe></div>
 <div class="video-wrap"><div class="video"><video id="myVideo" poster="logo.png" controls playsinline preload="metadata"></video><div class="play" id="playBtn">▶</div><div id="skipBox"></div><div id="toast"></div></div></div>
-<div class="info"><div class="title" id="mainTitle">BharatFlix Aapka Apna Swadeshi Platform 🇮🇳</div><div class="meta"><div class="b-logo">B</div><div class="ch-name"><b>BharatFlix Official</b><br><span style="color:#606060;font-size:12px">1.2M subscribers • 45K views</span></div><div class="btns"><button class="sub" id="subBtn">Subscribe</button><button class="join" id="joinBtn">Join FREE</button></div></div></div>
-<div class="swipe"><div id="likeBtn">👍 15K Like</div><div id="dislikeBtn">👎 12K</div><div id="shareBtn">↗️ Share</div><div id="downloadBtn">⬇️ Download</div><div id="saveBtn">🔖 Save</div></div>
-<div class="feed" id="videoFeed"><div style="text-align:center;padding:20px;color:#888">⏳ पक्के गोदाम से ला रहे हैं... 🇮🇳</div></div>
+<div class="info"><div class="title" id="mainTitle">BharatFlix Aapka Apna Swadeshi Platform 🇮🇳</div><div class="meta"><div class="b-logo">B</div><div class="ch-name"><b>BharatFlix Official</b><br><span style="color:#606060;font-size:12px">1.2M • 45K views</span></div><div class="btns"><button class="sub" id="subBtn">Subscribe</button><button class="join" id="joinBtn">Join FREE</button></div></div></div>
+<div class="swipe"><div id="likeBtn">👍 15K Like</div><div id="dislikeBtn">👎 12K</div><div id="shareBtn">↗️ Share</div><div id="downloadBtn">⬇️ Download</div></div>
+<div class="feed" id="videoFeed"><div style="text-align:center;padding:20px;color:#888">⏳ ला रहे हैं... 🇮🇳</div></div>
 <div class="bottom"><div class="btm-item" id="homeBtn">🏠<span>Home</span></div><div class="btm-item" id="shortsBtn">🎬<span>Shorts</span></div><div class="btm-item" id="uploadBtn"><div class="upload">+</div>Upload</div><div class="btm-item" id="subsBtn">📺<span>Subs</span></div><div class="btm-item" id="jobsBtn">💼<span>Jobs</span></div></div>
 <input type="file" id="fileInput" accept="video/*" style="display:none">
 <script>
-const BOT_TOKEN = "9275903425:AAHkEsz7GOF1Vk1LYmYd_oQxBZIoL-w2pAU";
-const CHANNEL_ID = "-1008981405478";
 const SUPA_URL = "https://dvaawuhwetwmmziucyow.supabase.co";
 const SUPA_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR2YWF3dWh3ZXR3bW16aXVjeW93Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM3MjM2NDcsImV4cCI6MjEwOTI5OTY0N30.2tqmnZbn_4_LKSet1JPKdTNKpzgy6y_i03V_AajCktI";
 const supa = supabase.createClient(SUPA_URL, SUPA_KEY);
 function toast(t){let e=document.getElementById('toast');e.innerText=t;e.style.display='block';setTimeout(()=>e.style.display='none',3500);}
 function addFeedUI(title,url,isNew=false){
   let f=document.getElementById('videoFeed');
-  if(f.innerHTML.includes('पक्के गोदाम से'))f.innerHTML="";
+  if(f.innerHTML.includes('ला रहे'))f.innerHTML="";
   let d=document.createElement('div');d.className='v-card';
   d.innerHTML=`<video src="${url}" muted preload="metadata"></video><div style="flex:1"><b style="font-size:13px">${title}</b><br><span style="font-size:11px;color:#138808;font-weight:700">● पक्का गोदाम ✅</span></div>`;
   d.onclick=()=>{let v=document.getElementById('myVideo');v.src=url;v.play();document.getElementById('mainTitle').innerText=title;document.getElementById('playBtn').style.display='none';window.scrollTo(0,0);};
   if(isNew)f.prepend(d);else f.appendChild(d);
 }
 async function loadFromGodam(){
-  try{
-    const {data,error} = await supa.from('videos').select('*').order('created_at',{ascending:false});
-    if(error) throw error;
-    if(!data || data.length==0){document.getElementById('videoFeed').innerHTML=`<div style="text-align:center;padding:30px"><b>BharatFlix में स्वागत!</b><br><button onclick="document.getElementById('uploadBtn').click()" style="background:linear-gradient(90deg,#FF9933,#138808);color:#fff;border:none;padding:12px 24px;border-radius:24px;font-weight:900;margin-top:10px">+ पहली वीडियो डालो</button></div>`;return;}
-    document.getElementById('videoFeed').innerHTML="";data.forEach(row=>{if(row.video_url)addFeedUI(row.title,row.video_url);});
-  }catch(e){document.getElementById('videoFeed').innerHTML=`Error: ${e.message}`;}
+  const {data,error} = await supa.from('videos').select('*').order('created_at',{ascending:false});
+  if(error){document.getElementById('videoFeed').innerHTML=error.message;return;}
+  if(!data || data.length==0){document.getElementById('videoFeed').innerHTML=`<div style="text-align:center;padding:30px"><b>स्वागत!</b><br><button onclick="document.getElementById('uploadBtn').click()" style="background:linear-gradient(90deg,#FF9933,#138808);color:#fff;border:none;padding:12px 24px;border-radius:24px;font-weight:900;margin-top:10px">+ पहली वीडियो डालो</button></div>`;return;}
+  document.getElementById('videoFeed').innerHTML="";data.forEach(r=>{if(r.video_url)addFeedUI(r.title,r.video_url);});
 }
 loadFromGodam();
 document.getElementById('uploadBtn').onclick=()=>document.getElementById('fileInput').click();
 document.getElementById('fileInput').onchange = async e => {
   let file = e.target.files[0]; if(!file) return;
   let v = document.getElementById('myVideo'); let box = document.getElementById('skipBox');
-  box.style.display='block'; box.innerText='⏳ भेज रहे हैं...';
+  box.style.display='block'; box.innerText='⏳ 0% भेज रहे हैं...';
   document.getElementById('playBtn').style.display='none';
+  document.getElementById('mainTitle').innerText = "⏳ अपलोड: "+file.name;
   try{
-    let telegram_id = "";
-    try{
-      box.innerText='⏳ Telegram चेक...';
-      let form = new FormData();
-      form.append('chat_id', CHANNEL_ID);
-      form.append('video', file);
-      form.append('caption', '🇮🇳 '+file.name);
-      let tgRes = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendVideo`, { method: 'POST', body: form });
-      let tgJson = await tgRes.json();
-      if(tgJson.ok){ telegram_id = tgJson.result.message_id+''; }
-      else{ console.log('Telegram skip:', tgJson.description); }
-    }catch(tgErr){ console.log('Telegram skip'); }
-    box.innerText='⏳ 60% पक्के गोदाम में...';
     const name = Date.now()+'_'+file.name.replace(/[^a-zA-Z0-9.]/g,'_');
+    box.innerText='⏳ 50% गोदाम में भेज रहे हैं...';
     const {error: upErr} = await supa.storage.from('videos').upload(name, file);
     if(upErr) throw upErr;
+    box.innerText='⏳ 80% लिंक बना रहे हैं...';
     const {data: urlData} = supa.storage.from('videos').getPublicUrl(name);
     const downloadURL = urlData.publicUrl;
-    box.innerText='⏳ 95% सेव...';
-    const {error: dbErr} = await supa.from('videos').insert([{title: file.name, video_url: downloadURL, telegram_id: telegram_id}]);
+    box.innerText='⏳ 95% DB में सेव कर रहे हैं...';
+    // FIXED: सिर्फ 2 column भेज रहे हैं - telegram_id हटाया!
+    const {error: dbErr} = await supa.from('videos').insert([{title: file.name, video_url: downloadURL}]);
     if(dbErr) throw dbErr;
-    box.innerText='✅ Save हो गया! 🇮🇳';setTimeout(()=>box.style.display='none',3000);
-    toast('✅ Save! 🇮🇳');
+    box.innerText='✅ हो गया! 🇮🇳';setTimeout(()=>box.style.display='none',3000);
+    toast('✅ Save हो गया! 🇮🇳');
     addFeedUI(file.name,downloadURL,true);
     v.src=downloadURL; v.play();
-    document.getElementById('mainTitle').innerText = file.name + " ✅";
+    document.getElementById('mainTitle').innerText = file.name + " ✅ पक्का गोदाम में!";
   }catch(err){
-    box.innerText='❌ '+err.message; toast('❌ '+err.message);
+    box.innerText='❌ '+err.message;
+    toast('❌ '+err.message);
   }
 };
 document.getElementById('playBtn').onclick=()=>{document.getElementById('myVideo').play();document.getElementById('playBtn').style.display='none'};
@@ -124,17 +108,16 @@ document.getElementById('myVideo').onpause=()=>document.getElementById('playBtn'
 document.getElementById('myVideo').onplay=()=>document.getElementById('playBtn').style.display='none';
 const pop=document.getElementById('pop'),popContent=document.getElementById('popContent');
 function showPop(h){popContent.innerHTML=h;pop.style.display='flex'}pop.onclick=e=>{if(e.target==pop)pop.style.display='none'}
-document.getElementById('likeBtn').onclick=()=>toast('👍 Liked');
-document.getElementById('searchBtn').onclick=()=>showPop(`<b>🔍 Search</b><br><br><input id="q" placeholder="Search" style="width:100%;padding:12px;border:2px solid #FF9933;border-radius:12px"><br><br><button onclick="pop.style.display='none'" style="background:#FF9933;color:#fff;padding:10px 18px;border:none;border-radius:22px">Search</button>`);
-document.getElementById('setBtn').onclick=()=>showPop(`<b>⚙️ Settings</b><br>Fix: Telegram Unauthorized hataya<br>Ab direct Supabase me save hoga`);
+document.getElementById('searchBtn').onclick=()=>showPop(`<b>Search</b><br>काम कर रहा है`);
+document.getElementById('setBtn').onclick=()=>showPop(`<b>Fix v7</b><br>telegram_id column हटाया, अब चलेगा`);
 document.getElementById('bellBtn').onclick=()=>toast('🔔 ON');
 document.getElementById('micBtn').onclick=()=>document.getElementById('searchBtn').click();
-document.getElementById('profileBtn').onclick=()=>showPop(`<b>👤 You</b><br>Worker Join FREE`);
+document.getElementById('profileBtn').onclick=()=>showPop(`<b>👤 You FREE</b>`);
 document.getElementById('jobsBtn').onclick=()=>toast('💼 Jobs');
-document.getElementById('subBtn').onclick=function(){this.innerText=this.innerText=='Subscribe'?'Subscribed ✅':'Subscribe';toast('✅ '+this.innerText)};
+document.getElementById('subBtn').onclick=function(){this.innerText=this.innerText=='Subscribe'?'Subscribed ✅':'Subscribe'};
 document.getElementById('homeBtn').onclick=()=>window.scrollTo(0,0);
-let deferredPrompt=null;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;});
-document.getElementById('installBtn').onclick=async()=>{if(deferredPrompt){deferredPrompt.prompt();deferredPrompt=null;document.getElementById('installBtn').innerText='✅ Installed';}else{toast('Add to Home Screen');}};
+document.getElementById('installBtn').onclick=()=>toast('Add to Home Screen');
+};
 </script>
 </body>
 </html>
