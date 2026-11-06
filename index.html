@@ -11,15 +11,14 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Roboto,Arial,sans-serif}
 body{max-width:400px;margin:0 auto;background:#fff;padding-bottom:80px}
-.header{position:sticky;top:0;background:#fff;z-index:1002;display:flex;align-items:center;justify-content:space-between;padding:10px 12px;box-shadow:0 1px 4px rgba(0,0,0,.12)}
-.logo{display:flex;align-items:center;gap:8px;font-weight:900;font-size:24px}.logo img{width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid #FF9933;background:#fff}
+.header{position:sticky;top:0;background:#fff;z-index:1002;display:flex;align-items:center;gap:6px;padding:7px 8px;box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.logo{display:flex;align-items:center;gap:5px;font-weight:900;font-size:18px;flex-shrink:0}.logo img{width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid #FF9933;background:#fff}
 .b{color:#FF9933;text-shadow:1.5px 1.5px 0 #000}.f{color:#138808;text-shadow:1.5px 1.5px 0 #000}
-.profile{width:38px;height:38px;border-radius:50%;background:#eee;display:flex;align-items:center;justify-content:center;border:1px solid #ddd;cursor:pointer}
-.search-row{position:sticky;top:52px;z-index:1001;background:#fff;display:flex;align-items:center;gap:6px;padding:8px 10px}
-.search{flex:1;background:#f2f2f2;border-radius:24px;padding:10px 14px;font-size:14px;color:#606060;cursor:pointer}
-.icon{width:38px;height:38px;background:#f2f2f2;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer}
-.install{padding:9px 16px;background:#0b57d0;color:#fff;border:none;border-radius:22px;font-weight:800;cursor:pointer}
-.video-wrap{position:sticky;top:96px;z-index:1000;background:#fff;padding:6px 0 10px 0}
+.search{flex:1;background:#f2f2f2;border-radius:20px;padding:8px 10px;font-size:12px;color:#606060;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.icon{width:32px;height:32px;background:#f2f2f2;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;font-size:13px}
+.profile{width:32px;height:32px;border-radius:50%;background:#eee;display:flex;align-items:center;justify-content:center;border:1px solid #ddd;cursor:pointer;flex-shrink:0;font-size:13px}
+.install{padding:7px 10px;background:#0b57d0;color:#fff;border:none;border-radius:18px;font-weight:800;cursor:pointer;flex-shrink:0;font-size:11px}
+.video-wrap{position:sticky;top:48px;z-index:1000;background:#fff;padding:6px 0 10px 0}
 .video{width:96%;margin:0 auto;aspect-ratio:16/10;background:#000;border-radius:14px;overflow:hidden;position:relative;box-shadow:0 3px 12px rgba(0,0,0,.25)}
 .video video{width:100%;height:100%;object-fit:cover;display:block}
 .play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:70px;height:70px;background:rgba(0,0,0,.85);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:28px;z-index:2;cursor:pointer}
@@ -46,14 +45,12 @@ body{max-width:400px;margin:0 auto;background:#fff;padding-bottom:80px}
 <body>
 <div class="header">
   <div class="logo"><img src="logo.png?v=final" alt="BharatFlix"><span><span class="b">Bharat</span><span class="f">Flix</span></span></div>
-  <div class="profile" id="profileBtn">👤</div>
-</div>
-<div class="search-row">
-  <div class="search" id="searchBtn">🔍 Search on BharatFlix</div>
+  <div class="search" id="searchBtn">🔍 Search</div>
   <div class="icon" id="micBtn">🎤</div>
   <div class="icon" id="bellBtn">🔔</div>
   <div class="icon" id="setBtn">⚙️</div>
   <button class="install" id="installBtn">Install</button>
+  <div class="profile" id="profileBtn">👤</div>
 </div>
 <div id="pop"><div class="pop-box" id="popContent"></div></div>
 <div id="workerFormModal"><div class="modal-header"><span>🇮🇳 WORKER REGISTRATION</span><span id="closeWorker" style="cursor:pointer;background:#fff;color:#000;padding:6px 12px;border-radius:20px">✕</span></div><iframe id="workerIframe"></iframe></div>
@@ -64,6 +61,8 @@ body{max-width:400px;margin:0 auto;background:#fff;padding-bottom:80px}
 <div class="bottom"><div class="btm-item" id="homeBtn">🏠<span>Home</span></div><div class="btm-item" id="shortsBtn">🎬<span>Shorts</span></div><div class="btm-item" id="uploadBtn"><div class="upload">+</div>Upload</div><div class="btm-item" id="subsBtn">📺<span>Subs</span></div><div class="btm-item" id="jobsBtn">💼<span>Jobs</span></div></div>
 <input type="file" id="fileInput" accept="video/*" style="display:none">
 <script>
+const BOT_TOKEN = "9275903425:AAHkEsz7GOF1Vk1LYmYd_oQxBZIoL-w2pAU";
+const CHANNEL_ID = "-1008981405478";
 const SUPA_URL = "https://dvaawuhwetwmmziucyow.supabase.co";
 const SUPA_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR2YWF3dWh3ZXR3bW16aXVjeW93Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM3MjM2NDcsImV4cCI6MjEwOTI5OTY0N30.2tqmnZbn_4_LKSet1JPKdTNKpzgy6y_i03V_AajCktI";
 const supa = supabase.createClient(SUPA_URL, SUPA_KEY);
@@ -84,7 +83,7 @@ async function loadFromGodam(){
     if(error) throw error;
     if(!data || data.length==0){document.getElementById('videoFeed').innerHTML=`<div style="text-align:center;padding:30px"><p style="font-size:40px">🇮🇳</p><b>BharatFlix में स्वागत!</b><p style="font-size:12px;color:#888">पहली वीडियो डालो</p><br><button onclick="document.getElementById('uploadBtn').click()" style="background:linear-gradient(90deg,#FF9933,#138808);color:#fff;border:none;padding:12px 24px;border-radius:24px;font-weight:900">+ पहली वीडियो डालो</button></div>`;return;}
     document.getElementById('videoFeed').innerHTML="";data.forEach(row=>{if(row.video_url)addFeedUI(row.title,row.video_url);});
-  }catch(e){document.getElementById('videoFeed').innerHTML=`<div style="text-align:center;padding:20px">🇮🇳 पक्का गोदाम तैयार! Bucket बनाओ: Supabase Storage में 'videos' Public Bucket. Error: ${e.message}</div>`;}
+  }catch(e){document.getElementById('videoFeed').innerHTML=`<div style="text-align:center;padding:20px">🇮🇳 पक्का गोदाम तैयार! Error: ${e.message}</div>`;}
 }
 loadFromGodam();
 document.getElementById('uploadBtn').onclick=()=>document.getElementById('fileInput').click();
@@ -92,31 +91,37 @@ document.getElementById('fileInput').onchange = async e => {
   let file = e.target.files[0]; if(!file) return;
   if(!checkSensor(file.name)){alert("❌ सेंसर: गंदी वीडियो Block");return;}
   if(file.size > 500*1024*1024){ toast("⚠️ 500MB से बड़ी है भैया जी"); return; }
-
   let v = document.getElementById('myVideo'); let box = document.getElementById('skipBox');
-  // *** FIX: अब लोकल वीडियो चलने नहीं लगेगा, सिर्फ अपलोड होगा ***
-  document.getElementById('mainTitle').innerText = "⏳ अपलोड हो रहा है: " + file.name;
+  document.getElementById('mainTitle').innerText = "⏳ Telegram गोदाम में भेज रहे हैं: " + file.name;
   box.style.display='block'; box.innerText='⏳ 0% भेज रहे हैं...';
   document.getElementById('playBtn').style.display='none';
-
   try{
+    box.innerText='⏳ 30% Telegram गोदाम में भेज रहे हैं...';
+    let form = new FormData();
+    form.append('chat_id', CHANNEL_ID);
+    form.append('video', file);
+    form.append('caption', '🇮🇳 '+file.name+' | BharatFlix');
+    form.append('supports_streaming', 'true');
+    let tgRes = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendVideo`, { method: 'POST', body: form });
+    let tgJson = await tgRes.json();
+    if(!tgJson.ok) throw new Error('Telegram: ' + tgJson.description);
+    box.innerText='⏳ 80% लिंक बना रहे हैं...';
     const name = Date.now()+'_'+file.name.replace(/[^a-zA-Z0-9.]/g,'_');
-    box.innerText='⏳ 30% पक्के गोदाम में भेज रहे हैं...';
     const {error: upErr} = await supa.storage.from('videos').upload(name, file);
     if(upErr) throw upErr;
-    box.innerText='⏳ 80% लिंक बना रहे हैं...';
     const {data: urlData} = supa.storage.from('videos').getPublicUrl(name);
     const downloadURL = urlData.publicUrl;
     box.innerText='⏳ 95% सेव कर रहे हैं...';
-    const {error: dbErr} = await supa.from('videos').insert([{title: file.name, video_url: downloadURL}]);
+    const {error: dbErr} = await supa.from('videos').insert([{title: file.name, video_url: downloadURL, telegram_id: tgJson.result.message_id+''}]);
     if(dbErr) throw dbErr;
-    box.innerText='✅ Save हो गया 🇮🇳';setTimeout(()=>box.style.display='none',3000);
-    toast('✅ पक्के गोदाम में Save! 🇮🇳');
+    box.innerText='✅ Telegram + पक्के गोदाम में Save! 🇮🇳';setTimeout(()=>box.style.display='none',3000);
+    toast('✅ Save! 🇮🇳');
     addFeedUI(file.name,downloadURL,true);
     v.src=downloadURL; v.play();
     document.getElementById('mainTitle').innerText = file.name + " ✅";
   }catch(err){
-    box.innerText='❌ Fail: ' + err.message; toast('❌ Error: '+err.message + ' - Supabase में videos bucket Public बनाओ');
+    box.innerText='❌ Fail: ' + err.message; toast('❌ '+err.message);
+    alert("Fail: "+err.message);
   }
 };
 document.getElementById('playBtn').onclick=()=>{document.getElementById('myVideo').play();document.getElementById('playBtn').style.display='none'};
@@ -129,19 +134,20 @@ document.getElementById('shareBtn').onclick=()=>{navigator.clipboard.writeText(l
 document.getElementById('downloadBtn').onclick=()=>toast('⬇️ Download');document.getElementById('saveBtn').onclick=()=>toast('🔖 Saved');
 document.getElementById('clipBtn').onclick=()=>toast('✂️ Clip');document.getElementById('thanksBtn').onclick=()=>toast('🙏 Thanks');
 document.getElementById('superThanksBtn').onclick=()=>toast('💖 Super Thanks');document.getElementById('remixBtn').onclick=()=>toast('💾 Remix');
-document.getElementById('reportBtn').onclick=()=>toast('🚩 Report');document.getElementById('searchBtn').onclick=()=>showPop(`<b>🔍 Search</b><br><br><input id="q" placeholder="जय श्री राम" style="width:100%;padding:12px;border:2px solid #FF9933;border-radius:12px"><br><br><button onclick="toast('🔍 '+document.getElementById('q').value);pop.style.display='none'" style="background:#FF9933;color:#fff;padding:10px 18px;border:none;border-radius:22px;font-weight:800">Search</button>`);
-document.getElementById('setBtn').onclick=()=>showPop(`<b>⚙️ Settings</b><br><br><div style="padding:14px;background:#f2f2f2;border-radius:12px">🇮🇳 BharatFlix v5.0 - Logo Fixed + Upload Fixed</div><br><button onclick="pop.style.display='none'" style="width:100%;padding:12px;background:#000;color:#fff;border-radius:12px;border:none">Close</button>`);
+document.getElementById('reportBtn').onclick=()=>toast('🚩 Report');
+document.getElementById('searchBtn').onclick=()=>showPop(`<b>🔍 Search</b><br><br><input id="q" placeholder="जय श्री राम" style="width:100%;padding:12px;border:2px solid #FF9933;border-radius:12px"><br><br><button onclick="toast('🔍 '+document.getElementById('q').value);pop.style.display='none'" style="background:#FF9933;color:#fff;padding:10px 18px;border:none;border-radius:22px;font-weight:800">Search</button>`);
+document.getElementById('setBtn').onclick=()=>showPop(`<b>⚙️ Settings</b><br><br><div style="padding:14px;background:#f2f2f2;border-radius:12px">🇮🇳 BharatFlix v6 Single Header<br>Godam: ${CHANNEL_ID}</div><br><button onclick="pop.style.display='none'" style="width:100%;padding:12px;background:#000;color:#fff;border-radius:12px;border:none">Close</button>`);
 document.getElementById('bellBtn').onclick=()=>toast('🔔 ON');document.getElementById('micBtn').onclick=()=>document.getElementById('searchBtn').click();
 const FORM="https://docs.google.com/forms/d/e/1FAIpQLSemVqI495aFqQ-jpURcTDtR4oxHfIJ4Nn9Sn1_XMG1JhElseQ/viewform?embedded=true";
 function openWorkerForm(){document.getElementById('workerIframe').src=FORM;document.getElementById('workerFormModal').style.display='flex';pop.style.display='none'}
 document.getElementById('closeWorker').onclick=()=>{document.getElementById('workerFormModal').style.display='none';document.getElementById('workerIframe').src=''}
-document.getElementById('profileBtn').onclick=()=>showPop(`<b>👤 You - FREE</b><br>Profile FREE है<br><br><div style="padding:14px;background:#138808;color:#fff;border-radius:12px;text-align:center;font-weight:900;cursor:pointer" onclick="openWorkerForm()">📝 Worker Join - FREE</div><br><button onclick="pop.style.display='none'" style="width:100%;padding:12px;background:#000;color:#fff;border-radius:12px;border:none">Close</button>`);
+document.getElementById('profileBtn').onclick=()=>showPop(`<b>👤 You - FREE</b><br><br><div style="padding:14px;background:#138808;color:#fff;border-radius:12px;text-align:center;font-weight:900;cursor:pointer" onclick="openWorkerForm()">📝 Worker Join - FREE</div><br><button onclick="pop.style.display='none'" style="width:100%;padding:12px;background:#000;color:#fff;border-radius:12px;border:none">Close</button>`);
 document.getElementById('jobsBtn').onclick=openWorkerForm;
 document.getElementById('joinBtn').onclick=()=>showPop(`<b>Join</b><br><br><button onclick="toast('💎 ₹59 Join');pop.style.display='none'" style="background:#FF9933;color:#fff;padding:12px;width:100%;border:none;border-radius:12px;font-weight:900">₹59 / Month</button>`);
 document.getElementById('subBtn').onclick=function(){this.innerText=this.innerText=='Subscribe'?'Subscribed ✅':'Subscribe';toast('✅ '+this.innerText)};
 document.getElementById('homeBtn').onclick=()=>window.scrollTo(0,0);document.getElementById('shortsBtn').onclick=()=>toast('🎬 Shorts');document.getElementById('subsBtn').onclick=()=>toast('📺 Subs');
-let deferredPrompt=null;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;document.getElementById('installBtn').innerText='📲 Install App';document.getElementById('installBtn').style.background='#138808';});
-document.getElementById('installBtn').onclick=async()=>{if(deferredPrompt){deferredPrompt.prompt();let c=await deferredPrompt.userChoice;if(c.outcome=='accepted')toast('✅ Home Screen पर आ गया 🇮🇳');deferredPrompt=null;document.getElementById('installBtn').innerText='✅ Installed';}else{toast('Browser Menu > Add to Home Screen दबाओ');}};
+let deferredPrompt=null;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;document.getElementById('installBtn').innerText='📲 Install';document.getElementById('installBtn').style.background='#138808';});
+document.getElementById('installBtn').onclick=async()=>{if(deferredPrompt){deferredPrompt.prompt();let c=await deferredPrompt.userChoice;if(c.outcome=='accepted')toast('✅ Installed 🇮🇳');deferredPrompt=null;document.getElementById('installBtn').innerText='✅ Installed';}else{toast('Browser Menu > Add to Home Screen');}};
 </script>
 </body>
-</html>
+    </html>
