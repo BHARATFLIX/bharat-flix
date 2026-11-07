@@ -2,9 +2,11 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>BharatFlix 🇮🇳</title>
-<link rel="icon" href="logo.png">
+<link rel="icon" href="logo.png?v=17">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#FF6A00">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Roboto,Arial,sans-serif}
@@ -12,12 +14,14 @@ body{max-width:480px;margin:0 auto;background:#fff;padding-bottom:85px;overflow-
 .header{position:sticky;top:0;background:#fff;z-index:1002;box-shadow:0 1px 4px rgba(0,0,0,.12)}
 .header-top{display:flex;align-items:center;justify-content:space-between;padding:8px 10px}
 .logo{display:flex;align-items:center;gap:6px;font-weight:900;font-size:20px}
-.logo img{width:40px;height:40px;border-radius:50%;object-fit:cover;display:block}
+.logo img{width:40px;height:40px;border-radius:50%;object-fit:cover;display:block;background:#fff;border:1px solid #eee}
 .b{color:#FF9933}.f{color:#138808}
 .header-icons{display:flex;align-items:center;gap:8px}
 .icon{width:36px;height:36px;background:#f2f2f2;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:17px}
 .profile{width:36px;height:36px;border-radius:50%;background:#eee;display:flex;align-items:center;justify-content:center;border:1px solid #ddd;cursor:pointer;font-size:16px}
-.install{background:#0b57d0;color:#fff;border:none;padding:8px 16px;border-radius:20px;font-weight:800;font-size:13px;cursor:pointer}
+.install{background:#138808;color:#fff;border:none;padding:8px 14px;border-radius:20px;font-weight:900;font-size:12px;cursor:pointer;display:flex;align-items:center;gap:4px;transition:0.3s}
+.install.blue{background:#0b57d0}
+.install.installing{background:#FF9933}
 .header-bottom{padding:0 10px 8px 10px}
 .search-wrap{width:100%;display:flex;align-items:center;background:#f1f1f1;border-radius:24px;padding:2px 4px 2px 16px;border:1px solid #e0e0e0}
 .search-wrap input{flex:1;background:transparent;border:none;outline:none;font-size:15px;padding:10px 0;color:#000;font-weight:500}
@@ -31,7 +35,8 @@ body{max-width:480px;margin:0 auto;background:#fff;padding-bottom:85px;overflow-
 #toast{position:absolute;bottom:14px;left:12px;background:rgba(0,0,0,.85);color:#fff;padding:7px 12px;border-radius:8px;font-size:12px;display:none;z-index:3;max-width:75%}
 .info{padding:10px 14px}.title{font-size:16px;font-weight:700;line-height:1.35}
 .meta{display:flex;align-items:center;gap:10px;margin-top:10px}
-.b-logo{width:40px;height:40px;background:linear-gradient(135deg,#FF9933,#138808);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:18px}
+.b-logo{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#fff;border:1px solid #eee}
+.b-logo img{width:100%;height:100%;object-fit:cover}
 .ch-name{flex:1;font-size:13px;line-height:1.2}
 .btns{display:flex;gap:6px}.btns button{padding:8px 16px;border-radius:22px;border:none;font-weight:800;font-size:12px;cursor:pointer}
 .sub{background:#FF0000;color:#fff}.join{background:#000;color:#fff}
@@ -50,7 +55,7 @@ body{max-width:480px;margin:0 auto;background:#fff;padding-bottom:85px;overflow-
 <body>
 <div class="header">
   <div class="header-top">
-    <div class="logo"><img src="logo.png" alt="BharatFlix"><span><span class="b">Bharat</span><span class="f">Flix</span></span></div>
+    <div class="logo"><img src="logo.png?v=17" alt="BharatFlix"><span><span class="b">Bharat</span><span class="f">Flix</span></span></div>
     <div class="header-icons">
       <div class="icon" id="bellBtn">🔔</div>
       <div class="icon" id="setBtn">⚙️</div>
@@ -69,12 +74,12 @@ body{max-width:480px;margin:0 auto;background:#fff;padding-bottom:85px;overflow-
 <div id="pop"><div class="pop-box" id="popContent"></div></div>
 <div id="workerFormModal"><div class="modal-header"><span>🇮🇳 WORKER REGISTRATION</span><span id="closeWorker" style="cursor:pointer;background:#fff;color:#000;padding:6px 12px;border-radius:20px">✕</span></div><iframe id="workerIframe"></iframe></div>
 
-<div class="video-wrap"><div class="video"><video id="myVideo" poster="logo.png" controls playsinline preload="metadata"></video><div class="play" id="playBtn">▶</div><div id="skipBox">0%</div><div id="toast"></div></div></div>
+<div class="video-wrap"><div class="video"><video id="myVideo" poster="logo.png?v=17" controls playsinline preload="metadata"></video><div class="play" id="playBtn">▶</div><div id="skipBox">0%</div><div id="toast"></div></div></div>
 
-<div class="info"><div class="title" id="mainTitle">BharatFlix - Aapka Apna Video Platform</div><div class="meta"><div class="b-logo">B</div><div class="ch-name"><b>BharatFlix Official</b><br><span style="color:#606060;font-size:12px">1.2M subscribers • 45K views</span></div><div class="btns"><button class="sub" id="subBtn">Subscribe</button><button class="join" id="joinBtn">Join</button></div></div></div>
+<div class="info"><div class="title" id="mainTitle">BharatFlix - Aapka Apna Video Platform</div><div class="meta"><div class="b-logo"><img src="logo.png?v=17"></div><div class="ch-name"><b>BharatFlix Official</b><br><span style="color:#606060;font-size:12px">1.2M subscribers • 45K views</span></div><div class="btns"><button class="sub" id="subBtn">Subscribe</button><button class="join" id="joinBtn">Join</button></div></div></div>
 
 <div class="swipe">
-<div id="likeBtn">👍 15K Like</div><div id="dislikeBtn">👎 12K</div><div id="shareBtn">↗️ Share</div><div id="downloadBtn">⬇️ Download</div><div id="saveBtn">🔖 Save</div><div id="clipBtn">✂️ Clip</div><div id="thanksBtn">🙏 Thanks</div><div id="superThanksBtn">💖 Super Thanks</div><div id="remixBtn">💾 Remix</div><div id="reportBtn">🚩 Report</div>
+<div>👍 15K Like</div><div>👎 12K</div><div>↗️ Share</div><div>⬇️ Download</div><div>🔖 Save</div><div>✂️ Clip</div><div>🙏 Thanks</div><div>💖 Super Thanks</div><div>💾 Remix</div><div>🚩 Report</div>
 </div>
 
 <div class="feed" id="videoFeed"><div style="text-align:center;padding:20px;color:#888">⏳ पक्के गोदाम से ला रहे हैं... 🇮🇳</div></div>
@@ -134,16 +139,6 @@ document.getElementById('myVideo').onpause=()=>document.getElementById('playBtn'
 document.getElementById('myVideo').onplay=()=>document.getElementById('playBtn').style.display='none';
 const pop=document.getElementById('pop'),popContent=document.getElementById('popContent');
 function showPop(h){popContent.innerHTML=h;pop.style.display='flex'}pop.onclick=e=>{if(e.target==pop)pop.style.display='none'}
-document.getElementById('likeBtn').onclick=()=>toast('👍 Liked');
-document.getElementById('dislikeBtn').onclick=()=>toast('👎 Dislike');
-document.getElementById('shareBtn').onclick=()=>{navigator.clipboard.writeText(location.href);toast('🔗 Link Copied!')};
-document.getElementById('downloadBtn').onclick=()=>toast('⬇️ Download...');
-document.getElementById('saveBtn').onclick=()=>toast('🔖 Save!');
-document.getElementById('clipBtn').onclick=()=>toast('✂️ Clip');
-document.getElementById('thanksBtn').onclick=()=>toast('🙏 Thanks!');
-document.getElementById('superThanksBtn').onclick=()=>toast('💖 Super Thanks');
-document.getElementById('remixBtn').onclick=()=>toast('💾 Remix');
-document.getElementById('reportBtn').onclick=()=>toast('🚩 Report');
 const FORM="https://docs.google.com/forms/d/e/1FAIpQLSemVqI495aFqQ-jpURcTDtR4oxHfIJ4N9Sn1_XMG1JhElseQ/viewform?embedded=true";
 function openWorkerForm(){document.getElementById('workerIframe').src=FORM;document.getElementById('workerFormModal').style.display='flex';pop.style.display='none'}
 document.getElementById('closeWorker').onclick=()=>{document.getElementById('workerFormModal').style.display='none';document.getElementById('workerIframe').src=''}
@@ -157,25 +152,72 @@ document.getElementById('subBtn').onclick=function(){this.innerText=this.innerTe
 document.getElementById('homeBtn').onclick=()=>window.scrollTo(0,0);
 document.getElementById('shortsBtn').onclick=()=>toast('🎬 Shorts जल्दी आएगा');
 document.getElementById('subsBtn').onclick=()=>toast('📺 Subs');
-document.getElementById('setBtn').onclick=()=>showPop('<div style="padding:14px;background:#f2f2f2;border-radius:12px">🇮🇳 BharatFlix v15 FINAL<br>✅ YouTube 2-Line Header<br>✅ Search Visible + Mic Inside<br>✅ Player Fixed</div><br><button onclick="pop.style.display=\'none\'" style="width:100%;padding:12px;background:#000;color:#fff;border-radius:12px;border:none">Close</button>');
+document.getElementById('setBtn').onclick=()=>showPop('<div style="padding:14px;background:#f2f2f2;border-radius:12px">🇮🇳 BharatFlix v17 FINAL<br>✅ Logo: logo.png<br>✅ APK Icon: apk-icon.png<br>✅ Install: हरा/नीला</div><br><button onclick="pop.style.display=\'none\'" style="width:100%;padding:12px;background:#000;color:#fff;border-radius:12px;border:none">Close</button>');
+
+// ===== INSTALL BUTTON - हरा / नीला LOGIC =====
 let deferredPrompt=null;
+let isInstalled = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+
+function updateInstallBtn(){
+  let btn=document.getElementById('installBtn');
+  if(isInstalled){
+    btn.innerText='💙 Installed';
+    btn.className='install blue';
+  }else{
+    btn.innerText='📲 Install';
+    btn.className='install';
+    btn.style.background='#138808';
+  }
+}
+updateInstallBtn();
+
 window.addEventListener('beforeinstallprompt',e=>{
   e.preventDefault();
   deferredPrompt=e;
-  let btn=document.getElementById('installBtn');
-  btn.style.display='block';
-  btn.innerText='📲 Install';
+  if(!isInstalled){
+    let btn=document.getElementById('installBtn');
+    btn.innerText='📲 Install';
+    btn.className='install';
+    btn.style.background='#138808';
+    btn.style.display='flex';
+  }
 });
+
 document.getElementById('installBtn').onclick=async()=>{
+  let btn=document.getElementById('installBtn');
+  if(isInstalled){
+    toast('✅ पहले से Home Screen पर है 🇮🇳');
+    return;
+  }
   if(deferredPrompt){
+    btn.innerText='⏳ Installing...';
+    btn.className='install installing';
     deferredPrompt.prompt();
     const {outcome} = await deferredPrompt.userChoice;
-    if(outcome==='accepted'){document.getElementById('installBtn').innerText='✅ Installed'; toast('✅ Installed 🇮🇳');}
+    if(outcome==='accepted'){
+      btn.innerText='✅ Installing...';
+      setTimeout(()=>{
+        btn.innerText='💙 Installed';
+        btn.className='install blue';
+        toast('✅ Home Screen पर आ गया 🇮🇳');
+      },1500);
+    }else{
+      btn.innerText='📲 Install';
+      btn.className='install';
+      btn.style.background='#138808';
+    }
     deferredPrompt=null;
   }else{
     toast('ऊपर ⋮ > Add to Home Screen दबाओ');
   }
 };
+
+window.addEventListener('appinstalled',()=>{
+  isInstalled=true;
+  let btn=document.getElementById('installBtn');
+  btn.innerText='💙 Installed';
+  btn.className='install blue';
+});
 </script>
 </body>
 </html>
