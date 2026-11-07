@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>BharatFlix 🇮🇳</title>
-<link rel="icon" href="logo.png?v=22">
+<link rel="icon" href="logo.png?v=23">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#FF6A00">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -49,20 +49,24 @@ body{max-width:480px;margin:0 auto;background:#fff;padding-bottom:85px;overflow-
 .feed{padding:8px}.v-card{display:flex;gap:10px;padding:12px 0;border-bottom:1px solid #eee;cursor:pointer}.v-card video{width:168px;height:94px;border-radius:12px;object-fit:cover;background:#000}
 .bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:#fff;border-top:1px solid #ddd;display:flex;justify-content:space-around;padding:8px 0;z-index:999}
 .btm-item{display:flex;flex-direction:column;align-items:center;font-size:11px;color:#606060;cursor:pointer;gap:2px}.upload{background:linear-gradient(90deg,#FF9933,#138808);width:50px;height:36px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;font-weight:900}
-.btm-profile{width:28px;height:28px;border-radius:50%;background:#eee;display:flex;align-items:center;justify-content:center;border:1px solid #ddd;font-size:16px}
+.btm-profile{width:28px;height:28px;border-radius:50%;background:#eee;display:flex;align-items:center;justify-content:center;border:1px solid #ddd;font-size:16px;overflow:hidden}
+.btm-profile img{width:100%;height:100%;object-fit:cover}
 #pop{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;height:100%;background:rgba(0,0,0,.75);z-index:10000;display:none;align-items:center;justify-content:center}
-.pop-box{background:#fff;width:92%;border-radius:18px;padding:18px;max-height:90%;overflow-y:auto}
+.pop-box{background:#fff;width:92%;border-radius:18px;padding:18px;max-height:92%;overflow-y:auto}
 #voicePop{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;height:100%;background:rgba(0,0,0,.6);z-index:13000;display:none;align-items:center;justify-content:center}
 .voice-box{background:#fff;width:220px;height:220px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(0,0,0,.3);animation:pulse 1.2s infinite}
 @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.08)}100%{transform:scale(1)}}
 #uploadDetails{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;height:100%;background:#fff;z-index:14000;display:none;flex-direction:column;padding:14px;overflow-y:auto}
+.profile-upload-wrap{display:flex;align-items:center;gap:14px;margin-bottom:12px;padding:10px;background:#f9f9f9;border-radius:12px;border:1px dashed #ccc}
+.profile-preview{width:70px;height:70px;border-radius:50%;background:#eee;display:flex;align-items:center;justify-content:center;font-size:28px;overflow:hidden;border:2px solid #FF9933}
+.profile-preview img{width:100%;height:100%;object-fit:cover}
 </style>
 </head>
 <body>
 
 <div class="header">
   <div class="header-top">
-    <div class="logo"><img src="logo.png?v=22"><span><span class="b">Bharat</span><span class="f">Flix</span></span></div>
+    <div class="logo"><img src="logo.png?v=23"><span><span class="b">Bharat</span><span class="f">Flix</span></span></div>
     <div class="header-icons">
       <div class="icon" id="bellBtn">🔔</div>
       <div class="icon" id="setBtn">⚙️</div>
@@ -85,11 +89,6 @@ body{max-width:480px;margin:0 auto;background:#fff;padding-bottom:85px;overflow-
       <div class="mic-page" id="micPageBtn">🎙️</div>
     </div>
   </div>
-  <div style="padding:12px">
-    <div style="display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid #f2f2f2">🔍 <span>Comedy video</span></div>
-    <div style="display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid #f2f2f2">🔍 <span>Bhakti song</span></div>
-    <div style="display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid #f2f2f2">🔍 <span>Agra news</span></div>
-  </div>
 </div>
 
 <div id="voicePop"><div class="voice-box"><div style="font-size:70px">🎙️</div><div style="font-size:13px;font-weight:800;margin-top:8px;color:#FF0000">● Listening...</div></div></div>
@@ -101,17 +100,16 @@ body{max-width:480px;margin:0 auto;background:#fff;padding-bottom:85px;overflow-
     <span id="closeUploadDetails" style="background:#000;color:#fff;padding:6px 12px;border-radius:20px;cursor:pointer">✕</span>
   </div>
   <input id="v_title" placeholder="Video Title *" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-bottom:10px">
-  <textarea id="v_desc" placeholder="Description लिखो - यही नीचे दिखेगा *" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-bottom:10px;height:80px"></textarea>
+  <textarea id="v_desc" placeholder="Description *" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-bottom:10px;height:80px"></textarea>
   <select id="v_category" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-bottom:10px">
     <option>Comedy</option><option>Music</option><option>Bhakti</option><option>News</option><option>Education</option><option>Gaming</option><option>Vlog</option><option>Tech</option><option>Cooking</option><option>Other</option>
   </select>
-  <input id="v_tags" placeholder="Tags - comedy, agra" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-bottom:14px">
   <button id="finalUploadBtn" style="width:100%;padding:14px;background:linear-gradient(90deg,#FF9933,#138808);color:#fff;border:none;border-radius:24px;font-weight:900">🚀 Upload करो</button>
   <div id="uploadProgress" style="margin-top:12px;display:none;background:#000;color:#fff;padding:12px;border-radius:10px;text-align:center">⏳ 0%</div>
 </div>
 
-<div class="video-wrap"><div class="video"><video id="myVideo" poster="logo.png?v=22" controls playsinline preload="metadata"></video><div class="play" id="playBtn">▶</div><div id="skipBox"></div><div id="toast"></div></div></div>
-<div class="info"><div class="title" id="mainTitle">BharatFlix - Aapka Apna Video Platform 🇮🇳</div><div class="meta"><div class="b-logo"><img src="logo.png?v=22"></div><div class="ch-name"><b>BharatFlix Official</b><br><span style="color:#606060;font-size:12px">1.2M • BharatFlix</span></div><div class="btns"><button class="sub" id="subBtn">Subscribe</button><button class="join" id="joinBtn">Join</button></div></div></div>
+<div class="video-wrap"><div class="video"><video id="myVideo" poster="logo.png?v=23" controls playsinline preload="metadata"></video><div class="play" id="playBtn">▶</div><div id="skipBox"></div><div id="toast"></div></div></div>
+<div class="info"><div class="title" id="mainTitle">BharatFlix - Aapka Apna Video Platform 🇮🇳</div><div class="meta"><div class="b-logo"><img src="logo.png?v=23"></div><div class="ch-name"><b>BharatFlix Official</b><br><span style="color:#606060;font-size:12px">1.2M • BharatFlix</span></div><div class="btns"><button class="sub" id="subBtn">Subscribe</button><button class="join" id="joinBtn">Join</button></div></div></div>
 <div class="swipe"><div>👍 Like</div><div>↗️ Share</div><div>⬇️ Download</div><div>🔖 Save</div></div>
 <div class="feed" id="videoFeed"><div style="text-align:center;padding:20px;color:#888">⏳ लोड हो रहा है... 🇮🇳</div></div>
 
@@ -120,9 +118,11 @@ body{max-width:480px;margin:0 auto;background:#fff;padding-bottom:85px;overflow-
 <div class="btm-item" id="shortsBtn">🎬<span>Shorts</span></div>
 <div class="btm-item" id="uploadBtn"><div class="upload">+</div><span>Upload</span></div>
 <div class="btm-item" id="subsBtn">📺<span>Subs</span></div>
-<div class="btm-item" id="profileBottomBtn"><div class="btm-profile">👤</div><span>You</span></div>
+<div class="btm-item" id="profileBottomBtn"><div class="btm-profile" id="bottomProfilePic">👤</div><span>You</span></div>
 </div>
+
 <input type="file" id="fileInput" accept="video/*" style="display:none">
+<input type="file" id="profilePicInput" accept="image/*" style="display:none">
 
 <script>
 const SUPA_URL = "https://dvaawuhwetwmmziucyow.supabase.co";
@@ -131,14 +131,13 @@ const supa = supabase.createClient(SUPA_URL, SUPA_KEY);
 
 function toast(t){let e=document.getElementById('toast');e.innerText=t;e.style.display='block';setTimeout(()=>e.style.display='none',3000);}
 
-// FEED में अब DESCRIPTION दिखेगा, गोदाम नंबर नहीं
 function addFeedUI(title, desc, category, url, isNew=false){
   let f=document.getElementById('videoFeed');
   if(f.innerHTML.includes('लोड हो रहा')) f.innerHTML="";
   let d=document.createElement('div');d.className='v-card';
   let safeDesc = desc ? desc.substring(0,60) : 'BharatFlix Video';
   let safeCat = category || 'BharatFlix';
-  d.innerHTML = `<video src="${url}" muted preload="metadata"></video><div style="flex:1"><b style="font-size:13px;line-height:1.3">${title}</b><br><span style="font-size:12px;color:#606060;display:block;margin-top:3px">${safeDesc}</span><br><span style="font-size:11px;color:#138808;font-weight:700">📁 ${safeCat}</span> <span style="font-size:11px;color:#606060">• BharatFlix</span></div>`;
+  d.innerHTML = `<video src="${url}" muted preload="metadata"></video><div style="flex:1"><b style="font-size:13px;line-height:1.3">${title}</b><br><span style="font-size:12px;color:#606060;display:block;margin-top:3px">${safeDesc}</span><br><span style="font-size:11px;color:#138808;font-weight:700">📁 ${safeCat}</span></div>`;
   d.onclick=()=>{let v=document.getElementById('myVideo');v.src=url;v.play();document.getElementById('mainTitle').innerText=title+" - "+safeDesc;document.getElementById('playBtn').style.display='none';window.scrollTo(0,0);};
   if(isNew) f.prepend(d); else f.appendChild(d);
 }
@@ -150,13 +149,12 @@ async function loadFromGodam(){
     if(!data || data.length==0){document.getElementById('videoFeed').innerHTML='<div style="text-align:center;padding:30px"><p style="font-size:40px">🇮🇳</p><b>स्वागत है!</b><br><button onclick="document.getElementById(\'uploadBtn\').click()" style="background:linear-gradient(90deg,#FF9933,#138808);color:#fff;border:none;padding:12px 24px;border-radius:24px;font-weight:900;margin-top:10px">+ पहली वीडियो डालो</button></div>';return;}
     document.getElementById('videoFeed').innerHTML="";
     data.forEach(row=>{
-      if(row.video_url) addFeedUI(row.title, row.description || row.desc || '', row.category || '', row.video_url);
+      if(row.video_url) addFeedUI(row.title, row.description || '', row.category || '', row.video_url);
     });
   }catch(e){document.getElementById('videoFeed').innerHTML='<div style="text-align:center;padding:20px">Error: '+e.message+'</div>';}
 }
 loadFromGodam();
 
-// SEARCH PAGE - YOUTUBE JAISA
 const searchWrap=document.getElementById('searchWrap');
 const searchPage=document.getElementById('searchPage');
 const backSearch=document.getElementById('backSearch');
@@ -169,46 +167,93 @@ searchPageInput.addEventListener('keypress',e=>{if(e.key==='Enter'){toast('🔍 
 micPageBtn.onclick=()=>{voicePop.style.display='flex';setTimeout(()=>voicePop.style.display='none',2000);};
 voicePop.onclick=()=>voicePop.style.display='none';
 
-// CREATOR ACCOUNT - YOUTUBE JAISA FULL
 const pop=document.getElementById('pop'),popContent=document.getElementById('popContent');
 function showPop(h){popContent.innerHTML=h;pop.style.display='flex'}pop.onclick=e=>{if(e.target==pop)pop.style.display='none'}
+
+let tempProfilePicData = null;
 
 function openProfile(){
   const logged = localStorage.getItem('bharatflix_creator');
   let user = logged ? JSON.parse(logged) : null;
   if(user){
-    showPop(`<div style="text-align:center"><div style="width:60px;height:60px;background:linear-gradient(90deg,#FF9933,#138808);border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center;color:#fff;font-size:28px">👤</div><b style="font-size:16px;margin-top:8px;display:block">${user.channel}</b><span style="font-size:12px;color:#666">${user.handle||''} • ${user.category||''}</span><br><span style="font-size:11px;color:#888">${user.desc||''}</span></div><br><div style="padding:12px;background:#f2f2f2;border-radius:12px;font-size:13px">✅ Channel Ready<br>${user.email}</div><br><div style="display:flex;gap:8px"><button onclick="localStorage.removeItem('bharatflix_creator');pop.style.display='none';toast('Logout')" style="flex:1;padding:12px;background:#000;color:#fff;border-radius:12px;border:none;font-weight:700">Logout</button><button onclick="pop.style.display='none'" style="flex:1;padding:12px;background:#eee;border-radius:12px;border:none;font-weight:700">Close</button></div>`);
+    let pic = user.profilePic ? `<img src="${user.profilePic}">` : '👤';
+    showPop(`<div style="text-align:center"><div style="width:70px;height:70px;border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center;background:#eee;overflow:hidden;border:2px solid #138808;font-size:30px">${pic}</div><b style="font-size:16px;margin-top:8px;display:block">${user.channel}</b><span style="font-size:12px;color:#666">${user.handle||''} • ${user.category||''}</span><br><span style="font-size:11px;color:#444">${user.desc||''}</span><br><span style="font-size:11px;color:#138808;font-weight:700">📍 ${user.district||''}, ${user.state||''}, ${user.country||''}</span></div><br><div style="padding:10px;background:#f2f2f2;border-radius:10px;font-size:12px">✅ ${user.email}<br>📱 ${user.mobile}</div><br><div style="display:flex;gap:8px"><button onclick="localStorage.removeItem('bharatflix_creator');location.reload();pop.style.display='none';" style="flex:1;padding:12px;background:#000;color:#fff;border-radius:12px;border:none;font-weight:700">Logout</button><button onclick="pop.style.display='none'" style="flex:1;padding:12px;background:#eee;border-radius:12px;border:none;font-weight:700">Close</button></div>`);
+    document.getElementById('bottomProfilePic').innerHTML = pic;
   } else {
     showPop(`<b>👤 BharatFlix Account</b><br><br><div onclick="openCreatorForm()" style="padding:14px;background:#FF0000;color:#fff;border-radius:12px;text-align:center;font-weight:900;cursor:pointer">🎬 Creator Account बनाओ</div><br><div onclick="openWorkerInAppForm()" style="padding:14px;background:#138808;color:#fff;border-radius:12px;text-align:center;font-weight:900;cursor:pointer">💼 Worker Join</div><br><button onclick="pop.style.display='none'" style="width:100%;padding:12px;background:#000;color:#fff;border-radius:12px;border:none">Close</button>`);
   }
 }
 
 function openCreatorForm(){
+  tempProfilePicData = null;
   showPop(`
-    <b style="font-size:18px">🎬 Channel बनाओ - YouTube जैसा</b><br><br>
+    <b style="font-size:18px">🎬 Channel बनाओ - YouTube जैसा</b>
+    <br><br>
+    <div class="profile-upload-wrap">
+      <div class="profile-preview" id="profilePreview">📷</div>
+      <div>
+        <b style="font-size:13px">Profile Photo *</b><br>
+        <button onclick="document.getElementById('profilePicInput').click()" style="margin-top:6px;padding:8px 14px;background:#000;color:#fff;border:none;border-radius:20px;font-size:12px;font-weight:700">📁 Photo चुनो</button>
+        <div style="font-size:10px;color:#666;margin-top:4px">YouTube जैसा गोल फोटो</div>
+      </div>
+    </div>
+
     <input id="c_channel" placeholder="Channel Name *" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-bottom:10px">
     <input id="c_handle" placeholder="Handle @AgraVlogs *" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-bottom:10px">
     <textarea id="c_desc" placeholder="Channel Description" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-bottom:10px;height:60px"></textarea>
-    <select id="c_category" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-bottom:10px"><option>Comedy</option><option>Music</option><option>Bhakti</option><option>News</option><option>Education</option><option>Gaming</option><option>Vlog</option><option>Tech</option><option>Other</option></select>
+    <select id="c_category" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-bottom:10px"><option>Comedy</option><option>Music</option><option>Bhakti</option><option>News</option><option>Education</option><option>Gaming</option><option>Vlog</option><option>Tech</option><option>Cooking</option><option>Other</option></select>
+    
+    <div style="display:flex;gap:8px;margin-bottom:10px">
+      <select id="c_state" style="flex:1;padding:12px;border:1px solid #ddd;border-radius:10px">
+        <option value="">State *</option>
+        <option>Uttar Pradesh</option><option>Madhya Pradesh</option><option>Delhi</option><option>Rajasthan</option><option>Bihar</option><option>Maharashtra</option><option>Punjab</option><option>Haryana</option><option>Gujarat</option><option>West Bengal</option><option>Karnataka</option><option>Tamil Nadu</option><option>Other State</option>
+      </select>
+      <input id="c_district" placeholder="District *" style="flex:1;padding:12px;border:1px solid #ddd;border-radius:10px">
+    </div>
+    <select id="c_country" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-bottom:10px">
+      <option value="India" selected>🇮🇳 India *</option>
+      <option>USA</option><option>UK</option><option>Canada</option><option>UAE</option><option>Australia</option><option>Nepal</option><option>Bangladesh</option><option>Other</option>
+    </select>
+
     <input id="c_email" placeholder="Email *" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-bottom:10px">
     <input id="c_mobile" placeholder="Mobile *" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-bottom:10px">
     <input id="c_pass" type="password" placeholder="Password *" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-bottom:14px">
     <button id="createChannelBtn" style="width:100%;padding:14px;background:#FF0000;color:#fff;border:none;border-radius:24px;font-weight:900">✅ Channel बनाओ</button>
   `);
+
+  document.getElementById('profilePicInput').onchange = e => {
+    let file = e.target.files[0];
+    if(!file) return;
+    let reader = new FileReader();
+    reader.onload = ev => {
+      tempProfilePicData = ev.target.result;
+      document.getElementById('profilePreview').innerHTML = `<img src="${tempProfilePicData}">`;
+    };
+    reader.readAsDataURL(file);
+  };
+
   document.getElementById('createChannelBtn').onclick = async ()=>{
     let data = {
       channel: document.getElementById('c_channel').value.trim(),
       handle: document.getElementById('c_handle').value.trim(),
       desc: document.getElementById('c_desc').value.trim(),
       category: document.getElementById('c_category').value,
+      state: document.getElementById('c_state').value,
+      district: document.getElementById('c_district').value.trim(),
+      country: document.getElementById('c_country').value,
       email: document.getElementById('c_email').value.trim(),
       mobile: document.getElementById('c_mobile').value.trim(),
       pass: document.getElementById('c_pass').value.trim(),
+      profilePic: tempProfilePicData || ''
     };
-    if(!data.channel || !data.handle || !data.email){toast('❌ * जरूरी है');return;}
+    if(!data.channel || !data.handle || !data.state || !data.district || !data.email || !data.mobile || !data.pass){toast('❌ * वाले जरूरी हैं');return;}
+    if(!data.profilePic){toast('❌ Profile Photo चुनो');return;}
+
     localStorage.setItem('bharatflix_creator', JSON.stringify(data));
-    try{ await supa.from('creators').insert([{channel_name:data.channel, handle:data.handle, description:data.desc, category:data.category, email:data.email, mobile:data.mobile}]); }catch(e){}
-    pop.style.display='none'; toast('✅ Channel बन गया - '+data.channel+' 🇮🇳');
+    try{ await supa.from('creators').insert([{channel_name:data.channel, handle:data.handle, description:data.desc, category:data.category, state:data.state, district:data.district, country:data.country, email:data.email, mobile:data.mobile, profile_pic:data.profilePic}]); }catch(e){}
+    pop.style.display='none';
+    document.getElementById('bottomProfilePic').innerHTML = `<img src="${data.profilePic}">`;
+    toast('✅ Channel बन गया - '+data.channel+' 🇮🇳');
   };
 }
 
@@ -222,7 +267,7 @@ function openWorkerInAppForm(){
   };
 }
 
-// UPLOAD WITH DESCRIPTION
+// UPLOAD
 let selectedFile = null;
 document.getElementById('uploadBtn').onclick=()=>{
   let creator = localStorage.getItem('bharatflix_creator');
@@ -242,9 +287,7 @@ document.getElementById('finalUploadBtn').onclick = async ()=>{
   let title = document.getElementById('v_title').value.trim();
   let desc = document.getElementById('v_desc').value.trim();
   let cat = document.getElementById('v_category').value;
-  let tags = document.getElementById('v_tags').value.trim();
-  if(!title){toast('Title लिखो');return;}
-  if(!desc){toast('Description लिखो भैया जी');return;}
+  if(!title||!desc){toast('Title + Description जरूरी');return;}
   let prog = document.getElementById('uploadProgress');
   prog.style.display='block'; prog.innerText='⏳ 50% गोदाम में...';
   try{
@@ -253,24 +296,21 @@ document.getElementById('finalUploadBtn').onclick = async ()=>{
     if(upErr) throw upErr;
     prog.innerText='⏳ 80% लिंक...';
     const {data:urlData} = supa.storage.from('videos').getPublicUrl(name);
-    const downloadURL = urlData.publicUrl;
-    prog.innerText='⏳ 95% Save...';
-    await supa.from('videos').insert([{title:title, description:desc, category:cat, tags:tags, video_url:downloadURL}]);
+    await supa.from('videos').insert([{title:title, description:desc, category:cat, video_url:urlData.publicUrl}]);
     prog.innerText='✅ हो गया!'; 
     setTimeout(()=>{document.getElementById('uploadDetails').style.display='none';prog.style.display='none';},800);
-    addFeedUI(title, desc, cat, downloadURL, true);
-    document.getElementById('myVideo').src=downloadURL; document.getElementById('myVideo').play();
-    document.getElementById('mainTitle').innerText = title;
+    addFeedUI(title, desc, cat, urlData.publicUrl, true);
+    document.getElementById('myVideo').src=urlData.publicUrl; document.getElementById('myVideo').play();
     toast('✅ Upload - '+cat+' 🇮🇳');
   }catch(err){prog.innerText='❌ '+err.message}
 };
 
-// OTHER BTNS
+// OTHER
 document.getElementById('playBtn').onclick=()=>{document.getElementById('myVideo').play();document.getElementById('playBtn').style.display='none'};
 document.getElementById('myVideo').onpause=()=>document.getElementById('playBtn').style.display='flex';
 document.getElementById('myVideo').onplay=()=>document.getElementById('playBtn').style.display='none';
-document.getElementById('bellBtn').onclick=()=>toast('🔔 Notification ON');
-document.getElementById('setBtn').onclick=()=>showPop('<div style="padding:14px;background:#f2f2f2;border-radius:12px">🇮🇳 BharatFlix v22 FINAL<br>✅ Description Fixed<br>✅ No Godam Number</div><br><button onclick="pop.style.display=\'none\'" style="width:100%;padding:12px;background:#000;color:#fff;border-radius:12px;border:none">Close</button>');
+document.getElementById('bellBtn').onclick=()=>toast('🔔 ON');
+document.getElementById('setBtn').onclick=()=>showPop('<div style="padding:14px;background:#f2f2f2;border-radius:12px">🇮🇳 BharatFlix v23<br>✅ Photo + State District Country<br>✅ Global Ready</div><br><button onclick="pop.style.display=\'none\'" style="width:100%;padding:12px;background:#000;color:#fff;border-radius:12px;border:none">Close</button>');
 document.getElementById('profileBottomBtn').onclick=openProfile;
 document.getElementById('joinBtn').onclick=()=>showPop('<b>Join</b><br><br><button onclick="toast(\'💎 ₹59 Join\');pop.style.display=\'none\'" style="background:#FF9933;color:#fff;padding:12px;width:100%;border:none;border-radius:12px;font-weight:900">₹59 / Month - Join</button>');
 document.getElementById('subBtn').onclick=function(){this.innerText=this.innerText=='Subscribe'?'Subscribed ✅':'Subscribe';toast('✅ '+this.innerText)};
@@ -278,7 +318,18 @@ document.getElementById('homeBtn').onclick=()=>window.scrollTo(0,0);
 document.getElementById('shortsBtn').onclick=()=>toast('🎬 Shorts जल्दी आएगा');
 document.getElementById('subsBtn').onclick=()=>toast('📺 Subs');
 
-// INSTALL - हरा / नीला
+// LOAD PROFILE PIC ON START
+(function(){
+  let logged = localStorage.getItem('bharatflix_creator');
+  if(logged){
+    try{
+      let u = JSON.parse(logged);
+      if(u.profilePic) document.getElementById('bottomProfilePic').innerHTML = `<img src="${u.profilePic}">`;
+    }catch(e){}
+  }
+})();
+
+// INSTALL
 let deferredPrompt=null;
 let isInstalled = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
 function updateInstallBtn(){
@@ -300,7 +351,6 @@ document.getElementById('installBtn').onclick=async()=>{
     deferredPrompt=null;
   }else{toast('ऊपर ⋮ > Add to Home Screen दबाओ');}
 };
-window.addEventListener('appinstalled',()=>{isInstalled=true;document.getElementById('installBtn').innerText='💙 Installed';});
 </script>
 </body>
 </html>
