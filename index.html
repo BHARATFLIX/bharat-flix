@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BharatFlix 🇮🇳 v37 FINAL</title>
-<link rel="icon" href="logo.png?v=37">
+<title>BharatFlix 🇮🇳 v38 FINAL</title>
+<link rel="icon" href="logo.png?v=38">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#000000">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -112,7 +112,7 @@ body{
   padding:10px 0;
   pointer-events:none
 }
-/* PLAYER v37 FINAL - KHADA PLAYER FIX - YAHI AAP MANG RAHE THE */
+/* PLAYER v38 - CHOTA + NO BLACK BAR - FINAL */
 .video-wrap{
   position:sticky;
   top:0;
@@ -152,7 +152,8 @@ body{
   width:100vw!important;
   height:100vh!important;
   aspect-ratio:auto!important;
-  max-height:100vh!important
+  max-height:100vh!important;
+  max-width:100vw!important
 }
 .video-wrap:fullscreen video{
   width:100%!important;
@@ -591,7 +592,7 @@ body{
 <div class="header">
   <div class="header-top">
     <div class="logo">
-      <img src="logo.png?v=37">
+      <img src="logo.png?v=38">
       <span><span class="b">Bharat</span><span class="f">Flix</span></span>
     </div>
     <div class="header-icons">
@@ -610,7 +611,7 @@ body{
 
 <div class="video-wrap" id="videoWrap">
   <div class="video" id="videoContainer">
-    <video id="myVideo" poster="logo.png?v=37" controls playsinline preload="metadata"></video>
+    <video id="myVideo" poster="logo.png?v=38" controls playsinline preload="metadata"></video>
     <div class="play" id="playBtn">▶</div>
     <div id="fsBtn">⛶</div>
   </div>
@@ -662,9 +663,9 @@ body{
 </div>
 
 <div class="info">
-  <div class="title" id="mainTitle">BharatFlix - Aapka Apna Video Platform 🇮🇳 v37 FINAL</div>
+  <div class="title" id="mainTitle">BharatFlix - Aapka Apna Video Platform 🇮🇳 v38 FINAL</div>
   <div class="meta">
-    <div class="b-logo"><img src="logo.png?v=37"></div>
+    <div class="b-logo"><img src="logo.png?v=38"></div>
     <div class="ch-name">
       <b>BharatFlix Official</b><br>
       <span style="color:#606060;font-size:12px">1.2M subscribers • BharatFlix</span>
@@ -988,30 +989,32 @@ myVideo.onpause = ()=>{
   playBtn.style.display = 'flex';
 };
 
-// v37 FINAL PLAYER FIX - KHADA PLAYER BADA, KALI PATTI NAHI, KATEGA NAHI
+// v38 FINAL - CHOTA PLAYER + NO BLACK BAR + NO CUT + QUALITY SAME
 myVideo.onloadedmetadata = ()=>{
   let w = myVideo.videoWidth;
   let h = myVideo.videoHeight;
   if(w && h){
     if(h > w){
-      // खड़ी Video - Player खुद खड़ा, बड़ा, Full जैसा, काली पट्टी खत्म
+      // खड़ी Video - छोटा Player, पर काली पट्टी नहीं, क्योंकि Container Video के बराबर
       videoContainer.style.aspectRatio = w + '/' + h;
-      videoContainer.style.maxHeight = '80vh';
-      videoContainer.style.width = '100%';
-      videoContainer.style.maxWidth = '400px';
+      videoContainer.style.maxHeight = '52vh';  // छोटा कर दिया भैया जी - 80 नहीं अब 52
+      videoContainer.style.width = 'auto';
+      videoContainer.style.maxWidth = '320px'; // चौड़ाई भी कम ताकि बीच में छोटा दिखे
+      videoContainer.style.margin = '0 auto';
     } else {
-      // आड़ी Video - Normal 16:9
+      // आड़ी Video
       videoContainer.style.aspectRatio = '16/9';
       videoContainer.style.maxHeight = 'none';
       videoContainer.style.maxWidth = '100%';
     }
   }
 };
+
 myVideo.onplay = ()=>{
   playBtn.style.display = 'none';
   if(myVideo.videoHeight > myVideo.videoWidth){
     videoContainer.style.aspectRatio = myVideo.videoWidth + '/' + myVideo.videoHeight;
-    videoContainer.style.maxHeight = '80vh';
+    videoContainer.style.maxHeight = '52vh';
   }
 };
 
@@ -1104,7 +1107,7 @@ document.getElementById('bellBtn').onclick = ()=>{
   toast('🔔 Notification ON');
 };
 document.getElementById('setBtn').onclick = ()=>{
-  showPop('<div style="padding:14px;background:#f2f2f2;border-radius:12px">🇮🇳 BharatFlix v37 FINAL<br>✅ 750+ Lines Full Code<br>✅ Khada Player Bada - No Black Bar<br>✅ Income Thanks + Join<br>✅ Full Icon ⛶ Toggle<br>✅ All Gaming Chip Hataya</div><br><button onclick="pop.style.display=\'none\'" style="width:100%;padding:12px;background:#000;color:#fff;border-radius:12px;border:none">Close</button>');
+  showPop('<div style="padding:14px;background:#f2f2f2;border-radius:12px">🇮🇳 BharatFlix v38 FINAL<br>✅ Chota Player 52vh<br>✅ No Black Bar<br>✅ No Cut - Quality Same<br>✅ Full Icon Only ⛶ Toggle</div><br><button onclick="pop.style.display=\'none\'" style="width:100%;padding:12px;background:#000;color:#fff;border-radius:12px;border:none">Close</button>');
 };
 document.getElementById('subBtn').onclick = function(){
   if(this.innerText == 'Subscribe'){
