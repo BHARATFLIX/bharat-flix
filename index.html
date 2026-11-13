@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BharatFlix 🇮🇳 v32</title>
-<link rel="icon" href="logo.png?v=32">
+<title>BharatFlix 🇮🇳 v33</title>
+<link rel="icon" href="logo.png?v=33">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#000000">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -25,22 +25,24 @@ body{max-width:480px;margin:0 auto;background:#fff;padding-bottom:85px;overflow-
 .search-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;color:#606060}
 .search-wrap input{flex:1;background:transparent;border:none;outline:none;font-size:15px;padding:10px 0;pointer-events:none}
 
-/* VIDEO FIX - YAHI MAIN HAI */
-.video-wrap{position:sticky;top:0;width:100%;background:#000;z-index:1002}
-.video{width:100%;aspect-ratio:16/9;background:#000;position:relative}
-.video video{width:100%;height:100%;background:#000;display:block;object-fit:contain;object-position:center}
-.video-wrap:fullscreen{background:#000;width:100vw!important;height:100vh!important}
-.video-wrap:fullscreen .video{width:100vw!important;height:100vh!important;aspect-ratio:auto}
-.video-wrap:fullscreen video{width:100vw!important;height:100vh!important;object-fit:contain!important}
-.video-wrap:-webkit-full-screen{background:#000;width:100vw!important;height:100vh!important}
-.video-wrap:-webkit-full-screen .video{width:100vw!important;height:100vh!important;aspect-ratio:auto}
-.video-wrap:-webkit-full-screen video{width:100vw!important;height:100vh!important;object-fit:contain!important}
+/* PLAYER FINAL FIX - TIRCHA FULL SCREEN */
+.video-wrap{position:sticky;top:0;width:100%;background:#000;z-index:1002;height:auto}
+.video{width:100%;aspect-ratio:16/9;background:#000;position:relative;overflow:hidden}
+.video video{width:100%;height:100%;background:#000;display:block;object-fit:contain;object-position:center center}
+/* Fullscreen me wrap pura screen bharega */
+.video-wrap:fullscreen{width:100vw!important;height:100vh!important;background:#000!important;display:flex;align-items:center;justify-content:center}
+.video-wrap:fullscreen .video{width:100vw!important;height:100vh!important;aspect-ratio:auto!important}
+.video-wrap:fullscreen video{width:100%!important;height:100%!important;object-fit:contain!important}
+.video-wrap:-webkit-full-screen{width:100vw!important;height:100vh!important;background:#000!important;display:flex;align-items:center;justify-content:center}
+.video-wrap:-webkit-full-screen .video{width:100vw!important;height:100vh!important;aspect-ratio:auto!important}
+.video-wrap:-webkit-full-screen video{width:100%!important;height:100%!important;object-fit:contain!important}
+/* Vertical video fullscreen me cover bhare */
+.video-wrap.vertical:fullscreen video{object-fit:cover!important}
+.video-wrap.vertical:-webkit-full-screen video{object-fit:cover!important}
 
 .play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:68px;height:68px;background:rgba(0,0,0,.7);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:28px;z-index:2;cursor:pointer;border:2px solid #fff}
 #fsBtn{position:absolute;bottom:10px;right:10px;background:rgba(0,0,0,.7);color:#fff;padding:6px 10px;border-radius:6px;font-size:12px;z-index:3;cursor:pointer;border:1px solid #fff}
 #toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.85);color:#fff;padding:10px 16px;border-radius:20px;font-size:13px;display:none;z-index:9999;max-width:90%;text-align:center}
-
-/* YOUTUBE JAISA INFO AREA */
 .info{padding:10px 12px}
 .title{font-size:16px;font-weight:700;line-height:1.3}
 .meta{display:flex;align-items:center;gap:10px;margin-top:10px}
@@ -51,17 +53,15 @@ body{max-width:480px;margin:0 auto;background:#fff;padding-bottom:85px;overflow-
 .btns button{padding:8px 16px;border-radius:22px;border:none;font-weight:800;font-size:12px;cursor:pointer}
 .sub{background:#FF0000;color:#fff}.join{background:#000;color:#fff}
 
-/* YOUTUBE ACTION BUTTONS - NEW */
-.yt-actions{display:flex;gap:8px;overflow-x:auto;padding:12px 0 8px 0;scrollbar-width:none}
+/* YOUTUBE INCOME BUTTONS - FINAL */
+.yt-actions{display:flex;gap:8px;overflow-x:auto;padding:12px 0 4px 0;scrollbar-width:none}
 .yt-actions::-webkit-scrollbar{display:none}
 .yt-action{flex:0 0 auto;background:#f2f2f2;border-radius:22px;padding:8px 14px;font-size:13px;font-weight:600;white-space:nowrap;cursor:pointer;display:flex;align-items:center;gap:6px;border:1px solid #e5e5e5}
-.yt-action:active{background:#e5e5e5}
+.yt-action.income{background:#fff8e1;border:1px solid #FF9933;color:#000}
 .yt-action.like-dislike{padding:0;overflow:hidden;display:flex}
 .yt-action.like-dislike .like{padding:8px 12px 8px 14px;display:flex;gap:6px;border-right:1px solid #d0d0d0}
 .yt-action.like-dislike .dislike{padding:8px 14px 8px 12px}
 
-.swipe{display:flex;gap:8px;overflow-x:auto;padding:12px;scrollbar-width:none}.swipe::-webkit-scrollbar{display:none}
-.swipe div{flex:0 0 auto;background:#f2f2f2;border-radius:22px;padding:9px 14px;font-size:12px;font-weight:700;white-space:nowrap;cursor:pointer;border:1px solid #e5e5e5}
 .feed{padding:8px}.v-card{display:flex;gap:10px;padding:12px 0;border-bottom:1px solid #eee;cursor:pointer}.v-card video{width:168px;height:94px;border-radius:12px;object-fit:cover;background:#000}
 .bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:#fff;border-top:1px solid #ddd;display:flex;justify-content:space-around;padding:8px 0;z-index:998}
 .btm-item{display:flex;flex-direction:column;align-items:center;font-size:11px;color:#606060;cursor:pointer;gap:2px;padding:4px 10px}.btm-item.active{color:#000;font-weight:700}
@@ -92,7 +92,7 @@ body{max-width:480px;margin:0 auto;background:#fff;padding-bottom:85px;overflow-
 
 <div class="header">
   <div class="header-top">
-    <div class="logo"><img src="logo.png?v=32"><span><span class="b">Bharat</span><span class="f">Flix</span></span></div>
+    <div class="logo"><img src="logo.png?v=33"><span><span class="b">Bharat</span><span class="f">Flix</span></span></div>
     <div class="header-icons">
       <div class="icon" id="bellBtn">🔔</div>
       <div class="icon" id="setBtn">⚙️</div>
@@ -104,18 +104,18 @@ body{max-width:480px;margin:0 auto;background:#fff;padding-bottom:85px;overflow-
   </div>
 </div>
 
-<div class="video-wrap" id="videoWrap"><div class="video" id="videoContainer"><video id="myVideo" poster="logo.png?v=32" controls playsinline preload="metadata"></video><div class="play" id="playBtn">▶</div><div id="fsBtn">⛶ Full</div></div></div>
+<div class="video-wrap" id="videoWrap"><div class="video" id="videoContainer"><video id="myVideo" poster="logo.png?v=33" controls playsinline preload="metadata"></video><div class="play" id="playBtn">▶</div><div id="fsBtn">⛶ Full</div></div></div>
 
 <div id="toast"></div>
 <div id="searchPage"><div class="search-page-header"><div class="back-btn" id="backSearch">←</div><div class="search-page-input-wrap"><input id="searchPageInput" placeholder="Search BharatFlix"><div class="mic-page" id="micPageBtn">🎙️</div></div></div></div>
 <div id="voicePop"><div class="voice-box"><div style="font-size:70px">🎙️</div><div style="font-size:13px;font-weight:800;margin-top:8px;color:#FF0000">● Listening...</div></div></div>
 <div id="pop"><div class="pop-box" id="popContent"></div></div>
-<div id="rotateHint">📱 तिरछा करो - Full Screen भर रहा है</div>
+<div id="rotateHint">📱 तिरछा - Full Screen भरा</div>
 
 <div id="uploadDetails">
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><b>📤 Video Upload</b><span id="closeUploadDetails" style="background:#000;color:#fff;padding:6px 12px;border-radius:20px;cursor:pointer">✕</span></div>
   <input id="v_title" placeholder="Video Title *">
-  <textarea id="v_desc" placeholder="Description - यही नीचे दिखेगा *"></textarea>
+  <textarea id="v_desc" placeholder="Description *"></textarea>
   <select id="v_category"><option>Comedy</option><option>Music</option><option>Bhakti</option><option>News</option><option>Education</option><option>Gaming</option><option>Vlog</option><option>Tech</option><option>Cooking</option><option>Other</option></select>
   <button id="finalUploadBtn">🚀 Save करो</button>
   <div id="uploadProgress">⏳ 0%</div>
@@ -124,22 +124,24 @@ body{max-width:480px;margin:0 auto;background:#fff;padding-bottom:85px;overflow-
 <div class="info">
   <div class="title" id="mainTitle">BharatFlix - Aapka Apna Video Platform 🇮🇳</div>
   <div class="meta">
-    <div class="b-logo"><img src="logo.png?v=32"></div>
+    <div class="b-logo"><img src="logo.png?v=33"></div>
     <div class="ch-name"><b>BharatFlix Official</b><br><span style="color:#606060;font-size:12px">1.2M subscribers • BharatFlix</span></div>
     <div class="btns"><button class="sub" id="subBtn">Subscribe</button></div>
   </div>
-  <!-- YOUTUBE JAISA BUTTON BAR - NEW -->
+  <!-- YOUTUBE INCOME BUTTONS FINAL v33 -->
   <div class="yt-actions">
     <div class="yt-action like-dislike"><span class="like" id="likeBtn">👍 <b id="likeCount">12K</b></span><span class="dislike" id="dislikeBtn">👎</span></div>
     <div class="yt-action" id="shareBtn">↗️ Share</div>
     <div class="yt-action" id="remixBtn">✂️ Remix</div>
     <div class="yt-action" id="saveBtn">💾 Save</div>
-    <div class="yt-action" id="downloadBtn">⬇️ Download</div>
-    <div class="yt-action" id="joinActionBtn">💎 Join</div>
+    <div class="yt-action income" id="thanksBtn">💰 Thanks</div>
+    <div class="yt-action" id="clipBtn">✂️ Clip</div>
+    <div class="yt-action income" id="joinActionBtn">💎 Join</div>
   </div>
 </div>
 
-<div class="swipe"><div>All</div><div>Comedy</div><div>Music</div><div>Bhakti</div><div>News</div><div>Gaming</div></div>
+<!-- All Gaming वाला हटा दिया भैया जी -->
+
 <div class="feed" id="videoFeed"><div style="text-align:center;padding:20px;color:#888">⏳ लोड हो रहा है... 🇮🇳</div></div>
 
 <div class="bottom">
@@ -240,7 +242,10 @@ function openCreatorForm(){
   };
 }
 function openJoin(){
-  showPop(`<b>💎 Join BharatFlix</b><br><br><div style="border:1px solid #FF9933;border-radius:12px;padding:12px;margin-bottom:10px"><b>₹59 / Month</b><br><button onclick="toast('💎 ₹59');pop.style.display='none'" style="margin-top:8px;width:100%;padding:10px;background:#FF9933;color:#fff;border:none;border-radius:20px;font-weight:900">Join ₹59</button></div><div style="border:1px solid #138808;border-radius:12px;padding:12px"><b>₹299 / Year</b><br><button onclick="toast('💎 ₹299');pop.style.display='none'" style="margin-top:8px;width:100%;padding:10px;background:#138808;color:#fff;border:none;border-radius:20px;font-weight:900">Join ₹299</button></div><br><button onclick="pop.style.display='none'" style="width:100%;padding:10px;background:#eee;border-radius:12px;border:none">Close</button>`);
+  showPop(`<b>💎 Join BharatFlix</b><br><div style="margin-top:10px;background:#fff8e1;padding:10px;border-radius:10px;border:1px solid #FF9933">💰 Thanks से Creator को पैसा जाएगा - YouTube Income जैसा</div><br><div style="border:1px solid #FF9933;border-radius:12px;padding:12px;margin-bottom:10px"><b>₹59 / Month</b><br><button onclick="toast('💎 ₹59 Join');pop.style.display='none'" style="margin-top:8px;width:100%;padding:10px;background:#FF9933;color:#fff;border:none;border-radius:20px;font-weight:900">Join ₹59</button></div><div style="border:1px solid #138808;border-radius:12px;padding:12px"><b>₹299 / Year</b><br><button onclick="toast('💎 ₹299 Join');pop.style.display='none'" style="margin-top:8px;width:100%;padding:10px;background:#138808;color:#fff;border:none;border-radius:20px;font-weight:900">Join ₹299</button></div><br><button onclick="pop.style.display='none'" style="width:100%;padding:10px;background:#eee;border-radius:12px;border:none">Close</button>`);
+}
+function openThanks(){
+  showPop(`<b>💰 Thanks - Super Thanks</b><br><div style="margin-top:10px;padding:12px;background:#fff8e1;border-radius:12px;border:1px solid #FF9933"><b>YouTube Income Button</b><br><span style="font-size:12px">Viewer आपको Thanks बोलके ₹20, ₹50, ₹100 भेज सकता है - यही से Income होगी</span></div><br><div style="display:flex;gap:8px"><button onclick="toast('💰 ₹20 Thanks भेजा! Creator को मिलेगा')" style="flex:1;padding:12px;background:#FF9933;color:#fff;border:none;border-radius:20px;font-weight:900">₹20</button><button onclick="toast('💰 ₹50 Thanks!')" style="flex:1;padding:12px;background:#138808;color:#fff;border:none;border-radius:20px;font-weight:900">₹50</button><button onclick="toast('💰 ₹100 Thanks!')" style="flex:1;padding:12px;background:#000;color:#fff;border:none;border-radius:20px;font-weight:900">₹100</button></div><br><button onclick="pop.style.display='none'" style="width:100%;padding:10px;background:#eee;border-radius:12px;border:none">Close</button>`);
 }
 let selectedFile = null;
 document.getElementById('uploadBtn').onclick=()=>document.getElementById('fileInput').click();
@@ -287,11 +292,26 @@ const playBtn = document.getElementById('playBtn');
 const fsBtn = document.getElementById('fsBtn');
 const videoWrap = document.getElementById('videoWrap');
 const rotateHint = document.getElementById('rotateHint');
+
 playBtn.onclick=()=>{myVideo.play();playBtn.style.display='none'};
 myVideo.onpause=()=>playBtn.style.display='flex';
-myVideo.onplay=()=>playBtn.style.display='none';
+myVideo.onplay=()=>{
+  playBtn.style.display='none';
+  // Vertical detect
+  if(myVideo.videoHeight > myVideo.videoWidth){
+    videoWrap.classList.add('vertical');
+  } else {
+    videoWrap.classList.remove('vertical');
+  }
+};
+myVideo.onloadedmetadata=()=>{
+  if(myVideo.videoHeight > myVideo.videoWidth){
+    videoWrap.classList.add('vertical');
+  } else {
+    videoWrap.classList.remove('vertical');
+  }
+};
 
-// FINAL FULLSCREEN FIX - WRAP ko fullscreen
 function openFullscreen(){ 
   if(videoWrap.requestFullscreen){videoWrap.requestFullscreen()} 
   else if(videoWrap.webkitRequestFullscreen){videoWrap.webkitRequestFullscreen()}
@@ -309,13 +329,14 @@ document.addEventListener('fullscreenchange',()=>{
   }
 });
 
-// YOUTUBE BUTTONS ACTION
+// BUTTONS
 document.getElementById('likeBtn').onclick=()=>{let c=document.getElementById('likeCount');c.innerText='12K 👍';toast('👍 Liked');}
 document.getElementById('dislikeBtn').onclick=()=>toast('👎 Dislike');
-document.getElementById('shareBtn').onclick=()=>{if(navigator.share){navigator.share({title:document.getElementById('mainTitle').innerText,url:location.href})}else{toast('🔗 Link Copy किया')}};
+document.getElementById('shareBtn').onclick=()=>{if(navigator.share){navigator.share({title:document.getElementById('mainTitle').innerText,url:location.href})}else{toast('🔗 Link Copy')}};
 document.getElementById('saveBtn').onclick=()=>toast('💾 Save किया');
 document.getElementById('remixBtn').onclick=()=>toast('✂️ Remix जल्दी');
-document.getElementById('downloadBtn').onclick=()=>toast('⬇️ Download जल्दी');
+document.getElementById('clipBtn').onclick=()=>toast('✂️ Clip बनाया');
+document.getElementById('thanksBtn').onclick=openThanks;
 document.getElementById('joinActionBtn').onclick=openJoin;
 
 document.getElementById('homeBtn').onclick=()=>{document.querySelectorAll('.btm-item').forEach(b=>b.classList.remove('active'));document.getElementById('homeBtn').classList.add('active');window.scrollTo({top:0,behavior:'smooth'});};
@@ -323,7 +344,7 @@ document.getElementById('shortsBtn').onclick=()=>{document.querySelectorAll('.bt
 document.getElementById('subsBtn').onclick=()=>{document.querySelectorAll('.btm-item').forEach(b=>b.classList.remove('active'));document.getElementById('subsBtn').classList.add('active');toast('📺 Subs');};
 document.getElementById('profileBottomBtn').onclick=()=>{document.querySelectorAll('.btm-item').forEach(b=>b.classList.remove('active'));document.getElementById('profileBottomBtn').classList.add('active');openProfile();};
 document.getElementById('bellBtn').onclick=()=>toast('🔔 ON');
-document.getElementById('setBtn').onclick=()=>showPop('<div style="padding:14px;background:#f2f2f2;border-radius:12px">🇮🇳 BharatFlix v32 FINAL<br>✅ YouTube Buttons Added<br>✅ Full Screen Fix - Vertical</div><br><button onclick="pop.style.display=\'none\'" style="width:100%;padding:12px;background:#000;color:#fff;border-radius:12px;border:none">Close</button>');
+document.getElementById('setBtn').onclick=()=>showPop('<div style="padding:14px;background:#f2f2f2;border-radius:12px">🇮🇳 BharatFlix v33 FINAL<br>✅ Income Thanks Button Added<br>✅ All Gaming Chip हटाया<br>✅ Player Full Screen Fix - Tircha Bhar Pur</div><br><button onclick="pop.style.display=\'none\'" style="width:100%;padding:12px;background:#000;color:#fff;border-radius:12px;border:none">Close</button>');
 document.getElementById('subBtn').onclick=function(){this.innerText=this.innerText=='Subscribe'?'Subscribed ✅':'Subscribe';toast('✅ '+this.innerText)};
 (function(){let logged=localStorage.getItem('bharatflix_creator');if(logged){try{let u=JSON.parse(logged);if(u.profilePic) document.getElementById('bottomProfilePic').innerHTML=`<img src="${u.profilePic}">`;}catch(e){}}})();
 let deferredPrompt=null;
