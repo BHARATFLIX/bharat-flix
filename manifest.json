@@ -12,9 +12,16 @@
       "type": "image/png"
     },
     {
-      "src": "logo.png",
+      "src": "apk-icon.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "apk-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }
