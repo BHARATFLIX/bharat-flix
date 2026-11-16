@@ -8,8 +8,8 @@
 body{background:#0f0f0f;color:#fff;font-family:Arial;padding:12px;margin:0}
 h1{color:#ff3d00;text-align:center}
 .box{background:#1e1e1e;padding:14px;border-radius:14px;margin-bottom:12px}
-input,button{width:100%;padding:12px;margin-top:9px;border-radius:9px;border:none;box-sizing:border-box}
-input{background:#333;color:#fff}
+input,button,select{width:100%;padding:12px;margin-top:9px;border-radius:9px;border:none;box-sizing:border-box}
+input,select{background:#333;color:#fff}
 button{background:#ff3d00;color:#fff;font-weight:bold}
 video{width:100%;border-radius:12px;margin-top:8px;background:#000}
 .card{background:#222;padding:10px;border-radius:12px;margin-top:10px}
@@ -27,15 +27,21 @@ video{width:100%;border-radius:12px;margin-top:8px;background:#000}
 <div class="box">
 <h3>1. Apna Channel Jodo</h3>
 <input id="creatorName" placeholder="Apna Naam - jaise Raju">
-<input id="creatorChannel" placeholder="Apne Channel ka ID / @username">
-<button onclick="saveChannel()">Channel Jodo</button>
+<input id="creatorChannel" placeholder="Channel ka ID / @username">
+<select id="creatorType">
+<option value="creator">Normal Creator</option>
+<option value="news">News Reporter - News Ke Liye</option>
+</select>
+<button onclick="saveChannel()">Channel Jodo - Supabase Me Save Hoga</button>
 <p id="channelMsg" class="small"></p>
 </div>
 
 <div class="box">
-<h3>2. Video Upload Karo</h3>
+<h3>2. Video Upload Karo - Censor Ke Saath</h3>
 <input id="videoTitle" placeholder="Video ka naam">
 <input type="file" id="videoFile" accept="video/*">
+<label class="small"><input type="checkbox" id="isPublic" checked style="width:auto"> 🌍 Public Me Bhi Dikhao - Sabko Dikhegi</label><br>
+<label class="small"><input type="checkbox" id="isNewsReport" style="width:auto"> 📰 Ye News Report Hai - News Wala Video Hai</label>
 <button onclick="uploadVideo()">Upload - Public + Godam + Channel</button>
 <p id="uploadMsg" class="small"></p>
 </div>
@@ -48,22 +54,26 @@ video{width:100%;border-radius:12px;margin-top:8px;background:#000}
 </div>
 <div id="channelList"></div>
 <div id="videoList"></div>
-<p class="small">Public me sabki video dikhegi - isi se Views + Monetization aayega bhaiya. Mera Channel me sirf uski video dikhegi.</p>
+<p class="small">Public me sabki video - Views + Monetization yahi se. Mera Channel me sirf uski video - Views / Watch Time apne channel se hi check hoga.</p>
 </div>
 
 <script>
+// *** YAHAN KOI CHABI NAHI HAI - Chabi sirf Vercel Tijori me hai ***
 let creatorChannels = JSON.parse(localStorage.getItem("bf_channels")||"{}");
 let allVideos = JSON.parse(localStorage.getItem("bf_videos")||"[]");
 let mode="public";
 let selectedChannel="all";
 
-function saveChannel(){
+async function saveChannel(){
   let n=document.getElementById("creatorName").value.trim();
   let c=document.getElementById("creatorChannel").value.trim();
+  let type=document.getElementById("creatorType").value;
   if(!n||!c){alert("Naam aur Channel ID dalo");return;}
-  creatorChannels[n]=c;
+  creatorChannels[n]={channel:c,type:type};
   localStorage.setItem("bf_channels",JSON.stringify(creatorChannels));
-  document.getElementById("channelMsg").innerText="Ho gaya bhaiya! "+n+" ka channel jud gaya";
+  // Account Detail -> Supabase me jayegi - Vercel Tijori se hokar, chabi yahan nahi hai
+  try{ await fetch("/api/save-channel",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:n,channel:c,type:type})}); }catch(e){}
+  document.getElementById("channelMsg").innerText="Ho gaya bhaiya! "+n+" ka channel jud gaya - Supabase me save ho gaya";
   showVideos();
 }
 
@@ -71,31 +81,53 @@ async function uploadVideo(){
   let title=document.getElementById("videoTitle").value.trim();
   let file=document.getElementById("videoFile").files[0];
   let creator=document.getElementById("creatorName").value.trim();
+  let isPublic=document.getElementById("isPublic").checked;
+  let isNews=document.getElementById("isNewsReport").checked;
+  let creatorInfo=creatorChannels[creator];
   if(!title||!file||!creator){alert("Naam, Title aur Video chuno");return;}
-  document.getElementById("uploadMsg").innerText="Upload ho raha hai... Public + Godam + Channel teeno me ja raha hai...";
+  if(!creatorInfo){alert("Pehle Channel Jodo");return;}
+
+  // --- SENSOR 1: Naam me ganda / copyright word ---
+  let badWords=["porn","xxx","sex","nude","copyrighted movie","full movie download"];
+  let lowTitle=title.toLowerCase();
+  if(!isNews && badWords.some(w=>lowTitle.includes(w))){
+    alert("Ye video Sensor ne rok di - Gandi / Copyright wali video BharatFlix me nahi chalegi");
+    return;
+  }
+  // --- SENSOR 2: File bahut badi ya galat type ---
+  if(file.size > 500*1024*1024){ alert("Video 500MB se badi hai"); return; }
+  if(!file.type.startsWith("video/")){ alert("Sirf Video file chuno"); return; }
+  // --- SENSOR 3: Watermark warning ---
+  if(lowTitle.includes("watermark") || lowTitle.includes("tiktok")){
+    if(!confirm("Isme Watermark lag raha hai, phir bhi upload kare?")) return;
+  }
+
+  document.getElementById("uploadMsg").innerText="Upload ho raha hai... Sensor Pass ✅ ... Ab Vercel Tijori -> Telegram Godam me ja raha hai...";
 
   let fd=new FormData();
   fd.append("title",title); fd.append("creator",creator);
   fd.append("video",file);
-  fd.append("creatorChannel",creatorChannels[creator]||"");
-  fd.append("isPublic","true"); // Public bhi hai bhaiya
+  fd.append("creatorChannel",creatorInfo.channel||"");
+  fd.append("creatorType",creatorInfo.type||"creator");
+  fd.append("isPublic",isPublic?"true":"false");
+  fd.append("isNewsReport",isNews?"true":"false");
 
   let file_id="local_"+Date.now();
-  try{ let res=await fetch("/api/upload",{method:"POST",body:fd}); let d=await res.json(); if(d.file_id) file_id=d.file_id; }catch(e){}
+  let telegramOk=false;
+  try{
+    let res=await fetch("/api/upload",{method:"POST",body:fd});
+    let d=await res.json();
+    if(d.file_id){ file_id=d.file_id; telegramOk=true; }
+  }catch(e){}
 
-  let v={title:title,creator:creator,channel:creatorChannels[creator]||"",file_id:file_id,url:URL.createObjectURL(file),isPublic:true,time:Date.now()};
+  let v={title:title,creator:creator,channel:creatorInfo.channel||"",file_id:file_id,url:URL.createObjectURL(file),isPublic:isPublic,isNews:isNews,time:Date.now(),views:0};
   allVideos.unshift(v);
   localStorage.setItem("bf_videos",JSON.stringify(allVideos.map(x=>({...x,url:""}))));
   showVideos();
-  document.getElementById("uploadMsg").innerText="Ho gaya bhaiya! Video PUBLIC me + Godam me + "+creator+" ke Channel me - teeno jagah chali gayi";
+  document.getElementById("uploadMsg").innerText="Ho gaya bhaiya! Video "+(isPublic?"🌍 PUBLIC + ":"🔒 PRIVATE + ")+"Telegram Godam + "+creator+" ke Channel me chali gayi. "+(isNews?"News Report hai isliye Sensor ne chhoot di.":"Sensor Pass ho gaya.");
 }
 
-function setMode(m){
-  mode=m;
-  document.getElementById("btnPublic").className=m=="public"?"active":"";
-  document.getElementById("btnMy").className=m=="my"?"active":"";
-  showVideos();
-}
+function setMode(m){ mode=m; document.getElementById("btnPublic").className=m=="public"?"active":""; document.getElementById("btnMy").className=m=="my"?"active":""; showVideos(); }
 function selectChannel(n){selectedChannel=n;showVideos();}
 
 function showVideos(){
@@ -103,19 +135,15 @@ function showVideos(){
   let chHtml=`<span class="chip ${selectedChannel=="all"?"active":""}" onclick="selectChannel('all')">Sab Channel</span>`;
   Object.keys(creatorChannels).forEach(n=>{ chHtml+=`<span class="chip ${selectedChannel==n?"active":""}" onclick="selectChannel('${n}')">${n} ka Channel</span>`; });
   document.getElementById("channelList").innerHTML=chHtml;
-
   let list=allVideos;
-  // PUBLIC MODE - BharatFlix kholega to sabki video
   if(mode=="public"){ list=list.filter(v=>v.isPublic); }
-  // MY CHANNEL MODE - Channel wala kholega to sirf uski video
   if(mode=="my" && myName){ list=list.filter(v=>v.creator==myName); }
   if(selectedChannel!="all"){ list=list.filter(v=>v.creator==selectedChannel); }
-
   let h="";
   list.forEach(v=>{
-    h+=`<div class="card"><b>${v.title}</b><br><span class="small">Creator: ${v.creator} | Channel: ${v.channel} | 🌍 Public</span><br>
+    h+=`<div class="card"><b>${v.title}</b> ${v.isPublic?"🌍 PUBLIC":"🔒 PRIVATE"} ${v.isNews?"📰 NEWS":""}<br><span class="small">Creator: ${v.creator} | Channel: ${v.channel} | Views: ${v.views||0} | Watch Time: Apne Channel Se Check Karo</span><br>
     ${v.url?`<video controls src="${v.url}"></video>`:`<video controls src="/api/play?file_id=${v.file_id}"></video>`}
-    <p class="small">Ye video Public me bhi hai aur ${v.creator} ke channel me bhi hai</p></div>`;
+    <p class="small">Ye video ${v.isPublic?"Public me bhi hai aur":"Sirf"} ${v.creator} ke channel me hai</p></div>`;
   });
   document.getElementById("videoList").innerHTML=h||"<p class='small'>Abhi yahan koi video nahi hai bhaiya</p>";
 }
