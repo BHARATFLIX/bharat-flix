@@ -24,8 +24,9 @@ export default async function handler(req, res) {
     if (!videoFile) return res.status(400).json({ error: "Video nahi mili" });
 
     const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
-    const GODAM_ID = process.env.TELEGRAM_GODAM_ID;
-    const CHANNEL_ID = process.env.TELEGRAM_CHANNEL_ID;
+    // भैया, यही ठीक किया है - CHAT_ID को ही GODAM मान लिया
+    const GODAM_ID = process.env.TELEGRAM_GODAM_ID || process.env.TELEGRAM_CHAT_ID;
+    const CHANNEL_ID = process.env.TELEGRAM_CHANNEL_ID || process.env.TELEGRAM_CHAT_ID;
 
     if (!BOT_TOKEN || !GODAM_ID) {
       return res.status(500).json({ error: "Chabi tijori me nahi hai" });
