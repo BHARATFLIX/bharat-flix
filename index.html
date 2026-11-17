@@ -1,5 +1,4 @@
-<!-- BHARAT FLIX - FINAL CODE - VERSION 7.3 - DATE: 17-11-2026 -->
-<!-- 7.2 PAR SAHI THA - 7.3 ME SIRF YE BADHA HAI, KUCH GHATAYA NAHI: SAARE BUTTON CHALU - SIRF LOGO NAHI - LONG KE 12 BUTTON + SHORT KE DAHINI SIDE WALE BUTTON - SAB DABANE PAR KAAM KARENGE -->
+<!-- BHARAT FLIX - FINAL CODE - VERSION 7.3 SERVER WALA - DATE: 18-11-2026 -->
 <!DOCTYPE html><html lang="hi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bharat Flix 🇮🇳</title><link rel="icon" href="logo.png"><link rel="apple-touch-icon" href="logo.png"><link rel="manifest" href="manifest.json"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><style>*{margin:0;padding:0;box-sizing:border-box;font-family:Roboto,Arial,sans-serif}body{max-width:480px;margin:0 auto;background:#fff;padding-bottom:85px;overflow-x:hidden}
 .header{position:sticky;top:0;background:#fff;z-index:1003;box-shadow:0 1px 4px rgba(0,0,0,.12);padding:8px 8px;display:flex;align-items:center;justify-content:space-between;gap:4px}
 .logo{display:flex;align-items:center;gap:5px;font-weight:900;font-size:18px;cursor:pointer;white-space:nowrap;flex-shrink:0}.logo img{width:36px;height:36px;border-radius:50%;object-fit:cover;border:1px solid #eee}
@@ -67,8 +66,7 @@
 <input type="file" id="fileInput" accept="video/*" style="display:none">
 <script>
 const SUPA_URL="https://dvaawuhwetwmmziucyow.supabase.co",SUPA_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR2YWF3dWh3ZXR3bW16aXVjeW93Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM3MjM2NDcsImV4cCI6MjEwOTI5OTY0N30.2tqmnZbn_4_LKSet1JPKdTNKpzgy6y_i03V_AajCktI";
-const TELEGRAM_BOT_TOKEN="APNA_BOT_TOKEN_YAHA_DALO";
-const TELEGRAM_CHAT_ID="-1008981405478";
+// SERVER WALA - TOKEN AB YAHAN NAHI HAI, TOKEN SIRF SERVER ME HAI
 let supa=null;try{supa=supabase.createClient(SUPA_URL,SUPA_KEY)}catch(e){}
 function toast(t){let e=document.getElementById('toast');e.innerText=t;e.style.display='block';setTimeout(()=>e.style.display='none',2200)}
 function showPop(t){document.getElementById('popContent').innerHTML=t;document.getElementById('pop').style.display='flex'}document.getElementById('pop').onclick=e=>{if(e.target.id=='pop')e.currentTarget.style.display='none'};
@@ -77,7 +75,6 @@ let likeCountVal=0,dislikeCountVal=0,commentCountVal=0,viewCountVal=59;
 function saveStudioStats(){localStorage.setItem('bharatflix_stats',JSON.stringify({likes:likeCountVal,dislikes:dislikeCountVal,comments:commentCountVal,views:viewCountVal}))}
 function getSaved(){try{return JSON.parse(localStorage.getItem('bharatflix_saved')||'[]')}catch(e){return[]}}
 function showSaved(){let s=getSaved();document.getElementById('savedList').innerHTML=s.length?s.map(x=>'<div style="padding:8px;background:#fff;border-radius:10px;margin-bottom:6px">💾 '+x+'</div>').join(''):'Abhi Koi Saved Nahi';toast('Saved: '+s.length+' video')}
-// --- SAB BUTTON CHALU - 7.3 ---
 function doLike(){likeCountVal++;saveStudioStats();let el=document.getElementById('likeCount');if(el)el.innerText=(12+likeCountVal)+'K';document.getElementById('likeBtn').classList.add('active');toast('Like Ho Gaya 👍 - Studio Me Jud Gaya');showMyStudio();}
 function doDislike(){dislikeCountVal++;saveStudioStats();document.getElementById('dislikeCount').innerText=dislikeCountVal;toast('Dislike Ho Gaya 👎');showMyStudio();}
 function doComment(){document.getElementById('commentInput').focus();toast('Comment Likho - Post Dabao');}
@@ -141,7 +138,7 @@ if(window.matchMedia('(display-mode: standalone)').matches || window.navigator.s
 window.addEventListener('appinstalled',()=>{let b=document.getElementById('installBtn');b.classList.remove('green');b.classList.add('blue');b.innerText='✅ Installed';});
 document.getElementById('installBtn').onclick=async()=>{if(deferredPrompt){deferredPrompt.prompt();let {outcome}=await deferredPrompt.userChoice;if(outcome=='accepted'){let b=document.getElementById('installBtn');b.classList.remove('green');b.classList.add('blue');b.innerText='✅ Installed';}deferredPrompt=null}else toast('Add to Home Screen')};
 document.getElementById('chips').onclick=e=>{let c=e.target.closest('.chip');if(!c||c.id=='compassBtn')return;document.querySelectorAll('.chip').forEach(x=>{if(x.id!='compassBtn')x.classList.remove('active')});c.classList.add('active');let cat=c.dataset.cat;document.querySelectorAll('.v-card').forEach(card=>{card.style.display=(cat=='All'||card.dataset.cat==cat)?'block':'none'})};
-const GODAM_ID = 8981405478;
+const GODAM_ID = "-1008981405478";
 function isReporter(){try{let ch=JSON.parse(localStorage.getItem('bharatflix_channel')||'{}');return (ch.cat||'').toLowerCase().includes('reporter') || (ch.cat||'').toLowerCase()=='news';}catch(e){return false;}}
 function autoSensorCheck(file, title, desc){
   let text=((file?file.name:"")+" "+title+" "+desc).toLowerCase();
@@ -173,9 +170,10 @@ document.getElementById('finalUploadBtn').onclick=async()=>{
   let prog=document.getElementById('uploadProgress'); let barWrap=document.getElementById('progressBarWrap'); let bar=document.getElementById('progressBar');
   prog.style.display='block'; barWrap.style.display='block'; document.getElementById('finalUploadBtn').disabled=true; document.getElementById('finalUploadBtn').innerText='Uploading...';
   try{
-    let form=new FormData(); form.append('chat_id',TELEGRAM_CHAT_ID); form.append('caption',t+"\n"+d+"\nCategory: "+cat+"\nVisibility: "+visibility); form.append('video',selFile);
-    let res=await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendVideo`,{method:'POST',body:form});
-    let data=await res.json(); if(!data.ok) throw new Error('Telegram Fail');
+    // SERVER WALA UPLOAD - YAHAN SE VIDEO SERVER KO JAYEGI, SERVER TELEGRAM GODAM ME CHHODEGA
+    let form=new FormData(); form.append('caption',t+"\n"+d+"\nCategory: "+cat+"\nVisibility: "+visibility); form.append('video',selFile);
+    let res=await fetch(`/api/upload`,{method:'POST',body:form});
+    let data=await res.json(); if(!data.ok) throw new Error('Server Fail');
     let tgFileId=data.result.video.file_id;
     let videoURL=URL.createObjectURL(selFile);
     let newVideo={title:t, desc:d, category:cat, visibility:visibility, isMine:true, video_url:videoURL, telegram_file_id:tgFileId, thumbnail:selThumb, duration:"10:24", godam_id:GODAM_ID, time:Date.now()};
