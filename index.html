@@ -1,4 +1,4 @@
-<!-- BHARAT FLIX - FINAL CODE - VERSION 7.5 YOUTUBE WALA - CHANNEL JARURI - DATE: 19-11-2026 -->
+<!-- BHARAT FLIX - FINAL CODE - VERSION 7.5 YOUTUBE WALA - CHANNEL JARURI - DATE: 19-11-2026 - FINAL LOCK -->
 <!DOCTYPE html><html lang="hi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bharat Flix 🇮🇳</title><link rel="icon" href="logo.png"><link rel="apple-touch-icon" href="logo.png"><link rel="manifest" href="manifest.json"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><style>*{margin:0;padding:0;box-sizing:border-box;font-family:Roboto,Arial,sans-serif}body{max-width:480px;margin:0 auto;background:#fff;padding-bottom:85px;overflow-x:hidden}
 .header{position:sticky;top:0;background:#fff;z-index:1003;box-shadow:0 1px 4px rgba(0,0,0,.12);padding:8px 8px;display:flex;align-items:center;justify-content:space-between;gap:4px}
 .logo{display:flex;align-items:center;gap:5px;font-weight:900;font-size:18px;cursor:pointer;white-space:nowrap;flex-shrink:0}.logo img{width:36px;height:36px;border-radius:50%;object-fit:cover;border:1px solid #eee}
@@ -139,7 +139,7 @@ if(window.matchMedia('(display-mode: standalone)').matches || window.navigator.s
 window.addEventListener('appinstalled',()=>{let b=document.getElementById('installBtn');b.classList.remove('green');b.classList.add('blue');b.innerText='✅ Installed';});
 document.getElementById('installBtn').onclick=async()=>{if(deferredPrompt){deferredPrompt.prompt();let {outcome}=await deferredPrompt.userChoice;if(outcome=='accepted'){let b=document.getElementById('installBtn');b.classList.remove('green');b.classList.add('blue');b.innerText='✅ Installed';}deferredPrompt=null}else toast('Add to Home Screen')};
 document.getElementById('chips').onclick=e=>{let c=e.target.closest('.chip');if(!c||c.id=='compassBtn')return;document.querySelectorAll('.chip').forEach(x=>{if(x.id!='compassBtn')x.classList.remove('active')});c.classList.add('active');let cat=c.dataset.cat;document.querySelectorAll('.v-card').forEach(card=>{card.style.display=(cat=='All'||card.dataset.cat==cat)?'block':'none'})};
-const GODAM_ID = "-1008981405478";
+/* ===== YOUTUBE WALA SYSTEM - CHANNEL JARURI ===== */
 function getMyChannel(){ try{ let ch=JSON.parse(localStorage.getItem('bharatflix_channel')||'null'); if(ch && ch.name) return ch; }catch(e){} return null; }
 function isReporter(){try{let ch=JSON.parse(localStorage.getItem('bharatflix_channel')||'{}');return (ch.cat||'').toLowerCase().includes('reporter') || (ch.cat||'').toLowerCase()=='news';}catch(e){return false;}}
 function autoSensorCheck(file, title, desc){
@@ -159,7 +159,6 @@ let selFile=null, selThumb="", customThumb="";
 document.getElementById('thumbInput').onchange=e=>{ let f=e.target.files[0]; if(!f) return; let r=new FileReader(); r.onload=ev=>{ customThumb=ev.target.result; selThumb=customThumb; document.getElementById('thumbPreviewBox').style.display='block'; document.getElementById('thumbPreview').src=customThumb; toast('Thumbnail Lag Gaya ✅'); }; r.readAsDataURL(f); };
 document.getElementById('skipThumbBtn').onclick=()=>{ customThumb=""; selThumb=""; document.getElementById('thumbPreviewBox').style.display='none'; toast('Bina Thumbnail Ke Upload Hoga ✅'); };
 document.getElementById('closeUploadDetails').onclick=()=>document.getElementById('uploadDetails').style.display='none';
-/* ===== YOUTUBE WALA SYSTEM - CHANNEL JARURI ===== */
 function openVideoPicker(){
   let ch=getMyChannel();
   if(!ch){
@@ -213,10 +212,10 @@ document.getElementById('finalUploadBtn').onclick=async()=>{
     if(!data.ok) throw new Error(data.error||'Server Fail');
     let tgFileId=data.result.video.file_id;
     let videoURL=URL.createObjectURL(selFile);
-    let newVideo={title:t, desc:d, category:cat, visibility:visibility, isMine:true, video_url:videoURL, telegram_file_id:tgFileId, thumbnail:selThumb, duration:"10:24", godam_id:GODAM_ID, time:Date.now()};
+    let newVideo={title:t, desc:d, category:cat, visibility:visibility, isMine:true, video_url:videoURL, telegram_file_id:tgFileId, thumbnail:selThumb, duration:"10:24", time:Date.now()};
     try{let req2=indexedDB.open("BharatFlixDB",1);req2.onsuccess=e=>{let db=e.target.result;let tx=db.transaction("videos","readwrite").objectStore("videos");tx.add({time:newVideo.time,title:t,desc:d,category:cat,visibility:visibility,thumbnail:selThumb,blob:selFile,telegram_file_id:tgFileId});};}catch(err){}
     allVideos.unshift(newVideo); shortsVideos=allVideos.filter(v=>(v.category||'').toLowerCase().includes('short'));
-    try{ if(supa) supa.from('videos').insert([{title:t, desc:d, category:cat, visibility:visibility, godam_id:GODAM_ID, telegram_file_id:tgFileId}]); }catch(e){}
+    try{ if(supa) supa.from('videos').insert([{title:t, desc:d, category:cat, visibility:visibility, telegram_file_id:tgFileId}]); }catch(e){}
     prog.innerText='✅ 100% Upload Ho Gaya - '+visibility+' - Channel: '+ch.name; bar.style.width='100%';
     setTimeout(()=>{ document.getElementById('uploadDetails').style.display='none'; prog.style.display='none'; barWrap.style.display='none'; document.getElementById('finalUploadBtn').disabled=false; document.getElementById('finalUploadBtn').innerText='Upload Video - Save'; customThumb=""; selThumb=""; render(); playVideo(newVideo); toast('Video Upload Ho Gayi ✅ - '+t+' - '+ch.name); },800);
   }catch(err){
