@@ -8,12 +8,13 @@
 <title>BharatFlix 🇮🇳</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#fff;padding-bottom:80px}
+body{background:#fff;padding-bottom:80px;top:0!important}
+.goog-te-banner-frame,.goog-te-gadget,#goog-gt-tt,.skiptranslate{display:none!important}
 .top{display:flex;align-items:center;gap:8px;padding:8px 10px;position:sticky;top:0;background:#fff;z-index:100}
-.logo{width:38px;height:38px;border-radius:50%;background:#FF6A00;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900}
-.searchBox{flex:1;display:flex;align-items:center;gap:5px}
-.searchBox input{flex:1;background:#eee;border-radius:20px;padding:8px 12px;border:none;outline:none}
-.searchBox button{width:36px;height:36px;border-radius:50%;border:none;background:#eee}
+.logo{width:38px;height:38px;min-width:38px;border-radius:50%;background:#FF6A00;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900}
+.searchBox{flex:1;display:flex;align-items:center;gap:5px;min-width:0}
+.searchBox input{flex:1;background:#eee;border-radius:20px;padding:8px 12px;border:none;outline:none;min-width:0}
+.searchBox button{width:36px;height:36px;min-width:36px;border-radius:50%;border:none;background:#eee}
 .chips{display:flex;gap:8px;overflow-x:auto;padding:6px 10px;white-space:nowrap}
 .chip{background:#eee;padding:6px 14px;border-radius:20px;font-size:13px}.chip.active{background:#000;color:#fff}
 #adsPlayer{width:100%;height:210px;background:#222;color:#fff;display:flex;align-items:center;justify-content:center;position:relative}
@@ -37,25 +38,25 @@ body{background:#fff;padding-bottom:80px}
 .popup button{padding:9px 12px;border:none;border-radius:8px;background:#FF6A00;color:#fff;margin-top:8px}
 </style>
 </head>
-<body>
+<body class="notranslate">
 
+<!-- HEADER - PURANA WALA - LOCK - CHEDA NAHI -->
 <div class="top">
-<div class="logo">BF</div><b>Bharat Flix 🇮🇳</b>
+<div class="logo">BF</div><b style="white-space:nowrap">Bharat Flix 🇮🇳</b>
 <div class="searchBox"><input id="searchInput" placeholder="Search..." oninput="doSearch(this.value)"><button onclick="voiceSearch()">🎙️</button></div>
 <span>🔔</span>
-<button id="installBtnText" onclick="installApp()" class="installGreen" style="padding:7px 10px;border-radius:20px;border:none;font-weight:700;font-size:12px">📲 Install Karo</button>
+<button id="installBtnText" onclick="installApp()" class="installGreen" style="padding:7px 10px;border-radius:20px;border:none;font-weight:700;font-size:12px;white-space:nowrap">📲 Install Karo</button>
 <span onclick="togglePop('settingsBox')">⚙️</span>
 </div>
 
 <div class="chips"><span class="chip active">All</span><span class="chip">Music</span><span class="chip">Mixes</span><span class="chip">Live</span><span class="chip">Comedy</span><span class="chip">Bhakti</span></div>
-
-<div id="adsPlayer"><span>Ad • Ads</span><div style="text-align:center">▶️<br>AdSense Ad Chal Raha Hai - Upar Khiskao To Hat Jayega</div></div>
+<div id="adsPlayer"><span>Ad • Ads</span><div style="text-align:center">▶️<br>AdSense Ad - Upar Khiskao To Hat Jayega</div></div>
 
 <div id="bigPlayerWrap">
 <video id="bigVideo" controls playsinline></video>
-<div id="bigPlayerInfo"><b id="bigTitle">Bharat Flix - Aapka Apna Swadeshi Platform</b>
+<div id="bigPlayerInfo"><b id="bigTitle">Bharat Flix</b>
 <div class="row"><span class="pill">👁️ 59K</span><span class="pill">👍 12K</span><span class="pill">👎 0</span><span class="pill">💬 Comment</span><span class="pill">🔴 Subscribe</span></div>
-<p id="bigNext" style="font-size:12px;color:#666;margin-top:6px">Agla: Usi Category Ka Dusra Bhag Search Ho Gaya - Play Dabao</p></div>
+<p id="bigNext" style="font-size:12px;color:#666;margin-top:6px">Agla: Usi Category Ka Dusra Bhag Search Ho Gaya</p></div>
 </div>
 
 <div id="feedBox" style="padding-top:10px"></div>
@@ -90,7 +91,7 @@ body{background:#fff;padding-bottom:80px}
 <div id="uploadBox" class="popup">
 <b>Upload Karo 📤 - Telegram Godam</b>
 <input type="file" id="uploadFile" accept="video/*,image/*">
-<p style="font-size:12px;color:#666;margin-top:6px">Upload Button Hi Check Karega: Copyright / Watermark / Gandi Video. Telegram ka Token Code me nahi hai, Server par gupt rahega.</p>
+<p style="font-size:12px;color:#666;margin-top:6px">Upload Button Hi Check Karega: Copyright / Watermark / Gandi Video. Telegram Token Code me nahi hai, Server par gupt rahega.</p>
 <button onclick="checkAndUpload()">⬆️ Check Karke Upload Karo</button>
 <button onclick="togglePop('uploadBox')">Band Karo</button>
 <p id="uploadStatus" style="font-size:13px;margin-top:8px"></p>
@@ -103,9 +104,9 @@ body{background:#fff;padding-bottom:80px}
 </div>
 
 <script>
-// ===== KHALI JAGAH - AAP BAAD ME DOGE, ABHI KUCH NAHI DALA =====
-const SUPABASE_URL = ""; // Aap doge tab bharenge
-const SUPABASE_KEY = ""; // Aap doge tab bharenge
+// KHALI - AAP BAAD ME DOGE
+const SUPABASE_URL = "";
+const SUPABASE_KEY = "";
 // Telegram Token yahan kabhi nahi aayega - Server par gupt rahega
 
 function toast(m){let d=document.createElement('div');d.textContent=m;d.style.cssText='position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:#000;color:#fff;padding:8px 14px;border-radius:20px;z-index:999;font-size:13px';document.body.appendChild(d);setTimeout(()=>d.remove(),2200);}
@@ -115,10 +116,10 @@ function togglePop(id){let e=document.getElementById(id);e.style.display=e.style
 let deferredPrompt=null,installed=false;
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;});
 function installApp(){if(installed){toast('Pehle Se Install Hai ✅');return;}if(deferredPrompt){deferredPrompt.prompt();deferredPrompt.userChoice.then(r=>{if(r.outcome==='accepted')markInstalled();});}else{toast('Browser Menu > Add to Home Screen Dabao');}}
-function markInstalled(){installed=true;let b=document.getElementById('installBtnText');b.textContent='✅ Installed';b.className='installBlue';toast('Install Ho Gaya ✅ Process Chalu');localStorage.setItem('bf_installed','1');}
+function markInstalled(){installed=true;let b=document.getElementById('installBtnText');b.textContent='✅ Installed';b.className='installBlue';toast('Install Ho Gaya ✅');localStorage.setItem('bf_installed','1');}
 if(localStorage.getItem('bf_installed')==='1')setTimeout(markInstalled,500);
 
-// LANGUAGE
+// LANGUAGE - SETTING SE, GOOGLE TRANSLATE NAHI
 function changeLang(l){localStorage.setItem('bf_lang',l);toast('Language Badal Gayi ✅');}
 document.getElementById('appLang').value=localStorage.getItem('bf_lang')||'hi';
 
@@ -126,7 +127,7 @@ document.getElementById('appLang').value=localStorage.getItem('bf_lang')||'hi';
 function doSearch(q){q=q.toLowerCase();document.querySelectorAll('.shortCard, .longCard').forEach(el=>{el.style.display=el.innerText.toLowerCase().includes(q)?'':'none';});}
 function voiceSearch(){let SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){toast('Voice Support Nahi Hai');return;}let rec=new SR();rec.lang='hi-IN';rec.onresult=e=>{let txt=e.results[0][0].transcript;document.getElementById('searchInput').value=txt;doSearch(txt);toast('Aapne Bola: '+txt);};rec.start();toast('Bolo... 🎙️ Sun Raha Hu');}
 
-// MIX FEED - 4,6,8 FIXED NAHI - JITNE HONGE UTNE, SCROLL PAR AUR AAYENGE
+// MIX FEED - FIXED NAHI - JITNE HONGE UTNE
 let allVideos=[
 {type:'short',title:'Short 1 - Comedy'},{type:'short',title:'Short 2 - Bhakti'},
 {type:'short',title:'Short 3 - Music'},{type:'long',title:'Long 1 - Bharat Flix Welcome 🇮🇳'},
@@ -159,14 +160,18 @@ if(shown<allVideos.length){loading=true;document.getElementById('loadingMore').s
 let curShort=0;
 function openShort(i){curShort=i;document.getElementById('shortPlayer').style.display='block';document.getElementById('shortTitle').textContent=allVideos[i].title;toast('Short Chal Raha Hai ✅');}
 function closeShort(){document.getElementById('shortPlayer').style.display='none';}
-document.getElementById('shortPlayer').addEventListener('wheel',e=>{if(e.deltaY>0&&curShort<allVideos.length-1)openShort(curShort+1);});
 
-// LONG PLAYER - CHIPKA HUA
-let curLong=-1;
-function playLong(i){curLong=i;document.getElementById('bigPlayerWrap').style.display='block';document.getElementById('bigTitle').textContent=allVideos[i].title;document.getElementById('bigPlayerWrap').scrollIntoView({behavior:'smooth'});toast('Bada Player Me Chal Raha Hai ✅');}
-document.getElementById('bigVideo').addEventListener('ended',()=>{document.getElementById('bigNext').textContent='Agla: Usi Category Ka Dusra Bhag Search Ho Gaya - Play Dabao Tab Chalega';toast('Video Khatam - Dusra Bhag Search Ho Gaya');});
+// LONG PLAYER - VIDEO HOGA TABHI DIKHEGA, KAALA NAHI
+function playLong(i){
+if(!allVideos[i].url){toast('Video Abhi Godam Me Nahi Hai - Pehle Upload Karo');return;}
+document.getElementById('bigPlayerWrap').style.display='block';
+document.getElementById('bigTitle').textContent=allVideos[i].title;
+document.getElementById('bigPlayerWrap').scrollIntoView({behavior:'smooth'});
+toast('Bada Player Me Chal Raha Hai ✅');
+}
+document.getElementById('bigVideo').addEventListener('ended',()=>{document.getElementById('bigNext').textContent='Agla: Usi Category Ka Dusra Bhag Search Ho Gaya';toast('Video Khatam - Dusra Bhag Search Ho Gaya');});
 
-// PROFILE - SIRF SUPABASE - ABHI KHALI, AAP DOGE TAB CHALEGA
+// PROFILE - SIRF SUPABASE
 async function saveProfile(){
 let data={name:document.getElementById('pName').value,mobile:document.getElementById('pMobile').value,email:document.getElementById('pEmail').value,channel:document.getElementById('pChannel').value};
 if(!data.name||!data.channel){toast('Name + Channel Bharo');return;}
@@ -177,7 +182,7 @@ toast('✅ Account + Channel Ban Gaya');
 function editProfile(){let p=JSON.parse(localStorage.getItem('bf_profile')||'{}');if(p.name)document.getElementById('pName').value=p.name;if(p.channel)document.getElementById('pChannel').value=p.channel;toast('Edit Karo, Phir Save Dabao');}
 function showStudio(){let p=JSON.parse(localStorage.getItem('bf_profile')||'{}');document.getElementById('studioBox').innerHTML=`<b>Studio 📊</b><br>Channel: ${p.channel||'-'}<br>Views: 0 | Likes: 0 | Videos: ${allVideos.length}`;}
 
-// UPLOAD - SIRF UPLOAD BUTTON CHECK KAREGA, SUPABASE NAHI
+// UPLOAD - SIRF UPLOAD BUTTON CHECK KAREGA
 async function checkAndUpload(){
 let f=document.getElementById('uploadFile').files[0];
 if(!f){toast('Pehle Video Chuno');return;}
