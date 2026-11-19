@@ -1,18 +1,24 @@
 {
   "name": "BharatFlix 🇮🇳 - Aapka Apna Video Platform",
   "short_name": "BharatFlix",
+  "id": "/bharat-flix/",
   "description": "BharatFlix Official - Aapka Apna Video Platform. Comedy, Music, Bhakti, News, Gaming, Kirtan. Video Dekho, Channel Banao.",
-  "start_url": "https://bharatflix.github.io/bharat-flix/",
-  "scope": "https://bharatflix.github.io/bharat-flix/",
+  "lang": "hi",
+  "dir": "ltr",
+  "start_url": "/bharat-flix/",
+  "scope": "/bharat-flix/",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#ffffff",
   "theme_color": "#FF6A00",
+  "categories": ["entertainment", "video", "music", "news"],
+  "prefer_related_applications": false,
   "icons": [
     {
       "src": "apk-icon.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "apk-icon.png",
