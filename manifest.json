@@ -1,8 +1,11 @@
 {
-  "name": "BharatFlix - Swadeshi OTT",
+  "name": "BharatFlix 🇮🇳 - Aapka Apna Video Platform",
   "short_name": "BharatFlix",
-  "start_url": "./index.html",
+  "description": "BharatFlix Official - Aapka Apna Video Platform. Comedy, Music, Bhakti, News, Gaming, Kirtan. Video Dekho, Channel Banao.",
+  "start_url": "https://bharatflix.github.io/bharat-flix/",
+  "scope": "https://bharatflix.github.io/bharat-flix/",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#ffffff",
   "theme_color": "#FF6A00",
   "icons": [
