@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="hi" translate="no" class="notranslate">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>BharatFlix - BF-12 Changing 1 Final - Search Sahi</title>
+<meta name="google" content="notranslate">
+<title>BharatFlix</title>
 <link rel="icon" href="https://raw.githubusercontent.com/BHARATFLIX/bharat-flix/main/apk-icon.png">
 <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/BHARATFLIX/bharat-flix/main/apk-icon.png">
 <style>
@@ -17,7 +18,8 @@ body{background:#fff;padding-bottom:80px}
 .searchExpand{display:none;flex:1;align-items:center;background:#fff;border-radius:20px;padding:2px 3px 2px 6px;gap:2px;border:1px solid #ddd;min-width:0}
 .searchExpand.open{display:flex;position:fixed;top:62px;left:10px;right:10px;z-index:200;box-shadow:0 5px 15px rgba(0,0,0,.2)}
 .searchExpand input{flex:1;background:transparent;border:none;outline:none;min-width:0;font-size:14px}
-.searchExpand .micBtn{width:32px;height:32px;min-width:32px;border:none;background:#fff;border-radius:50%;font-size:15px}
+.searchExpand .micBtn{width:36px;height:36px;min-width:36px;border:none;background:#fff;border-radius:50%;font-size:18px;cursor:pointer}
+.searchExpand .micBtn.listening{background:#ff4444;color:#fff}
 .searchExpand .closeBtn{width:30px;height:30px;border:none;background:transparent;font-size:16px}
 .bellBtn{width:34px;height:34px;min-width:34px;border:none;background:#eee;border-radius:50%;font-size:16px;position:relative}
 .bellBtn i{position:absolute;top:4px;right:5px;width:8px;height:8px;background:red;border-radius:50%;display:block}
@@ -42,17 +44,22 @@ body{background:#fff;padding-bottom:80px}
 .popup select,
 .popup input{width:100%;padding:9px;margin-top:8px;border:1px solid #ddd;border-radius:8px}
 .popup button{padding:9px 12px;border:none;border-radius:8px;background:#FF6A00;color:#fff;margin-top:8px}
+.goog-te-banner-frame,
+.goog-te-gadget,
+#goog-gt-tt,
+.goog-te-balloon-frame{display:none!important}
+body{top:0!important}
 </style>
 </head>
-<body>
+<body translate="no" class="notranslate">
 <div class="top">
 <img class="logoImg" src="https://raw.githubusercontent.com/BHARATFLIX/bharat-flix/main/logo.png" alt="Bharat Flix">
 <b class="brand3d">Bharat<br><span>Flix</span></b>
 <button id="searchIconBtn" class="searchIconBtn" onclick="openSearch()">🔍</button>
 <div id="searchExpand" class="searchExpand">
 <span>🔍</span>
-<input id="searchInput" placeholder="Search..." oninput="doSearch(this.value)" onkeydown="if(event.key==='Enter')doSearch(this.value)">
-<button class="micBtn" onclick="voiceSearch()">🎙️</button>
+<input id="searchInput" placeholder="Search..." autocomplete="off" translate="no" class="notranslate" oninput="doSearch(this.value)" onkeydown="if(event.key==='Enter')doSearch(this.value)">
+<button type="button" id="micBtn" class="micBtn" onclick="voiceSearch()">🎙️</button>
 <button class="closeBtn" onclick="closeSearch()">✕</button>
 </div>
 <button class="bellBtn" onclick="togglePop('notiBox')">🔔<i></i></button>
@@ -171,27 +178,83 @@ if(ok)found++;
 });
 document.getElementById('noResult').style.display=found===0?'block':'none';
 }
-function voiceSearch(){
+let micRec=null;
+let micOn=false;
+async function voiceSearch(){
+let micBtn=document.getElementById('micBtn');
+if(micOn&&micRec){
+try{micRec.stop();}catch(e){}
+return;
+}
 let SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-if(!SR){toast('Voice Support Nahi Hai');return;}
-let rec=new SR();
-rec.lang=document.getElementById('appLang').value==='hi'?'hi-IN':'en-US';
-rec.onresult=e=>{
+if(!SR){
+toast('Is Browser Me Mic Nahi Chalega - Chrome Me Kholiye');
+return;
+}
+toast('Mic Permission Maang Raha Hu - Allow Dabao');
+try{
+let perm=await navigator.permissions.query({name:'microphone'});
+if(perm.state==='denied'){
+toast('Mic Block Hai - Upar Lock Dabao - Mic Allow Karo - Phir Reload Karo');
+return;
+}
+}catch(e){}
+try{
+let stream=await navigator.mediaDevices.getUserMedia({audio:true});
+stream.getTracks().forEach(t=>t.stop());
+}catch(err){
+toast('Mic Allow Karo - Upar Allow Dabao - Block Hai To Lock Se Allow Karo');
+return;
+}
+micRec=new SR();
+micRec.lang=document.getElementById('appLang').value==='hi'?'hi-IN':'en-US';
+micRec.interimResults=false;
+micRec.maxAlternatives=1;
+micRec.continuous=false;
+micRec.onstart=function(){
+micOn=true;
+micBtn.classList.add('listening');
+micBtn.textContent='🔴';
+toast('Bolo... Sun Raha Hu...');
+};
+micRec.onresult=function(e){
 let txt=e.results[0][0].transcript;
 document.getElementById('searchInput').value=txt;
-doSearch(txt);
 document.getElementById('searchExpand').classList.add('open');
 document.getElementById('searchIconBtn').style.display='none';
+doSearch(txt);
+toast('Mil Gaya - '+txt);
 };
-rec.start();
-toast('Bolo... Video Mangao...');
+micRec.onerror=function(e){
+micOn=false;
+micBtn.classList.remove('listening');
+micBtn.textContent='🎙️';
+if(e.error==='not-allowed'){
+toast('Mic Allow Karo - Allow Dabao');
+}else if(e.error==='no-speech'){
+toast('Awaaz Nahi Aayi - Dobara Bolo');
+}else{
+toast('Mic Me Problem Hai - Dobara Dabao');
+}
+};
+micRec.onend=function(){
+micOn=false;
+micBtn.classList.remove('listening');
+micBtn.textContent='🎙️';
+};
+try{
+micRec.start();
+}catch(err){
+toast('Mic Dobara Dabao');
+micOn=false;
+}
 }
 function toast(m){
 let d=document.createElement('div');
 d.textContent=m;
 d.style.cssText='position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:#000;color:#fff;padding:8px 14px;border-radius:20px;z-index:999;font-size:13px';
 document.body.appendChild(d);
-setTimeout(()=>d.remove(),2200);
+setTimeout(()=>d.remove(),3000);
 }
 function togglePop(id){
 let e=document.getElementById(id);
