@@ -13,7 +13,6 @@ body{background:#fff;padding-bottom:80px}
 .top img.logoImg{width:42px;height:42px;min-width:42px;border-radius:50%;object-fit:cover}
 .brand3d{font-size:18px;font-weight:900;line-height:1.05;white-space:nowrap;color:#FF9933;text-shadow:1px 1px 0 #138808,2px 2px 0 rgba(19,136,8,.5)}
 .brand3d span{color:#138808;text-shadow:1px 1px 0 #FF9933,2px 2px 0 rgba(255,153,51,.5)}
-/* SEARCH - PEHLE SIRF ICON */
 .searchIconBtn{width:36px;height:36px;min-width:36px;border:none;background:#eee;border-radius:50%;font-size:17px;cursor:pointer}
 .searchExpand{display:none;flex:1;align-items:center;background:#eee;border-radius:20px;padding:2px 3px 2px 6px;gap:2px;border:1px solid #ddd;min-width:0}
 .searchExpand.open{display:flex}
@@ -22,7 +21,6 @@ body{background:#fff;padding-bottom:80px}
 .searchExpand .closeBtn{width:30px;height:30px;border:none;background:transparent;font-size:16px}
 .bellBtn{width:34px;height:34px;min-width:34px;border:none;background:#eee;border-radius:50%;font-size:16px;position:relative}
 .bellBtn i{position:absolute;top:4px;right:5px;width:8px;height:8px;background:red;border-radius:50%;display:block}
-/* INSTALL - SIRF TEXT, KOI NISHAN NAHI */
 #installBtn{padding:9px 14px;border:none;border-radius:20px;font-weight:700;font-size:13px;white-space:nowrap;color:#fff;cursor:pointer}
 #installBtn.green{background:#16a34a}
 #installBtn.blue{background:#2563eb}
@@ -32,9 +30,11 @@ body{background:#fff;padding-bottom:80px}
 .chip{background:#eee;padding:6px 14px;border-radius:20px;font-size:13px}.chip.active{background:#000;color:#fff}
 #adsPlayer{width:100%;height:210px;background:#222;color:#fff;display:flex;align-items:center;justify-content:center;position:relative}
 #adsPlayer span{position:absolute;top:8px;left:8px;background:#FF6A00;padding:3px 8px;border-radius:10px;font-size:11px}
-.shortCard{height:280px;background:#000;color:#fff;border-radius:12px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:10px;margin:0 10px 10px 10px}
+/* CHANGING - SHORT 2-2 JODE SE, BARABAR-BARABAR */
+#feedBox{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}
+.shortCard{height:280px;background:#000;color:#fff;border-radius:12px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:10px;margin:0}
 .shortCard .playBtn{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:50px}
-.longCard{padding:10px}.longCard video{width:100%;height:80px;border-radius:12px;background:#000}
+.longCard{padding:10px;grid-column:1/3}.longCard video{width:100%;height:180px;border-radius:12px;background:#000}
 .bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #ddd;z-index:150}
 .bottom div{text-align:center;font-size:12px}
 .popup{position:fixed;left:10px;right:10px;bottom:80px;background:#fff;border:1px solid #ddd;padding:14px;border-radius:14px;display:none;z-index:300;max-height:70vh;overflow:auto;box-shadow:0 10px 30px rgba(0,0,0,.2)}
@@ -46,8 +46,6 @@ body{background:#fff;padding-bottom:80px}
 <div class="top">
 <img class="logoImg" src="https://raw.githubusercontent.com/BHARATFLIX/bharat-flix/main/logo.png" alt="Bharat Flix">
 <b class="brand3d">Bharat<br><span>Flix</span></b>
-
-<!-- 1. SEARCH - PEHLE SIRF ICON -->
 <button id="searchIconBtn" class="searchIconBtn" onclick="openSearch()">🔍</button>
 <div id="searchExpand" class="searchExpand">
 <span>🔍</span>
@@ -55,23 +53,16 @@ body{background:#fff;padding-bottom:80px}
 <button class="micBtn" onclick="voiceSearch()">🎙️</button>
 <button class="closeBtn" onclick="closeSearch()">✕</button>
 </div>
-
 <button class="bellBtn" onclick="togglePop('notiBox')">🔔<i></i></button>
-<!-- 2. INSTALL - SIRF TEXT INSTALL, KOI NISHAN NAHI -->
 <button id="installBtn" class="green" onclick="installApp()">Install</button>
 <button class="setBtn" onclick="togglePop('settingsBox')">⚙️</button>
 </div>
-
 <div class="chips"><span class="chip active" data-i18n="all" onclick="filterChip(this,'')">All</span><span class="chip" onclick="filterChip(this,'Music')">Music</span><span class="chip" onclick="filterChip(this,'Comedy')">Comedy</span><span class="chip" onclick="filterChip(this,'Bhakti')">Bhakti</span><span class="chip" onclick="filterChip(this,'News')">News</span></div>
-
 <div id="adsPlayer"><span>Ad</span><div style="text-align:center">▶️<br><span data-i18n="adText">AdSense Ad</span></div></div>
-<div id="feedBox" style="padding-top:10px"></div>
+<div id="feedBox"></div>
 <p id="noResult" style="display:none;text-align:center;padding:20px;color:#888" data-i18n="noResult">Koi Video Nahi Mili</p>
 <p id="loadingMore" style="text-align:center;padding:12px;color:#888;font-size:13px;display:none" data-i18n="loading">Aur Video Aa Rahe Hain...</p>
-
 <div id="notiBox" class="popup"><b data-i18n="notiTitle">Notifications</b><p style="font-size:13px;margin-top:8px">🔴 Bharat Flix ne naya Short dala</p><button onclick="togglePop('notiBox')" data-i18n="close">Band Karo</button></div>
-
-<!-- 3. SETTING - DUNIYA KI BHASHA, PURA APP BADLEGA -->
 <div id="settingsBox" class="popup">
 <b data-i18n="settingTitle">Setting</b><br><label data-i18n="langLabel">Language / Bhasha</label>
 <select id="appLang" onchange="changeLang(this.value)"></select>
@@ -79,15 +70,12 @@ body{background:#fff;padding-bottom:80px}
 <select id="appQuality"><option>Auto</option><option>720p</option><option>480p</option><option>360p</option></select>
 <button onclick="togglePop('settingsBox')" data-i18n="close">Band Karo</button>
 </div>
-
 <div class="bottom">
 <div>🏠<br><span data-i18n="home">Home</span></div><div>🎬<br><span data-i18n="shorts">Shorts</span></div>
 <div style="background:#FF6A00;color:#fff;padding:6px 14px;border-radius:12px">➕<br><span data-i18n="upload">Upload</span></div>
 <div>📺<br><span data-i18n="subs">Subs</span></div><div>👤<br><span data-i18n="you">You</span></div>
 </div>
-
 <script>
-// ---------- LANGUAGE - DUNIYA KI BHASHA ----------
 const LANGS=[
 ["hi","हिन्दी - Hindi"],["en","English"],["bn","বাংলা - Bengali"],["bho","भोजपुरी - Bhojpuri"],["ta","தமிழ் - Tamil"],["te","తెలుగు - Telugu"],["mr","मराठी - Marathi"],["gu","ગુજરાતી - Gujarati"],["pa","ਪੰਜਾਬੀ - Punjabi"],["kn","ಕನ್ನಡ - Kannada"],["ml","മലയാളം - Malayalam"],["or","ଓଡ଼ିଆ - Odia"],["as","অসমীয়া - Assamese"],["ur","اردو - Urdu"],["ne","नेपाली - Nepali"],["sa","संस्कृत - Sanskrit"],["es","Español - Spanish"],["fr","Français - French"],["de","Deutsch - German"],["it","Italiano - Italian"],["pt","Português - Portuguese"],["ru","Русский - Russian"],["ar","العربية - Arabic"],["zh","中文 - Chinese"],["ja","日本語 - Japanese"],["ko","한국어 - Korean"],["id","Bahasa Indonesia"],["th","ไทย - Thai"],["vi","Tiếng Việt - Vietnamese"],["tr","Türkçe - Turkish"],["nl","Nederlands - Dutch"],["sv","Svenska - Swedish"],["pl","Polski - Polish"],["uk","Українська - Ukrainian"]
 ];
@@ -110,11 +98,9 @@ function applyLang(code){
   document.getElementById('searchInput').placeholder=t.search||"Search...";
   document.documentElement.lang=code;
 }
-function changeLang(code){localStorage.setItem('bf_lang',code);applyLang(code);toast('Language Badal Gayi');}
+function changeLang(code){localStorage.setItem('bf_lang',code);applyLang(code);toast('Language Badal Gayi - Poora App Badal Gaya');}
 let savedLang=localStorage.getItem('bf_lang')||'hi';
 langSel.value=savedLang;applyLang(savedLang);
-
-// ---------- SEARCH - SIRF ICON, KHOLO TO ANDAR MIC ----------
 function openSearch(){
   document.getElementById('searchIconBtn').style.display='none';
   document.getElementById('searchExpand').classList.add('open');
@@ -140,8 +126,6 @@ function voiceSearch(){
 function toast(m){let d=document.createElement('div');d.textContent=m;d.style.cssText='position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:#000;color:#fff;padding:8px 14px;border-radius:20px;z-index:999;font-size:13px';document.body.appendChild(d);setTimeout(()=>d.remove(),2200);}
 function togglePop(id){let e=document.getElementById(id);e.style.display=e.style.display==='block'?'none':'block';}
 function filterChip(el,word){document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));el.classList.add('active');doSearch(word);}
-
-// ---------- INSTALL - SIRF TEXT, HARA / NEELA, KOI NISHAN NAHI ----------
 let deferredPrompt=null;
 let installBtn=document.getElementById('installBtn');
 function setInstallState(){
@@ -151,7 +135,7 @@ function setInstallState(){
 setInstallState();
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;});
 function installApp(){
-  if(localStorage.getItem('bf_installed')==='1'){toast('Pehle Se Install Hai');return;}
+  if(localStorage.getItem('bf_installed')==='1'){toast('Pehle Se Install Hai');goHome();return;}
   installBtn.className='installing';installBtn.textContent='Installing...';
   if(deferredPrompt){
     deferredPrompt.prompt();
@@ -161,17 +145,23 @@ function installApp(){
       deferredPrompt=null;
     });
   }else{
-    // Chrome Menu > Add to Home Screen wala asli flow, icon apk-icon.png hoga
-    setTimeout(()=>{finishInstall();toast('Home Screen Par Dekho - apk-icon.png Wala App Aa Gaya');},2000);
+    setTimeout(()=>{finishInstall();},2000);
   }
 }
+/* CHANGING - INSTALL KE BAAD DIRECT HOME SCREEN */
 function finishInstall(){
   localStorage.setItem('bf_installed','1');
   setInstallState();
-  toast('Install Ho Gaya');
+  toast('Install Ho Gaya - Home Screen Par Ja Rahe Hain');
+  goHome();
 }
-
-// ---------- FEED ----------
+function goHome(){
+  document.querySelectorAll('.popup').forEach(p=>p.style.display='none');
+  document.getElementById('searchExpand').classList.remove('open');
+  document.getElementById('searchIconBtn').style.display='block';
+  window.scrollTo(0,0);
+  doSearch('');
+}
 let allVideos=[{type:'short',title:'Short 1 - Comedy'},{type:'short',title:'Short 2 - Bhakti'},{type:'short',title:'Short 3 - Music'},{type:'long',title:'Long 1 - Bharat Flix Welcome'},{type:'short',title:'Short 4 - News'},{type:'short',title:'Short 5 - Gaming'},{type:'long',title:'Long 2 - Bhakti Special'},{type:'short',title:'Short 6 - Kirtan'}];
 let shown=0;
 function renderFeed(){let box=document.getElementById('feedBox');let end=Math.min(shown+6,allVideos.length);for(let i=shown;i<end;i++){let v=allVideos[i];if(v.type==='short'){let d=document.createElement('div');d.className='shortCard';d.innerHTML=`<div class="playBtn">▶️</div><div><b>${v.title}</b><p style="font-size:11px">Bharat Flix</p></div>`;box.appendChild(d);}else{let d=document.createElement('div');d.className='longCard';d.innerHTML=`<video></video><b>${v.title}</b>`;box.appendChild(d);}}shown=end;}
