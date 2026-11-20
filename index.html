@@ -72,21 +72,21 @@ body{top:0!important}
 </div>
 <div class="chips">
 <span class="chip active" data-i18n="all" onclick="filterChip(this,'')">All</span>
-<span class="chip" onclick="filterChip(this,'Music')">Music</span>
-<span class="chip" onclick="filterChip(this,'Comedy')">Comedy</span>
-<span class="chip" onclick="filterChip(this,'Bhakti')">Bhakti</span>
-<span class="chip" onclick="filterChip(this,'News')">News</span>
+<span class="chip" data-i18n="music" onclick="filterChip(this,'Music')">Music</span>
+<span class="chip" data-i18n="comedy" onclick="filterChip(this,'Comedy')">Comedy</span>
+<span class="chip" data-i18n="bhakti" onclick="filterChip(this,'Bhakti')">Bhakti</span>
+<span class="chip" data-i18n="news" onclick="filterChip(this,'News')">News</span>
 </div>
 <div id="adsPlayer" onclick="playAd()">
-<span>Ad</span>
-<div style="text-align:center">▶️<br><span data-i18n="adText">AdSense Ad</span></div>
+<span data-i18n="adText">AdSense Ad</span>
+<div style="text-align:center">▶️</div>
 </div>
 <div id="feedBox"></div>
 <p id="noResult" style="display:none;text-align:center;padding:20px;color:#888" data-i18n="noResult">Koi Video Nahi Mili</p>
 <p id="loadingMore" style="text-align:center;padding:12px;color:#888;font-size:13px;display:none" data-i18n="loading">Aur Video Aa Rahe Hain...</p>
 <div id="notiBox" class="popup">
 <b data-i18n="notiTitle">Notifications</b>
-<p style="font-size:13px;margin-top:8px">🔴 Bharat Flix ne naya Short dala</p>
+<p style="font-size:13px;margin-top:8px" data-i18n="notiText">🔴 Bharat Flix ne naya Short dala</p>
 <button onclick="togglePop('notiBox')" data-i18n="close">Band Karo</button>
 </div>
 <div id="settingsBox" class="popup">
@@ -134,8 +134,26 @@ const LANGS=[
 ["it","Italiano - Italian"]
 ];
 const TRANS={
-hi:{all:"सभी",adText:"एडसेंस विज्ञापन",noResult:"कोई वीडियो नहीं मिली",loading:"और वीडियो आ रहे हैं...",notiTitle:"सूचनाएं",close:"बंद करो",settingTitle:"सेटिंग",langLabel:"भाषा",qualityLabel:"क्वालिटी",home:"होम",shorts:"शॉर्ट्स",upload:"अपलोड",subs:"सब्स",you:"आप",search:"खोजें..."},
-en:{all:"All",adText:"AdSense Ad",noResult:"No Video Found",loading:"More Videos Coming...",notiTitle:"Notifications",close:"Close",settingTitle:"Setting",langLabel:"Language",qualityLabel:"Quality",home:"Home",shorts:"Shorts",upload:"Upload",subs:"Subs",you:"You",search:"Search..."}
+hi:{all:"सभी",music:"संगीत",comedy:"कॉमेडी",bhakti:"भक्ति",news:"समाचार",adText:"एडसेंस विज्ञापन",noResult:"कोई वीडियो नहीं मिली",loading:"और वीडियो आ रहे हैं...",notiTitle:"सूचनाएं",notiText:"🔴 भारत फ्लिक्स ने नया शॉर्ट डाला",close:"बंद करो",settingTitle:"सेटिंग",langLabel:"भाषा",qualityLabel:"क्वालिटी",home:"होम",shorts:"शॉर्ट्स",upload:"अपलोड",subs:"सब्स",you:"आप",search:"खोजें..."},
+en:{all:"All",music:"Music",comedy:"Comedy",bhakti:"Bhakti",news:"News",adText:"AdSense Ad",noResult:"No Video Found",loading:"More Videos Coming...",notiTitle:"Notifications",notiText:"🔴 Bharat Flix added new Short",close:"Close",settingTitle:"Setting",langLabel:"Language",qualityLabel:"Quality",home:"Home",shorts:"Shorts",upload:"Upload",subs:"Subs",you:"You",search:"Search..."},
+bn:{all:"সব",music:"সঙ্গীত",comedy:"কমেডি",bhakti:"ভক্তি",news:"খবর",adText:"অ্যাডসেন্স বিজ্ঞাপন",noResult:"কোনো ভিডিও পাওয়া যায়নি",loading:"আরও ভিডিও আসছে...",notiTitle:"বিজ্ঞপ্তি",notiText:"🔴 ভারত ফ্লিক্স নতুন শর্ট দিয়েছে",close:"বন্ধ করুন",settingTitle:"সেটিং",langLabel:"ভাষা",qualityLabel:"কোয়ালিটি",home:"হোম",shorts:"শর্টস",upload:"আপলোড",subs:"সাবস",you:"আপনি",search:"খুঁজুন..."},
+bho:{all:"सब",music:"संगीत",comedy:"कॉमेडी",bhakti:"भक्ति",news:"समाचार",adText:"एडसेंस विज्ञापन",noResult:"केहू वीडियो ना मिलल",loading:"और वीडियो आवत बा...",notiTitle:"सूचना",notiText:"🔴 भारत फ्लिक्स नया शॉर्ट डाललस",close:"बंद करा",settingTitle:"सेटिंग",langLabel:"भाषा",qualityLabel:"क्वालिटी",home:"होम",shorts:"शॉर्ट्स",upload:"अपलोड",subs:"सब्स",you:"रउआ",search:"खोजीं..."},
+ta:{all:"அனைத்தும்",music:"இசை",comedy:"நகைச்சுவை",bhakti:"பக்தி",news:"செய்திகள்",adText:"ஆட்சென்ஸ் விளம்பரம்",noResult:"வீடியோ எதுவும் கிடைக்கவில்லை",loading:"மேலும் வீடியோக்கள் வருகின்றன...",notiTitle:"அறிவிப்புகள்",notiText:"🔴 பாரத் ஃபிளிக்ஸ் புதிய ஷார்ட் போட்டுள்ளது",close:"மூடு",settingTitle:"அமைப்பு",langLabel:"மொழி",qualityLabel:"தரம்",home:"முகப்பு",shorts:"ஷார்ட்ஸ்",upload:"பதிவேற்று",subs:"சப்ஸ்",you:"நீங்கள்",search:"தேடுக..."},
+te:{all:"అన్నీ",music:"సంగీతం",comedy:"కామెడీ",bhakti:"భక్తి",news:"వార్తలు",adText:"యాడ్‌సెన్స్ ప్రకటన",noResult:"ఏ వీడియో దొరకలేదు",loading:"మరిన్ని వీడియోలు వస్తున్నాయి...",notiTitle:"నోటిఫికేషన్లు",notiText:"🔴 భారత్ ఫ్లిక్స్ కొత్త షార్ట్ పెట్టింది",close:"మూసివేయి",settingTitle:"సెట్టింగ్",langLabel:"భాష",qualityLabel:"క్వాలిటీ",home:"హోమ్",shorts:"షార్ట్స్",upload:"అప్‌లోడ్",subs:"సబ్స్",you:"మీరు",search:"వెతకండి..."},
+mr:{all:"सर्व",music:"संगीत",comedy:"कॉमेडी",bhakti:"भक्ती",news:"बातम्या",adText:"ॲडसेन्स जाहिरात",noResult:"कोणताही व्हिडिओ सापडला नाही",loading:"आणखी व्हिडिओ येत आहेत...",notiTitle:"सूचना",notiText:"🔴 भारत फ्लिक्सने नवीन शॉर्ट टाकला",close:"बंद करा",settingTitle:"सेटिंग",langLabel:"भाषा",qualityLabel:"क्वालिटी",home:"होम",shorts:"शॉर्ट्स",upload:"अपलोड",subs:"सब्स",you:"तुम्ही",search:"शोधा..."},
+gu:{all:"બધા",music:"સંગીત",comedy:"કોમેડી",bhakti:"ભક્તિ",news:"સમાચાર",adText:"એડસેન્સ જાહેરાત",noResult:"કોઈ વિડિયો મળ્યો નથી",loading:"વધુ વિડિયો આવી રહ્યા છે...",notiTitle:"સૂચનાઓ",notiText:"🔴 ભારત ફ્લિક્સે નવો શોર્ટ મૂક્યો",close:"બંધ કરો",settingTitle:"સેટિંગ",langLabel:"ભાષા",qualityLabel:"ક્વોલિટી",home:"હોમ",shorts:"શોર્ટ્સ",upload:"અપલોડ",subs:"સબ્સ",you:"તમે",search:"શોધો..."},
+pa:{all:"ਸਭ",music:"ਸੰਗੀਤ",comedy:"ਕਾਮੇਡੀ",bhakti:"ਭਗਤੀ",news:"ਖ਼ਬਰਾਂ",adText:"ਐਡਸੈਂਸ ਇਸ਼ਤਿਹਾਰ",noResult:"ਕੋਈ ਵੀਡੀਓ ਨਹੀਂ ਮਿਲੀ",loading:"ਹੋਰ ਵੀਡੀਓ ਆ ਰਹੇ ਹਨ...",notiTitle:"ਸੂਚਨਾਵਾਂ",notiText:"🔴 ਭਾਰਤ ਫਲਿਕਸ ਨੇ ਨਵਾਂ ਸ਼ਾਰਟ ਪਾਇਆ",close:"ਬੰਦ ਕਰੋ",settingTitle:"ਸੈਟਿੰਗ",langLabel:"ਭਾਸ਼ਾ",qualityLabel:"ਕੁਆਲਿਟੀ",home:"ਹੋਮ",shorts:"ਸ਼ਾਰਟਸ",upload:"ਅੱਪਲੋਡ",subs:"ਸਬਸ",you:"ਤੁਸੀਂ",search:"ਖੋਜੋ..."},
+kn:{all:"ಎಲ್ಲಾ",music:"ಸಂಗೀತ",comedy:"ಹಾಸ್ಯ",bhakti:"ಭಕ್ತಿ",news:"ಸುದ್ದಿ",adText:"ಆಡ್‌ಸೆನ್ಸ್ ಜಾಹೀರಾತು",noResult:"ಯಾವುದೇ ವೀಡಿಯೋ ಸಿಗಲಿಲ್ಲ",loading:"ಇನ್ನಷ್ಟು ವೀಡಿಯೋಗಳು ಬರುತ್ತಿವೆ...",notiTitle:"ಅಧಿಸೂಚನೆಗಳು",notiText:"🔴 ಭಾರತ್ ಫ್ಲಿಕ್ಸ್ ಹೊಸ ಶಾರ್ಟ್ ಹಾಕಿದೆ",close:"ಮುಚ್ಚಿ",settingTitle:"ಸೆಟ್ಟಿಂಗ್",langLabel:"ಭಾಷೆ",qualityLabel:"ಗುಣಮಟ್ಟ",home:"ಮನೆ",shorts:"ಶಾರ್ಟ್ಸ್",upload:"ಅಪ್‌ಲೋಡ್",subs:"ಸಬ್ಸ್",you:"ನೀವು",search:"ಹುಡುಕಿ..."},
+ml:{all:"എല്ലാം",music:"സംഗീതം",comedy:"കോമഡി",bhakti:"ഭക്തി",news:"വാർത്തകൾ",adText:"ആഡ്‌സെൻസ് പരസ്യം",noResult:"വീഡിയോ ഒന്നും കിട്ടിയില്ല",loading:"കൂടുതൽ വീഡിയോകൾ വരുന്നു...",notiTitle:"അറിയിപ്പുകൾ",notiText:"🔴 ഭാരത് ഫ്ലിക്സ് പുതിയ ഷോർട്ട് ഇട്ടു",close:"അടയ്ക്കുക",settingTitle:"സെറ്റിംഗ്",langLabel:"ഭാഷ",qualityLabel:"ക്വാളിറ്റി",home:"ഹോം",shorts:"ഷോർട്ട്സ്",upload:"അപ്‌ലോഡ്",subs:"സബ്സ്",you:"നിങ്ങൾ",search:"തിരയുക..."},
+or:{all:"ସବୁ",music:"ସଙ୍ଗୀତ",comedy:"କମେଡି",bhakti:"ଭକ୍ତି",news:"ଖବର",adText:"ଆଡସେନ୍ସ ବିଜ୍ଞାପନ",noResult:"କୌଣସି ଭିଡିଓ ମିଳିଲା ନାହିଁ",loading:"ଆହୁରି ଭିଡିଓ ଆସୁଛି...",notiTitle:"ବିଜ୍ଞପ୍ତି",notiText:"🔴 ଭାରତ ଫ୍ଲିକ୍ସ ନୂଆ ସର୍ଟ ପକାଇଲା",close:"ବନ୍ଦ କର",settingTitle:"ସେଟିଂ",langLabel:"ଭାଷା",qualityLabel:"କ୍ୱାଲିଟି",home:"ହୋମ",shorts:"ସର୍ଟସ",upload:"ଅପଲୋଡ",subs:"ସବ୍ସ",you:"ତୁମେ",search:"ଖୋଜ..."},
+as:{all:"সকলো",music:"সংগীত",comedy:"কমেডি",bhakti:"ভক্তি",news:"বাতৰি",adText:"এডচেন্স বিজ্ঞাপন",noResult:"কোনো ভিডিঅ’ পোৱা নগ’ল",loading:"আৰু ভিডিঅ’ আহি আছে...",notiTitle:"জাননী",notiText:"🔴 ভাৰত ফ্লিক্সে নতুন শ্বৰ্ট দিলে",close:"বন্ধ কৰক",settingTitle:"ছেটিং",langLabel:"ভাষা",qualityLabel:"কোৱালিটি",home:"হ’ম",shorts:"শ্বৰ্টছ",upload:"আপল’ড",subs:"ছাবছ",you:"আপুনি",search:"বিচাৰক..."},
+ur:{all:"سب",music:"موسیقی",comedy:"کامیڈی",bhakti:"بھکتی",news:"خبریں",adText:"ایڈسینس اشتہار",noResult:"کوئی ویڈیو نہیں ملی",loading:"مزید ویڈیوز آ رہی ہیں...",notiTitle:"اطلاعات",notiText:"🔴 بھارت فلکس نے نیا شارٹ ڈالا",close:"بند کریں",settingTitle:"سیٹنگ",langLabel:"زبان",qualityLabel:"کوالٹی",home:"ہوم",shorts:"شارٹس",upload:"اپ لوڈ",subs:"سبس",you:"آپ",search:"تلاش کریں..."},
+ne:{all:"सबै",music:"संगीत",comedy:"कमेडी",bhakti:"भक्ति",news:"समाचार",adText:"एडसेन्स विज्ञापन",noResult:"कुनै भिडियो भेटिएन",loading:"थप भिडियो आउँदैछन्...",notiTitle:"सूचनाहरू",notiText:"🔴 भारत फ्लिक्सले नयाँ सर्ट हाल्यो",close:"बन्द गर्नुहोस्",settingTitle:"सेटिङ",langLabel:"भाषा",qualityLabel:"क्वालिटी",home:"होम",shorts:"सर्ट्स",upload:"अपलोड",subs:"सब्स",you:"तपाईं",search:"खोज्नुहोस्..."},
+sa:{all:"सर्वे",music:"सङ्गीतम्",comedy:"हास्यम्",bhakti:"भक्तिः",news:"वार्ताः",adText:"एडसेन्स विज्ञापनम्",noResult:"किमपि चलचित्रम् न लब्धम्",loading:"अधिकानि चलचित्राणि आगच्छन्ति...",notiTitle:"सूचनाः",notiText:"🔴 भारत फ्लिक्स नूतनं शॉर्ट् अर्पितवान्",close:"पिधेहि",settingTitle:"सेटिंग्",langLabel:"भाषा",qualityLabel:"गुणवत्ता",home:"गृहम्",shorts:"शॉर्ट्स्",upload:"अपलोड्",subs:"सब्स्",you:"त्वम्",search:"अन्वेषय..."},
+es:{all:"Todo",music:"Música",comedy:"Comedia",bhakti:"Bhakti",news:"Noticias",adText:"Anuncio de AdSense",noResult:"No se encontró ningún video",loading:"Vienen más videos...",notiTitle:"Notificaciones",notiText:"🔴 Bharat Flix publicó un Short nuevo",close:"Cerrar",settingTitle:"Ajustes",langLabel:"Idioma",qualityLabel:"Calidad",home:"Inicio",shorts:"Shorts",upload:"Subir",subs:"Subs",you:"Tú",search:"Buscar..."},
+fr:{all:"Tout",music:"Musique",comedy:"Comédie",bhakti:"Bhakti",news:"Actualités",adText:"Publicité AdSense",noResult:"Aucune vidéo trouvée",loading:"D'autres vidéos arrivent...",notiTitle:"Notifications",notiText:"🔴 Bharat Flix a publié un nouveau Short",close:"Fermer",settingTitle:"Paramètres",langLabel:"Langue",qualityLabel:"Qualité",home:"Accueil",shorts:"Shorts",upload:"Télécharger",subs:"Abos",you:"Vous",search:"Rechercher..."},
+de:{all:"Alle",music:"Musik",comedy:"Comedy",bhakti:"Bhakti",news:"Nachrichten",adText:"AdSense Werbung",noResult:"Kein Video gefunden",loading:"Weitere Videos kommen...",notiTitle:"Benachrichtigungen",notiText:"🔴 Bharat Flix hat einen neuen Short gepostet",close:"Schließen",settingTitle:"Einstellungen",langLabel:"Sprache",qualityLabel:"Qualität",home:"Start",shorts:"Shorts",upload:"Hochladen",subs:"Abos",you:"Du",search:"Suchen..."},
+it:{all:"Tutti",music:"Musica",comedy:"Commedia",bhakti:"Bhakti",news:"Notizie",adText:"Annuncio AdSense",noResult:"Nessun video trovato",loading:"Altri video in arrivo...",notiTitle:"Notifiche",notiText:"🔴 Bharat Flix ha pubblicato un nuovo Short",close:"Chiudi",settingTitle:"Impostazioni",langLabel:"Lingua",qualityLabel:"Qualità",home:"Home",shorts:"Shorts",upload:"Carica",subs:"Iscritti",you:"Tu",search:"Cerca..."}
 };
 let langSel=document.getElementById('appLang');
 LANGS.forEach(l=>{
@@ -156,7 +174,9 @@ document.documentElement.lang=code;
 function changeLang(code){
 localStorage.setItem('bf_lang',code);
 applyLang(code);
-toast('Language Badal Gayi - Poora App Badal Gaya');
+toast(t=>t);
+let t2=TRANS[code]||TRANS['en'];
+toast(t2.home+' - '+t2.langLabel+' Badal Gayi');
 }
 let savedLang=localStorage.getItem('bf_lang')||'hi';
 langSel.value=savedLang;
