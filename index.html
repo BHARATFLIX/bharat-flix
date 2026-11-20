@@ -9,16 +9,17 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
 body{background:#fff;padding-bottom:80px}
 .goog-te-banner-frame,.skiptranslate{display:none!important}
-.top{display:flex;align-items:center;gap:8px;padding:8px 10px;position:sticky;top:0;background:#fff;z-index:100}
+.top{display:flex;align-items:center;gap:7px;padding:8px 8px;position:sticky;top:0;background:#fff;z-index:100}
 .top img.logoImg{width:42px;height:42px;min-width:42px;border-radius:50%;object-fit:cover}
-.searchBox{flex:1;display:flex;align-items:center;gap:5px;min-width:0}
-.searchBox input{flex:1;background:#eee;border-radius:20px;padding:8px 12px;border:none;outline:none;min-width:0}
-.searchBox button{width:36px;height:36px;border:none;background:#eee;border-radius:50%}
+.brand3d{font-size:18px;font-weight:900;line-height:1.05;white-space:nowrap;background:linear-gradient(to bottom,#FF9933 33%,#FFFFFF 33%,#FFFFFF 66%,#138808 66%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0px 1px 0px #000,0px 2px 0px rgba(0,0,0,.3),0px 3px 4px rgba(0,0,0,.4)}
+.searchReal{flex:1;display:flex;align-items:center;background:#eee;border-radius:20px;padding:2px 3px 2px 10px;min-width:0;gap:2px}
+.searchReal input{flex:1;background:transparent;border:none;outline:none;min-width:0;font-size:14px}
+.searchReal button{width:32px;height:32px;min-width:32px;border:none;background:#fff;border-radius:50%;font-size:15px}
 .chips{display:flex;gap:8px;overflow-x:auto;padding:6px 10px;white-space:nowrap}
 .chip{background:#eee;padding:6px 14px;border-radius:20px;font-size:13px}.chip.active{background:#000;color:#fff}
 #adsPlayer{width:100%;height:210px;background:#222;color:#fff;display:flex;align-items:center;justify-content:center;position:relative}
 #adsPlayer span{position:absolute;top:8px;left:8px;background:#FF6A00;padding:3px 8px;border-radius:10px;font-size:11px}
-#bigPlayerWrap{display:none;position:sticky;top:52px;z-index:90;background:#000}
+#bigPlayerWrap{display:none;position:sticky;top:58px;z-index:90;background:#000}
 #bigPlayerWrap video{width:100%;height:220px}
 #bigPlayerInfo{padding:10px;background:#fff}.row{display:flex;gap:8px;margin-top:10px;overflow-x:auto;white-space:nowrap}.pill{background:#eee;padding:7px 12px;border-radius:20px;font-size:13px}
 .shortCard{height:280px;background:#000;color:#fff;border-radius:12px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:10px;margin:0 10px 10px 10px}
@@ -40,10 +41,10 @@ body{background:#fff;padding-bottom:80px}
 <body class="notranslate">
 <div class="top">
 <img class="logoImg" src="https://raw.githubusercontent.com/BHARATFLIX/bharat-flix/main/logo.png" alt="Bharat Flix">
-<b style="white-space:nowrap">Bharat Flix 🇮🇳</b>
-<div class="searchBox"><input id="searchInput" placeholder="Search..." oninput="doSearch(this.value)"><button onclick="voiceSearch()">🎙️</button></div>
+<b class="brand3d">Bharat<br>Flix 🇮🇳</b>
+<div class="searchReal"><input id="searchInput" placeholder="Search..." oninput="doSearch(this.value)"><button onclick="voiceSearch()">🎙️</button><button onclick="doSearch(document.getElementById('searchInput').value)">🔍</button></div>
 <span>🔔</span>
-<button id="installBtnText" onclick="installApp()" class="installGreen" style="padding:7px 10px;border-radius:20px;border:none;font-weight:700;font-size:12px;white-space:nowrap">📲 Install Karo</button>
+<button id="installBtnText" onclick="installApp()" class="installGreen" style="padding:7px 8px;border-radius:20px;border:none;font-weight:700;font-size:12px;white-space:nowrap">📲 Install Karo</button>
 <span onclick="togglePop('settingsBox')">⚙️</span>
 </div>
 <div class="chips"><span class="chip active">All</span><span class="chip">Music</span><span class="chip">Mixes</span><span class="chip">Live</span><span class="chip">Comedy</span><span class="chip">Bhakti</span></div>
@@ -52,7 +53,7 @@ body{background:#fff;padding-bottom:80px}
 <video id="bigVideo" controls playsinline></video>
 <div id="bigPlayerInfo"><b id="bigTitle">Bharat Flix</b>
 <div class="row"><span class="pill">👁️ 59K</span><span class="pill">👍 12K</span><span class="pill">👎 0</span><span class="pill">💬 Comment</span><span class="pill">🔴 Subscribe</span></div>
-<p id="bigNext" style="font-size:12px;color:#666;margin-top:6px">Agla: Usi Category Ka Dusra Bhag Search Ho Gaya</p></div>
+<p style="font-size:12px;color:#666;margin-top:6px">Agla: Usi Category Ka Dusra Bhag Search Ho Gaya</p></div>
 </div>
 <div id="feedBox" style="padding-top:10px"></div>
 <p id="loadingMore" style="text-align:center;padding:12px;color:#888;font-size:13px;display:none">Aur Video Aa Rahe Hain...</p>
@@ -103,7 +104,7 @@ function markInstalled(){installed=true;let b=document.getElementById('installBt
 if(localStorage.getItem('bf_installed')==='1')setTimeout(markInstalled,500);
 function changeLang(l){localStorage.setItem('bf_lang',l);toast('Language Badal Gayi ✅');}
 document.getElementById('appLang').value=localStorage.getItem('bf_lang')||'hi';
-function doSearch(q){q=q.toLowerCase();document.querySelectorAll('.shortCard,.longCard').forEach(el=>{el.style.display=el.innerText.toLowerCase().includes(q)?'':'none';});}
+function doSearch(q){q=(q||'').toLowerCase();document.querySelectorAll('.shortCard,.longCard').forEach(el=>{el.style.display=el.innerText.toLowerCase().includes(q)?'':'none';});}
 function voiceSearch(){let SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){toast('Voice Support Nahi Hai');return;}let rec=new SR();rec.lang='hi-IN';rec.onresult=e=>{let txt=e.results[0][0].transcript;document.getElementById('searchInput').value=txt;doSearch(txt);};rec.start();toast('Bolo... 🎙️');}
 let allVideos=[{type:'short',title:'Short 1 - Comedy'},{type:'short',title:'Short 2 - Bhakti'},{type:'short',title:'Short 3 - Music'},{type:'long',title:'Long 1 - Bharat Flix Welcome 🇮🇳'},{type:'short',title:'Short 4 - News'},{type:'short',title:'Short 5 - Gaming'},{type:'long',title:'Long 2 - Bhakti Special'},{type:'short',title:'Short 6 - Kirtan'},{type:'short',title:'Short 7 - Funny'},{type:'long',title:'Long 3 - Comedy Show'},{type:'short',title:'Short 8 - Dance'},{type:'short',title:'Short 9 - News Update'}];
 let shown=0,batchSize=6;
