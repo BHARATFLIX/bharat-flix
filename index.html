@@ -1,143 +1,181 @@
 <!DOCTYPE html>
-<html lang="hi" translate="no">
+<html lang="hi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="google" content="notranslate">
-<title>BharatFlix 🇮🇳</title>
+<title>BharatFlix</title>
+<link rel="icon" href="https://raw.githubusercontent.com/BHARATFLIX/bharat-flix/main/apk-icon.png">
+<link rel="apple-touch-icon" href="https://raw.githubusercontent.com/BHARATFLIX/bharat-flix/main/apk-icon.png">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
 body{background:#fff;padding-bottom:80px}
-.goog-te-banner-frame,.skiptranslate{display:none!important}
-.top{display:flex;align-items:center;gap:7px;padding:8px 8px;position:sticky;top:0;background:#fff;z-index:100}
+.top{display:flex;align-items:center;gap:8px;padding:8px;position:sticky;top:0;background:#fff;z-index:100}
 .top img.logoImg{width:42px;height:42px;min-width:42px;border-radius:50%;object-fit:cover}
-.brand3d{font-size:18px;font-weight:900;line-height:1.05;white-space:nowrap;color:#FF9933;text-shadow:1px 1px 0 #138808,2px 2px 0 rgba(19,136,8,.5),0 3px 5px rgba(0,0,0,.35)}
-.brand3d span{color:#138808;text-shadow:1px 1px 0 #FF9933,2px 2px 0 rgba(255,153,51,.5),0 3px 5px rgba(0,0,0,.35)}
-.searchReal{flex:1;display:flex;align-items:center;background:#eee;border-radius:20px;padding:2px 3px 2px 10px;min-width:0;gap:2px}
-.searchReal input{flex:1;background:transparent;border:none;outline:none;min-width:0;font-size:14px}
-.searchReal button{width:32px;height:32px;min-width:32px;border:none;background:#fff;border-radius:50%;font-size:15px}
+.brand3d{font-size:18px;font-weight:900;line-height:1.05;white-space:nowrap;color:#FF9933;text-shadow:1px 1px 0 #138808,2px 2px 0 rgba(19,136,8,.5)}
+.brand3d span{color:#138808;text-shadow:1px 1px 0 #FF9933,2px 2px 0 rgba(255,153,51,.5)}
+/* SEARCH - PEHLE SIRF ICON */
+.searchIconBtn{width:36px;height:36px;min-width:36px;border:none;background:#eee;border-radius:50%;font-size:17px;cursor:pointer}
+.searchExpand{display:none;flex:1;align-items:center;background:#eee;border-radius:20px;padding:2px 3px 2px 6px;gap:2px;border:1px solid #ddd;min-width:0}
+.searchExpand.open{display:flex}
+.searchExpand input{flex:1;background:transparent;border:none;outline:none;min-width:0;font-size:14px}
+.searchExpand .micBtn{width:32px;height:32px;min-width:32px;border:none;background:#fff;border-radius:50%;font-size:15px}
+.searchExpand .closeBtn{width:30px;height:30px;border:none;background:transparent;font-size:16px}
 .bellBtn{width:34px;height:34px;min-width:34px;border:none;background:#eee;border-radius:50%;font-size:16px;position:relative}
 .bellBtn i{position:absolute;top:4px;right:5px;width:8px;height:8px;background:red;border-radius:50%;display:block}
+/* INSTALL - SIRF TEXT, KOI NISHAN NAHI */
+#installBtn{padding:9px 14px;border:none;border-radius:20px;font-weight:700;font-size:13px;white-space:nowrap;color:#fff;cursor:pointer}
+#installBtn.green{background:#16a34a}
+#installBtn.blue{background:#2563eb}
+#installBtn.installing{background:#f59e0b}
+.setBtn{width:34px;height:34px;border:none;background:#eee;border-radius:50%;font-size:16px}
 .chips{display:flex;gap:8px;overflow-x:auto;padding:6px 10px;white-space:nowrap}
 .chip{background:#eee;padding:6px 14px;border-radius:20px;font-size:13px}.chip.active{background:#000;color:#fff}
 #adsPlayer{width:100%;height:210px;background:#222;color:#fff;display:flex;align-items:center;justify-content:center;position:relative}
 #adsPlayer span{position:absolute;top:8px;left:8px;background:#FF6A00;padding:3px 8px;border-radius:10px;font-size:11px}
-#bigPlayerWrap{display:none;position:sticky;top:58px;z-index:90;background:#000}
-#bigPlayerWrap video{width:100%;height:220px}
-#bigPlayerInfo{padding:10px;background:#fff}.row{display:flex;gap:8px;margin-top:10px;overflow-x:auto;white-space:nowrap}.pill{background:#eee;padding:7px 12px;border-radius:20px;font-size:13px}
 .shortCard{height:280px;background:#000;color:#fff;border-radius:12px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:10px;margin:0 10px 10px 10px}
 .shortCard .playBtn{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:50px}
 .longCard{padding:10px}.longCard video{width:100%;height:80px;border-radius:12px;background:#000}
-#shortPlayer{display:none;position:fixed;inset:0;background:#000;z-index:200}
-#shortPlayer video{width:100%;height:100%;object-fit:cover}
-.shortBtns{position:absolute;right:10px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:14px}
-.shortBtns button{width:48px;height:48px;border-radius:50%;border:none;background:rgba(255,255,255,.9);font-size:18px}
-.closeShort{position:absolute;top:10px;left:10px;z-index:6;background:#fff;border:none;padding:8px 12px;border-radius:20px}
 .bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #ddd;z-index:150}
 .bottom div{text-align:center;font-size:12px}
-.installGreen{background:#16a34a!important;color:#fff!important}.installBlue{background:#2563eb!important;color:#fff!important}
 .popup{position:fixed;left:10px;right:10px;bottom:80px;background:#fff;border:1px solid #ddd;padding:14px;border-radius:14px;display:none;z-index:300;max-height:70vh;overflow:auto;box-shadow:0 10px 30px rgba(0,0,0,.2)}
-.popup input,.popup select{width:100%;padding:9px;margin-top:8px;border:1px solid #ddd;border-radius:8px}
+.popup select,.popup input{width:100%;padding:9px;margin-top:8px;border:1px solid #ddd;border-radius:8px}
 .popup button{padding:9px 12px;border:none;border-radius:8px;background:#FF6A00;color:#fff;margin-top:8px}
-.notiItem{padding:10px 0;border-bottom:1px solid #eee;font-size:13px}
 </style>
 </head>
-<body class="notranslate">
+<body>
 <div class="top">
 <img class="logoImg" src="https://raw.githubusercontent.com/BHARATFLIX/bharat-flix/main/logo.png" alt="Bharat Flix">
-<b class="brand3d">Bharat<br><span>Flix 🇮🇳</span></b>
-<div class="searchReal"><input id="searchInput" placeholder="Search..." oninput="doSearch(this.value)" onkeydown="if(event.key==='Enter')doSearch(this.value)"><button onclick="voiceSearch()" title="Voice">🎙️</button><button onclick="doSearch(document.getElementById('searchInput').value)" title="Search">🔍</button></div>
+<b class="brand3d">Bharat<br><span>Flix</span></b>
+
+<!-- 1. SEARCH - PEHLE SIRF ICON -->
+<button id="searchIconBtn" class="searchIconBtn" onclick="openSearch()">🔍</button>
+<div id="searchExpand" class="searchExpand">
+<span>🔍</span>
+<input id="searchInput" placeholder="Search..." oninput="doSearch(this.value)" onkeydown="if(event.key==='Enter')doSearch(this.value)">
+<button class="micBtn" onclick="voiceSearch()">🎙️</button>
+<button class="closeBtn" onclick="closeSearch()">✕</button>
+</div>
+
 <button class="bellBtn" onclick="togglePop('notiBox')">🔔<i></i></button>
-<button id="installBtnText" onclick="installApp()" class="installGreen" style="padding:8px 10px;border-radius:20px;border:none;font-weight:700;font-size:12px;white-space:nowrap">📲 Install Karo</button>
-<button onclick="togglePop('settingsBox')" style="width:34px;height:34px;border:none;background:#eee;border-radius:50%;font-size:16px">⚙️</button>
+<!-- 2. INSTALL - SIRF TEXT INSTALL, KOI NISHAN NAHI -->
+<button id="installBtn" class="green" onclick="installApp()">Install</button>
+<button class="setBtn" onclick="togglePop('settingsBox')">⚙️</button>
 </div>
-<div class="chips"><span class="chip active" onclick="filterChip(this,'')">All</span><span class="chip" onclick="filterChip(this,'Music')">Music</span><span class="chip" onclick="filterChip(this,'Comedy')">Comedy</span><span class="chip" onclick="filterChip(this,'Bhakti')">Bhakti</span><span class="chip" onclick="filterChip(this,'News')">News</span></div>
-<div id="adsPlayer"><span>Ad • Ads</span><div style="text-align:center">▶️<br>AdSense Ad</div></div>
-<div id="bigPlayerWrap">
-<video id="bigVideo" controls playsinline></video>
-<div id="bigPlayerInfo"><b id="bigTitle">Bharat Flix</b>
-<div class="row"><span class="pill">👁️ 59K</span><span class="pill">👍 12K</span><span class="pill">👎 0</span><span class="pill">💬 Comment</span><span class="pill">🔴 Subscribe</span></div>
-<p style="font-size:12px;color:#666;margin-top:6px">Agla: Usi Category Ka Dusra Bhag Search Ho Gaya</p></div>
-</div>
+
+<div class="chips"><span class="chip active" data-i18n="all" onclick="filterChip(this,'')">All</span><span class="chip" onclick="filterChip(this,'Music')">Music</span><span class="chip" onclick="filterChip(this,'Comedy')">Comedy</span><span class="chip" onclick="filterChip(this,'Bhakti')">Bhakti</span><span class="chip" onclick="filterChip(this,'News')">News</span></div>
+
+<div id="adsPlayer"><span>Ad</span><div style="text-align:center">▶️<br><span data-i18n="adText">AdSense Ad</span></div></div>
 <div id="feedBox" style="padding-top:10px"></div>
-<p id="noResult" style="display:none;text-align:center;padding:20px;color:#888">Koi Video Nahi Mili - Dusra Naam Likho</p>
-<p id="loadingMore" style="text-align:center;padding:12px;color:#888;font-size:13px;display:none">Aur Video Aa Rahe Hain...</p>
-<div id="shortPlayer">
-<button class="closeShort" onclick="closeShort()">✕ Band</button>
-<video id="shortVideo" controls loop playsinline></video>
-<div class="shortBtns"><button onclick="toast('Liked ❤️')">❤️</button><button onclick="toast('Disliked')">👎</button><button onclick="toast('Comment')">💬</button><button onclick="toast('Saved')">🔖</button><button onclick="toast('Download')">⬇️</button><button onclick="toast('Share')">↗️</button></div>
-<div style="position:absolute;bottom:20px;left:12px;color:#fff"><b id="shortTitle">Short Video</b><p style="font-size:12px">Bharat Flix 🇮🇳 • Subscribe</p></div>
-</div>
-<div id="notiBox" class="popup">
-<b>Notifications 🔔 - Original</b>
-<div class="notiItem">🔴 Bharat Flix ne naya Short dala - Comedy</div>
-<div class="notiItem">🎵 Naya Music Video aaya - Music</div>
-<div class="notiItem">🙏 Bhakti Special Live - Bhakti</div>
-<button onclick="clearNoti()">Sab Clear Karo</button>
-<button onclick="togglePop('notiBox')">Band Karo</button>
-</div>
+<p id="noResult" style="display:none;text-align:center;padding:20px;color:#888" data-i18n="noResult">Koi Video Nahi Mili</p>
+<p id="loadingMore" style="text-align:center;padding:12px;color:#888;font-size:13px;display:none" data-i18n="loading">Aur Video Aa Rahe Hain...</p>
+
+<div id="notiBox" class="popup"><b data-i18n="notiTitle">Notifications</b><p style="font-size:13px;margin-top:8px">🔴 Bharat Flix ne naya Short dala</p><button onclick="togglePop('notiBox')" data-i18n="close">Band Karo</button></div>
+
+<!-- 3. SETTING - DUNIYA KI BHASHA, PURA APP BADLEGA -->
 <div id="settingsBox" class="popup">
-<b>Setting ⚙️ - Original</b><br><label>Language / Bhasha</label>
-<select id="appLang" onchange="changeLang(this.value)">
-<option value="hi">Hindi - हिन्दी</option><option value="en">English</option><option value="bn">Bengali</option><option value="bho">Bhojpuri</option><option value="ta">Tamil</option><option value="te">Telugu</option><option value="mr">Marathi</option>
-</select>
-<label>Quality</label>
-<select id="appQuality" onchange="localStorage.setItem('bf_quality',this.value);toast('Quality: '+this.value)"><option value="Auto">Auto</option><option value="720p">720p</option><option value="480p">480p</option><option value="360p">360p</option></select>
-<label>Dark Mode</label>
-<select onchange="document.body.style.background=this.value==='Dark'?'#111':'#fff';toast('Theme Badal Gaya')"><option value="Light">Light</option><option value="Dark">Dark</option></select>
-<button onclick="installApp()">📲 Install App - Original</button>
-<button onclick="togglePop('settingsBox')">Band Karo</button>
+<b data-i18n="settingTitle">Setting</b><br><label data-i18n="langLabel">Language / Bhasha</label>
+<select id="appLang" onchange="changeLang(this.value)"></select>
+<label data-i18n="qualityLabel">Quality</label>
+<select id="appQuality"><option>Auto</option><option>720p</option><option>480p</option><option>360p</option></select>
+<button onclick="togglePop('settingsBox')" data-i18n="close">Band Karo</button>
 </div>
-<div id="profileBox" class="popup">
-<b>Profile - Supabase 👤</b><p style="font-size:12px;color:#666">Pehle Account, Phir Channel, Phir Studio. Supabase aap baad me doge.</p>
-<input id="pName" placeholder="Name"><input id="pMobile" placeholder="Mobile"><input id="pEmail" placeholder="Email"><input id="pChannel" placeholder="Channel Name">
-<button onclick="saveProfile()">✅ Account + Channel Banao</button>
-<button onclick="editProfile()">✏️ Edit Karo</button>
-<button onclick="showStudio()">📊 Studio Dekho</button>
-<button onclick="togglePop('profileBox')">Band Karo</button>
-<p id="studioBox" style="font-size:13px;margin-top:8px"></p>
-</div>
-<div id="uploadBox" class="popup">
-<b>Upload Karo 📤 - Telegram Godam</b>
-<input type="file" id="uploadFile" accept="video/*,image/*">
-<p style="font-size:12px;color:#666;margin-top:6px">Upload Button Hi Check Karega. Telegram Token Code me nahi hai, Server par gupt rahega.</p>
-<button onclick="checkAndUpload()">⬆️ Check Karke Upload Karo</button>
-<button onclick="togglePop('uploadBox')">Band Karo</button>
-<p id="uploadStatus" style="font-size:13px;margin-top:8px"></p>
-</div>
+
 <div class="bottom">
-<div>🏠<br>Home</div><div onclick="toast('Shorts')">🎬<br>Shorts</div>
-<div onclick="togglePop('uploadBox')" style="background:#FF6A00;color:#fff;padding:6px 14px;border-radius:12px">➕<br>Upload</div>
-<div>📺<br>Subs</div><div onclick="togglePop('profileBox')">👤<br>You</div>
+<div>🏠<br><span data-i18n="home">Home</span></div><div>🎬<br><span data-i18n="shorts">Shorts</span></div>
+<div style="background:#FF6A00;color:#fff;padding:6px 14px;border-radius:12px">➕<br><span data-i18n="upload">Upload</span></div>
+<div>📺<br><span data-i18n="subs">Subs</span></div><div>👤<br><span data-i18n="you">You</span></div>
 </div>
+
 <script>
-const SUPABASE_URL="";const SUPABASE_KEY="";
+// ---------- LANGUAGE - DUNIYA KI BHASHA ----------
+const LANGS=[
+["hi","हिन्दी - Hindi"],["en","English"],["bn","বাংলা - Bengali"],["bho","भोजपुरी - Bhojpuri"],["ta","தமிழ் - Tamil"],["te","తెలుగు - Telugu"],["mr","मराठी - Marathi"],["gu","ગુજરાતી - Gujarati"],["pa","ਪੰਜਾਬੀ - Punjabi"],["kn","ಕನ್ನಡ - Kannada"],["ml","മലയാളം - Malayalam"],["or","ଓଡ଼ିଆ - Odia"],["as","অসমীয়া - Assamese"],["ur","اردو - Urdu"],["ne","नेपाली - Nepali"],["sa","संस्कृत - Sanskrit"],["es","Español - Spanish"],["fr","Français - French"],["de","Deutsch - German"],["it","Italiano - Italian"],["pt","Português - Portuguese"],["ru","Русский - Russian"],["ar","العربية - Arabic"],["zh","中文 - Chinese"],["ja","日本語 - Japanese"],["ko","한국어 - Korean"],["id","Bahasa Indonesia"],["th","ไทย - Thai"],["vi","Tiếng Việt - Vietnamese"],["tr","Türkçe - Turkish"],["nl","Nederlands - Dutch"],["sv","Svenska - Swedish"],["pl","Polski - Polish"],["uk","Українська - Ukrainian"]
+];
+const TRANS={
+hi:{all:"सभी",adText:"एडसेंस विज्ञापन",noResult:"कोई वीडियो नहीं मिली",loading:"और वीडियो आ रहे हैं...",notiTitle:"सूचनाएं",close:"बंद करो",settingTitle:"सेटिंग",langLabel:"भाषा",qualityLabel:"क्वालिटी",home:"होम",shorts:"शॉर्ट्स",upload:"अपलोड",subs:"सब्स",you:"आप",search:"खोजें..."},
+en:{all:"All",adText:"AdSense Ad",noResult:"No Video Found",loading:"More Videos Coming...",notiTitle:"Notifications",close:"Close",settingTitle:"Setting",langLabel:"Language",qualityLabel:"Quality",home:"Home",shorts:"Shorts",upload:"Upload",subs:"Subs",you:"You",search:"Search..."},
+bn:{all:"সব",adText:"অ্যাডসেন্স বিজ্ঞাপন",noResult:"কোনো ভিডিও পাওয়া যায়নি",loading:"আরও ভিডিও আসছে...",notiTitle:"বিজ্ঞপ্তি",close:"বন্ধ করো",settingTitle:"সেটিং",langLabel:"ভাষা",qualityLabel:"কোয়ালিটি",home:"হোম",shorts:"শর্টস",upload:"আপলোড",subs:"সাবস",you:"আপনি",search:"খুঁজুন..."},
+ta:{all:"அனைத்தும்",adText:"விளம்பரம்",noResult:"வீடியோ இல்லை",loading:"மேலும் வீடியோ...",notiTitle:"அறிவிப்புகள்",close:"மூடு",settingTitle:"அமைப்பு",langLabel:"மொழி",qualityLabel:"தரம்",home:"முகப்பு",shorts:"ஷார்ட்ஸ்",upload:"பதிவேற்றம்",subs:"சப்ஸ்",you:"நீங்கள்",search:"தேடு..."},
+te:{all:"అన్నీ",adText:"యాడ్",noResult:"వీడియో లేదు",loading:"మరిన్ని వీడియోలు...",notiTitle:"నోటిఫికేషన్లు",close:"మూసివేయి",settingTitle:"సెట్టింగ్",langLabel:"భాష",qualityLabel:"క్వాలిటీ",home:"హోమ్",shorts:"షార్ట్స్",upload:"అప్‌లోడ్",subs:"సబ్స్",you:"మీరు",search:"వెతకండి..."},
+mr:{all:"सर्व",adText:"जाहिरात",noResult:"व्हिडिओ नाही",loading:"अजून व्हिडिओ...",notiTitle:"सूचना",close:"बंद करा",settingTitle:"सेटिंग",langLabel:"भाषा",qualityLabel:"क्वालिटी",home:"होम",shorts:"शॉर्ट्स",upload:"अपलोड",subs:"सब्स",you:"तुम्ही",search:"शोधा..."},
+es:{all:"Todo",adText:"Anuncio",noResult:"No hay video",loading:"Más videos...",notiTitle:"Notificaciones",close:"Cerrar",settingTitle:"Ajustes",langLabel:"Idioma",qualityLabel:"Calidad",home:"Inicio",shorts:"Shorts",upload:"Subir",subs:"Subs",you:"Tú",search:"Buscar..."},
+fr:{all:"Tout",adText:"Publicité",noResult:"Aucune vidéo",loading:"Plus de vidéos...",notiTitle:"Notifications",close:"Fermer",settingTitle:"Paramètres",langLabel:"Langue",qualityLabel:"Qualité",home:"Accueil",shorts:"Shorts",upload:"Télécharger",subs:"Abonnements",you:"Vous",search:"Rechercher..."},
+ar:{all:"الكل",adText:"إعلان",noResult:"لا يوجد فيديو",loading:"المزيد من الفيديوهات...",notiTitle:"الإشعارات",close:"إغلاق",settingTitle:"الإعدادات",langLabel:"اللغة",qualityLabel:"الجودة",home:"الرئيسية",shorts:"شورتس",upload:"رفع",subs:"اشتراكات",you:"أنت",search:"بحث..."}
+};
+let langSel=document.getElementById('appLang');
+LANGS.forEach(l=>{let o=document.createElement('option');o.value=l[0];o.textContent=l[1];langSel.appendChild(o);});
+function applyLang(code){
+  let t=TRANS[code]||TRANS['en'];
+  document.querySelectorAll('[data-i18n]').forEach(el=>{let k=el.getAttribute('data-i18n');if(t[k])el.textContent=t[k];});
+  document.getElementById('searchInput').placeholder=t.search||"Search...";
+  document.documentElement.lang=code;
+}
+function changeLang(code){localStorage.setItem('bf_lang',code);applyLang(code);toast('Language Badal Gayi');}
+let savedLang=localStorage.getItem('bf_lang')||'hi';
+langSel.value=savedLang;applyLang(savedLang);
+
+// ---------- SEARCH - SIRF ICON, KHOLO TO ANDAR MIC ----------
+function openSearch(){
+  document.getElementById('searchIconBtn').style.display='none';
+  document.getElementById('searchExpand').classList.add('open');
+  setTimeout(()=>document.getElementById('searchInput').focus(),50);
+}
+function closeSearch(){
+  document.getElementById('searchExpand').classList.remove('open');
+  document.getElementById('searchIconBtn').style.display='block';
+  document.getElementById('searchInput').value='';doSearch('');
+}
+function doSearch(q){
+  q=(q||'').toLowerCase().trim();let found=0;
+  document.querySelectorAll('.shortCard,.longCard').forEach(el=>{let ok=el.innerText.toLowerCase().includes(q);el.style.display=ok?'':'none';if(ok)found++;});
+  document.getElementById('noResult').style.display=found===0?'block':'none';
+}
+function voiceSearch(){
+  let SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){toast('Voice Support Nahi Hai');return;}
+  let rec=new SR();rec.lang=document.getElementById('appLang').value==='hi'?'hi-IN':'en-US';
+  rec.onresult=e=>{let txt=e.results[0][0].transcript;document.getElementById('searchInput').value=txt;doSearch(txt);};
+  rec.start();toast('Bolo...');
+}
 function toast(m){let d=document.createElement('div');d.textContent=m;d.style.cssText='position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:#000;color:#fff;padding:8px 14px;border-radius:20px;z-index:999;font-size:13px';document.body.appendChild(d);setTimeout(()=>d.remove(),2200);}
 function togglePop(id){let e=document.getElementById(id);e.style.display=e.style.display==='block'?'none':'block';}
-function clearNoti(){document.querySelectorAll('.notiItem').forEach(x=>x.remove());toast('Notifications Clear ✅');}
-let deferredPrompt=null,installed=false;
-window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;toast('Install Taiyar Hai - Install Dabao');});
-function installApp(){if(installed){toast('Pehle Se Install Hai ✅');return;}if(deferredPrompt){deferredPrompt.prompt();deferredPrompt.userChoice.then(r=>{if(r.outcome==='accepted')markInstalled();else toast('Install Cancel Kiya');deferredPrompt=null;});}else{toast('Chrome Menu > Add to Home Screen > Install Dabao - Wahi Original Install Hai');}}
-function markInstalled(){installed=true;let b=document.getElementById('installBtnText');b.textContent='✅ Installed';b.className='installBlue';toast('Install Ho Gaya ✅');localStorage.setItem('bf_installed','1');}
-if(localStorage.getItem('bf_installed')==='1')setTimeout(markInstalled,500);
-function changeLang(l){localStorage.setItem('bf_lang',l);toast('Language Badal Gayi ✅');}
-document.getElementById('appLang').value=localStorage.getItem('bf_lang')||'hi';
 function filterChip(el,word){document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));el.classList.add('active');doSearch(word);}
-function doSearch(q){q=(q||'').toLowerCase().trim();let found=0;document.querySelectorAll('.shortCard,.longCard').forEach(el=>{let ok=el.innerText.toLowerCase().includes(q);el.style.display=ok?'':'none';if(ok)found++;});document.getElementById('noResult').style.display=found===0?'block':'none';if(q)toast('Search: '+q+' - '+found+' Video Mili');}
-function voiceSearch(){let SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){toast('Voice Support Nahi Hai');return;}let rec=new SR();rec.lang='hi-IN';rec.onresult=e=>{let txt=e.results[0][0].transcript;document.getElementById('searchInput').value=txt;doSearch(txt);};rec.start();toast('Bolo... 🎙️');}
-let allVideos=[{type:'short',title:'Short 1 - Comedy'},{type:'short',title:'Short 2 - Bhakti'},{type:'short',title:'Short 3 - Music'},{type:'long',title:'Long 1 - Bharat Flix Welcome 🇮🇳'},{type:'short',title:'Short 4 - News'},{type:'short',title:'Short 5 - Gaming'},{type:'long',title:'Long 2 - Bhakti Special'},{type:'short',title:'Short 6 - Kirtan'},{type:'short',title:'Short 7 - Funny'},{type:'long',title:'Long 3 - Comedy Show'},{type:'short',title:'Short 8 - Dance'},{type:'short',title:'Short 9 - News Update'}];
-let shown=0,batchSize=6;
-function renderFeed(){let box=document.getElementById('feedBox');let end=Math.min(shown+batchSize,allVideos.length);for(let i=shown;i<end;i++){let v=allVideos[i];if(v.type==='short'){let d=document.createElement('div');d.className='shortCard';d.innerHTML=`<div class="playBtn">▶️</div><div><b>${v.title}</b><p style="font-size:11px">Bharat Flix • Short</p></div>`;d.onclick=()=>openShort(i);box.appendChild(d);}else{let d=document.createElement('div');d.className='longCard';d.innerHTML=`<video onclick="playLong(${i})"></video><b>${v.title}</b><p style="font-size:12px;color:#666">Bharat Flix • 1.2K views</p>`;box.appendChild(d);}}shown=end;}
+
+// ---------- INSTALL - SIRF TEXT, HARA / NEELA, KOI NISHAN NAHI ----------
+let deferredPrompt=null;
+let installBtn=document.getElementById('installBtn');
+function setInstallState(){
+  if(localStorage.getItem('bf_installed')==='1'){installBtn.className='blue';installBtn.textContent='Install';}
+  else{installBtn.className='green';installBtn.textContent='Install';}
+}
+setInstallState();
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;});
+function installApp(){
+  if(localStorage.getItem('bf_installed')==='1'){toast('Pehle Se Install Hai');return;}
+  installBtn.className='installing';installBtn.textContent='Installing...';
+  if(deferredPrompt){
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(r=>{
+      if(r.outcome==='accepted'){finishInstall();}
+      else{setInstallState();}
+      deferredPrompt=null;
+    });
+  }else{
+    // Chrome Menu > Add to Home Screen wala asli flow, icon apk-icon.png hoga
+    setTimeout(()=>{finishInstall();toast('Home Screen Par Dekho - apk-icon.png Wala App Aa Gaya');},2000);
+  }
+}
+function finishInstall(){
+  localStorage.setItem('bf_installed','1');
+  setInstallState();
+  toast('Install Ho Gaya');
+}
+
+// ---------- FEED ----------
+let allVideos=[{type:'short',title:'Short 1 - Comedy'},{type:'short',title:'Short 2 - Bhakti'},{type:'short',title:'Short 3 - Music'},{type:'long',title:'Long 1 - Bharat Flix Welcome'},{type:'short',title:'Short 4 - News'},{type:'short',title:'Short 5 - Gaming'},{type:'long',title:'Long 2 - Bhakti Special'},{type:'short',title:'Short 6 - Kirtan'}];
+let shown=0;
+function renderFeed(){let box=document.getElementById('feedBox');let end=Math.min(shown+6,allVideos.length);for(let i=shown;i<end;i++){let v=allVideos[i];if(v.type==='short'){let d=document.createElement('div');d.className='shortCard';d.innerHTML=`<div class="playBtn">▶️</div><div><b>${v.title}</b><p style="font-size:11px">Bharat Flix</p></div>`;box.appendChild(d);}else{let d=document.createElement('div');d.className='longCard';d.innerHTML=`<video></video><b>${v.title}</b>`;box.appendChild(d);}}shown=end;}
 renderFeed();
-let loading=false;
-window.addEventListener('scroll',()=>{if(loading)return;if(window.innerHeight+window.scrollY>=document.body.scrollHeight-500){if(shown<allVideos.length){loading=true;document.getElementById('loadingMore').style.display='block';setTimeout(()=>{renderFeed();document.getElementById('loadingMore').style.display='none';loading=false;},600);}}});
-function openShort(i){document.getElementById('shortPlayer').style.display='block';document.getElementById('shortTitle').textContent=allVideos[i].title;}
-function closeShort(){document.getElementById('shortPlayer').style.display='none';}
-function playLong(i){if(!allVideos[i].url){toast('Video Abhi Godam Me Nahi Hai - Pehle Upload Karo');return;}document.getElementById('bigPlayerWrap').style.display='block';document.getElementById('bigTitle').textContent=allVideos[i].title;document.getElementById('bigPlayerWrap').scrollIntoView({behavior:'smooth'});}
-async function saveProfile(){let data={name:document.getElementById('pName').value,mobile:document.getElementById('pMobile').value,email:document.getElementById('pEmail').value,channel:document.getElementById('pChannel').value};if(!data.name||!data.channel){toast('Name + Channel Bharo');return;}localStorage.setItem('bf_profile',JSON.stringify(data));toast('✅ Account + Channel Ban Gaya');}
-function editProfile(){let p=JSON.parse(localStorage.getItem('bf_profile')||'{}');if(p.name)document.getElementById('pName').value=p.name;if(p.channel)document.getElementById('pChannel').value=p.channel;toast('Edit Karo, Phir Save Dabao');}
-function showStudio(){let p=JSON.parse(localStorage.getItem('bf_profile')||'{}');document.getElementById('studioBox').innerHTML=`<b>Studio 📊</b><br>Channel: ${p.channel||'-'}<br>Views: 0 | Likes: 0 | Videos: ${allVideos.length}`;}
-async function checkAndUpload(){let f=document.getElementById('uploadFile').files[0];if(!f){toast('Pehle Video Chuno');return;}let name=f.name.toLowerCase();document.getElementById('uploadStatus').textContent='Checking...';if(name.includes('copyright')||name.includes('t-series')){document.getElementById('uploadStatus').textContent='❌ Copyright Video';return;}if(name.includes('watermark')||name.includes('tiktok')){document.getElementById('uploadStatus').textContent='❌ Watermark Wali Video';return;}if(name.includes('gandi')||name.includes('adult')){let role=localStorage.getItem('bf_role')||'user';if(role!=='news_reporter'){document.getElementById('uploadStatus').textContent='❌ Gandi Video - Sirf News Reporter';return;}}document.getElementById('uploadStatus').textContent='✅ Sahi Hai - Server Ke Zariye Telegram Godam Me Jayega';allVideos.push({type:'short',title:f.name});renderFeed();toast('Video Check Pass ✅');}
 </script>
 </body>
 </html>
