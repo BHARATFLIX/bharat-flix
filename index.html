@@ -26,7 +26,6 @@ body{background:#fff;padding-bottom:80px}
 .bellBtn{width:34px;height:34px;min-width:34px;border:none;background:#eee;border-radius:50%;font-size:16px;position:relative}
 .bellBtn i{position:absolute;top:4px;right:5px;width:8px;height:8px;background:red;border-radius:50%;display:block}
 #installBtn{padding:9px 14px;border:none;border-radius:20px;font-weight:700;font-size:13px;white-space:nowrap;color:#fff;cursor:pointer}
-#installBtn.green{background:#16a34a}
 #installBtn.blue{background:#2563eb}
 #installBtn.installing{background:#f59e0b}
 .setBtn{width:34px;height:34px;border:none;background:#eee;border-radius:50%;font-size:16px}
@@ -271,42 +270,53 @@ doSearch(word);
 }
 let deferredPrompt=null;
 let installBtn=document.getElementById('installBtn');
+function isReallyInstalled(){
+return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone===true;
+}
 function setInstallState(){
+if(isReallyInstalled()){
+installBtn.style.display='none';
+}else{
+installBtn.style.display='block';
 installBtn.className='blue';
 installBtn.textContent='Install App';
 }
+}
+localStorage.removeItem('bf_installed');
 setInstallState();
 window.addEventListener('beforeinstallprompt',e=>{
 e.preventDefault();
 deferredPrompt=e;
+setInstallState();
+});
+window.addEventListener('appinstalled',()=>{
+deferredPrompt=null;
+toast('Install Ho Gaya - Home Screen Par Dekho - BharatFlix Aa Gaya');
+setInstallState();
 });
 function installApp(){
-if(localStorage.getItem('bf_installed')==='1'){
-toast('Pehle Se Install Hai');
-goHome();
+if(isReallyInstalled()){
+toast('Pehle Se Install Hai - Home Screen Par Dekho');
 return;
 }
+if(deferredPrompt){
 installBtn.className='installing';
 installBtn.textContent='Installing...';
-if(deferredPrompt){
 deferredPrompt.prompt();
 deferredPrompt.userChoice.then(r=>{
-if(r.outcome==='accepted'){finishInstall();}
-else{setInstallState();}
+if(r.outcome==='accepted'){
+toast('Install Ho Raha Hai - Home Screen Par Dekho');
+}else{
+setInstallState();
+toast('Install Cancel Ho Gaya - Phir Se Install App Dabao');
+}
 deferredPrompt=null;
 });
 }else{
-setTimeout(()=>{
-finishInstall();
-toast('Home Screen Par Dekho - App Aa Gaya');
-},2000);
-}
-}
-function finishInstall(){
-localStorage.setItem('bf_installed','1');
+toast('Thoda Ruko - Page Reload Ho Raha Hai - Phir Install App Dabao');
 setInstallState();
-toast('Install Ho Gaya');
-goHome();
+setTimeout(()=>location.reload(),1000);
+}
 }
 function goHome(){
 document.querySelectorAll('.popup').forEach(p=>p.style.display='none');
