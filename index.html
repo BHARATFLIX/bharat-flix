@@ -12,7 +12,7 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
 body{background:#fff;padding-bottom:80px}
-.top{display:flex;align-items:center;gap:8px;padding:8px;position:sticky;top:0;background:#fff;z-index:100}
+.top{display:flex;align-items:center;gap:10px;padding:8px 6px;position:sticky;top:0;background:#fff;z-index:100}
 .top img.logoImg{width:42px;height:42px;min-width:42px;border-radius:50%;object-fit:cover}
 .brand3d{font-size:18px;font-weight:900;line-height:1.05;white-space:nowrap;color:#FF9933;text-shadow:1px 1px 0 #138808,2px 2px 0 rgba(19,136,8,.5)}
 .brand3d span{color:#138808;text-shadow:1px 1px 0 #FF9933,2px 2px 0 rgba(255,153,51,.5)}
@@ -25,10 +25,10 @@ body{background:#fff;padding-bottom:80px}
 .searchExpand .closeBtn{width:30px;height:30px;border:none;background:transparent;font-size:16px}
 .bellBtn{width:34px;height:34px;min-width:34px;border:none;background:#eee;border-radius:50%;font-size:16px;position:relative}
 .bellBtn i{position:absolute;top:4px;right:5px;width:8px;height:8px;background:red;border-radius:50%;display:block}
-#installBtn{padding:9px 14px;border:none;border-radius:20px;font-weight:700;font-size:13px;white-space:nowrap;color:#fff;cursor:pointer}
+#installBtn{padding:6px 9px;border:none;border-radius:15px;font-weight:700;font-size:11px;white-space:nowrap;color:#fff;cursor:pointer;margin-left:auto}
 #installBtn.blue{background:#2563eb}
 #installBtn.installing{background:#f59e0b}
-.setBtn{width:34px;height:34px;border:none;background:#eee;border-radius:50%;font-size:16px}
+.setBtn{width:34px;height:34px;min-width:34px;border:none;background:#eee;border-radius:50%;font-size:16px;margin-left:2px}
 .chips{display:flex;gap:8px;overflow-x:auto;padding:6px 10px;white-space:nowrap}
 .chip{background:#eee;padding:6px 14px;border-radius:20px;font-size:13px}
 .chip.active{background:#000;color:#fff}
@@ -64,7 +64,7 @@ body{top:0!important}
 <button class="closeBtn" onclick="closeSearch()">✕</button>
 </div>
 <button class="bellBtn" onclick="togglePop('notiBox')">🔔<i></i></button>
-<button id="installBtn" class="blue" onclick="installApp()">Install App</button>
+<button id="installBtn" class="blue" onclick="installApp()">Install</button>
 <button class="setBtn" onclick="togglePop('settingsBox')">⚙️</button>
 </div>
 <div class="chips">
@@ -275,11 +275,13 @@ return window.matchMedia('(display-mode: standalone)').matches || window.navigat
 }
 function setInstallState(){
 if(isReallyInstalled()){
-installBtn.style.display='none';
+installBtn.style.visibility='hidden';
+installBtn.style.pointerEvents='none';
 }else{
-installBtn.style.display='block';
+installBtn.style.visibility='visible';
+installBtn.style.pointerEvents='auto';
 installBtn.className='blue';
-installBtn.textContent='Install App';
+installBtn.textContent='Install';
 }
 }
 localStorage.removeItem('bf_installed');
@@ -301,19 +303,19 @@ return;
 }
 if(deferredPrompt){
 installBtn.className='installing';
-installBtn.textContent='Installing...';
+installBtn.textContent='...';
 deferredPrompt.prompt();
 deferredPrompt.userChoice.then(r=>{
 if(r.outcome==='accepted'){
 toast('Install Ho Raha Hai - Home Screen Par Dekho');
 }else{
 setInstallState();
-toast('Install Cancel Ho Gaya - Phir Se Install App Dabao');
+toast('Install Cancel Ho Gaya - Phir Se Install Dabao');
 }
 deferredPrompt=null;
 });
 }else{
-toast('Thoda Ruko - Page Reload Ho Raha Hai - Phir Install App Dabao');
+toast('Thoda Ruko - Page Reload Ho Raha Hai - Phir Install Dabao');
 setInstallState();
 setTimeout(()=>location.reload(),1000);
 }
