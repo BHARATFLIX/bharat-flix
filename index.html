@@ -11,10 +11,13 @@ body{background:#fff;padding-bottom:80px}
 .goog-te-banner-frame,.skiptranslate{display:none!important}
 .top{display:flex;align-items:center;gap:7px;padding:8px 8px;position:sticky;top:0;background:#fff;z-index:100}
 .top img.logoImg{width:42px;height:42px;min-width:42px;border-radius:50%;object-fit:cover}
-.brand3d{font-size:18px;font-weight:900;line-height:1.05;white-space:nowrap;background:linear-gradient(to bottom,#FF9933 33%,#FFFFFF 33%,#FFFFFF 66%,#138808 66%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0px 1px 0px #000,0px 2px 0px rgba(0,0,0,.3),0px 3px 4px rgba(0,0,0,.4)}
+.brand3d{font-size:18px;font-weight:900;line-height:1.05;white-space:nowrap;color:#FF9933;text-shadow:1px 1px 0 #138808,2px 2px 0 rgba(19,136,8,.5),0 3px 5px rgba(0,0,0,.35)}
+.brand3d span{color:#138808;text-shadow:1px 1px 0 #FF9933,2px 2px 0 rgba(255,153,51,.5),0 3px 5px rgba(0,0,0,.35)}
 .searchReal{flex:1;display:flex;align-items:center;background:#eee;border-radius:20px;padding:2px 3px 2px 10px;min-width:0;gap:2px}
 .searchReal input{flex:1;background:transparent;border:none;outline:none;min-width:0;font-size:14px}
 .searchReal button{width:32px;height:32px;min-width:32px;border:none;background:#fff;border-radius:50%;font-size:15px}
+.bellBtn{width:34px;height:34px;min-width:34px;border:none;background:#eee;border-radius:50%;font-size:16px;position:relative}
+.bellBtn i{position:absolute;top:4px;right:5px;width:8px;height:8px;background:red;border-radius:50%;display:block}
 .chips{display:flex;gap:8px;overflow-x:auto;padding:6px 10px;white-space:nowrap}
 .chip{background:#eee;padding:6px 14px;border-radius:20px;font-size:13px}.chip.active{background:#000;color:#fff}
 #adsPlayer{width:100%;height:210px;background:#222;color:#fff;display:flex;align-items:center;justify-content:center;position:relative}
@@ -33,21 +36,22 @@ body{background:#fff;padding-bottom:80px}
 .bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #ddd;z-index:150}
 .bottom div{text-align:center;font-size:12px}
 .installGreen{background:#16a34a!important;color:#fff!important}.installBlue{background:#2563eb!important;color:#fff!important}
-.popup{position:fixed;left:10px;right:10px;bottom:80px;background:#fff;border:1px solid #ddd;padding:14px;border-radius:14px;display:none;z-index:300;max-height:70vh;overflow:auto}
+.popup{position:fixed;left:10px;right:10px;bottom:80px;background:#fff;border:1px solid #ddd;padding:14px;border-radius:14px;display:none;z-index:300;max-height:70vh;overflow:auto;box-shadow:0 10px 30px rgba(0,0,0,.2)}
 .popup input,.popup select{width:100%;padding:9px;margin-top:8px;border:1px solid #ddd;border-radius:8px}
 .popup button{padding:9px 12px;border:none;border-radius:8px;background:#FF6A00;color:#fff;margin-top:8px}
+.notiItem{padding:10px 0;border-bottom:1px solid #eee;font-size:13px}
 </style>
 </head>
 <body class="notranslate">
 <div class="top">
 <img class="logoImg" src="https://raw.githubusercontent.com/BHARATFLIX/bharat-flix/main/logo.png" alt="Bharat Flix">
-<b class="brand3d">Bharat<br>Flix 🇮🇳</b>
-<div class="searchReal"><input id="searchInput" placeholder="Search..." oninput="doSearch(this.value)"><button onclick="voiceSearch()">🎙️</button><button onclick="doSearch(document.getElementById('searchInput').value)">🔍</button></div>
-<span>🔔</span>
-<button id="installBtnText" onclick="installApp()" class="installGreen" style="padding:7px 8px;border-radius:20px;border:none;font-weight:700;font-size:12px;white-space:nowrap">📲 Install Karo</button>
-<span onclick="togglePop('settingsBox')">⚙️</span>
+<b class="brand3d">Bharat<br><span>Flix 🇮🇳</span></b>
+<div class="searchReal"><input id="searchInput" placeholder="Search..." oninput="doSearch(this.value)" onkeydown="if(event.key==='Enter')doSearch(this.value)"><button onclick="voiceSearch()" title="Voice">🎙️</button><button onclick="doSearch(document.getElementById('searchInput').value)" title="Search">🔍</button></div>
+<button class="bellBtn" onclick="togglePop('notiBox')">🔔<i></i></button>
+<button id="installBtnText" onclick="installApp()" class="installGreen" style="padding:8px 10px;border-radius:20px;border:none;font-weight:700;font-size:12px;white-space:nowrap">📲 Install Karo</button>
+<button onclick="togglePop('settingsBox')" style="width:34px;height:34px;border:none;background:#eee;border-radius:50%;font-size:16px">⚙️</button>
 </div>
-<div class="chips"><span class="chip active">All</span><span class="chip">Music</span><span class="chip">Mixes</span><span class="chip">Live</span><span class="chip">Comedy</span><span class="chip">Bhakti</span></div>
+<div class="chips"><span class="chip active" onclick="filterChip(this,'')">All</span><span class="chip" onclick="filterChip(this,'Music')">Music</span><span class="chip" onclick="filterChip(this,'Comedy')">Comedy</span><span class="chip" onclick="filterChip(this,'Bhakti')">Bhakti</span><span class="chip" onclick="filterChip(this,'News')">News</span></div>
 <div id="adsPlayer"><span>Ad • Ads</span><div style="text-align:center">▶️<br>AdSense Ad</div></div>
 <div id="bigPlayerWrap">
 <video id="bigVideo" controls playsinline></video>
@@ -56,6 +60,7 @@ body{background:#fff;padding-bottom:80px}
 <p style="font-size:12px;color:#666;margin-top:6px">Agla: Usi Category Ka Dusra Bhag Search Ho Gaya</p></div>
 </div>
 <div id="feedBox" style="padding-top:10px"></div>
+<p id="noResult" style="display:none;text-align:center;padding:20px;color:#888">Koi Video Nahi Mili - Dusra Naam Likho</p>
 <p id="loadingMore" style="text-align:center;padding:12px;color:#888;font-size:13px;display:none">Aur Video Aa Rahe Hain...</p>
 <div id="shortPlayer">
 <button class="closeShort" onclick="closeShort()">✕ Band</button>
@@ -63,12 +68,24 @@ body{background:#fff;padding-bottom:80px}
 <div class="shortBtns"><button onclick="toast('Liked ❤️')">❤️</button><button onclick="toast('Disliked')">👎</button><button onclick="toast('Comment')">💬</button><button onclick="toast('Saved')">🔖</button><button onclick="toast('Download')">⬇️</button><button onclick="toast('Share')">↗️</button></div>
 <div style="position:absolute;bottom:20px;left:12px;color:#fff"><b id="shortTitle">Short Video</b><p style="font-size:12px">Bharat Flix 🇮🇳 • Subscribe</p></div>
 </div>
+<div id="notiBox" class="popup">
+<b>Notifications 🔔 - Original</b>
+<div class="notiItem">🔴 Bharat Flix ne naya Short dala - Comedy</div>
+<div class="notiItem">🎵 Naya Music Video aaya - Music</div>
+<div class="notiItem">🙏 Bhakti Special Live - Bhakti</div>
+<button onclick="clearNoti()">Sab Clear Karo</button>
+<button onclick="togglePop('notiBox')">Band Karo</button>
+</div>
 <div id="settingsBox" class="popup">
-<b>Setting</b><br><label>Language / Bhasha</label>
+<b>Setting ⚙️ - Original</b><br><label>Language / Bhasha</label>
 <select id="appLang" onchange="changeLang(this.value)">
 <option value="hi">Hindi - हिन्दी</option><option value="en">English</option><option value="bn">Bengali</option><option value="bho">Bhojpuri</option><option value="ta">Tamil</option><option value="te">Telugu</option><option value="mr">Marathi</option>
 </select>
-<button onclick="installApp()">📲 Install App</button>
+<label>Quality</label>
+<select id="appQuality" onchange="localStorage.setItem('bf_quality',this.value);toast('Quality: '+this.value)"><option value="Auto">Auto</option><option value="720p">720p</option><option value="480p">480p</option><option value="360p">360p</option></select>
+<label>Dark Mode</label>
+<select onchange="document.body.style.background=this.value==='Dark'?'#111':'#fff';toast('Theme Badal Gaya')"><option value="Light">Light</option><option value="Dark">Dark</option></select>
+<button onclick="installApp()">📲 Install App - Original</button>
 <button onclick="togglePop('settingsBox')">Band Karo</button>
 </div>
 <div id="profileBox" class="popup">
@@ -97,14 +114,16 @@ body{background:#fff;padding-bottom:80px}
 const SUPABASE_URL="";const SUPABASE_KEY="";
 function toast(m){let d=document.createElement('div');d.textContent=m;d.style.cssText='position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:#000;color:#fff;padding:8px 14px;border-radius:20px;z-index:999;font-size:13px';document.body.appendChild(d);setTimeout(()=>d.remove(),2200);}
 function togglePop(id){let e=document.getElementById(id);e.style.display=e.style.display==='block'?'none':'block';}
+function clearNoti(){document.querySelectorAll('.notiItem').forEach(x=>x.remove());toast('Notifications Clear ✅');}
 let deferredPrompt=null,installed=false;
-window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;});
-function installApp(){if(installed){toast('Pehle Se Install Hai ✅');return;}if(deferredPrompt){deferredPrompt.prompt();deferredPrompt.userChoice.then(r=>{if(r.outcome==='accepted')markInstalled();});}else{toast('Browser Menu > Add to Home Screen Dabao');}}
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;toast('Install Taiyar Hai - Install Dabao');});
+function installApp(){if(installed){toast('Pehle Se Install Hai ✅');return;}if(deferredPrompt){deferredPrompt.prompt();deferredPrompt.userChoice.then(r=>{if(r.outcome==='accepted')markInstalled();else toast('Install Cancel Kiya');deferredPrompt=null;});}else{toast('Chrome Menu > Add to Home Screen > Install Dabao - Wahi Original Install Hai');}}
 function markInstalled(){installed=true;let b=document.getElementById('installBtnText');b.textContent='✅ Installed';b.className='installBlue';toast('Install Ho Gaya ✅');localStorage.setItem('bf_installed','1');}
 if(localStorage.getItem('bf_installed')==='1')setTimeout(markInstalled,500);
 function changeLang(l){localStorage.setItem('bf_lang',l);toast('Language Badal Gayi ✅');}
 document.getElementById('appLang').value=localStorage.getItem('bf_lang')||'hi';
-function doSearch(q){q=(q||'').toLowerCase();document.querySelectorAll('.shortCard,.longCard').forEach(el=>{el.style.display=el.innerText.toLowerCase().includes(q)?'':'none';});}
+function filterChip(el,word){document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));el.classList.add('active');doSearch(word);}
+function doSearch(q){q=(q||'').toLowerCase().trim();let found=0;document.querySelectorAll('.shortCard,.longCard').forEach(el=>{let ok=el.innerText.toLowerCase().includes(q);el.style.display=ok?'':'none';if(ok)found++;});document.getElementById('noResult').style.display=found===0?'block':'none';if(q)toast('Search: '+q+' - '+found+' Video Mili');}
 function voiceSearch(){let SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){toast('Voice Support Nahi Hai');return;}let rec=new SR();rec.lang='hi-IN';rec.onresult=e=>{let txt=e.results[0][0].transcript;document.getElementById('searchInput').value=txt;doSearch(txt);};rec.start();toast('Bolo... 🎙️');}
 let allVideos=[{type:'short',title:'Short 1 - Comedy'},{type:'short',title:'Short 2 - Bhakti'},{type:'short',title:'Short 3 - Music'},{type:'long',title:'Long 1 - Bharat Flix Welcome 🇮🇳'},{type:'short',title:'Short 4 - News'},{type:'short',title:'Short 5 - Gaming'},{type:'long',title:'Long 2 - Bhakti Special'},{type:'short',title:'Short 6 - Kirtan'},{type:'short',title:'Short 7 - Funny'},{type:'long',title:'Long 3 - Comedy Show'},{type:'short',title:'Short 8 - Dance'},{type:'short',title:'Short 9 - News Update'}];
 let shown=0,batchSize=6;
