@@ -20,7 +20,6 @@ body.dark .chip.active{background:#fff;color:#000}
 .top img.logoImg{width:42px;height:42px;min-width:42px;border-radius:50%;object-fit:cover}
 .brand3d{font-size:18px;font-weight:900;line-height:1.05;white-space:nowrap;color:#FF9933;text-shadow:1px 1px 0 #138808,2px 2px 0 rgba(19,136,8,.5)}
 .brand3d span{color:#138808;text-shadow:1px 1px 0 #FF9933,2px 2px 0 rgba(255,153,51,.5)}
-/* SEARCH RIGHT FIX - Ab Search Dayi Taraf */
 .searchIconBtn{width:36px;height:36px;min-width:36px;border:none;background:#eee;border-radius:50%;font-size:17px;cursor:pointer;margin-left:auto}
 .searchExpand{display:none;flex:1;align-items:center;background:#fff;border-radius:20px;padding:2px 3px 2px 6px;gap:2px;border:1px solid #ddd;min-width:0}
 .searchExpand.open{display:flex;position:fixed;top:62px;left:10px;right:10px;z-index:200;box-shadow:0 5px 15px rgba(0,0,0,.2)}
@@ -31,11 +30,9 @@ body.dark .chip.active{background:#fff;color:#000}
 .rightIcons{display:flex;align-items:center;gap:8px}
 .bellBtn{width:34px;height:34px;min-width:34px;border:none;background:#eee;border-radius:50%;font-size:16px;position:relative}
 .bellBtn i{position:absolute;top:4px;right:5px;width:8px;height:8px;background:red;border-radius:50%;display:block}
-/* INSTALL KABHI GAYAB NAHI HOGA */
-#installBtn{padding:7px 10px;border:none;border-radius:15px;font-weight:700;font-size:11px;white-space:nowrap;color:#fff;cursor:pointer;display:block!important;visibility:visible!important}
+#installBtn{padding:7px 10px;border:none;border-radius:15px;font-weight:700;font-size:11px;white-space:nowrap;color:#fff;cursor:pointer}
 #installBtn.blue{background:#2563eb}
 #installBtn.installing{background:#f59e0b}
-#installBtn.openBtn{background:#138808}
 .setBtn{width:34px;height:34px;min-width:34px;border:none;background:#eee;border-radius:50%;font-size:16px}
 .chips{display:flex;gap:8px;overflow-x:auto;padding:6px 10px;white-space:nowrap;scrollbar-width:none}
 .chips::-webkit-scrollbar{display:none}
@@ -205,11 +202,11 @@ function doShopCount(id){toast('🛍️ Product Dekho - '+id);}
 function doSubscribeCount(btn){btn.textContent='🔔 Subscribed';toast('Subscribe Ho Gaya - Bell Dabao');}
 let deferredPrompt=null;let installBtn=document.getElementById('installBtn');
 function isReallyInstalled(){return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone===true;}
-function setInstallState(){if(isReallyInstalled()){installBtn.style.display='block';installBtn.className='openBtn';installBtn.textContent='Open';}else{installBtn.style.display='block';installBtn.className='blue';installBtn.textContent='Install';}}
+function setInstallState(){if(isReallyInstalled()){installBtn.style.display='none';}else{installBtn.style.display='block';installBtn.className='blue';installBtn.textContent='Install';}}
 localStorage.removeItem('bf_installed');setInstallState();
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;setInstallState();});
 window.addEventListener('appinstalled',()=>{deferredPrompt=null;toast('Install Ho Gaya - Home Screen Par Dekho - BharatFlix Aa Gaya');setInstallState();});
-function installApp(){if(isReallyInstalled()){toast('App Pehle Se Install Hai - Home Screen Par Dekho - Open Hai');return;}if(deferredPrompt){installBtn.className='installing';installBtn.textContent='...';deferredPrompt.prompt();deferredPrompt.userChoice.then(r=>{if(r.outcome==='accepted'){toast('Install Ho Raha Hai - Home Screen Par Dekho');}else{setInstallState();toast('Install Cancel Ho Gaya - Phir Se Install Dabao');}deferredPrompt=null;});}else{toast('Thoda Ruko - Page Reload Ho Raha Hai - Phir Install Dabao');setInstallState();setTimeout(()=>location.reload(),1000);}}
+function installApp(){if(isReallyInstalled()){toast('Pehle Se Install Hai - Home Screen Par Dekho');return;}if(deferredPrompt){installBtn.className='installing';installBtn.textContent='...';deferredPrompt.prompt();deferredPrompt.userChoice.then(r=>{if(r.outcome==='accepted'){toast('Install Ho Raha Hai - Home Screen Par Dekho');}else{setInstallState();toast('Install Cancel Ho Gaya - Phir Se Install Dabao');}deferredPrompt=null;});}else{toast('Thoda Ruko - Page Reload Ho Raha Hai - Phir Install Dabao');setInstallState();setTimeout(()=>location.reload(),1000);}}
 function goHome(){document.querySelectorAll('.popup').forEach(p=>p.style.display='none');document.getElementById('searchExpand').classList.remove('open');document.getElementById('searchIconBtn').style.display='block';window.scrollTo(0,0);doSearch('');}
 function playAd(){toast('Ad Chal Raha Hai');}
 let allVideos=[{type:'short',title:'Short 1 - Comedy',id:'s1'},{type:'short',title:'Short 2 - Bhakti',id:'s2'},{type:'short',title:'Short 3 - Music',id:'s3'},{type:'long',title:'Bharat Flix Aapka Apna Swadeshi Platform',id:'l1'},{type:'short',title:'Short 4 - News',id:'s4'},{type:'short',title:'Short 5 - Gaming',id:'s5'},{type:'long',title:'Long 2 - Bhakti Special',id:'l2'},{type:'short',title:'Short 6 - Kirtan',id:'s6'}];
