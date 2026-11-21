@@ -104,6 +104,7 @@ body.dark #longPlayer{background:#0f0f0f}
 #longPlayer video{width:100%;height:215px;object-fit:contain;background:#000}
 #longPlayerInfo{padding:6px 10px 0 10px;color:#000}
 body.dark #longPlayerInfo{color:#fff}
+#longBrandLine{font-size:13px;font-weight:900;color:#FF6A00;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #longPlayerInfo b{font-size:14px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #longPlayer .iconRow{display:flex;gap:8px;position:absolute;top:8px;right:8px;z-index:10}
 #longPlayer .iconRow button{background:rgba(0,0,0,.6);color:#fff;border:none;width:36px;height:36px;border-radius:50%;font-size:16px}
@@ -139,6 +140,7 @@ body{top:0!important}
 <video id="longMainVideo" playsinline controls preload="metadata"></video>
 <div class="iconRow"><button onclick="toggleLongPlay()">▶️</button><button onclick="fullScreenLong()">⛶</button></div>
 <div id="longPlayerInfo">
+<div id="longBrandLine">🇮🇳 Bharat - Aapka Apna Swadeshi Platform</div>
 <b id="longPlayerTitle">Title</b>
 <p id="longPlayerMeta" style="font-size:12px;color:#888"></p>
 <div id="longPlayerCounts" style="font-size:13px;color:#000;margin-top:2px;font-weight:700"></div>
@@ -213,11 +215,23 @@ async function voiceSearch(){let micBtn=document.getElementById('micBtn');if(mic
 function toast(m){let d=document.createElement('div');d.textContent=m;d.style.cssText='position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:#000;color:#fff;padding:8px 14px;border-radius:20px;z-index:999;font-size:13px;max-width:90%;text-align:center';document.body.appendChild(d);setTimeout(()=>d.remove(),2000);}
 function togglePop(id){let e=document.getElementById(id);let wasOpen=e.style.display==='block';document.querySelectorAll('.popup').forEach(p=>p.style.display='none');if(!wasOpen)e.style.display='block';}
 function filterChip(el,word){document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));if(el&&el.classList)el.classList.add('active');doSearch(word);}
+// MOBILE BACK BUTTON - PLAYER BAND, LIST WAPAS
+let backStack=[];
+function pushBackState(kind){try{history.pushState({bfPlayer:kind},'');backStack.push(kind);}catch(e){}}
+function popBackState(){try{if(backStack.length>0){backStack.pop();history.back();}}catch(e){}}
+window.addEventListener('popstate',function(e){
+let shortOpen=document.getElementById('shortPlayer').classList.contains('open');
+let longOpen=document.getElementById('longPlayer').classList.contains('open');
+if(shortOpen){closeShortPlayerNoBack();return;}
+if(longOpen){closeLongPlayerNoBack();return;}
+});
+function closeShortPlayerNoBack(){let vid=document.getElementById('shortMainVideo');vid.pause();vid.src='';document.getElementById('shortPlayer').classList.remove('open');document.body.style.overflow='';}
+function closeLongPlayerNoBack(){let vid=document.getElementById('longMainVideo');vid.pause();vid.src='';document.getElementById('longPlayer').classList.remove('open');longIdx=-1;}
 let COUNTS={};try{COUNTS=JSON.parse(localStorage.getItem('bf_counts')||'{}')}catch(e){COUNTS={}}
 function getCount(id){if(!COUNTS[id])COUNTS[id]={like:0,dislike:0,comment:0,share:0,view:125,thanks:0,join:0,watchTime:0,saved:false,comments:[]};return COUNTS[id];}
 function saveCounts(){localStorage.setItem('bf_counts',JSON.stringify(COUNTS));}
 function updateCountDisplay(id){if(longIdx>=0 && allVideos[longIdx] && allVideos[longIdx].id===id){updateLongPlayerInfo();}}
-function doLike(id,btn){getCount(id).like++;if(btn)btn.classList.toggle('liked');saveCounts();updateCountDisplay(id);toast('Like Ho Gaya - Ye Sirf Aapko Pata Chalega, Sabko Nahi');}
+function doLike(id,btn){getCount(id).like++;if(btn)btn.classList.toggle('liked');saveCounts();updateCountDisplay(id);toast('Like Ho Gaya');}
 function doDislike(id,btn){getCount(id).dislike++;saveCounts();updateCountDisplay(id);toast('Dislike Ho Gaya');}
 function doShareCount(id){getCount(id).share++;saveCounts();updateCountDisplay(id);if(navigator.share){navigator.share({title:'BharatFlix',text:'BharatFlix Video Dekho',url:location.href})}else{toast('Share Ho Gaya');}}
 function doView(id){getCount(id).view++;saveCounts();updateCountDisplay(id);}
@@ -261,23 +275,23 @@ renderFeed();
 let shortList=[];let shortIdx=0;let touchY=0;
 function getShortList(){return allVideos.map((v,i)=>({v,i})).filter(o=>o.v.type==='short');}
 function openFirstShort(){let list=getShortList();if(!list.length)return;openShortPlayer(list[0].i);}
-function openShortPlayer(globalIdx){document.body.classList.add('short-mode');document.body.classList.remove('long-mode');closeLongPlayer();shortList=getShortList();let pos=shortList.findIndex(o=>o.i===globalIdx);if(pos===-1)pos=0;shortIdx=pos;let v=shortList[shortIdx].v;let vid=document.getElementById('shortMainVideo');document.getElementById('shortPlayer').classList.add('open');document.body.style.overflow='hidden';vid.src=v.src;vid.poster=v.poster||'';vid.playbackRate=parseFloat(SETTINGS.speed||1);vid.play();document.getElementById('shortTitleFull').textContent=v.title;document.getElementById('shortMetaFull').textContent='Bharat Flix • '+v.cat+' • 👀 '+COUNTS[v.id].view+' Views';doView(v.id);}
+function openShortPlayer(globalIdx){let wasOpen=document.getElementById('shortPlayer').classList.contains('open');document.body.classList.add('short-mode');document.body.classList.remove('long-mode');closeLongPlayerNoBack();shortList=getShortList();let pos=shortList.findIndex(o=>o.i===globalIdx);if(pos===-1)pos=0;shortIdx=pos;let v=shortList[shortIdx].v;let vid=document.getElementById('shortMainVideo');document.getElementById('shortPlayer').classList.add('open');document.body.style.overflow='hidden';vid.src=v.src;vid.poster=v.poster||'';vid.playbackRate=parseFloat(SETTINGS.speed||1);vid.play();document.getElementById('shortTitleFull').textContent=v.title;document.getElementById('shortMetaFull').textContent='Bharat Flix • '+v.cat+' • 👀 '+COUNTS[v.id].view+' Views';doView(v.id);if(!wasOpen)pushBackState('short');}
 function shortNext(){if(shortIdx<shortList.length-1){shortIdx++;openShortPlayer(shortList[shortIdx].i);}else{toast('Aakhri Short Hai');shortIdx=0;openShortPlayer(shortList[0].i);}}
 function shortPrev(){if(shortIdx>0){shortIdx--;openShortPlayer(shortList[shortIdx].i);}}
 function toggleShortPlay(){let vid=document.getElementById('shortMainVideo');if(vid.paused)vid.play();else vid.pause();}
 function shortLike(){let v=shortList[shortIdx].v;doLike(v.id,null);}
 function shortShare(){let v=shortList[shortIdx].v;doShareCount(v.id);}
-function closeShortPlayer(){let vid=document.getElementById('shortMainVideo');vid.pause();vid.src='';document.getElementById('shortPlayer').classList.remove('open');document.body.style.overflow='';}
+function closeShortPlayer(){if(document.getElementById('shortPlayer').classList.contains('open')){popBackState();}closeShortPlayerNoBack();}
 let sp=document.getElementById('shortPlayer');
 sp.addEventListener('touchstart',e=>{touchY=e.touches[0].clientY;},{passive:true});
 sp.addEventListener('touchend',e=>{let dy=e.changedTouches[0].clientY-touchY;if(dy<-50)shortNext();if(dy>50)shortPrev();},{passive:true});
 sp.addEventListener('wheel',e=>{if(e.deltaY>0)shortNext();else shortPrev();},{passive:true});
 let longIdx=-1;
 function updateLongPlayerInfo(){let v=allVideos[longIdx];if(!v)return;let c=getCount(v.id);document.getElementById('longPlayerTitle').textContent=v.title;document.getElementById('longPlayerMeta').textContent=v.cat;document.getElementById('longPlayerCounts').textContent=`👀 ${c.view} Views`;document.getElementById('longCommentBox').classList.remove('open');document.getElementById('longPlayerActions').innerHTML=`<button onclick="doLike('${v.id}',this)">👍 Like</button><button onclick="doDislike('${v.id}',this)">👎 Dislike</button><button onclick="toggleLongComments()">💬 Comment</button><button onclick="doShareCount('${v.id}')">↗️ Share</button><button onclick="doDownloadCount('${v.id}')">⬇️ Download</button><button onclick="doSaveCount('${v.id}')">💾 Save</button><button onclick="doClipCount('${v.id}')">✂️ Clip</button><button onclick="doRemixCount('${v.id}')">🎵 Remix</button><button onclick="doSubscribeCount(this)">🔔 Subscribe</button><button class="earn" onclick="doThanksCount('${v.id}')">💰 Thanks</button><button class="earn" onclick="doJoinCount('${v.id}')">⭐ Join</button><button class="earn" onclick="doShopCount('${v.id}')">🛍️ Shopping</button><button onclick="doReportCount('${v.id}')">🚩 Report</button>`;}
-function openLongPlayer(globalIdx){longIdx=globalIdx;let v=allVideos[globalIdx];document.body.classList.add('long-mode');document.body.classList.remove('short-mode');let vid=document.getElementById('longMainVideo');document.getElementById('longPlayer').classList.add('open');vid.src=v.src;vid.poster=v.poster||'';vid.playbackRate=parseFloat(SETTINGS.speed||1);vid.play();updateLongPlayerInfo();doView(v.id);document.getElementById('longPlayer').scrollIntoView({behavior:'smooth'});}
+function openLongPlayer(globalIdx){let wasOpen=document.getElementById('longPlayer').classList.contains('open');longIdx=globalIdx;let v=allVideos[globalIdx];document.body.classList.add('long-mode');document.body.classList.remove('short-mode');let vid=document.getElementById('longMainVideo');document.getElementById('longPlayer').classList.add('open');vid.src=v.src;vid.poster=v.poster||'';vid.playbackRate=parseFloat(SETTINGS.speed||1);vid.play();updateLongPlayerInfo();doView(v.id);document.getElementById('longPlayer').scrollIntoView({behavior:'smooth'});if(!wasOpen)pushBackState('long');}
 function toggleLongPlay(){let vid=document.getElementById('longMainVideo');if(vid.paused)vid.play();else vid.pause();}
 function fullScreenLong(){let vid=document.getElementById('longMainVideo');if(vid.requestFullscreen)vid.requestFullscreen();else if(vid.webkitEnterFullscreen)vid.webkitEnterFullscreen();vid.play();}
-function closeLongPlayer(){let vid=document.getElementById('longMainVideo');vid.pause();vid.src='';document.getElementById('longPlayer').classList.remove('open');longIdx=-1;}
+function closeLongPlayer(){if(document.getElementById('longPlayer').classList.contains('open')){popBackState();}closeLongPlayerNoBack();}
 document.getElementById('longMainVideo').addEventListener('ended',function(){let cur=allVideos[longIdx];if(!cur)return;let same=allVideos.map((v,i)=>({v,i})).filter(o=>o.v.type==='long' && o.v.cat===cur.cat && o.i!==longIdx);let next=null;if(same.length){next=same[0];}else{let others=allVideos.map((v,i)=>({v,i})).filter(o=>o.v.type==='long' && o.i!==longIdx);if(others.length)next=others[0];}if(next){openLongPlayer(next.i);}else{toast('Video Khatam Ho Gayi');}});
 document.getElementById('shortMainVideo').addEventListener('ended',function(){shortNext();});
 </script>
