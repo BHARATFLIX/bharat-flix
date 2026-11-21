@@ -92,11 +92,34 @@ body.dark .backArrow{background:#222;color:#fff;border-color:#fff}
 .historyRow span{font-size:18px}
 #shortPlayer{position:fixed;inset:0;background:#000;z-index:500;display:none;flex-direction:column}
 #shortPlayer.open{display:flex}
-#shortPlayer video{width:100%;height:100%;object-fit:cover;flex:1}
-#shortInfoFull{position:absolute;left:12px;bottom:110px;right:70px;color:#fff;z-index:10;text-shadow:1px 1px 2px #000}
-#shortSideFull{position:absolute;right:10px;bottom:110px;display:flex;flex-direction:column;gap:12px;z-index:10;align-items:center}
-#shortSideFull button{width:52px;height:52px;border:none;border-radius:50%;background:#fff;font-size:24px;box-shadow:0 2px 8px rgba(0,0,0,.4)}
-#shortSideFull span{color:#fff;font-size:12px;font-weight:700;text-shadow:1px 1px 2px #000}
+#shortPlayer video{width:100%;height:100%;object-fit:cover;flex:1;position:absolute;inset:0}
+#shortTopBar{position:absolute;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:10px 12px;z-index:20}
+#shortTopBar button{background:transparent;color:#fff;border:none;font-size:22px;width:36px;height:36px}
+#shortTopBar .rightTop{display:flex;gap:14px}
+#shortInfoFull{position:absolute;left:12px;bottom:72px;right:72px;color:#fff;z-index:10;text-shadow:1px 1px 2px #000}
+#shortRemixPill{display:inline-flex;align-items:center;gap:6px;background:rgba(0,0,0,.55);color:#fff;padding:6px 10px;border-radius:20px;font-size:12px;font-weight:700;margin-bottom:8px}
+#shortProfileRow{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+#shortProfileRow img{width:34px;height:34px;border-radius:50%;object-fit:cover;border:1px solid #fff}
+#shortProfileRow b{font-size:14px}
+#shortSubBtn{background:#fff;color:#000;border:none;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:900;margin-left:4px}
+#shortSideFull{position:absolute;right:10px;bottom:88px;display:flex;flex-direction:column;gap:14px;z-index:10;align-items:center}
+#shortSideFull .sAct{display:flex;flex-direction:column;align-items:center;gap:2px}
+#shortSideFull .sAct button{width:48px;height:48px;border:none;border-radius:50%;background:transparent;color:#fff;font-size:28px;line-height:1;text-shadow:0 2px 6px rgba(0,0,0,.6)}
+#shortSideFull .sAct button.active{color:#ff3040}
+#shortSideFull .sAct span{color:#fff;font-size:12px;font-weight:600;text-shadow:1px 1px 2px #000}
+#shortSideFull .sProfile{width:36px;height:36px;border-radius:50%;border:2px solid #fff;object-fit:cover;margin-top:2px}
+#shortBottomNav{position:absolute;left:0;right:0;bottom:0;background:#000;display:flex;justify-content:space-around;align-items:center;padding:8px 0 10px 0;z-index:20;border-top:1px solid #222}
+#shortBottomNav div{color:#fff;text-align:center;font-size:22px}
+#shortBottomNav div img{width:28px;height:28px;border-radius:50%;object-fit:cover}
+#shortCommentSheet{position:absolute;left:0;right:0;bottom:0;background:#fff;color:#000;border-radius:16px 16px 0 0;padding:12px;z-index:30;display:none;max-height:55vh;overflow:auto}
+#shortCommentSheet.open{display:block}
+#shortCommentSheet input{width:100%;padding:9px;border:1px solid #ddd;border-radius:20px;outline:none}
+#shortMenuSheet{position:absolute;left:0;right:0;bottom:0;background:#fff;color:#000;border-radius:16px 16px 0 0;padding:12px;z-index:30;display:none}
+#shortMenuSheet.open{display:block}
+#shortMenuSheet div{padding:12px 0;border-bottom:1px solid #eee;font-size:14px;font-weight:700}
+#profileSheet{position:absolute;left:0;right:0;bottom:0;background:#fff;color:#000;border-radius:16px 16px 0 0;padding:14px;z-index:30;display:none;text-align:center}
+#profileSheet.open{display:block}
+#profileSheet img{width:70px;height:70px;border-radius:50%;object-fit:cover}
 #longPlayer{position:sticky;top:58px;z-index:90;background:#fff;display:none;padding:0 0 6px 0}
 body.dark #longPlayer{background:#0f0f0f}
 #longPlayer.open{display:block}
@@ -105,7 +128,7 @@ body.dark #longPlayer{background:#0f0f0f}
 body.dark #longPlayerInfo{color:#fff}
 #longBrandLine{font-size:13px;font-weight:900;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .triSaffron{color:#FF9933}
-.triWhite{color:#111;text-shadow:0 0 1px #999}
+.triWhite{color:#111}
 body.dark .triWhite{color:#fff}
 .triGreen{color:#138808}
 #longPlayerInfo b{font-size:14px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -160,12 +183,31 @@ body{top:0!important}
 <p id="noResult" style="display:none;text-align:center;padding:20px;color:#888" data-i18n="noResult">Koi Video Nahi Mili</p>
 <div id="shortPlayer">
 <video id="shortMainVideo" playsinline loop preload="auto" onclick="toggleShortPlay()"></video>
-<div id="shortInfoFull"><b id="shortTitleFull"></b><p id="shortMetaFull" style="font-size:12px"></p><button onclick="doSubscribeCount(this)" style="background:#FF6A00;color:#fff;border:none;padding:6px 12px;border-radius:15px;margin-top:6px">🔔 Subscribe</button></div>
+<div id="shortTopBar"><button onclick="closeShortPlayer()">←</button><div class="rightTop"><button onclick="openSearchFromShort()">🔍</button><button onclick="openShortMenu()">⋮</button></div></div>
+<div id="shortInfoFull">
+<div id="shortRemixPill" onclick="openShortRemix()">🎵 Remix this scene</div>
+<div id="shortProfileRow"><img src="https://raw.githubusercontent.com/BHARATFLIX/bharat-flix/main/logo.png" onclick="openShortProfile()"><b onclick="openShortProfile()">@BharatFlix</b><button id="shortSubBtn" onclick="toggleShortSubscribe(this)">Subscribe</button></div>
+<b id="shortTitleFull" style="font-size:14px"></b>
+<p id="shortMetaFull" style="font-size:12px;margin-top:2px"></p>
+<p style="font-size:13px;font-weight:700;margin-top:2px">#bharatflix #shorts #viral #trending</p>
+</div>
 <div id="shortSideFull">
-<button onclick="shortLike()">👍</button><span>Like</span>
-<button onclick="shortComment()">💬</button><span>Comment</span>
-<button onclick="shortShare()">↗️</button><span>Share</span>
-<button onclick="shortNext()">⬇️</button><span>Next</span>
+<div class="sAct"><button id="shortLikeBtn" onclick="toggleShortLike()">♡</button><span id="shortLikeCount">Like</span></div>
+<div class="sAct"><button onclick="openShortComments()">💬</button><span id="shortCommentCount">12</span></div>
+<div class="sAct"><button id="shortSaveBtn" onclick="toggleShortSave()">🔖</button><span id="shortSaveLabel">Save</span></div>
+<div class="sAct"><button onclick="shareShortReal()">↗</button><span>Share</span></div>
+<div class="sAct"><button onclick="openShortRemix()">🔄</button><span>Remix</span></div>
+<img class="sProfile" src="https://raw.githubusercontent.com/BHARATFLIX/bharat-flix/main/logo.png" onclick="openShortProfile()">
+</div>
+<div id="shortCommentSheet"><b>Comments</b><button style="float:right;border:none;background:transparent;font-size:18px" onclick="closeShortSheets()">✕</button><div id="shortCommentList" style="margin:10px 0"></div><input id="shortCommentInput" placeholder="Comment Likho..." onkeydown="if(event.key==='Enter')sendShortComment()"><button onclick="sendShortComment()" style="width:100%;margin-top:8px;background:#000;color:#fff;border:none;padding:9px;border-radius:20px">Comment Bhejo</button></div>
+<div id="shortMenuSheet"><b>More</b><button style="float:right;border:none;background:transparent;font-size:18px" onclick="closeShortSheets()">✕</button><div onclick="shareShortReal()">↗️ Share - Asli Share</div><div onclick="toggleShortSave();closeShortSheets()">🔖 Save / Unsave</div><div onclick="reportShortReal()">🚩 Report - Asli Report</div><div onclick="notInterestedShort()">🙈 Not Interested - Ye Short Mat Dikhao</div><div onclick="closeShortSheets()">⬅️ Band Karo</div></div>
+<div id="profileSheet"><img src="https://raw.githubusercontent.com/BHARATFLIX/bharat-flix/main/logo.png"><h3 style="margin-top:6px">@BharatFlix</h3><p style="font-size:12px;color:#666">Bharat - Aapka Apna Swadeshi Platform</p><p id="profileSubs" style="font-size:12px;margin-top:6px">1.2M Subscribers • 120 Videos</p><button id="profileSubBtn" onclick="toggleShortSubscribe(document.getElementById('shortSubBtn'))" style="background:#000;color:#fff;border:none;padding:9px 20px;border-radius:20px;margin-top:8px">Subscribe</button><br><button onclick="closeShortSheets()" style="background:#eee;border:none;padding:8px 16px;border-radius:20px;margin-top:8px">Band Karo</button></div>
+<div id="shortBottomNav">
+<div onclick="goHomeFromShort()">🏠</div>
+<div onclick="shortNext()">🎬</div>
+<div onclick="openUploadFromShort()">⊕</div>
+<div onclick="openSubsFromShort()">📺</div>
+<div onclick="openShortProfile()"><img src="https://raw.githubusercontent.com/BHARATFLIX/bharat-flix/main/logo.png"></div>
 </div>
 </div>
 <input type="file" id="uploadFile" accept="video/*" style="display:none" onchange="handleUpload(this)">
@@ -216,6 +258,7 @@ loadSettings();
 function clearHistory(){localStorage.removeItem('bf_history');toast('History Saaf Ho Gayi');}
 function openSearch(){document.getElementById('searchIconBtn').style.display='none';document.getElementById('searchExpand').classList.add('open');setTimeout(()=>document.getElementById('searchInput').focus(),50);}
 function closeSearch(){document.getElementById('searchExpand').classList.remove('open');document.getElementById('searchIconBtn').style.display='block';document.getElementById('searchInput').value='';doSearch('');}
+function openSearchFromShort(){closeShortPlayerNoBack();forceAppHome();openSearch();}
 function doSearch(q){q=(q||'').toLowerCase().trim();let found=0;document.querySelectorAll('.shortCard,.longCard').forEach(el=>{let ok=el.innerText.toLowerCase().includes(q);el.style.display=ok?'':'none';if(ok)found++;});document.getElementById('noResult').style.display=found===0?'block':'none';}
 let micRec=null;let micOn=false;
 async function voiceSearch(){let micBtn=document.getElementById('micBtn');if(micOn&&micRec){try{micRec.stop();}catch(e){}return;}let SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){toast('Is Browser Me Mic Nahi Chalega - Chrome Me Kholiye');return;}toast('Mic Permission Maang Raha Hu - Allow Dabao');try{let stream=await navigator.mediaDevices.getUserMedia({audio:true});stream.getTracks().forEach(t=>t.stop());}catch(err){toast('Mic Allow Karo');return;}micRec=new SR();micRec.lang='hi-IN';micRec.onstart=function(){micOn=true;micBtn.classList.add('listening');micBtn.textContent='🔴';toast('Bolo... Sun Raha Hu...');};micRec.onresult=function(e){let txt=e.results[0][0].transcript;document.getElementById('searchInput').value=txt;doSearch(txt);toast('Mil Gaya - '+txt);};micRec.onerror=function(){micOn=false;micBtn.classList.remove('listening');micBtn.textContent='🎙️';};micRec.onend=function(){micOn=false;micBtn.classList.remove('listening');micBtn.textContent='🎙️';};try{micRec.start();}catch(err){toast('Mic Dobara Dabao');}}
@@ -253,29 +296,47 @@ forceAppHome();
 try{history.pushState({bf:'home'},'');}catch(err){}
 setTimeout(()=>{backHandling=false;},100);
 });
-function closeShortPlayerNoBack(){let vid=document.getElementById('shortMainVideo');vid.pause();try{vid.src='';}catch(e){}document.getElementById('shortPlayer').classList.remove('open');document.body.style.overflow='';}
+function closeShortPlayerNoBack(){let vid=document.getElementById('shortMainVideo');vid.pause();try{vid.src='';}catch(e){}document.getElementById('shortPlayer').classList.remove('open');document.body.style.overflow='';closeShortSheets();}
 function closeLongPlayerNoBack(){let vid=document.getElementById('longMainVideo');vid.pause();try{vid.src='';}catch(e){}document.getElementById('longPlayer').classList.remove('open');document.getElementById('longPlayer').classList.remove('cssFull');longIdx=-1;}
 let COUNTS={};try{COUNTS=JSON.parse(localStorage.getItem('bf_counts')||'{}')}catch(e){COUNTS={}}
-function getCount(id){if(!COUNTS[id])COUNTS[id]={like:0,dislike:0,comment:0,share:0,view:125,thanks:0,join:0,watchTime:0,saved:false,comments:[]};return COUNTS[id];}
+function getCount(id){if(!COUNTS[id])COUNTS[id]={like:0,dislike:0,comment:0,share:0,view:125,thanks:0,join:0,watchTime:0,saved:false,comments:[],liked:false,subscribed:false,notInterested:false};return COUNTS[id];}
 function saveCounts(){localStorage.setItem('bf_counts',JSON.stringify(COUNTS));}
-function updateCountDisplay(id){if(longIdx>=0 && allVideos[longIdx] && allVideos[longIdx].id===id){updateLongPlayerInfo();}}
-function doLike(id,btn){getCount(id).like++;if(btn)btn.classList.toggle('liked');saveCounts();updateCountDisplay(id);toast('Like Ho Gaya');}
+function updateCountDisplay(id){if(longIdx>=0 && allVideos[longIdx] && allVideos[longIdx].id===id){updateLongPlayerInfo();}if(document.getElementById('shortPlayer').classList.contains('open')){updateShortCounts();}}
+function updateShortCounts(){let v=shortList[shortIdx]&&shortList[shortIdx].v;if(!v)return;let c=getCount(v.id);document.getElementById('shortLikeCount').textContent=c.like>0?c.like:'Like';document.getElementById('shortCommentCount').textContent=c.comment>0?c.comment:'12';let lb=document.getElementById('shortLikeBtn');lb.textContent=c.liked?'♥':'♡';lb.classList.toggle('active',c.liked);let sb=document.getElementById('shortSaveBtn');sb.textContent=c.saved?'🔖':'🔖';document.getElementById('shortSaveLabel').textContent=c.saved?'Saved':'Save';let sub=document.getElementById('shortSubBtn');let ps=document.getElementById('profileSubBtn');if(c.subscribed){sub.textContent='Subscribed';sub.style.background='#333';sub.style.color='#fff';if(ps){ps.textContent='Subscribed';ps.style.background='#333';}}else{sub.textContent='Subscribe';sub.style.background='#fff';sub.style.color='#000';if(ps){ps.textContent='Subscribe';ps.style.background='#000';ps.style.color='#fff';}}}
+function doLike(id,btn){let c=getCount(id);if(c.liked){c.liked=false;c.like=Math.max(0,c.like-1);}else{c.liked=true;c.like++;}if(btn)btn.classList.toggle('liked',c.liked);saveCounts();updateCountDisplay(id);toast(c.liked?'Like Ho Gaya':'Like Hat Gaya');}
 function doDislike(id,btn){getCount(id).dislike++;saveCounts();updateCountDisplay(id);toast('Dislike Ho Gaya');}
-function doShareCount(id){getCount(id).share++;saveCounts();updateCountDisplay(id);if(navigator.share){navigator.share({title:'BharatFlix',text:'BharatFlix Video Dekho',url:location.href})}else{toast('Share Ho Gaya');}}
+function doShareCount(id){getCount(id).share++;saveCounts();updateCountDisplay(id);}
 function doView(id){getCount(id).view++;saveCounts();updateCountDisplay(id);}
 function addComment(id,input){let txt=input.value.trim();if(!txt){toast('Pehle Comment Likho');return}getCount(id).comments.push(txt);getCount(id).comment=getCount(id).comments.length;saveCounts();updateCountDisplay(id);input.value='';toast('Comment Ho Gaya');let list=document.getElementById('longCommentList');if(list){list.innerHTML='';getCount(id).comments.forEach(t=>{let d=document.createElement('div');d.className='commentItem';d.textContent='👤 '+t;list.appendChild(d);});}}
 function addCommentFromLong(){let v=allVideos[longIdx];if(!v)return;let inp=document.getElementById('longCommentInput');addComment(v.id,inp);}
 function toggleLongComments(){let box=document.getElementById('longCommentBox');let isOpen=box.classList.contains('open');box.classList.toggle('open',!isOpen);let v=allVideos[longIdx];if(!v)return;let list=document.getElementById('longCommentList');list.innerHTML='';if(!isOpen){if(getCount(v.id).comments.length===0){list.innerHTML='<div class="commentItem">Abhi Koi Comment Nahi Hai - Pehla Comment Aap Likho</div>';}else{getCount(v.id).comments.forEach(t=>{let d=document.createElement('div');d.className='commentItem';d.textContent='👤 '+t;list.appendChild(d);});}}}
 function doDownloadCount(id){toast('Download Ho Raha Hai');}
-function doSaveCount(id){getCount(id).saved=!getCount(id).saved;saveCounts();toast(getCount(id).saved?'Save Ho Gaya':'Save Hat Gaya');}
+function doSaveCount(id){let c=getCount(id);c.saved=!c.saved;saveCounts();updateCountDisplay(id);toast(c.saved?'Save Ho Gaya - Saved Me Mil Jayega':'Save Hat Gaya');}
 function doReportCount(id){toast('Report Ho Gayi');}
 function doRemixCount(id){toast('Remix Khul Gaya');}
 function doClipCount(id){toast('Clip Ban Raha Hai');}
 function doThanksCount(id){let amt=prompt('Thanks Kitne Rupaye Ka? 10, 50, 100, 500','100');if(!amt)return;amt=parseInt(amt)||0;getCount(id).thanks+=amt;saveCounts();updateCountDisplay(id);toast('💰 Thanks Ho Gaya');}
 function doJoinCount(id){let amt=prompt('Join Kitne Ka? 59, 99, 199','99');if(!amt)return;amt=parseInt(amt)||0;getCount(id).join+=amt;saveCounts();updateCountDisplay(id);toast('⭐ Join Ho Gaya');}
 function doShopCount(id){toast('🛍️ Product Dekho');}
-function doSubscribeCount(btn){btn.textContent='🔔 Subscribed';toast('Subscribe Ho Gaya');}
-function shortComment(){let v=shortList[shortIdx].v;let t=prompt('Comment Likho - Is Short Par');if(t){addComment(v.id,{value:t});}}
+function doSubscribeCount(btn){let v=allVideos[longIdx];if(v){let c=getCount(v.id);c.subscribed=!c.subscribed;saveCounts();updateCountDisplay(v.id);}btn.textContent='Subscribed';toast('Subscribe Ho Gaya');}
+function toggleShortSubscribe(btn){let v=shortList[shortIdx].v;let c=getCount(v.id);c.subscribed=!c.subscribed;saveCounts();updateShortCounts();toast(c.subscribed?'Subscribe Ho Gaya':'Unsubscribe Ho Gaya');}
+function toggleShortLike(){let v=shortList[shortIdx].v;doLike(v.id,null);}
+function toggleShortSave(){let v=shortList[shortIdx].v;doSaveCount(v.id);}
+function openShortComments(){let v=shortList[shortIdx].v;let c=getCount(v.id);let list=document.getElementById('shortCommentList');list.innerHTML='';if(c.comments.length===0){list.innerHTML='<div style="font-size:13px;color:#666">Abhi Koi Comment Nahi - Pehla Comment Aap Likho</div>';}else{c.comments.forEach(t=>{let d=document.createElement('div');d.style.cssText='background:#f5f5f5;padding:8px;border-radius:10px;font-size:13px;margin-top:6px';d.textContent='👤 '+t;list.appendChild(d);});}document.getElementById('shortCommentSheet').classList.add('open');document.getElementById('shortMainVideo').pause();}
+function sendShortComment(){let v=shortList[shortIdx].v;let inp=document.getElementById('shortCommentInput');let txt=inp.value.trim();if(!txt){toast('Pehle Comment Likho');return;}getCount(v.id).comments.push(txt);getCount(v.id).comment=getCount(v.id).comments.length;saveCounts();updateShortCounts();inp.value='';openShortComments();toast('Comment Ho Gaya');}
+function openShortMenu(){document.getElementById('shortMenuSheet').classList.add('open');}
+function openShortProfile(){document.getElementById('profileSheet').classList.add('open');updateShortCounts();}
+function openShortRemix(){let v=shortList[shortIdx].v;toast('Remix Khul Gaya - Is Scene Se Naya Short Banao');closeShortSheets();document.getElementById('uploadFile').click();}
+function shareShortReal(){let v=shortList[shortIdx].v;doShareCount(v.id);if(navigator.share){navigator.share({title:v.title,text:'BharatFlix - '+v.title,url:location.href}).then(()=>toast('Share Ho Gaya')).catch(()=>toast('Share Band Kiya'));}else{if(navigator.clipboard){navigator.clipboard.writeText(location.href);toast('Link Copy Ho Gaya - Ab Kahi Bhi Share Karo');}else{toast('Share Ho Gaya');}}}
+function reportShortReal(){let v=shortList[shortIdx].v;let r=prompt('Report Kyu Kar Rahe Ho? Likho','Galat Video Hai');if(r){toast('Report Ho Gayi - Hum Check Karenge');closeShortSheets();}}
+function notInterestedShort(){let v=shortList[shortIdx].v;getCount(v.id).notInterested=true;saveCounts();toast('Ye Short Dobara Nahi Dikhega');closeShortSheets();shortNext();}
+function closeShortSheets(){document.getElementById('shortCommentSheet').classList.remove('open');document.getElementById('shortMenuSheet').classList.remove('open');document.getElementById('profileSheet').classList.remove('open');let vid=document.getElementById('shortMainVideo');if(document.getElementById('shortPlayer').classList.contains('open'))vid.play();}
+function goHomeFromShort(){closeShortPlayer();}
+function openUploadFromShort(){closeShortPlayerNoBack();forceAppHome();togglePop('uploadBox');}
+function openSubsFromShort(){closeShortPlayerNoBack();forceAppHome();togglePop('notiBox');}
+function shortComment(){openShortComments();}
+function shortSave(){toggleShortSave();}
+function shortRemix(){openShortRemix();}
 let deferredPrompt=null;let installBtn=document.getElementById('installBtn');
 function isReallyInstalled(){return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone===true;}
 function setInstallState(){if(isReallyInstalled()){installBtn.style.display='none';}else{installBtn.style.display='block';installBtn.className='blue';installBtn.textContent='Install';}}
@@ -301,14 +362,14 @@ let shown=0;
 function renderFeed(){let box=document.getElementById('feedBox');let end=Math.min(shown+8,allVideos.length);for(let i=shown;i<end;i++){let v=allVideos[i];getCount(v.id);if(v.type==='short'){let d=document.createElement('div');d.className='shortCard';d.onclick=function(){openShortPlayer(i);};d.innerHTML=`<img src="${v.poster||''}"><span class="dur">⏱️ ${v.dur} • Short</span><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:50px">▶️</div><div class="shortInfo"><b>${v.title}</b><p style="font-size:11px">Bharat Flix • 👀 ${COUNTS[v.id].view} Views</p></div>`;box.appendChild(d);}else{let d=document.createElement('div');d.className='longCard';d.onclick=function(){openLongPlayer(i);};d.innerHTML=`<div class="longWrap"><img src="${v.poster||''}"><span class="durLong">⏱️ ${v.dur}</span><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:50px">▶️</div></div><b>${v.title}</b><div class="countLine">👀 ${COUNTS[v.id].view} Views • ${v.cat}</div>`;box.appendChild(d);}}shown=end;}
 renderFeed();
 let shortList=[];let shortIdx=0;let touchY=0;
-function getShortList(){return allVideos.map((v,i)=>({v,i})).filter(o=>o.v.type==='short');}
+function getShortList(){return allVideos.map((v,i)=>({v,i})).filter(o=>o.v.type==='short' && !getCount(o.v.id).notInterested);}
 function openFirstShort(){let list=getShortList();if(!list.length)return;openShortPlayer(list[0].i);}
-function openShortPlayer(globalIdx){let wasOpen=document.getElementById('shortPlayer').classList.contains('open');document.body.classList.add('short-mode');document.body.classList.remove('long-mode');closeLongPlayerNoBack();shortList=getShortList();let pos=shortList.findIndex(o=>o.i===globalIdx);if(pos===-1)pos=0;shortIdx=pos;let v=shortList[shortIdx].v;let vid=document.getElementById('shortMainVideo');document.getElementById('shortPlayer').classList.add('open');document.body.style.overflow='hidden';vid.src=v.src;vid.poster=v.poster||'';vid.playbackRate=parseFloat(SETTINGS.speed||1);vid.play();document.getElementById('shortTitleFull').textContent=v.title;document.getElementById('shortMetaFull').textContent='Bharat Flix • '+v.cat+' • 👀 '+COUNTS[v.id].view+' Views';doView(v.id);if(!wasOpen){try{history.pushState({bf:'player'},'');}catch(e){}}}
+function openShortPlayer(globalIdx){let wasOpen=document.getElementById('shortPlayer').classList.contains('open');document.body.classList.add('short-mode');document.body.classList.remove('long-mode');closeLongPlayerNoBack();shortList=getShortList();let pos=shortList.findIndex(o=>o.i===globalIdx);if(pos===-1)pos=0;shortIdx=pos;let v=shortList[shortIdx].v;let vid=document.getElementById('shortMainVideo');document.getElementById('shortPlayer').classList.add('open');document.body.style.overflow='hidden';vid.src=v.src;vid.poster=v.poster||'';vid.playbackRate=parseFloat(SETTINGS.speed||1);vid.play();document.getElementById('shortTitleFull').textContent=v.title;document.getElementById('shortMetaFull').textContent='Bharat Flix • '+v.cat+' • 👀 '+COUNTS[v.id].view+' Views';updateShortCounts();doView(v.id);if(!wasOpen){try{history.pushState({bf:'player'},'');}catch(e){}}}
 function shortNext(){if(shortIdx<shortList.length-1){shortIdx++;openShortPlayer(shortList[shortIdx].i);}else{toast('Aakhri Short Hai');shortIdx=0;openShortPlayer(shortList[0].i);}}
 function shortPrev(){if(shortIdx>0){shortIdx--;openShortPlayer(shortList[shortIdx].i);}}
 function toggleShortPlay(){let vid=document.getElementById('shortMainVideo');if(vid.paused)vid.play();else vid.pause();}
-function shortLike(){let v=shortList[shortIdx].v;doLike(v.id,null);}
-function shortShare(){let v=shortList[shortIdx].v;doShareCount(v.id);}
+function shortLike(){toggleShortLike();}
+function shortShare(){shareShortReal();}
 function closeShortPlayer(){if(document.getElementById('shortPlayer').classList.contains('open')){try{history.back();}catch(e){closeShortPlayerNoBack();forceAppHome();}}else{closeShortPlayerNoBack();}}
 let sp=document.getElementById('shortPlayer');
 sp.addEventListener('touchstart',e=>{touchY=e.touches[0].clientY;},{passive:true});
