@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="google" content="notranslate">
-<title>BharatFlix - CODE 61 FINAL LOCKED</title>
+<title>BharatFlix - CODE 62 FINAL LOCKED - FAST</title>
 <link rel="icon" href="https://raw.githubusercontent.com/BHARATFLIX/bharat-flix/main/apk-icon.png">
 <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/BHARATFLIX/bharat-flix/main/apk-icon.png">
 <link rel="manifest" href="manifest.json">
@@ -144,7 +144,7 @@ body{top:0!important}
 </head>
 <body translate="no" class="notranslate">
 <div class="top">
-<img class="logoImg" src="https://raw.githubusercontent.com/BHARATFLIX/bharat-flix/main/logo.png" alt="Bharat Flix">
+<img class="logoImg" loading="lazy" src="https://raw.githubusercontent.com/BHARATFLIX/bharat-flix/main/logo.png" alt="Bharat Flix">
 <b class="brand3d">Bharat<br><span>Flix</span></b>
 <button id="searchIconBtn" class="searchIconBtn" onclick="openSearch()">🔍</button>
 <div id="searchExpand" class="searchExpand">
@@ -167,7 +167,7 @@ body{top:0!important}
 <span class="chip" data-i18n="news" onclick="filterChip(this,'News')">News</span>
 </div>
 <div id="longPlayer">
-<video id="longMainVideo" playsinline controls preload="metadata"></video>
+<video id="longMainVideo" playsinline controls preload="none"></video>
 <div class="iconRow"><button onclick="toggleLongPlay()">▶️</button><button onclick="fullScreenLong()">⛶</button></div>
 <div id="longPlayerInfo">
 <div id="longBrandLine"><span class="triSaffron">🇮🇳 Bharat -</span> <span class="triWhite">Aapka Apna</span> <span class="triGreen">Swadeshi Platform</span></div>
@@ -182,11 +182,11 @@ body{top:0!important}
 <div id="feedBox"></div>
 <p id="noResult" style="display:none;text-align:center;padding:20px;color:#888" data-i18n="noResult">Koi Video Nahi Mili</p>
 <div id="shortPlayer">
-<video id="shortMainVideo" playsinline loop preload="auto" onclick="toggleShortPlay()"></video>
+<video id="shortMainVideo" playsinline loop preload="none" onclick="toggleShortPlay()"></video>
 <div id="shortTopBar"><button onclick="closeShortPlayer()">←</button><div class="rightTop"><button onclick="openSearchFromShort()">🔍</button><button onclick="openShortMenu()">⋮</button></div></div>
 <div id="shortInfoFull">
 <div id="shortRemixPill" onclick="openShortRemix()">🎵 Remix this scene</div>
-<div id="shortProfileRow"><img src="https://raw.githubusercontent.com/BHARATFLIX/bharat-flix/main/logo.png" onclick="openShortProfile()"><b onclick="openShortProfile()">@BharatFlix</b><button id="shortSubBtn" onclick="toggleShortSubscribe(this)">Subscribe</button></div>
+<div id="shortProfileRow"><img loading="lazy" src="https://raw.githubusercontent.com/BHARATFLIX/bharat-flix/main/logo.png" onclick="openShortProfile()"><b onclick="openShortProfile()">@BharatFlix</b><button id="shortSubBtn" onclick="toggleShortSubscribe(this)">Subscribe</button></div>
 <b id="shortTitleFull" style="font-size:14px"></b>
 <p id="shortMetaFull" style="font-size:12px;margin-top:2px"></p>
 <p style="font-size:13px;font-weight:700;margin-top:2px">#bharatflix #shorts #viral #trending</p>
@@ -197,17 +197,17 @@ body{top:0!important}
 <div class="sAct"><button id="shortSaveBtn" onclick="toggleShortSave()">🔖</button><span id="shortSaveLabel">Save</span></div>
 <div class="sAct"><button onclick="shareShortReal()">↗</button><span>Share</span></div>
 <div class="sAct"><button onclick="openShortRemix()">🔄</button><span>Remix</span></div>
-<img class="sProfile" src="https://raw.githubusercontent.com/BHARATFLIX/bharat-flix/main/logo.png" onclick="openShortProfile()">
+<img class="sProfile" loading="lazy" src="https://raw.githubusercontent.com/BHARATFLIX/bharat-flix/main/logo.png" onclick="openShortProfile()">
 </div>
 <div id="shortCommentSheet"><b>Comments</b><button style="float:right;border:none;background:transparent;font-size:18px" onclick="closeShortSheets()">✕</button><div id="shortCommentList" style="margin:10px 0"></div><input id="shortCommentInput" placeholder="Comment Likho..." onkeydown="if(event.key==='Enter')sendShortComment()"><button onclick="sendShortComment()" style="width:100%;margin-top:8px;background:#000;color:#fff;border:none;padding:9px;border-radius:20px">Comment Bhejo</button></div>
 <div id="shortMenuSheet"><b>More</b><button style="float:right;border:none;background:transparent;font-size:18px" onclick="closeShortSheets()">✕</button><div onclick="shareShortReal()">↗️ Share - Asli Share</div><div onclick="toggleShortSave();closeShortSheets()">🔖 Save / Unsave</div><div onclick="reportShortReal()">🚩 Report - Asli Report</div><div onclick="notInterestedShort()">🙈 Not Interested - Ye Short Mat Dikhao</div><div onclick="closeShortSheets()">⬅️ Band Karo</div></div>
-<div id="profileSheet"><img src="https://raw.githubusercontent.com/BHARATFLIX/bharat-flix/main/logo.png"><h3 style="margin-top:6px">@BharatFlix</h3><p style="font-size:12px;color:#666">Bharat - Aapka Apna Swadeshi Platform</p><p id="profileSubs" style="font-size:12px;margin-top:6px">1.2M Subscribers • 120 Videos</p><button id="profileSubBtn" onclick="toggleShortSubscribe(document.getElementById('shortSubBtn'))" style="background:#000;color:#fff;border:none;padding:9px 20px;border-radius:20px;margin-top:8px">Subscribe</button><br><button onclick="closeShortSheets()" style="background:#eee;border:none;padding:8px 16px;border-radius:20px;margin-top:8px">Band Karo</button></div>
+<div id="profileSheet"><img loading="lazy" src="https://raw.githubusercontent.com/BHARATFLIX/bharat-flix/main/logo.png"><h3 style="margin-top:6px">@BharatFlix</h3><p style="font-size:12px;color:#666">Bharat - Aapka Apna Swadeshi Platform</p><p id="profileSubs" style="font-size:12px;margin-top:6px">1.2M Subscribers • 120 Videos</p><button id="profileSubBtn" onclick="toggleShortSubscribe(document.getElementById('shortSubBtn'))" style="background:#000;color:#fff;border:none;padding:9px 20px;border-radius:20px;margin-top:8px">Subscribe</button><br><button onclick="closeShortSheets()" style="background:#eee;border:none;padding:8px 16px;border-radius:20px;margin-top:8px">Band Karo</button></div>
 <div id="shortBottomNav">
 <div onclick="goHomeFromShort()">🏠</div>
 <div onclick="shortNext()">🎬</div>
 <div onclick="openUploadFromShort()">⊕</div>
 <div onclick="openSubsFromShort()">📺</div>
-<div onclick="openShortProfile()"><img src="https://raw.githubusercontent.com/BHARATFLIX/bharat-flix/main/logo.png"></div>
+<div onclick="openShortProfile()"><img loading="lazy" src="https://raw.githubusercontent.com/BHARATFLIX/bharat-flix/main/logo.png"></div>
 </div>
 </div>
 <input type="file" id="uploadFile" accept="video/*" style="display:none" onchange="handleUpload(this)">
@@ -248,7 +248,8 @@ const LANGS=[["hi","हिन्दी - Hindi"],["en","English"],["bn","বা�
 const TRANS={hi:{all:"सभी",music:"संगीत",comedy:"कॉमेडी",bhakti:"भक्ति",news:"समाचार",adText:"एडसेंस विज्ञापन",noResult:"कोई वीडियो नहीं मिली",loading:"और वीडियो आ रहे हैं...",notiTitle:"सूचनाएं",notiText:"🔴 भारत फ्लिक्स ने नया शॉर्ट डाला",settingTitle:"सेटिंग",settingSub:"App Setting - सिर्फ App की सेटिंग",langLabel:"भाषा",langSub:"App किस भाषा में दिखेगा",qualityLabel:"क्वालिटी",qualitySub:"वीडियो कितनी साफ दिखेगी",themeLabel:"डार्क मोड / थीम",themeSub:"रातों में आँख के लिए आराम",autoplayLabel:"ऑटोप्ले",autoplaySub:"वीडियो खत्म होते ही अगला चलेगा",notiSetLabel:"नोटिफिकेशन",notiSetSub:"नए वीडियो की खबर मिलेगी",speedLabel:"प्लेबैक स्पीड",speedSub:"वीडियो तेज़ या धीरे",subtitleLabel:"सबटाइटल / CC",subtitleSub:"वीडियो के नीचे लिखा हुआ",dataLabel:"डेटा सेवर",dataSub:"कम नेट में भी वीडियो चलेगा",downloadLabel:"डाउनलोड क्वालिटी",downloadSub:"डाउनलोड में कितनी क्वालिटी",historyLabel:"हिस्ट्री",historySub:"देखे हुए वीडियो याद रखे",nextLabel:"ऑटोप्ले अगला वीडियो",nextSub:"शॉर्ट के बाद अगला शॉर्ट",restrictedLabel:"रेस्ट्रिक्टेड मोड",restrictedSub:"बच्चों के लिए सेफ",clearHistory:"हिस्ट्री साफ करो",clearHistorySub:"सारा देखा हुआ साफ हो जाएगा",home:"होम",shorts:"शॉर्ट्स",upload:"अपलोड",subs:"सब्स",you:"आप",search:"खोजें...",like:"लाइक",comment:"कमेंट",share:"शेयर",download:"डाउनलोड",subscribe:"सब्सक्राइब"},en:{all:"All",music:"Music",comedy:"Comedy",bhakti:"Bhakti",news:"News",adText:"AdSense Ad",noResult:"No Video Found",loading:"More Videos Coming...",notiTitle:"Notifications",notiText:"🔴 Bharat Flix added new Short",settingTitle:"Settings",settingSub:"App Settings - Only App Settings",langLabel:"Language",langSub:"App language",qualityLabel:"Quality",qualitySub:"How clear video looks",themeLabel:"Dark Mode / Theme",themeSub:"Easy on eyes at night",autoplayLabel:"Autoplay",autoplaySub:"Next video plays automatically",notiSetLabel:"Notifications",notiSetSub:"Get news of new videos",speedLabel:"Playback Speed",speedSub:"Video fast or slow",subtitleLabel:"Subtitles / CC",subtitleSub:"Text below video",dataLabel:"Data Saver",dataSub:"Video works in low net",downloadLabel:"Download Quality",downloadSub:"Quality in download",historyLabel:"History",historySub:"Remember watched videos",nextLabel:"Autoplay Next Video",nextSub:"Next Short after Short",restrictedLabel:"Restricted Mode",restrictedSub:"Safe for kids",clearHistory:"Clear History",clearHistorySub:"All watched will be cleared",home:"Home",shorts:"Shorts",upload:"Upload",subs:"Subs",you:"You",search:"Search...",like:"Like",comment:"Comment",share:"Share",download:"Download",subscribe:"Subscribe"}};
 let langSel=document.getElementById('appLang');LANGS.forEach(l=>{let o=document.createElement('option');o.value=l[0];o.textContent=l[1];langSel.appendChild(o);});
 let _langCache={};try{_langCache=JSON.parse(localStorage.getItem('bf_lang_cache')||'{}')}catch(e){_langCache={}}
-async function applyLang(code){let t=TRANS[code]||TRANS['en'];document.querySelectorAll('[data-i18n]').forEach(el=>{let k=el.getAttribute('data-i18n');if(t[k])el.textContent=t[k];});document.getElementById('searchInput').placeholder=t.search||"Search...";document.documentElement.lang=code;if(code==='hi'||code==='en')return;if(!_langCache[code])_langCache[code]={};let els=[...document.querySelectorAll('[data-i18n]')];for(let el of els){let k=el.getAttribute('data-i18n');if(_langCache[code][k]){el.textContent=_langCache[code][k];continue}let engText=(TRANS['en'][k]||el.textContent||'').trim();if(!engText)continue;try{let url='https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl='+code+'&dt=t&q='+encodeURIComponent(engText);let res=await fetch(url);let data=await res.json();let translated=data[0].map(x=>x[0]).join('');if(translated&&translated.toLowerCase()!==engText.toLowerCase()){_langCache[code][k]=translated;el.textContent=translated}}catch(e){}}try{localStorage.setItem('bf_lang_cache',JSON.stringify(_langCache))}catch(e){}try{let engPh=TRANS['en'].search||"Search...";let url2='https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl='+code+'&dt=t&q='+encodeURIComponent(engPh);let r2=await fetch(url2);let d2=await r2.json();document.getElementById('searchInput').placeholder=d2[0].map(x=>x[0]).join('')}catch(e){}}
+let _langBusy=false;
+async function applyLang(code){let t=TRANS[code]||TRANS['en'];document.querySelectorAll('[data-i18n]').forEach(el=>{let k=el.getAttribute('data-i18n');if(t[k])el.textContent=t[k];});document.getElementById('searchInput').placeholder=t.search||"Search...";document.documentElement.lang=code;if(code==='hi'||code==='en')return;if(_langBusy)return;if(_langCache[code]&&Object.keys(_langCache[code]).length>5){document.querySelectorAll('[data-i18n]').forEach(el=>{let k=el.getAttribute('data-i18n');if(_langCache[code][k])el.textContent=_langCache[code][k];});return;} _langBusy=true;try{let keys=[];let texts=[];document.querySelectorAll('[data-i18n]').forEach(el=>{let k=el.getAttribute('data-i18n');if(!keys.includes(k)){keys.push(k);texts.push(TRANS['en'][k]||el.textContent);}});let joined=texts.join(' ||| ');let url='https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl='+code+'&dt=t&q='+encodeURIComponent(joined);let res=await fetch(url);let data=await res.json();let all=data[0].map(x=>x[0]).join('');let parts=all.split('|||');if(!_langCache[code])_langCache[code]={};keys.forEach((k,i)=>{if(parts[i])_langCache[code][k]=parts[i].trim();});document.querySelectorAll('[data-i18n]').forEach(el=>{let k=el.getAttribute('data-i18n');if(_langCache[code][k])el.textContent=_langCache[code][k];});try{localStorage.setItem('bf_lang_cache',JSON.stringify(_langCache))}catch(e){try{localStorage.removeItem('bf_lang_cache')}catch(_){}}}catch(e){} _langBusy=false;}
 function changeLang(code){localStorage.setItem('bf_lang',code);applyLang(code);toast('Language Badal Gayi');}
 let savedLang=localStorage.getItem('bf_lang')||'hi';langSel.value=savedLang;applyLang(savedLang);
 let SETTINGS={};try{SETTINGS=JSON.parse(localStorage.getItem('bf_settings')||'{}')}catch(e){SETTINGS={}}
@@ -360,7 +361,7 @@ let allVideos=[
 {type:'short',title:'Short 6 - Kirtan',id:'s6',src:'https://www.w3schools.com/html/mov_bbb.mp4',poster:'https://picsum.photos/400/600?random=6',dur:'0:30',cat:'Bhakti'}
 ];
 let shown=0;
-function renderFeed(){let box=document.getElementById('feedBox');let end=Math.min(shown+8,allVideos.length);for(let i=shown;i<end;i++){let v=allVideos[i];getCount(v.id);if(v.type==='short'){let d=document.createElement('div');d.className='shortCard';d.onclick=function(){openShortPlayer(i);};d.innerHTML=`<img src="${v.poster||''}"><span class="dur">⏱️ ${v.dur} • Short</span><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:50px">▶️</div><div class="shortInfo"><b>${v.title}</b><p style="font-size:11px">Bharat Flix • 👀 ${COUNTS[v.id].view} Views</p></div>`;box.appendChild(d);}else{let d=document.createElement('div');d.className='longCard';d.onclick=function(){openLongPlayer(i);};d.innerHTML=`<div class="longWrap"><img src="${v.poster||''}"><span class="durLong">⏱️ ${v.dur}</span><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:50px">▶️</div></div><b>${v.title}</b><div class="countLine">👀 ${COUNTS[v.id].view} Views • ${v.cat}</div>`;box.appendChild(d);}}shown=end;}
+function renderFeed(){let box=document.getElementById('feedBox');let end=Math.min(shown+8,allVideos.length);for(let i=shown;i<end;i++){let v=allVideos[i];getCount(v.id);if(v.type==='short'){let d=document.createElement('div');d.className='shortCard';d.onclick=function(){openShortPlayer(i);};d.innerHTML=`<img loading="lazy" src="${v.poster||''}"><span class="dur">⏱️ ${v.dur} • Short</span><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:50px">▶️</div><div class="shortInfo"><b>${v.title}</b><p style="font-size:11px">Bharat Flix • 👀 ${COUNTS[v.id].view} Views</p></div>`;box.appendChild(d);}else{let d=document.createElement('div');d.className='longCard';d.onclick=function(){openLongPlayer(i);};d.innerHTML=`<div class="longWrap"><img loading="lazy" src="${v.poster||''}"><span class="durLong">⏱️ ${v.dur}</span><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:50px">▶️</div></div><b>${v.title}</b><div class="countLine">👀 ${COUNTS[v.id].view} Views • ${v.cat}</div>`;box.appendChild(d);}}shown=end;}
 renderFeed();
 let shortList=[];let shortIdx=0;let touchY=0;
 function getShortList(){return allVideos.map((v,i)=>({v,i})).filter(o=>o.v.type==='short' && !getCount(o.v.id).notInterested);}
