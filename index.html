@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="google" content="notranslate">
-<title>BharatFlix - CODE 62 FINAL LOCKED - FAST</title>
+<title>BharatFlix - CODE 63 FINAL LOCKED - LONG FIX</title>
 <link rel="icon" href="https://raw.githubusercontent.com/BHARATFLIX/bharat-flix/main/apk-icon.png">
 <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/BHARATFLIX/bharat-flix/main/apk-icon.png">
 <link rel="manifest" href="manifest.json">
@@ -270,6 +270,7 @@ function filterChip(el,word){document.querySelectorAll('.chip').forEach(c=>c.cla
 let backHandling=false;
 function forceAppHome(){
 document.getElementById('longPlayer').classList.remove('cssFull');
+try{if(screen.orientation&&screen.orientation.unlock)screen.orientation.unlock();}catch(e){}
 document.body.classList.remove('short-mode');
 document.body.classList.remove('long-mode');
 document.querySelectorAll('.popup').forEach(p=>p.style.display='none');
@@ -288,6 +289,7 @@ if(backHandling)return;
 backHandling=true;
 if(document.getElementById('longPlayer').classList.contains('cssFull')){
 document.getElementById('longPlayer').classList.remove('cssFull');
+try{if(screen.orientation&&screen.orientation.unlock)screen.orientation.unlock();}catch(err){}
 try{history.pushState({bf:'home'},'');}catch(err){}
 setTimeout(()=>{backHandling=false;},100);
 return;
@@ -299,7 +301,7 @@ try{history.pushState({bf:'home'},'');}catch(err){}
 setTimeout(()=>{backHandling=false;},100);
 });
 function closeShortPlayerNoBack(){let vid=document.getElementById('shortMainVideo');vid.pause();try{vid.src='';}catch(e){}document.getElementById('shortPlayer').classList.remove('open');document.body.style.overflow='';closeShortSheets();}
-function closeLongPlayerNoBack(){let vid=document.getElementById('longMainVideo');vid.pause();try{vid.src='';}catch(e){}document.getElementById('longPlayer').classList.remove('open');document.getElementById('longPlayer').classList.remove('cssFull');longIdx=-1;}
+function closeLongPlayerNoBack(){let vid=document.getElementById('longMainVideo');vid.pause();try{vid.src='';}catch(e){}document.getElementById('longPlayer').classList.remove('open');document.getElementById('longPlayer').classList.remove('cssFull');try{if(screen.orientation&&screen.orientation.unlock)screen.orientation.unlock();}catch(e){}longIdx=-1;}
 let COUNTS={};try{COUNTS=JSON.parse(localStorage.getItem('bf_counts')||'{}')}catch(e){COUNTS={}}
 function getCount(id){if(!COUNTS[id])COUNTS[id]={like:0,dislike:0,comment:0,share:0,view:125,thanks:0,join:0,watchTime:0,saved:false,comments:[],liked:false,subscribed:false,notInterested:false};return COUNTS[id];}
 function saveCounts(){localStorage.setItem('bf_counts',JSON.stringify(COUNTS));}
@@ -381,8 +383,10 @@ let longIdx=-1;
 function updateLongPlayerInfo(){let v=allVideos[longIdx];if(!v)return;let c=getCount(v.id);document.getElementById('longPlayerTitle').textContent=v.title;document.getElementById('longPlayerMeta').textContent=v.cat;document.getElementById('longPlayerCounts').textContent=`👀 ${c.view} Views`;document.getElementById('longCommentBox').classList.remove('open');document.getElementById('longPlayerActions').innerHTML=`<button onclick="doLike('${v.id}',this)">👍 Like</button><button onclick="doDislike('${v.id}',this)">👎 Dislike</button><button onclick="toggleLongComments()">💬 Comment</button><button onclick="doShareCount('${v.id}')">↗️ Share</button><button onclick="doDownloadCount('${v.id}')">⬇️ Download</button><button onclick="doSaveCount('${v.id}')">💾 Save</button><button onclick="doClipCount('${v.id}')">✂️ Clip</button><button onclick="doRemixCount('${v.id}')">🎵 Remix</button><button onclick="doSubscribeCount(this)">🔔 Subscribe</button><button class="earn" onclick="doThanksCount('${v.id}')">💰 Thanks</button><button class="earn" onclick="doJoinCount('${v.id}')">⭐ Join</button><button class="earn" onclick="doShopCount('${v.id}')">🛍️ Shopping</button><button onclick="doReportCount('${v.id}')">🚩 Report</button>`;}
 function openLongPlayer(globalIdx){let wasOpen=document.getElementById('longPlayer').classList.contains('open');longIdx=globalIdx;let v=allVideos[globalIdx];document.body.classList.add('long-mode');document.body.classList.remove('short-mode');let vid=document.getElementById('longMainVideo');document.getElementById('longPlayer').classList.add('open');vid.src=v.src;vid.poster=v.poster||'';vid.playbackRate=parseFloat(SETTINGS.speed||1);vid.play();updateLongPlayerInfo();doView(v.id);document.getElementById('longPlayer').scrollIntoView({behavior:'smooth'});if(!wasOpen){try{history.pushState({bf:'player'},'');}catch(e){}}}
 function toggleLongPlay(){let vid=document.getElementById('longMainVideo');if(vid.paused)vid.play();else vid.pause();}
-function fullScreenLong(){let p=document.getElementById('longPlayer');let isFull=p.classList.contains('cssFull');if(isFull){p.classList.remove('cssFull');}else{p.classList.add('cssFull');try{history.pushState({bf:'fullscreen'},'');}catch(e){}let vid=document.getElementById('longMainVideo');vid.play();}}
-function exitCssFull(){document.getElementById('longPlayer').classList.remove('cssFull');}
+async function tryLockLandscape(){try{if(screen.orientation&&screen.orientation.lock){await screen.orientation.lock('landscape');}}catch(e){}}
+function tryUnlockOrientation(){try{if(screen.orientation&&screen.orientation.unlock)screen.orientation.unlock();}catch(e){}}
+function fullScreenLong(){let p=document.getElementById('longPlayer');let isFull=p.classList.contains('cssFull');if(isFull){p.classList.remove('cssFull');tryUnlockOrientation();}else{p.classList.add('cssFull');tryLockLandscape();try{history.pushState({bf:'fullscreen'},'');}catch(e){}let vid=document.getElementById('longMainVideo');vid.play();}}
+function exitCssFull(){document.getElementById('longPlayer').classList.remove('cssFull');tryUnlockOrientation();}
 function closeLongPlayer(){if(document.getElementById('longPlayer').classList.contains('cssFull')){exitCssFull();return;}if(document.getElementById('longPlayer').classList.contains('open')){try{history.back();}catch(e){closeLongPlayerNoBack();forceAppHome();}}else{closeLongPlayerNoBack();}}
 document.getElementById('longMainVideo').addEventListener('ended',function(){let cur=allVideos[longIdx];if(!cur)return;let same=allVideos.map((v,i)=>({v,i})).filter(o=>o.v.type==='long' && o.v.cat===cur.cat && o.i!==longIdx);let next=null;if(same.length){next=same[0];}else{let others=allVideos.map((v,i)=>({v,i})).filter(o=>o.v.type==='long' && o.i!==longIdx);if(others.length)next=others[0];}if(next){openLongPlayer(next.i);}else{toast('Video Khatam Ho Gayi');}});
 document.getElementById('shortMainVideo').addEventListener('ended',function(){shortNext();});
