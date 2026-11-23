@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="google" content="notranslate">
-<title>BharatFlix - CODE 67 FINAL</title>
+<title>BharatFlix - CODE 68 FINAL</title>
 <link rel="icon" href="https://raw.githubusercontent.com/BHARATFLIX/bharat-flix/main/apk-icon.png">
 <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/BHARATFLIX/bharat-flix/main/apk-icon.png">
 <link rel="manifest" href="manifest.json">
@@ -39,9 +39,21 @@ body.dark .chips{background:#0f0f0f}
 .chips::-webkit-scrollbar{display:none}
 .chip{background:#eee;padding:6px 14px;border-radius:20px;font-size:13px;flex-shrink:0}
 .chip.active{background:#000;color:#fff}
+.chip.liveChip{background:#ff0000;color:#fff;font-weight:900}
 #adsPlayer{width:100%;height:210px;background:#222;color:#fff;display:flex;align-items:center;justify-content:center;position:relative;cursor:pointer}
 #adsPlayer span{position:absolute;top:8px;left:8px;background:#FF6A00;padding:3px 8px;border-radius:10px;font-size:11px}
 body.long-mode #adsPlayer,body.short-mode #adsPlayer{display:none}
+#liveSection{padding:10px 10px 0 10px}
+#liveSection h3{font-size:16px;margin-bottom:8px}
+.liveRow{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;padding-bottom:6px}
+.liveRow::-webkit-scrollbar{display:none}
+.liveCard{min-width:200px;width:200px;background:#000;color:#fff;border-radius:12px;overflow:hidden;position:relative;cursor:pointer;flex-shrink:0}
+.liveCard img{width:100%;height:120px;object-fit:cover}
+.liveCard .liveBadge{position:absolute;top:8px;left:8px;background:#ff0000;color:#fff;padding:3px 8px;border-radius:10px;font-size:11px;font-weight:900}
+.liveCard .liveView{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.7);padding:3px 7px;border-radius:10px;font-size:11px}
+.liveCard .liveInfo{padding:8px}
+.liveCard .liveInfo b{font-size:13px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.liveCard .liveInfo p{font-size:11px;color:#ccc;margin-top:2px}
 #feedBox{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}
 body.long-mode #feedBox{grid-template-columns:1fr}
 body.long-mode .shortCard{display:none!important}
@@ -143,6 +155,10 @@ body.dark .triWhite{color:#fff}
 body{top:0!important}
 .myVideoRow{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid #eee;align-items:center}
 .myVideoRow img{width:90px;height:55px;object-fit:cover;border-radius:8px;background:#000}
+#livePlayer{position:fixed;inset:0;background:#000;z-index:600;display:none;flex-direction:column}
+#livePlayer.open{display:flex}
+#livePlayer video{width:100%;flex:1;object-fit:contain;background:#000}
+#liveChatBox{background:#fff;color:#000;padding:10px;max-height:35vh;overflow:auto}
 </style>
 </head>
 <body translate="no" class="notranslate">
@@ -164,6 +180,7 @@ body{top:0!important}
 </div>
 <div class="chips">
 <span class="chip active" data-i18n="all" onclick="filterChip(this,'')">All</span>
+<span class="chip liveChip" onclick="showOnlyLive(this)">🔴 LIVE</span>
 <span class="chip" data-i18n="music" onclick="filterChip(this,'Music')">Music</span>
 <span class="chip" data-i18n="comedy" onclick="filterChip(this,'Comedy')">Comedy</span>
 <span class="chip" data-i18n="bhakti" onclick="filterChip(this,'Bhakti')">Bhakti</span>
@@ -182,6 +199,7 @@ body{top:0!important}
 </div>
 </div>
 <div id="adsPlayer" onclick="playAd()"><span data-i18n="adText">AdSense Ad</span><div style="text-align:center">▶️</div></div>
+<div id="liveSection"><h3>🔴 Live Abhi - Live Dekho</h3><div class="liveRow" id="liveRow"></div><button onclick="openGoLive()" style="width:100%;padding:10px;border:none;border-radius:10px;background:#ff0000;color:#fff;font-weight:900;margin-top:8px">📡 Go Live - Khud Live Aao</button></div>
 <div id="feedBox"></div>
 <p id="noResult" style="display:none;text-align:center;padding:20px;color:#888" data-i18n="noResult">Koi Video Nahi Mili</p>
 <div id="shortPlayer">
@@ -213,6 +231,11 @@ body{top:0!important}
 <div onclick="openShortProfile()"><img loading="lazy" src="https://raw.githubusercontent.com/BHARATFLIX/bharat-flix/main/logo.png"></div>
 </div>
 </div>
+<div id="livePlayer">
+<div style="display:flex;justify-content:space-between;align-items:center;padding:10px;color:#fff"><b id="livePlayerTitle">Live</b><button onclick="closeLivePlayer()" style="background:#fff;border:none;width:36px;height:36px;border-radius:50%;font-size:18px">✕</button></div>
+<video id="liveMainVideo" playsinline controls autoplay></video>
+<div id="liveChatBox"><b>🔴 Live Chat</b><div id="liveChatList" style="margin-top:8px"></div><input id="liveChatInput" placeholder="Live Chat Likho..." style="width:100%;padding:9px;border:1px solid #ddd;border-radius:20px;margin-top:8px" onkeydown="if(event.key==='Enter')sendLiveChat()"><button onclick="sendLiveChat()" style="width:100%;margin-top:8px;background:#ff0000;color:#fff;border:none;padding:9px;border-radius:20px">Chat Bhejo</button></div>
+</div>
 <input type="file" id="uploadFile" accept="video/*" style="display:none" onchange="handleUpload(this)">
 <div id="uploadBox" class="popup">
 <div class="popupHead"><button class="backArrow" onclick="togglePop('uploadBox')">⬅</button><b>Upload Video</b></div>
@@ -228,6 +251,14 @@ body{top:0!important}
 <button onclick="document.getElementById('uploadFile').click()">📁 Video Chuno - Gallery Se</button>
 <p style="font-size:12px;color:#888;margin-top:8px">Channel बनाए तभी Video पड़ेगी</p>
 <p id="uploadStatus" style="font-size:12px;color:#666"></p>
+</div>
+<div id="goLiveBox" class="popup">
+<div class="popupHead"><button class="backArrow" onclick="togglePop('goLiveBox')">⬅</button><b>📡 Go Live</b></div>
+<p style="font-size:13px;margin-top:10px">Apna Live Shuru Karo</p>
+<input id="liveTitleInput" placeholder="Live ka Title - Jaise: Bhajan Live">
+<select id="liveCatInput"><option>News</option><option>Bhakti</option><option>Music</option><option>Comedy</option><option>Education</option></select>
+<button onclick="startMyLive()">🔴 Live Shuru Karo</button>
+<p style="font-size:12px;color:#666;margin-top:8px">Live Shuru hote hi sabko dikhega. Band karne ke liye Live Player se ✕ dabao.</p>
 </div>
 <div id="myChannelBox" class="popup">
 <div class="popupHead"><button class="backArrow" onclick="togglePop('myChannelBox')">⬅</button><b>📺 Mera Channel</b></div>
@@ -250,7 +281,7 @@ body{top:0!important}
 <div class="setRow"><div><b data-i18n="qualityLabel">Quality</b><small data-i18n="qualitySub">Video Kitni Saaf Dikhegi</small></div><select id="appQuality" onchange="saveSet('quality',this.value)"><option>Auto</option><option>720p</option><option>480p</option><option>360p</option></select></div>
 <div class="setRow"><div><b data-i18n="themeLabel">Dark Mode / Theme</b><small data-i18n="themeSub">Raaton Me Aankh Ke Liye Aaram</small></div><div class="switch" id="swTheme" onclick="toggleSwitch('theme',this)"></div></div>
 <div class="setRow"><div><b data-i18n="autoplayLabel">Autoplay</b><small data-i18n="autoplaySub">Video Khatam Hote Hi Agla Chalega</small></div><div class="switch on" id="swAutoplay" onclick="toggleSwitch('autoplay',this)"></div></div>
-<div class="setRow"><div><b data-i18n="notiSetLabel">Notifications</b><small data-i18n="notiSetSub">Naye Video Ki Khabar Milegi</small></div><div class="switch on" id="swNoti" onclick="toggleSwitch('noti',this)"></div></div>
+<div class="setRow"><div><b data-i18n="notiLabel">Notifications</b><small data-i18n="notiSub">Naye Video Ki Khabar Milegi</small></div><div class="switch on" id="swNoti" onclick="toggleSwitch('noti',this)"></div></div>
 <div class="setRow"><div><b data-i18n="speedLabel">Playback Speed</b><small data-i18n="speedSub">Video Tez Ya Dheere</small></div><select id="appSpeed" onchange="saveSet('speed',this.value)"><option value="0.5">0.5x Slow</option><option value="1" selected>1x Normal</option><option value="1.5">1.5x Fast</option><option value="2">2x Very Fast</option></select></div>
 <div class="setRow"><div><b data-i18n="subtitleLabel">Subtitles / CC</b><small data-i18n="subtitleSub">Video Ke Neeche Likha Hua</small></div><div class="switch" id="swSubtitle" onclick="toggleSwitch('subtitle',this)"></div></div>
 <div class="setRow"><div><b data-i18n="dataLabel">Data Saver</b><small data-i18n="dataSub">Kam Net Me Bhi Video Chalega</small></div><div class="switch" id="swData" onclick="toggleSwitch('data',this)"></div></div>
@@ -265,6 +296,7 @@ body{top:0!important}
 <div onclick="openFirstShort()">🎬<br><span data-i18n="shorts">Shorts</span></div>
 <div style="background:#FF6A00;color:#fff;padding:6px 14px;border-radius:12px" onclick="togglePop('uploadBox')">➕<br><span data-i18n="upload">Upload</span></div>
 <div onclick="openMyChannel()">📺<br><span data-i18n="subs">Subs</span></div>
+<div onclick="openGoLive()">🔴<br>Live</div>
 <div onclick="openMyAccount()">👤<br><span data-i18n="you">You</span></div>
 </div>
 <script>
@@ -291,7 +323,8 @@ let micRec=null;let micOn=false;
 async function voiceSearch(){let micBtn=document.getElementById('micBtn');if(micOn&&micRec){try{micRec.stop();}catch(e){}return;}let SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){toast('Is Browser Me Mic Nahi Chalega - Chrome Me Kholiye');return;}toast('Mic Permission Maang Raha Hu - Allow Dabao');try{let stream=await navigator.mediaDevices.getUserMedia({audio:true});stream.getTracks().forEach(t=>t.stop());}catch(err){toast('Mic Allow Karo');return;}micRec=new SR();micRec.lang='hi-IN';micRec.onstart=function(){micOn=true;micBtn.classList.add('listening');micBtn.textContent='🔴';toast('Bolo... Sun Raha Hu...');};micRec.onresult=function(e){let txt=e.results[0][0].transcript;document.getElementById('searchInput').value=txt;doSearch(txt);toast('Mil Gaya - '+txt);};micRec.onerror=function(){micOn=false;micBtn.classList.remove('listening');micBtn.textContent='🎙️';};micRec.onend=function(){micOn=false;micBtn.classList.remove('listening');micBtn.textContent='🎙️';};try{micRec.start();}catch(err){toast('Mic Dobara Dabao');}}
 function toast(m){let d=document.createElement('div');d.textContent=m;d.style.cssText='position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:#000;color:#fff;padding:8px 14px;border-radius:20px;z-index:999;font-size:13px;max-width:90%;text-align:center';document.body.appendChild(d);setTimeout(()=>d.remove(),2000);}
 function togglePop(id){let e=document.getElementById(id);let wasOpen=e.style.display==='block';document.querySelectorAll('.popup').forEach(p=>p.style.display='none');if(!wasOpen)e.style.display='block';}
-function filterChip(el,word){document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));if(el&&el.classList)el.classList.add('active');doSearch(word);}
+function filterChip(el,word){document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));if(el&&el.classList)el.classList.add('active');document.getElementById('liveSection').style.display='block';doSearch(word);}
+function showOnlyLive(el){document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));el.classList.add('active');document.getElementById('liveSection').style.display='block';document.getElementById('liveSection').scrollIntoView({behavior:'smooth'});toast('Live Dekho - Neeche Live List Hai');}
 let backHandling=false;
 function forceAppHome(){
 document.getElementById('longPlayer').classList.remove('cssFull');
@@ -475,6 +508,18 @@ function exitCssFull(){document.getElementById('longPlayer').classList.remove('c
 function closeLongPlayer(){if(document.getElementById('longPlayer').classList.contains('cssFull')){exitCssFull();return;}if(document.getElementById('longPlayer').classList.contains('open')){try{history.back();}catch(e){closeLongPlayerNoBack();forceAppHome();}}else{closeLongPlayerNoBack();}}
 document.getElementById('longMainVideo').addEventListener('ended',function(){let cur=allVideos[longIdx];if(!cur)return;let same=allVideos.map((v,i)=>({v,i})).filter(o=>o.v.type==='long' && o.v.cat===cur.cat && o.i!==longIdx);let next=null;if(same.length){next=same[0];}else{let others=allVideos.map((v,i)=>({v,i})).filter(o=>o.v.type==='long' && o.i!==longIdx);if(others.length)next=others[0];}if(next){openLongPlayer(next.i);}else{toast('Video Khatam Ho Gayi');}});
 document.getElementById('shortMainVideo').addEventListener('ended',function(){shortNext();});
+// ===== LIVE SECTION - CODE 68 ME JODA GAYA - PURANA KUCH NAHI KATA =====
+let liveVideos=[
+{title:'Bharat Flix Live - Bhajan',channel:'BharatFlix',cat:'Bhakti',views:'1.2K',poster:'https://picsum.photos/400/225?random=21',src:'https://www.w3schools.com/html/mov_bbb.mp4'},
+{title:'Breaking News Live',channel:'BharatFlix',cat:'News',views:'850',poster:'https://picsum.photos/400/225?random=22',src:'https://www.w3schools.com/html/mov_bbb.mp4'}
+];
+function renderLive(){let row=document.getElementById('liveRow');if(!row)return;row.innerHTML=liveVideos.map((lv,i)=>`<div class="liveCard" onclick="openLivePlayer(${i})"><img src="${lv.poster}"><span class="liveBadge">🔴 LIVE</span><span class="liveView">👀 ${lv.views}</span><div class="liveInfo"><b>${lv.title}</b><p>${lv.channel} • ${lv.cat}</p></div></div>`).join('');}
+function openLivePlayer(i){let lv=liveVideos[i];if(!lv)return;document.getElementById('livePlayerTitle').textContent='🔴 LIVE - '+lv.title;let vid=document.getElementById('liveMainVideo');document.getElementById('livePlayer').classList.add('open');vid.src=lv.src;vid.play();document.getElementById('liveChatList').innerHTML='<div style="background:#f5f5f5;padding:8px;border-radius:10px;font-size:13px;margin-top:6px">👤 Namaste! Live me Swagat hai</div>';}
+function closeLivePlayer(){let vid=document.getElementById('liveMainVideo');vid.pause();try{vid.src='';}catch(e){}document.getElementById('livePlayer').classList.remove('open');}
+function sendLiveChat(){let inp=document.getElementById('liveChatInput');let txt=inp.value.trim();if(!txt){toast('Pehle Chat Likho');return;}let d=document.createElement('div');d.style.cssText='background:#f5f5f5;padding:8px;border-radius:10px;font-size:13px;margin-top:6px';d.textContent='👤 '+txt;document.getElementById('liveChatList').appendChild(d);inp.value='';toast('Chat Bhej Diya');}
+function openGoLive(){if(!myAccount.profileOn){toast('Pehle Profile Chalu Karo');openMyAccount();return;}togglePop('goLiveBox');}
+function startMyLive(){let t=document.getElementById('liveTitleInput').value.trim()||(myAccount.channel+' Live');let c=document.getElementById('liveCatInput').value;liveVideos.unshift({title:t,channel:myAccount.channel||'BharatFlix',cat:c,views:'1',poster:'https://picsum.photos/400/225?random='+Math.floor(Math.random()*100),src:'https://www.w3schools.com/html/mov_bbb.mp4'});renderLive();togglePop('goLiveBox');toast('🔴 Live Shuru Ho Gaya - Sabko Dikhega');openLivePlayer(0);}
+renderLive();
 </script>
 </body>
 </html>
