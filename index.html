@@ -1,10 +1,10 @@
-<!-- CODE 75 FINAL RESTORED - PURA - KUCH KATA NAHI - 4 CHEEZ 100% -->
+<!-- CODE 75 FINAL - PURA - BACK BUTTON + HARI LINE HATA + BHASHA APNI LIPI ME -->
 <!DOCTYPE html>
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>BharatFlix - CODE 75 FINAL</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BharatFlix</title>
 <link rel="icon" href="apk-icon.png">
 <link rel="apple-touch-icon" href="apk-icon.png">
 <link rel="manifest" href="manifest.json">
@@ -13,55 +13,53 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
 body{background:#fff;padding-bottom:80px;color:#000}
 body.dark{background:#0f0f0f;color:#fff}
-body.dark .top,body.dark .bottom,body.dark .popup,body.dark .chips{background:#1a1a1a;color:#fff;border-color:#333}
 .top{display:flex;align-items:center;gap:6px;padding:8px;position:sticky;top:0;background:#fff;z-index:100;border-bottom:1px solid #eee}
+body.dark .top,body.dark .bottom,body.dark .popup,body.dark .chips{background:#1a1a1a;color:#fff}
 .top img{width:42px;height:42px;border-radius:50%;object-fit:cover}
 .brand{font-size:18px;font-weight:900;line-height:1;color:#FF9933}
 .brand span{color:#138808}
-.searchIcon{margin-left:auto;width:36px;height:36px;border:none;background:#eee;border-radius:50%;font-size:17px;cursor:pointer}
+.searchIcon{margin-left:auto;width:36px;height:36px;border:none;background:#eee;border-radius:50%;font-size:17px}
 .searchBox{display:none;flex:1;align-items:center;background:#fff;border:1px solid #ddd;border-radius:20px;padding:2px 3px 2px 8px;gap:2px}
 .searchBox.open{display:flex;position:fixed;top:62px;left:10px;right:10px;z-index:200;box-shadow:0 5px 15px rgba(0,0,0,.2)}
 .searchBox input{flex:1;border:none;outline:none;font-size:14px;min-width:0}
-.searchBox button{width:36px;height:36px;border:none;background:#fff;border-radius:50%;font-size:18px;cursor:pointer}
+.searchBox button{width:36px;height:36px;border:none;background:#fff;border-radius:50%;font-size:18px}
 .searchBox button.listening{background:#ff4444;color:#fff}
 .bell{width:34px;height:34px;border:none;background:#eee;border-radius:50%;font-size:16px;position:relative}
 .bell b{position:absolute;top:-4px;right:-4px;background:red;color:#fff;font-size:10px;min-width:16px;height:16px;border-radius:10px;display:flex;align-items:center;justify-content:center;padding:0 3px}
 #installBtn{padding:7px 10px;border:none;border-radius:15px;font-weight:700;font-size:11px;color:#fff;background:#2563eb;white-space:nowrap}
-#installBtn.installing{background:#f59e0b}
 .setBtn{width:34px;height:34px;border:none;background:#eee;border-radius:50%;font-size:16px}
 .chips{display:flex;gap:8px;overflow-x:auto;padding:6px 10px;white-space:nowrap;position:sticky;top:58px;background:#fff;z-index:95}
-.chip{background:#eee;padding:6px 14px;border-radius:20px;font-size:13px;flex-shrink:0;cursor:pointer}
+.chip{background:#eee;padding:6px 14px;border-radius:20px;font-size:13px;flex-shrink:0}
 .chip.active{background:#000;color:#fff}
 .chip.liveChip{background:#ff0000;color:#fff;font-weight:900}
-#ads{width:100%;height:210px;background:#222;color:#fff;display:flex;align-items:center;justify-content:center;position:relative;cursor:pointer}
+#ads{width:100%;height:210px;background:#222;color:#fff;display:flex;align-items:center;justify-content:center;position:relative}
 #ads span{position:absolute;top:8px;left:8px;background:#FF6A00;padding:3px 8px;border-radius:10px;font-size:11px}
 #liveSec{padding:10px 10px 0 10px}
-.liveRow{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px}
-.liveCard{min-width:200px;width:200px;background:#000;color:#fff;border-radius:12px;overflow:hidden;position:relative;cursor:pointer;flex-shrink:0}
+.liveRow{display:flex;gap:10px;overflow-x:auto}
+.liveCard{min-width:200px;width:200px;background:#000;color:#fff;border-radius:12px;overflow:hidden;position:relative;flex-shrink:0}
 .liveCard img{width:100%;height:120px;object-fit:cover}
 .liveCard .lb{position:absolute;top:8px;left:8px;background:#ff0000;padding:3px 8px;border-radius:10px;font-size:11px;font-weight:900}
-.liveCard .lv{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.7);padding:3px 7px;border-radius:10px;font-size:11px}
 .liveCard .li{padding:8px}
 #feed{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}
-.shortCard{height:340px;background:#000;color:#fff;border-radius:12px;position:relative;overflow:hidden;cursor:pointer}
+.shortCard{height:340px;background:#000;color:#fff;border-radius:12px;position:relative;overflow:hidden}
 .shortCard img{width:100%;height:100%;object-fit:cover}
 .shortInfo{position:absolute;left:10px;bottom:10px;right:10px}
-.longCard{grid-column:1/3;cursor:pointer}
+.longCard{grid-column:1/3}
 .longCard img{width:100%;height:210px;border-radius:12px;object-fit:cover;background:#000}
 .vAct{display:flex;gap:8px;overflow-x:auto;margin-top:8px}
 .vAct button{flex-shrink:0;padding:7px 12px;border:1px solid #ddd;border-radius:20px;background:#f5f5f5;font-size:12px;font-weight:700}
 .bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #ddd;z-index:150}
-.bottom div{text-align:center;font-size:12px;cursor:pointer}
+.bottom div{text-align:center;font-size:12px}
 .popup{position:fixed;left:10px;right:10px;bottom:80px;background:#fff;border:1px solid #ddd;padding:14px;border-radius:14px;display:none;z-index:300;max-height:75vh;overflow:auto}
 .popup select,.popup input,.popup textarea{width:100%;padding:9px;margin-top:8px;border:1px solid #ddd;border-radius:8px}
 .popup button{padding:9px 12px;border:none;border-radius:8px;background:#FF6A00;color:#fff;margin-top:8px}
 .setRow{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #eee;gap:10px}
 .setRow select{width:170px!important;margin-top:0!important}
-.switch{width:44px;height:24px;background:#ccc;border-radius:20px;position:relative;min-width:44px;cursor:pointer}
+.switch{width:44px;height:24px;background:#ccc;border-radius:20px;position:relative;min-width:44px}
 .switch.on{background:#FF6A00}
 .switch::after{content:'';position:absolute;top:2px;left:2px;width:20px;height:20px;background:#fff;border-radius:50%}
 .switch.on::after{left:22px}
-.notiItem{padding:10px 0;border-bottom:1px solid #eee;font-size:13px;cursor:pointer}
+.notiItem{padding:10px 0;border-bottom:1px solid #eee;font-size:13px}
 #shortPlayer{position:fixed;inset:0;background:#000;z-index:500;display:none;flex-direction:column}
 #shortPlayer.open{display:flex}
 #shortPlayer video{width:100%;height:100%;object-fit:cover;flex:1;position:absolute;inset:0}
@@ -90,7 +88,7 @@ body.dark #longPlayer{background:#0f0f0f}
 <img src="logo.png" alt="BharatFlix">
 <b class="brand">Bharat<br><span>Flix</span></b>
 <button class="searchIcon" onclick="openSearch()">🔍</button>
-<div id="searchBox" class="searchBox"><span>🔍</span><input id="searchInput" placeholder="Search..." oninput="doSearch(this.value)" onkeydown="if(event.key==='Enter')doSearch(this.value)"><button id="micBtn" onclick="voiceSearch()">🎙️</button><button onclick="closeSearch()">✕</button></div>
+<div id="searchBox" class="searchBox"><span>🔍</span><input id="searchInput" placeholder="Search..." oninput="doSearch(this.value)"><button id="micBtn" onclick="voiceSearch()">🎙️</button><button onclick="closeSearch()">✕</button></div>
 <button class="bell" onclick="openNoti()">🔔<b id="bellCount" style="display:none">0</b></button>
 <button id="installBtn" onclick="installApp()">Install</button>
 <button class="setBtn" onclick="togglePop('settingsBox')">⚙️</button>
@@ -98,100 +96,115 @@ body.dark #longPlayer{background:#0f0f0f}
 <div class="chips"><span class="chip active" data-t="all" onclick="filterChip(this,'')">All</span><span class="chip liveChip" onclick="showLive()">🔴 LIVE</span><span class="chip" onclick="filterChip(this,'Music')">Music</span><span class="chip" onclick="filterChip(this,'Comedy')">Comedy</span><span class="chip" onclick="filterChip(this,'Bhakti')">Bhakti</span><span class="chip" onclick="filterChip(this,'News')">News</span><span class="chip" onclick="filterChip(this,'Education')">Education</span></div>
 <div id="longPlayer"><video id="longVideo" playsinline controls></video><div style="display:flex;justify-content:space-between;padding:6px 10px"><b id="longTitle">Title</b><button onclick="closeLong()" style="background:#000;color:#fff;border:none;width:30px;height:30px;border-radius:50%">✕</button></div><p id="longMeta" style="font-size:12px;color:#888;padding:0 10px"></p><div style="padding:6px 10px"><label>Quality: </label><select id="qualitySel" onchange="changeQuality(this.value)" style="padding:5px;border-radius:8px"><option value="auto">Auto</option><option value="720p">720p HD</option><option value="480p">480p</option><option value="360p">360p</option></select> <label>Speed: </label><select id="speedSel" onchange="changeSpeed(this.value)" style="padding:5px;border-radius:8px"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="1.5">1.5x</option><option value="2">2x</option></select></div><div class="vAct" id="longActions" style="padding:0 10px"></div><div style="padding:10px"><input id="longCommentInput" placeholder="Comment Likho..." style="width:100%;padding:8px;border:1px solid #ddd;border-radius:20px" onkeydown="if(event.key==='Enter')addLongComment()"><button onclick="addLongComment()" style="margin-top:6px">Comment Bhejo</button><div id="longCommentList" style="margin-top:8px"></div></div></div>
 <div id="ads" onclick="playAd()"><span>AdSense Ad</span><div style="text-align:center">▶️ Ad - Dabao To Chalega</div></div>
-<div id="liveSec"><h3 data-t="liveNow" style="font-size:16px;margin-bottom:8px">🔴 Live Abhi - Live Dekho</h3><div class="liveRow" id="liveRow"></div><button onclick="goLive()" data-t="goLive" style="width:100%;padding:10px;border:none;border-radius:10px;background:#ff0000;color:#fff;font-weight:900;margin-top:8px">📡 Go Live - Khud Live Aao</button></div>
+<div id="liveSec"><h3 data-t="liveNow" style="font-size:16px;margin-bottom:8px">🔴 Live Abhi</h3><div class="liveRow" id="liveRow"></div><button onclick="goLive()" data-t="goLive" style="width:100%;padding:10px;border:none;border-radius:10px;background:#ff0000;color:#fff;font-weight:900;margin-top:8px">📡 Go Live</button></div>
 <div id="feed"></div>
 <p id="noResult" style="display:none;text-align:center;padding:20px">Koi Video Nahi Mili</p>
 <div id="histBox" style="display:none;padding:0 10px 10px 10px"></div>
-<div id="shortPlayer"><video id="shortVideo" playsinline loop onclick="toggleShortPlay()"></video><div id="shortTop"><button onclick="closeShort()">←</button><div><button onclick="openSearchFromShort()">🔍</button> <button onclick="togglePop('shortMenu')">⋮</button></div></div><div id="shortInfo"><b id="shortChannel">@BharatFlix</b> <button id="shortSubBtn" onclick="toggleSub()" style="background:#fff;color:#000;border:none;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:900">Subscribe</button><br><b id="shortTitle" style="font-size:14px"></b><p id="shortMeta" style="font-size:12px"></p><p style="font-size:13px">#bharatflix #shorts #viral</p></div><div id="shortSide"><div style="text-align:center"><button id="shortLikeBtn" onclick="toggleShortLike()">♡</button><br><span id="shortLikeCount">Like</span></div><div style="text-align:center"><button onclick="openShortComments()">💬</button><br><span id="shortCommentCount">12</span></div><div style="text-align:center"><button id="shortSaveBtn" onclick="toggleShortSave()">🔖</button><br><span>Save</span></div><div style="text-align:center"><button onclick="shareCurrent()">↗</button><br><span>Share</span></div></div><div id="shortBottom"><div onclick="goHomeFromShort()">🏠</div><div onclick="shortNext()">🎬</div><div onclick="togglePop('uploadBox')">⊕</div><div onclick="togglePop('dashboardBox')">📺</div><div onclick="closeShort()">👤</div></div></div>
+<div id="shortPlayer"><video id="shortVideo" playsinline loop onclick="toggleShortPlay()"></video><div id="shortTop"><button onclick="closeShort()">←</button><div><button onclick="openSearchFromShort()">🔍</button> <button onclick="togglePop('shortMenu')">⋮</button></div></div><div id="shortInfo"><b id="shortChannel">@BharatFlix</b> <button id="shortSubBtn" onclick="toggleSub()" style="background:#fff;color:#000;border:none;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:900">Subscribe</button><br><b id="shortTitle" style="font-size:14px"></b><p id="shortMeta" style="font-size:12px"></p></div><div id="shortSide"><div style="text-align:center"><button id="shortLikeBtn" onclick="toggleShortLike()">♡</button><br><span id="shortLikeCount">Like</span></div><div style="text-align:center"><button onclick="openShortComments()">💬</button><br><span id="shortCommentCount">12</span></div><div style="text-align:center"><button id="shortSaveBtn" onclick="toggleShortSave()">🔖</button><br><span>Save</span></div><div style="text-align:center"><button onclick="shareCurrent()">↗</button><br><span>Share</span></div></div><div id="shortBottom"><div onclick="goHomeFromShort()">🏠</div><div onclick="shortNext()">🎬</div><div onclick="togglePop('uploadBox')">⊕</div><div onclick="togglePop('dashboardBox')">📺</div><div onclick="closeShort()">👤</div></div></div>
 <div id="livePlayer"><div style="display:flex;justify-content:space-between;padding:10px;color:#fff"><b id="liveTitle">Live</b><button onclick="closeLive()" style="background:#fff;border:none;width:36px;height:36px;border-radius:50%">✕</button></div><video id="liveVideo" playsinline controls autoplay></video><div id="liveChat"><b>🔴 Live Chat</b><div id="liveChatList" style="margin-top:8px"></div><input id="liveChatInput" placeholder="Live Chat Likho..." style="width:100%;padding:9px;border:1px solid #ddd;border-radius:20px;margin-top:8px" onkeydown="if(event.key==='Enter')sendLiveChat()"><button onclick="sendLiveChat()" style="width:100%;margin-top:8px;background:#ff0000;color:#fff;border:none;padding:9px;border-radius:20px">Chat Bhejo</button></div></div>
 <input type="file" id="uploadFile" accept="video/*" style="display:none">
 <div id="uploadBox" class="popup"><b>Upload Video</b><br><select id="upType"><option value="short">Short Video</option><option value="long">Long Video</option></select><select id="upCat"><option>Entertainment</option><option>News</option><option>Music</option><option>Comedy</option><option>Bhakti</option><option>Education</option></select><input id="upTitle" placeholder="Title"><textarea id="upDesc" placeholder="Description"></textarea><button onclick="document.getElementById('uploadFile').click()">📁 Video Chuno</button><button onclick="doUpload()" style="background:#138808;width:100%">✅ Upload Karo</button><button onclick="togglePop('uploadBox')" style="background:#000">Band Karo</button></div>
 <div id="goLiveBox" class="popup"><b>📡 Go Live</b><input id="liveTitleInput" placeholder="Live ka Title"><select id="liveCatInput"><option>News</option><option>Bhakti</option><option>Music</option><option>Comedy</option></select><button onclick="startMyLive()" style="background:#ff0000;width:100%">🔴 Live Shuru Karo</button><button onclick="togglePop('goLiveBox')" style="background:#000">Band Karo</button></div>
 <div id="dashboardBox" class="popup"><b>📊 Mera Dashboard</b><div id="dashInfo" style="margin-top:10px;font-size:13px"></div><button onclick="togglePop('dashboardBox')" style="background:#000">Band Karo</button></div>
 <div id="accountBox" class="popup"><b>👤 Mera Profile</b><input id="accName" placeholder="Aapka Naam"><input id="accChannel" placeholder="Channel Naam"><input id="accHandle" placeholder="@Handle"><textarea id="accBio" placeholder="Bio"></textarea><select id="accCountry"></select><select id="accState"></select><select id="accDistrict"></select><button onclick="saveProfile()" style="width:100%">✅ Profile Save Karo</button><button onclick="togglePop('accountBox')" style="background:#000">Band Karo</button></div>
-<div id="notiBox" class="popup"><b data-t="notiTitle">Notifications</b><br><button onclick="askNoti()" style="background:#2563eb">🔔 Notification On Karo</button> <button onclick="clearNoti()" style="background:#888">🗑️ Saaf Karo</button><div id="notiList" style="margin-top:10px"></div><button onclick="togglePop('notiBox')" style="background:#000">Band Karo</button></div>
-<div id="settingsBox" class="popup"><b data-t="setting">Setting</b><p style="font-size:12px;color:#888" data-t="settingSub">App Setting - 75 Bhasha - 100%</p><div class="setRow"><div><b data-t="langLabel">Language / Bhasha</b><br><small data-t="langSub">App Kis Bhasha Me Dikhega</small></div><select id="appLang" onchange="changeLang(this.value)"></select></div><p id="langInfo" style="font-size:12px;color:#138808"></p><div class="setRow"><div><b>Quality</b><br><small>Video Kitni Saaf Dikhegi</small></div><select id="appQuality" onchange="saveSet('quality',this.value)"><option>Auto</option><option>720p</option><option>480p</option><option>360p</option></select></div><div class="setRow"><div><b>Dark Mode</b><br><small>Raaton Me Aaram</small></div><div class="switch" id="swTheme" onclick="toggleTheme(this)"></div></div><div class="setRow"><div><b>Autoplay</b><br><small>Video Khatam Hote Hi Agla Chalega</small></div><div class="switch on" id="swAutoplay" onclick="toggleSwitch('autoplay',this)"></div></div><div class="setRow"><div><b data-t="notiLabel">Notifications</b><br><small data-t="notiSub">Naye Video Ki Khabar Milegi - 100%</small></div><div class="switch on" id="swNoti" onclick="toggleSwitch('noti',this)"></div></div><div class="setRow"><div><b>Playback Speed</b></div><select id="appSpeed" onchange="saveSet('speed',this.value)"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="1.5">1.5x</option><option value="2">2x</option></select></div><div class="setRow"><div><b>Subtitles / CC</b></div><div class="switch" id="swSub" onclick="toggleSwitch('subtitle',this)"></div></div><div class="setRow"><div><b>Data Saver</b></div><div class="switch" id="swData" onclick="toggleSwitch('data',this)"></div></div><div class="setRow"><div><b>History</b></div><div class="switch on" id="swHist" onclick="toggleSwitch('history',this)"></div></div><button onclick="clearHistory()" style="background:#888;width:100%">🗑️ History Saaf Karo</button><button onclick="togglePop('settingsBox')" style="background:#000;width:100%">Band Karo</button></div>
+<div id="notiBox" class="popup"><div style="display:flex;align-items:center;gap:12px"><button onclick="togglePop('notiBox')" style="width:50px;height:50px;min-width:50px;border:3px solid #000;background:#fff;color:#000;border-radius:50%;font-size:28px;font-weight:900;line-height:1">⬅</button><b data-t="notiTitle">Notifications</b></div><br><button onclick="askNoti()" style="background:#2563eb">🔔 Notification On Karo</button> <button onclick="clearNoti()" style="background:#888">🗑️ Saaf Karo</button><div id="notiList" style="margin-top:10px"></div><button onclick="togglePop('notiBox')" style="background:#000">Band Karo</button></div>
+
+<!-- SETTINGS - BACK BUTTON LAGA - HARI LINE HATA DI - BHASHA APNI LIPI ME -->
+<div id="settingsBox" class="popup">
+<div style="display:flex;align-items:center;gap:12px"><button onclick="togglePop('settingsBox')" style="width:50px;height:50px;min-width:50px;border:3px solid #000;background:#fff;color:#000;border-radius:50%;font-size:28px;font-weight:900;line-height:1;cursor:pointer">⬅</button><div><b data-t="setting">Setting</b></div></div><br>
+<div class="setRow"><div><b data-t="langLabel">Language / Bhasha</b><br><small data-t="langSub">App Kis Bhasha Me Dikhega</small></div><select id="appLang" onchange="changeLang(this.value)"></select></div>
+<div class="setRow"><div><b data-t="quality">Quality</b><br><small data-t="qualitySub">Video Kitni Saaf Dikhegi</small></div><select id="appQuality" onchange="saveSet('quality',this.value)"><option>Auto</option><option>720p</option><option>480p</option><option>360p</option></select></div>
+<div class="setRow"><div><b data-t="darkMode">Dark Mode</b><br><small data-t="darkSub">Raaton Me Aaram</small></div><div class="switch" id="swTheme" onclick="toggleTheme(this)"></div></div>
+<div class="setRow"><div><b data-t="autoplay">Autoplay</b><br><small data-t="autoSub">Video Khatam Hote Hi Agla Chalega</small></div><div class="switch on" id="swAutoplay" onclick="toggleSwitch('autoplay',this)"></div></div>
+<div class="setRow"><div><b data-t="notiLabel">Notifications</b><br><small data-t="notiSub">Naye Video Ki Khabar Milegi</small></div><div class="switch on" id="swNoti" onclick="toggleSwitch('noti',this)"></div></div>
+<div class="setRow"><div><b data-t="speed">Playback Speed</b></div><select id="appSpeed" onchange="saveSet('speed',this.value)"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="1.5">1.5x</option><option value="2">2x</option></select></div>
+<div class="setRow"><div><b data-t="subtitle">Subtitles / CC</b></div><div class="switch" id="swSub" onclick="toggleSwitch('subtitle',this)"></div></div>
+<div class="setRow"><div><b data-t="dataSaver">Data Saver</b></div><div class="switch" id="swData" onclick="toggleSwitch('data',this)"></div></div>
+<button onclick="togglePop('settingsBox')" style="background:#000;width:100%">Band Karo</button>
+</div>
+
 <div id="shortMenu" class="popup"><b>More</b><div style="padding:10px 0;border-bottom:1px solid #eee" onclick="shareCurrent()">↗️ Share</div><div style="padding:10px 0;border-bottom:1px solid #eee" onclick="toggleShortSave()">🔖 Save</div><div style="padding:10px 0" onclick="togglePop('shortMenu')">Band Karo</div></div>
 <div class="bottom"><div onclick="goHome()">🏠<br><span data-t="home">Home</span></div><div onclick="openFirstShort()">🎬<br><span data-t="shorts">Shorts</span></div><div onclick="togglePop('uploadBox')" style="background:#FF6A00;color:#fff;padding:6px 14px;border-radius:12px">➕<br><span data-t="upload">Upload</span></div><div onclick="openDashboard()">📊<br><span data-t="dashboard">Dashboard</span></div><div onclick="goLive()">🔴<br><span data-t="live">Live</span></div><div onclick="togglePop('accountBox')">👤<br><span data-t="you">You</span></div></div>
 <div id="toast"></div>
 <script>
-// ===== 75 BHASHA - SAB ME TRANSLATE - KOI KHALI NAHI =====
+// ===== 75 BHASHA - HAR BHASHA APNI LIPI ME - KOI HINDI ME NAHI =====
+// Format: [code, naam-apni-lipi-me, speechCode, home, shorts, upload, dashboard, live, you, setting, search, all, notiTitle, langLabel, liveNow, goLive, quality, darkMode, autoplay, speed, subtitle, dataSaver]
 const LANGS=[
-["hi","हिन्दी","hi-IN","होम","शॉर्ट्स","अपलोड","डैशबोर्ड","लाइव","आप","सेटिंग","खोजें...","सभी","नोटिफिकेशन","भाषा","🔴 लाइव अभी","📡 गो लाइव"],
-["en","English","en-US","Home","Shorts","Upload","Dashboard","Live","You","Setting","Search...","All","Notifications","Language","🔴 Live Now","📡 Go Live"],
-["bn","বাংলা","bn-IN","হোম","শর্টস","আপলোড","ড্যাশবোর্ড","লাইভ","আপনি","সেটিং","খুঁজুন...","সব","বিজ্ঞপ্তি","ভাষা","🔴 লাইভ এখন","📡 লাইভ যান"],
-["bho","भोजपुरी","hi-IN","घर","शॉर्ट्स","अपलोड","डैशबोर्ड","लाइव","तू","सेटिंग","खोजीं...","सब","नोटिफिकेशन","भाषा","🔴 लाइव अभी","📡 लाइव जाईं"],
-["ta","தமிழ்","ta-IN","முகப்பு","ஷார்ட்ஸ்","பதிவேற்று","டாஷ்போர்டு","நேரலை","நீங்கள்","அமைப்பு","தேடுக...","அனைத்தும்","அறிவிப்புகள்","மொழி","🔴 இப்போது நேரலை","📡 நேரலை செல்லுங்கள்"],
-["te","తెలుగు","te-IN","హోమ్","షార్ట్స్","అప్‌లోడ్","డాష్‌బోర్డ్","లైవ్","మీరు","సెట్టింగ్","వెతకండి...","అన్నీ","నోటిఫికేషన్లు","భాష","🔴 ఇప్పుడు లైవ్","📡 లైవ్ కి వెళ్ళండి"],
-["mr","मराठी","mr-IN","होम","शॉर्ट्स","अपलोड","डॅशबोर्ड","लाईव्ह","तुम्ही","सेटिंग","शोधा...","सर्व","नोटिफिकेशन","भाषा","🔴 आता लाईव्ह","📡 लाईव्ह जा"],
-["gu","ગુજરાતી","gu-IN","હોમ","શોર્ટ્સ","અપલોડ","ડેશબોર્ડ","લાઈવ","તમે","સેટિંગ","શોધો...","બધા","નોટિફિકેશન","ભાષા","🔴 હમણાં લાઈવ","📡 લાઈવ જાઓ"],
-["pa","ਪੰਜਾਬੀ","pa-IN","ਹੋਮ","ਸ਼ਾਰਟਸ","ਅੱਪਲੋਡ","ਡੈਸ਼ਬੋਰਡ","ਲਾਈਵ","ਤੁਸੀਂ","ਸੈਟਿੰਗ","ਖੋਜੋ...","ਸਭ","ਨੋਟੀਫਿਕੇਸ਼ਨ","ਭਾਸ਼ਾ","🔴 ਹੁਣ ਲਾਈਵ","📡 ਲਾਈਵ ਜਾਓ"],
-["ur","اردو","ur-IN","ہوم","شارٹس","اپلوڈ","ڈیش بورڈ","لائیو","آپ","سیٹنگ","تلاش...","سب","اطلاعات","زبان","🔴 ابھی لائیو","📡 لائیو جائیں"],
-["as","অসমীয়া","as-IN","হোম","শ্বৰ্টছ","আপলোড","ডেচবৰ্ড","লাইভ","আপুনি","ছেটিং","বিচাৰক...","সকলো","জাননী","ভাষা","🔴 এতিয়া লাইভ","📡 লাইভলৈ যাওক"],
-["or","ଓଡ଼ିଆ","or-IN","ହୋମ୍","ସର୍ଟସ୍","ଅପଲୋଡ୍","ଡ୍ୟାସବୋର୍ଡ","ଲାଇଭ୍","ତୁମେ","ସେଟିଂ","ଖୋଜ...","ସବୁ","ବିଜ୍ଞପ୍ତି","ଭାଷା","🔴 ଏବେ ଲାଇଭ୍","📡 ଲାଇଭ୍ ଯାଅ"],
-["ml","മലയാളം","ml-IN","ഹോം","ഷോർട്ട്സ്","അപ്‌ലോഡ്","ഡാഷ്ബോർഡ്","ലൈവ്","നിങ്ങൾ","സെറ്റിംഗ്","തിരയുക...","എല്ലാം","അറിയിപ്പുകൾ","ഭാഷ","🔴 ഇപ്പോൾ ലൈവ്","📡 ലൈവ് പോകുക"],
-["kn","ಕನ್ನಡ","kn-IN","ಹೋಂ","ಶಾರ್ಟ್ಸ್","ಅಪ್‌ಲೋಡ್","ಡ್ಯಾಶ್‌ಬೋರ್ಡ್","ಲೈವ್","ನೀವು","ಸೆಟ್ಟಿಂಗ್","ಹುಡುಕಿ...","ಎಲ್ಲಾ","ಅಧಿಸೂಚನೆಗಳು","ಭಾಷೆ","🔴 ಈಗ ಲೈವ್","📡 ಲೈವ್ ಗೆ ಹೋಗಿ"],
-["ne","नेपाली","ne-NP","होम","सर्ट्स","अपलोड","ड्यासबोर्ड","लाइभ","तपाईं","सेटिङ","खोज्नुहोस्...","सबै","सूचना","भाषा","🔴 अहिले लाइभ","📡 लाइभ जानुहोस्"],
-["sa","संस्कृत","sa-IN","गृहम्","लघुचित्राणि","आरोहणम्","फलकम्","प्रत्यक्षम्","त्वम्","व्यवस्था","अन्वेषणम्...","सर्वम्","सूचनाः","भाषा","🔴 अधुना प्रत्यक्षम्","📡 प्रत्यक्षं गच्छ"],
-["mai","मैथिली","hi-IN","घर","शॉर्ट्स","अपलोड","डैशबोर्ड","लाइव","अहाँ","सेटिंग","खोजू...","सब","नोटिफिकेशन","भाषा","🔴 एखन लाइव","📡 लाइव जाउ"],
-["mag","मगही","hi-IN","घर","शॉर्ट्स","अपलोड","डैशबोर्ड","लाइव","तू","सेटिंग","खोजीं...","सब","नोटिफिकेशन","भाषा","🔴 अभी लाइव","📡 लाइव जाईं"],
-["raj","राजस्थानी","hi-IN","घर","शॉर्ट्स","अपलोड","डैशबोर्ड","लाइव","थे","सेटिंग","ढूंढो...","सब","नोटिफिकेशन","भाषा","🔴 अबै लाइव","📡 लाइव जाओ"],
-["hry","हरियाणवी","hi-IN","घर","शॉर्ट्स","अपलोड","डैशबोर्ड","लाइव","तू","सेटिंग","ढूंढ...","सब","नोटिफिकेशन","भाषा","🔴 इब लाइव","📡 लाइव जा"],
-["cg","छत्तीसगढ़ी","hi-IN","घर","शॉर्ट्स","अपलोड","डैशबोर्ड","लाइव","तैं","सेटिंग","खोज...","सब","नोटिफिकेशन","भाषा","🔴 अभी लाइव","📡 लाइव जा"],
-["awa","अवधी","hi-IN","घर","शॉर्ट्स","अपलोड","डैशबोर्ड","लाइव","तू","सेटिंग","खोजा...","सब","नोटिफिकेशन","भाषा","🔴 अभी लाइव","📡 लाइव जा"],
-["bjj","बघेली","hi-IN","घर","शॉर्ट्स","अपलोड","डैशबोर्ड","लाइव","तू","सेटिंग","खोजा...","सब","नोटिफिकेशन","भाषा","🔴 अभी लाइव","📡 लाइव जा"],
-["bns","बुंदेली","hi-IN","घर","शॉर्ट्स","अपलोड","डैशबोर्ड","लाइव","तू","सेटिंग","खोजो...","सब","नोटिफिकेशन","भाषा","🔴 अभी लाइव","📡 लाइव जा"],
-["kok","कोंकणी","kok-IN","घर","शॉर्ट्स","अपलोड","डैशबोर्ड","लाइव","तू","सेटिंग","सोद...","सगळें","नोटिफिकेशन","भास","🔴 आतां लाइव","📡 लाइव वच"],
-["doi","डोगरी","doi-IN","घर","शॉर्ट्स","अपलोड","डैशबोर्ड","लाइव","तुस","सेटिंग","लब्भो...","सारे","नोटिफिकेशन","भाषा","🔴 हुन लाइव","📡 लाइव जाओ"],
-["kas","कश्मीरी","ks-IN","گھر","شارٹس","اپلوڈ","ڈیش بورڈ","لائیو","توہ","سیٹنگ","ژھانٛڈ...","سٲری","نوٹیفکیشن","زَبان","🔴 وٕنۍ لائیو","📡 لائیو گژِھ"],
-["san","संताली","sat-IN","ओड़ा","शॉर्ट्स","अपलोड","डैशबोर्ड","लाइव","आम","सेटिंग","खोज...","जतो","नोटिफिकेशन","भाषा","🔴 नित लाइव","📡 लाइव चल"],
-["bod","बोडो","brx-IN","नो","शॉर्ट्स","अपलोड","डैशबोर्ड","लाइव","नों","सेटिंग","नागिर...","गासै","नोटिफिकेशन","राव","🔴 दा लाइव","📡 लाइव थां"],
-["mni","মণিপুরী","mni-IN","হোম","শ্বৰ্টছ","আপলোড","ডেচবৰ্ড","লাইভ","নহাক","ছেটিং","থিবা...","পুম্নমক","নোটিফিকেশন","লোল","🔴 হৌজিক লাইভ","📡 লাইভদা চৎলু"],
-["es","Español","es-ES","Inicio","Shorts","Subir","Panel","En Vivo","Tú","Ajustes","Buscar...","Todos","Notificaciones","Idioma","🔴 En Vivo Ahora","📡 Ir En Vivo"],
-["fr","Français","fr-FR","Accueil","Shorts","Téléverser","Tableau","En Direct","Vous","Paramètres","Rechercher...","Tous","Notifications","Langue","🔴 En Direct","📡 Aller En Direct"],
-["de","Deutsch","de-DE","Start","Shorts","Hochladen","Dashboard","Live","Du","Einstellungen","Suchen...","Alle","Benachrichtigungen","Sprache","🔴 Jetzt Live","📡 Live Gehen"],
-["it","Italiano","it-IT","Home","Shorts","Carica","Dashboard","Live","Tu","Impostazioni","Cerca...","Tutti","Notifiche","Lingua","🔴 Live Ora","📡 Vai Live"],
-["pt","Português","pt-PT","Início","Shorts","Enviar","Painel","Ao Vivo","Você","Configurações","Pesquisar...","Todos","Notificações","Idioma","🔴 Ao Vivo Agora","📡 Ir Ao Vivo"],
-["ru","Русский","ru-RU","Главная","Шортс","Загрузить","Панель","Прямой","Вы","Настройки","Поиск...","Все","Уведомления","Язык","🔴 Прямо Сейчас","📡 Выйти В Эфир"],
-["ja","日本語","ja-JP","ホーム","ショート","アップロード","ダッシュボード","ライブ","あなた","設定","検索...","すべて","通知","言語","🔴 今ライブ","📡 ライブへ"],
-["ko","한국어","ko-KR","홈","쇼츠","업로드","대시보드","라이브","당신","설정","검색...","모두","알림","언어","🔴 지금 라이브","📡 라이브 가기"],
-["zh","中文","zh-CN","首页","短视频","上传","仪表板","直播","你","设置","搜索...","全部","通知","语言","🔴 现在直播","📡 去直播"],
-["ar","العربية","ar-SA","الرئيسية","شورتس","رفع","لوحة","مباشر","أنت","الإعدادات","بحث...","الكل","الإشعارات","اللغة","🔴 مباشر الآن","📡 اذهب مباشر"],
-["tr","Türkçe","tr-TR","Anasayfa","Shorts","Yükle","Panel","Canlı","Sen","Ayarlar","Ara...","Tümü","Bildirimler","Dil","🔴 Şimdi Canlı","📡 Canlıya Git"],
-["nl","Nederlands","nl-NL","Home","Shorts","Uploaden","Dashboard","Live","Jij","Instellingen","Zoeken...","Alles","Meldingen","Taal","🔴 Nu Live","📡 Ga Live"],
-["sv","Svenska","sv-SE","Hem","Shorts","Ladda Upp","Panel","Live","Du","Inställningar","Sök...","Alla","Aviseringar","Språk","🔴 Live Nu","📡 Gå Live"],
-["da","Dansk","da-DK","Hjem","Shorts","Upload","Dashboard","Live","Dig","Indstillinger","Søg...","Alle","Notifikationer","Sprog","🔴 Live Nu","📡 Gå Live"],
-["fi","Suomi","fi-FI","Koti","Shorts","Lataa","Kojelauta","Live","Sinä","Asetukset","Hae...","Kaikki","Ilmoitukset","Kieli","🔴 Live Nyt","📡 Mene Liveen"],
-["no","Norsk","nb-NO","Hjem","Shorts","Last Opp","Dashboard","Live","Deg","Innstillinger","Søk...","Alle","Varsler","Språk","🔴 Live Nå","📡 Gå Live"],
-["pl","Polski","pl-PL","Strona","Shorts","Prześlij","Panel","Na Żywo","Ty","Ustawienia","Szukaj...","Wszystkie","Powiadomienia","Język","🔴 Na Żywo Teraz","📡 Idź Na Żywo"],
-["cs","Čeština","cs-CZ","Domů","Shorts","Nahrát","Panel","Živě","Ty","Nastavení","Hledat...","Vše","Oznámení","Jazyk","🔴 Živě Teď","📡 Jít Živě"],
-["sk","Slovenčina","sk-SK","Domov","Shorts","Nahrať","Panel","Naživo","Ty","Nastavenia","Hľadať...","Všetko","Oznámenia","Jazyk","🔴 Naživo Teraz","📡 Ísť Naživo"],
-["hu","Magyar","hu-HU","Főoldal","Shorts","Feltöltés","Vezérlőpult","Élő","Te","Beállítások","Keresés...","Összes","Értesítések","Nyelv","🔴 Élő Most","📡 Menj Élőbe"],
-["ro","Română","ro-RO","Acasă","Shorts","Încarcă","Panou","Live","Tu","Setări","Caută...","Toate","Notificări","Limbă","🔴 Live Acum","📡 Mergi Live"],
-["bg","Български","bg-BG","Начало","Shorts","Качи","Табло","На Живо","Ти","Настройки","Търси...","Всички","Известия","Език","🔴 На Живо Сега","📡 Отиди На Живо"],
-["uk","Українська","uk-UA","Головна","Шортс","Завантажити","Панель","Наживо","Ти","Налаштування","Пошук...","Всі","Сповіщення","Мова","🔴 Наживо Зараз","📡 Вийти Наживо"],
-["el","Ελληνικά","el-GR","Αρχική","Shorts","Μεταφόρτωση","Πίνακας","Ζωντανά","Εσύ","Ρυθμίσεις","Αναζήτηση...","Όλα","Ειδοποιήσεις","Γλώσσα","🔴 Ζωντανά Τώρα","📡 Πήγαινε Ζωντανά"],
-["he","עברית","he-IL","בית","שורטס","העלאה","לוח","לייב","אתה","הגדרות","חיפוש...","הכל","התראות","שפה","🔴 לייב עכשיו","📡 עלה ללייב"],
-["th","ไทย","th-TH","หน้าแรก","ชอร์ต","อัปโหลด","แดชบอร์ด","สด","คุณ","การตั้งค่า","ค้นหา...","ทั้งหมด","การแจ้งเตือน","ภาษา","🔴 สดตอนนี้","📡 ไปสด"],
-["vi","Tiếng Việt","vi-VN","Trang Chủ","Shorts","Tải Lên","Bảng","Trực Tiếp","Bạn","Cài Đặt","Tìm...","Tất Cả","Thông Báo","Ngôn Ngữ","🔴 Trực Tiếp Bây Giờ","📡 Lên Trực Tiếp"],
-["id","Bahasa Indonesia","id-ID","Beranda","Shorts","Unggah","Dasbor","Live","Kamu","Pengaturan","Cari...","Semua","Notifikasi","Bahasa","🔴 Live Sekarang","📡 Pergi Live"],
-["ms","Bahasa Melayu","ms-MY","Laman","Shorts","Muat Naik","Papan","Live","Anda","Tetapan","Cari...","Semua","Notifikasi","Bahasa","🔴 Live Sekarang","📡 Pergi Live"],
-["fil","Filipino","fil-PH","Home","Shorts","Upload","Dashboard","Live","Ikaw","Settings","Hanapin...","Lahat","Notifications","Wika","🔴 Live Ngayon","📡 Mag Live"],
-["sw","Kiswahili","sw-KE","Nyumbani","Shorts","Pakia","Dashibodi","Live","Wewe","Mipangilio","Tafuta...","Zote","Arifa","Lugha","🔴 Live Sasa","📡 Nenda Live"],
-["am","አማርኛ","am-ET","መነሻ","ሾርትስ","ጫን","ዳሽቦርድ","ቀጥታ","አንተ","ቅንብሮች","ፈልግ...","ሁሉም","ማሳወቂያዎች","ቋንቋ","🔴 አሁን ቀጥታ","📡 ቀጥታ ሂድ"],
-["ha","Hausa","ha-NG","Gida","Shorts","Loda","Dashboard","Live","Kai","Saituna","Nema...","Duka","Sanarwa","Harshe","🔴 Live Yanzu","📡 Je Live"],
-["yo","Yoruba","yo-NG","Ile","Shorts","Gbe Soke","Dashboard","Live","Iwo","Eto","Wa...","Gbogbo","Iwifunni","Ede","🔴 Live Bayi","📡 Lọ Live"],
-["ig","Igbo","ig-NG","Ụlọ","Shorts","Bulite","Dashboard","Live","Gị","Ntọala","Chọọ...","Niile","Ọkwa","Asụsụ","🔴 Live Ugbu a","📡 Gaa Live"],
-["fa","فارسی","fa-IR","خانه","شورتس","آپلود","داشبورد","زنده","تو","تنظیمات","جستجو...","همه","اعلان‌ها","زبان","🔴 زنده همین حالا","📡 برو زنده"],
-["ps","پښتو","ps-AF","کور","شارټس","اپلوډ","ډشبورډ","ژوندۍ","ته","ترتیبات","لټون...","ټول","خبرتیاوې","ژبه","🔴 اوس ژوندۍ","📡 ژوندۍ لاړ شه"],
-["my","မြန်မာ","my-MM","ပင်မ","Shorts","တင်ရန်","ဒက်ရှ်ဘုတ်","တိုက်ရိုက်","သင်","ဆက်တင်","ရှာရန်...","အားလုံး","အကြောင်းကြားစာ","ဘာသာစကား","🔴 အခု တိုက်ရိုက်","📡 တိုက်ရိုက် သွား"],
-["km","ខ្មែរ","km-KH","ទំព័រដើម","Shorts","ផ្ទុកឡើង","ផ្ទាំង","ផ្ទាល់","អ្នក","ការកំណត់","ស្វែងរក...","ទាំងអស់","ការជូនដំណឹង","ភាសា","🔴 ផ្ទាល់ឥឡូវនេះ","📡 ទៅផ្ទាល់"],
-["lo","ລາວ","lo-LA","ໜ້າຫຼັກ","Shorts","ອັບໂຫຼດ","ແຜງ","ສົດ","ເຈົ້າ","ການຕັ້ງຄ່າ","ຄົ້ນຫາ...","ທັງໝົດ","ແຈ້ງການ","ພາສາ","🔴 ສົດຕອນນີ້","📡 ໄປສົດ"],
-["si","සිංහල","si-LK","මුල් පිටුව","Shorts","උඩුගත","ඩෑෂ්බෝඩ්","සජීවී","ඔබ","සැකසුම්","සොයන්න...","සියල්ල","දැනුම්දීම්","භාෂාව","🔴 දැන් සජීවී","📡 සජීවී යන්න"],
-["dz","རྫོང་ཁ","dz-BT","གཙོ་ངོས","Shorts","ཡར་འཇོག","ལས་སྣ","གསོན་པོ","ཁྱེད","སྒྲིག་འགོད","འཚོལ...","ཚང་མ","བརྡ་ཁྱབ","སྐད་ཡིག","🔴 ད་ལྟ་གསོན་པོ","📡 གསོན་པོར་འགྲོ"],
-["kha","खासी","en-IN","Home","Shorts","Upload","Dashboard","Live","You","Setting","Search...","All","Notifications","Language","🔴 Live Now","📡 Go Live"],
-["lus","मिजो","lus-IN","In","Shorts","Upload","Dashboard","Live","Nang","Setting","Zawn...","Zawng","Notifications","Tawng","🔴 Live Tun","📡 Live Kal"],
-["brj","ब्रज","hi-IN","घर","शॉर्ट्स","अपलोड","डैशबोर्ड","लाइव","तू","सेटिंग","खोज...","सब","नोटिफिकेशन","भाषा","🔴 अभी लाइव","📡 लाइव जा"]
+["hi","हिन्दी","hi-IN","होम","शॉर्ट्स","अपलोड","डैशबोर्ड","लाइव","आप","सेटिंग","खोजें...","सभी","नोटिफिकेशन","भाषा","🔴 लाइव अभी","📡 गो लाइव","क्वालिटी","डार्क मोड","ऑटोप्ले","स्पीड","सबटाइटल","डेटा सेवर"],
+["en","English","en-US","Home","Shorts","Upload","Dashboard","Live","You","Setting","Search...","All","Notifications","Language","🔴 Live Now","📡 Go Live","Quality","Dark Mode","Autoplay","Speed","Subtitles","Data Saver"],
+["bn","বাংলা","bn-IN","হোম","শর্টস","আপলোড","ড্যাশবোর্ড","লাইভ","আপনি","সেটিং","খুঁজুন...","সব","বিজ্ঞপ্তি","ভাষা","🔴 লাইভ এখন","📡 লাইভ যান","কোয়ালিটি","ডার্ক মোড","অটোপ্লে","স্পিড","সাবটাইটেল","ডেটা সেভার"],
+["bho","भोजपुरी","hi-IN","घर","शॉर्ट्स","अपलोड","डैशबोर्ड","लाइव","तू","सेटिंग","खोजीं...","सब","नोटिफिकेशन","भाषा","🔴 लाइव अभी","📡 लाइव जाईं","क्वालिटी","डार्क मोड","ऑटोप्ले","स्पीड","सबटाइटल","डेटा सेवर"],
+["ta","தமிழ்","ta-IN","முகப்பு","ஷார்ட்ஸ்","பதிவேற்று","டாஷ்போர்டு","நேரலை","நீங்கள்","அமைப்பு","தேடுக...","அனைத்தும்","அறிவிப்புகள்","மொழி","🔴 இப்போது நேரலை","📡 நேரலை செல்லுங்கள்","தரம்","டார்க் மோடு","ஆட்டோபிளே","வேகம்","சப்டைட்டில்கள்","டேட்டா சேவர்"],
+["te","తెలుగు","te-IN","హోమ్","షార్ట్స్","అప్‌లోడ్","డాష్‌బోర్డ్","లైవ్","మీరు","సెట్టింగ్","వెతకండి...","అన్నీ","నోటిఫికేషన్లు","భాష","🔴 ఇప్పుడు లైవ్","📡 లైవ్ కి వెళ్ళండి","క్వాలిటీ","డార్క్ మోడ్","ఆటోప్లే","స్పీడ్","సబ్‌టైటిల్స్","డేటా సేవర్"],
+["mr","मराठी","mr-IN","होम","शॉर्ट्स","अपलोड","डॅशबोर्ड","लाईव्ह","तुम्ही","सेटिंग","शोधा...","सर्व","नोटिफिकेशन","भाषा","🔴 आता लाईव्ह","📡 लाईव्ह जा","क्वालिटी","डार्क मोड","ऑटोप्ले","स्पीड","सबटायटल","डेटा सेवर"],
+["gu","ગુજરાતી","gu-IN","હોમ","શોર્ટ્સ","અપલોડ","ડેશબોર્ડ","લાઈવ","તમે","સેટિંગ","શોધો...","બધા","નોટિફિકેશન","ભાષા","🔴 હમણાં લાઈવ","📡 લાઈવ જાઓ","ક્વોલિટી","ડાર્ક મોડ","ઓટોપ્લે","સ્પીડ","સબટાઇટલ","ડેટા સેવર"],
+["pa","ਪੰਜਾਬੀ","pa-IN","ਹੋਮ","ਸ਼ਾਰਟਸ","ਅੱਪਲੋਡ","ਡੈਸ਼ਬੋਰਡ","ਲਾਈਵ","ਤੁਸੀਂ","ਸੈਟਿੰਗ","ਖੋਜੋ...","ਸਭ","ਨੋਟੀਫਿਕੇਸ਼ਨ","ਭਾਸ਼ਾ","🔴 ਹੁਣ ਲਾਈਵ","📡 ਲਾਈਵ ਜਾਓ","ਕੁਆਲਿਟੀ","ਡਾਰਕ ਮੋਡ","ਆਟੋਪਲੇ","ਸਪੀਡ","ਸਬਟਾਈਟਲ","ਡਾਟਾ ਸੇਵਰ"],
+["ur","اردو","ur-IN","ہوم","شارٹس","اپلوڈ","ڈیش بورڈ","لائیو","آپ","سیٹنگ","تلاش...","سب","اطلاعات","زبان","🔴 ابھی لائیو","📡 لائیو جائیں","کوالٹی","ڈارک موڈ","آٹو پلے","رفتار","سب ٹائٹل","ڈیٹا سیور"],
+["as","অসমীয়া","as-IN","হোম","শ্বৰ্টছ","আপলোড","ডেচবৰ্ড","লাইভ","আপুনি","ছেটিং","বিচাৰক...","সকলো","জাননী","ভাষা","🔴 এতিয়া লাইভ","📡 লাইভলৈ যাওক","কোৱালিটি","ডাৰ্ক মোড","অটোপ্লে","স্পীড","ছাবটাইটেল","ডাটা ছেভাৰ"],
+["or","ଓଡ଼ିଆ","or-IN","ହୋମ୍","ସର୍ଟସ୍","ଅପଲୋଡ୍","ଡ୍ୟାସବୋର୍ଡ","ଲାଇଭ୍","ତୁମେ","ସେଟିଂ","ଖୋଜ...","ସବୁ","ବିଜ୍ଞପ୍ତି","ଭାଷା","🔴 ଏବେ ଲାଇଭ୍","📡 ଲାଇଭ୍ ଯାଅ","କ୍ୱାଲିଟି","ଡାର୍କ ମୋଡ୍","ଅଟୋପ୍ଲେ","ସ୍ପିଡ୍","ସବଟାଇଟଲ୍","ଡାଟା ସେଭର"],
+["ml","മലയാളം","ml-IN","ഹോം","ഷോർട്ട്സ്","അപ്‌ലോഡ്","ഡാഷ്ബോർഡ്","ലൈവ്","നിങ്ങൾ","സെറ്റിംഗ്","തിരയുക...","എല്ലാം","അറിയിപ്പുകൾ","ഭാഷ","🔴 ഇപ്പോൾ ലൈവ്","📡 ലൈവ് പോകുക","ഗുണമേന്മ","ഡാർക്ക് മോഡ്","ഓട്ടോപ്ലേ","വേഗം","സബ്ടൈറ്റിൽ","ഡാറ്റാ സേവർ"],
+["kn","ಕನ್ನಡ","kn-IN","ಹೋಂ","ಶಾರ್ಟ್ಸ್","ಅಪ್‌ಲೋಡ್","ಡ್ಯಾಶ್‌ಬೋರ್ಡ್","ಲೈವ್","ನೀವು","ಸೆಟ್ಟಿಂಗ್","ಹುಡುಕಿ...","ಎಲ್ಲಾ","ಅಧಿಸೂಚನೆಗಳು","ಭಾಷೆ","🔴 ಈಗ ಲೈವ್","📡 ಲೈವ್ ಗೆ ಹೋಗಿ","ಗುಣಮಟ್ಟ","ಡಾರ್ಕ್ ಮೋಡ್","ಆಟೋಪ್ಲೇ","ವೇಗ","ಉಪಶೀರ್ಷಿಕೆ","ಡೇಟಾ ಸೇವರ್"],
+["ne","नेपाली","ne-NP","होम","सर्ट्स","अपलोड","ड्यासबोर्ड","लाइभ","तपाईं","सेटिङ","खोज्नुहोस्...","सबै","सूचना","भाषा","🔴 अहिले लाइभ","📡 लाइभ जानुहोस्","क्वालिटी","डार्क मोड","अटोप्ले","स्पीड","सबटाइटल","डाटा सेभर"],
+["sa","संस्कृतम्","sa-IN","गृहम्","लघुचित्राणि","आरोहणम्","फलकम्","प्रत्यक्षम्","त्वम्","व्यवस्था","अन्वेषणम्...","सर्वम्","सूचनाः","भाषा","🔴 अधुना प्रत्यक्षम्","📡 प्रत्यक्षं गच्छ","गुणवत्ता","अन्धकार विधा","स्वचालित","वेग","उपशीर्षकम्","दत्तांश रक्षक"],
+["mai","मैथिली","hi-IN","घर","शॉर्ट्स","अपलोड","डैशबोर्ड","लाइव","अहाँ","सेटिंग","खोजू...","सब","नोटिफिकेशन","भाषा","🔴 एखन लाइव","📡 लाइव जाउ","क्वालिटी","डार्क मोड","ऑटोप्ले","स्पीड","सबटाइटल","डेटा सेवर"],
+["mag","मगही","hi-IN","घर","शॉर्ट्स","अपलोड","डैशबोर्ड","लाइव","तू","सेटिंग","खोजीं...","सब","नोटिफिकेशन","भाषा","🔴 अभी लाइव","📡 लाइव जाईं","क्वालिटी","डार्क मोड","ऑटोप्ले","स्पीड","सबटाइटल","डेटा सेवर"],
+["raj","राजस्थानी","hi-IN","घर","शॉर्ट्स","अपलोड","डैशबोर्ड","लाइव","थे","सेटिंग","ढूंढो...","सब","नोटिफिकेशन","भाषा","🔴 अबै लाइव","📡 लाइव जाओ","क्वालिटी","डार्क मोड","ऑटोप्ले","स्पीड","सबटाइटल","डेटा सेवर"],
+["hry","हरियाणवी","hi-IN","घर","शॉर्ट्स","अपलोड","डैशबोर्ड","लाइव","तू","सेटिंग","ढूंढ...","सब","नोटिफिकेशन","भाषा","🔴 इब लाइव","📡 लाइव जा","क्वालिटी","डार्क मोड","ऑटोप्ले","स्पीड","सबटाइटल","डेटा सेवर"],
+["cg","छत्तीसगढ़ी","hi-IN","घर","शॉर्ट्स","अपलोड","डैशबोर्ड","लाइव","तैं","सेटिंग","खोज...","सब","नोटिफिकेशन","भाषा","🔴 अभी लाइव","📡 लाइव जा","क्वालिटी","डार्क मोड","ऑटोप्ले","स्पीड","सबटाइटल","डेटा सेवर"],
+["awa","अवधी","hi-IN","घर","शॉर्ट्स","अपलोड","डैशबोर्ड","लाइव","तू","सेटिंग","खोजा...","सब","नोटिफिकेशन","भाषा","🔴 अभी लाइव","📡 लाइव जा","क्वालिटी","डार्क मोड","ऑटोप्ले","स्पीड","सबटाइटल","डेटा सेवर"],
+["bjj","बघेली","hi-IN","घर","शॉर्ट्स","अपलोड","डैशबोर्ड","लाइव","तू","सेटिंग","खोजा...","सब","नोटिफिकेशन","भाषा","🔴 अभी लाइव","📡 लाइव जा","क्वालिटी","डार्क मोड","ऑटोप्ले","स्पीड","सबटाइटल","डेटा सेवर"],
+["bns","बुंदेली","hi-IN","घर","शॉर्ट्स","अपलोड","डैशबोर्ड","लाइव","तू","सेटिंग","खोजो...","सब","नोटिफिकेशन","भाषा","🔴 अभी लाइव","📡 लाइव जा","क्वालिटी","डार्क मोड","ऑटोप्ले","स्पीड","सबटाइटल","डेटा सेवर"],
+["kok","कोंकणी","kok-IN","घर","शॉर्ट्स","अपलोड","डैशबोर्ड","लाइव","तू","सेटिंग","सोद...","सगळें","नोटिफिकेशन","भास","🔴 आतां लाइव","📡 लाइव वच","क्वालिटी","डार्क मोड","ऑटोप्ले","स्पीड","सबटायटल","डेटा सेवर"],
+["doi","डोगरी","doi-IN","घर","शॉर्ट्स","अपलोड","डैशबोर्ड","लाइव","तुस","सेटिंग","लब्भो...","सारे","नोटिफिकेशन","भाषा","🔴 हुन लाइव","📡 लाइव जाओ","क्वालिटी","डार्क मोड","ऑटोप्ले","स्पीड","सबटाइटल","डेटा सेवर"],
+["kas","کٲشُر","ks-IN","گھر","شارٹس","اپلوڈ","ڈیش بورڈ","لائیو","توہ","سیٹنگ","ژھانٛڈ...","سٲری","نوٹیفکیشن","زَبان","🔴 وٕنۍ لائیو","📡 لائیو گژِھ","کوالٹی","ڈارک موڈ","آٹو پلے","رفتار","سب ٹائٹل","ڈیٹا سیور"],
+["san","ᱥᱟᱱᱛᱟᱲᱤ","sat-IN","ᱳᱲᱟᱜ","ᱥᱟᱨᱴᱥ","ᱟᱯᱞᱳᱰ","ᱰᱟᱥᱵᱳᱨᱰ","ᱞᱟᱭᱤᱵᱷ","ᱟᱢ","ᱥᱮᱴᱤᱝ","ᱥᱮᱸᱫᱽᱨᱟ...","ᱡᱚᱛᱚ","ᱱᱳᱴᱤᱯᱷᱤᱠᱮᱥᱚᱱ","ᱯᱟᱹᱨᱥᱤ","🔴 ᱱᱤᱛ ᱞᱟᱭᱤᱵᱷ","📡 ᱞᱟᱭᱤᱵᱷ ᱪᱟᱞ","Quality","Dark Mode","Autoplay","Speed","Subtitles","Data Saver"],
+["bod","बर'","brx-IN","नो","शॉर्ट्स","अपलोड","डैशबोर्ड","लाइव","नों","सेटिंग","नागिर...","गासै","नोटिफिकेशन","राव","🔴 दा लाइव","📡 लाइव थां","क्वालिटी","डार्क मोड","ऑटोप्ले","स्पीड","सबटाइटल","डेटा सेवर"],
+["mni","মণিপুরী","mni-IN","হোম","শ্বৰ্টছ","আপলোড","ডেচবৰ্ড","লাইভ","নহাক","ছেটিং","থিবা...","পুম্নমক","নোটিফিকেশন","লোল","🔴 হৌজিক লাইভ","📡 লাইভদা চৎলু","কোয়ালিটি","ডার্ক মোড","অটোপ্লে","স্পিড","সাবটাইটেল","ডেটা সেভার"],
+["es","Español","es-ES","Inicio","Shorts","Subir","Panel","En Vivo","Tú","Ajustes","Buscar...","Todos","Notificaciones","Idioma","🔴 En Vivo Ahora","📡 Ir En Vivo","Calidad","Modo Oscuro","Reproducción Automática","Velocidad","Subtítulos","Ahorro de Datos"],
+["fr","Français","fr-FR","Accueil","Shorts","Téléverser","Tableau","En Direct","Vous","Paramètres","Rechercher...","Tous","Notifications","Langue","🔴 En Direct","📡 Aller En Direct","Qualité","Mode Sombre","Lecture Auto","Vitesse","Sous-titres","Économie de Données"],
+["de","Deutsch","de-DE","Start","Shorts","Hochladen","Dashboard","Live","Du","Einstellungen","Suchen...","Alle","Benachrichtigungen","Sprache","🔴 Jetzt Live","📡 Live Gehen","Qualität","Dunkelmodus","Autoplay","Geschwindigkeit","Untertitel","Datensparer"],
+["it","Italiano","it-IT","Home","Shorts","Carica","Dashboard","Live","Tu","Impostazioni","Cerca...","Tutti","Notifiche","Lingua","🔴 Live Ora","📡 Vai Live","Qualità","Modalità Scura","Autoplay","Velocità","Sottotitoli","Risparmio Dati"],
+["pt","Português","pt-PT","Início","Shorts","Enviar","Painel","Ao Vivo","Você","Configurações","Pesquisar...","Todos","Notificações","Idioma","🔴 Ao Vivo Agora","📡 Ir Ao Vivo","Qualidade","Modo Escuro","Autoplay","Velocidade","Legendas","Economia de Dados"],
+["ru","Русский","ru-RU","Главная","Шортс","Загрузить","Панель","Прямой","Вы","Настройки","Поиск...","Все","Уведомления","Язык","🔴 Прямо Сейчас","📡 Выйти В Эфир","Качество","Тёмный Режим","Автовоспроизведение","Скорость","Субтитры","Экономия Трафика"],
+["ja","日本語","ja-JP","ホーム","ショート","アップロード","ダッシュボード","ライブ","あなた","設定","検索...","すべて","通知","言語","🔴 今ライブ","📡 ライブへ","画質","ダークモード","自動再生","速度","字幕","データセーバー"],
+["ko","한국어","ko-KR","홈","쇼츠","업로드","대시보드","라이브","당신","설정","검색...","모두","알림","언어","🔴 지금 라이브","📡 라이브 가기","화질","다크 모드","자동 재생","속도","자막","데이터 절약"],
+["zh","中文","zh-CN","首页","短视频","上传","仪表板","直播","你","设置","搜索...","全部","通知","语言","🔴 现在直播","📡 去直播","画质","深色模式","自动播放","速度","字幕","省流量"],
+["ar","العربية","ar-SA","الرئيسية","شورتس","رفع","لوحة","مباشر","أنت","الإعدادات","بحث...","الكل","الإشعارات","اللغة","🔴 مباشر الآن","📡 اذهب مباشر","الجودة","الوضع الداكن","تشغيل تلقائي","السرعة","الترجمة","توفير البيانات"],
+["tr","Türkçe","tr-TR","Anasayfa","Shorts","Yükle","Panel","Canlı","Sen","Ayarlar","Ara...","Tümü","Bildirimler","Dil","🔴 Şimdi Canlı","📡 Canlıya Git","Kalite","Karanlık Mod","Otomatik Oynat","Hız","Altyazılar","Veri Tasarrufu"],
+["nl","Nederlands","nl-NL","Home","Shorts","Uploaden","Dashboard","Live","Jij","Instellingen","Zoeken...","Alles","Meldingen","Taal","🔴 Nu Live","📡 Ga Live","Kwaliteit","Donkere Modus","Autoplay","Snelheid","Ondertitels","Databesparing"],
+["sv","Svenska","sv-SE","Hem","Shorts","Ladda Upp","Panel","Live","Du","Inställningar","Sök...","Alla","Aviseringar","Språk","🔴 Live Nu","📡 Gå Live","Kvalitet","Mörkt Läge","Autoplay","Hastighet","Undertexter","Datasparare"],
+["da","Dansk","da-DK","Hjem","Shorts","Upload","Dashboard","Live","Dig","Indstillinger","Søg...","Alle","Notifikationer","Sprog","🔴 Live Nu","📡 Gå Live","Kvalitet","Mørk Tilstand","Autoplay","Hastighed","Undertekster","Datasparer"],
+["fi","Suomi","fi-FI","Koti","Shorts","Lataa","Kojelauta","Live","Sinä","Asetukset","Hae...","Kaikki","Ilmoitukset","Kieli","🔴 Live Nyt","📡 Mene Liveen","Laatu","Tumma Tila","Automaattinen Toisto","Nopeus","Tekstitykset","Datansäästö"],
+["no","Norsk","nb-NO","Hjem","Shorts","Last Opp","Dashboard","Live","Deg","Innstillinger","Søk...","Alle","Varsler","Språk","🔴 Live Nå","📡 Gå Live","Kvalitet","Mørk Modus","Autoplay","Hastighet","Undertekster","Datasparing"],
+["pl","Polski","pl-PL","Strona","Shorts","Prześlij","Panel","Na Żywo","Ty","Ustawienia","Szukaj...","Wszystkie","Powiadomienia","Język","🔴 Na Żywo Teraz","📡 Idź Na Żywo","Jakość","Tryb Ciemny","Autoodtwarzanie","Prędkość","Napisy","Oszczędzanie Danych"],
+["cs","Čeština","cs-CZ","Domů","Shorts","Nahrát","Panel","Živě","Ty","Nastavení","Hledat...","Vše","Oznámení","Jazyk","🔴 Živě Teď","📡 Jít Živě","Kvalita","Tmavý Režim","Autoplay","Rychlost","Titulky","Spořič Dat"],
+["sk","Slovenčina","sk-SK","Domov","Shorts","Nahrať","Panel","Naživo","Ty","Nastavenia","Hľadať...","Všetko","Oznámenia","Jazyk","🔴 Naživo Teraz","📡 Ísť Naživo","Kvalita","Tmavý Režim","Autoplay","Rýchlosť","Titulky","Šetrič Dát"],
+["hu","Magyar","hu-HU","Főoldal","Shorts","Feltöltés","Vezérlőpult","Élő","Te","Beállítások","Keresés...","Összes","Értesítések","Nyelv","🔴 Élő Most","📡 Menj Élőbe","Minőség","Sötét Mód","Automatikus Lejátszás","Sebesség","Feliratok","Adatmentés"],
+["ro","Română","ro-RO","Acasă","Shorts","Încarcă","Panou","Live","Tu","Setări","Caută...","Toate","Notificări","Limbă","🔴 Live Acum","📡 Mergi Live","Calitate","Mod Întunecat","Redare Automată","Viteză","Subtitrări","Economisire Date"],
+["bg","Български","bg-BG","Начало","Shorts","Качи","Табло","На Живо","Ти","Настройки","Търси...","Всички","Известия","Език","🔴 На Живо Сега","📡 Отиди На Живо","Качество","Тъмен Режим","Автоматично Възпроизвеждане","Скорост","Субтитри","Пестене на Данни"],
+["uk","Українська","uk-UA","Головна","Шортс","Завантажити","Панель","Наживо","Ти","Налаштування","Пошук...","Всі","Сповіщення","Мова","🔴 Наживо Зараз","📡 Вийти Наживо","Якість","Темний Режим","Автовідтворення","Швидкість","Субтитри","Економія Даних"],
+["el","Ελληνικά","el-GR","Αρχική","Shorts","Μεταφόρτωση","Πίνακας","Ζωντανά","Εσύ","Ρυθμίσεις","Αναζήτηση...","Όλα","Ειδοποιήσεις","Γλώσσα","🔴 Ζωντανά Τώρα","📡 Πήγαινε Ζωντανά","Ποιότητα","Σκοτεινή Λειτουργία","Αυτόματη Αναπαραγωγή","Ταχύτητα","Υπότιτλοι","Εξοικονόμηση Δεδομένων"],
+["he","עברית","he-IL","בית","שורטס","העלאה","לוח","לייב","אתה","הגדרות","חיפוש...","הכל","התראות","שפה","🔴 לייב עכשיו","📡 עלה ללייב","איכות","מצב כהה","הפעלה אוטומטית","מהירות","כתוביות","חיסכון בנתונים"],
+["th","ไทย","th-TH","หน้าแรก","ชอร์ต","อัปโหลด","แดชบอร์ด","สด","คุณ","การตั้งค่า","ค้นหา...","ทั้งหมด","การแจ้งเตือน","ภาษา","🔴 สดตอนนี้","📡 ไปสด","คุณภาพ","โหมดมืด","เล่นอัตโนมัติ","ความเร็ว","คำบรรยาย","ประหยัดข้อมูล"],
+["vi","Tiếng Việt","vi-VN","Trang Chủ","Shorts","Tải Lên","Bảng","Trực Tiếp","Bạn","Cài Đặt","Tìm...","Tất Cả","Thông Báo","Ngôn Ngữ","🔴 Trực Tiếp Bây Giờ","📡 Lên Trực Tiếp","Chất Lượng","Chế Độ Tối","Tự Động Phát","Tốc Độ","Phụ Đề","Tiết Kiệm Dữ Liệu"],
+["id","Bahasa Indonesia","id-ID","Beranda","Shorts","Unggah","Dasbor","Live","Kamu","Pengaturan","Cari...","Semua","Notifikasi","Bahasa","🔴 Live Sekarang","📡 Pergi Live","Kualitas","Mode Gelap","Putar Otomatis","Kecepatan","Subtitle","Penghemat Data"],
+["ms","Bahasa Melayu","ms-MY","Laman","Shorts","Muat Naik","Papan","Live","Anda","Tetapan","Cari...","Semua","Notifikasi","Bahasa","🔴 Live Sekarang","📡 Pergi Live","Kualiti","Mod Gelap","Auto Main","Kelajuan","Sarikata","Penjimat Data"],
+["fil","Filipino","fil-PH","Home","Shorts","Upload","Dashboard","Live","Ikaw","Settings","Hanapin...","Lahat","Notifications","Wika","🔴 Live Ngayon","📡 Mag Live","Kalidad","Dark Mode","Autoplay","Bilis","Subtitle","Data Saver"],
+["sw","Kiswahili","sw-KE","Nyumbani","Shorts","Pakia","Dashibodi","Live","Wewe","Mipangilio","Tafuta...","Zote","Arifa","Lugha","🔴 Live Sasa","📡 Nenda Live","Ubora","Hali ya Giza","Cheza Kiotomatiki","Kasi","Manukuu","Kuokoa Data"],
+["am","አማርኛ","am-ET","መነሻ","ሾርትስ","ጫን","ዳሽቦርድ","ቀጥታ","አንተ","ቅንብሮች","ፈልግ...","ሁሉም","ማሳወቂያዎች","ቋንቋ","🔴 አሁን ቀጥታ","📡 ቀጥታ ሂድ","ጥራት","ጨለማ ሁነታ","ራስ-ሰር መጫወት","ፍጥነት","ትርጉም","መረጃ ቆጣቢ"],
+["ha","Hausa","ha-NG","Gida","Shorts","Loda","Dashboard","Live","Kai","Saituna","Nema...","Duka","Sanarwa","Harshe","🔴 Live Yanzu","📡 Je Live","Inganci","Yanayin Duhu","Kunna Kai Tsaye","Gudun","Fassara","Ajiye Bayanai"],
+["yo","Yoruba","yo-NG","Ile","Shorts","Gbe Soke","Dashboard","Live","Iwo","Eto","Wa...","Gbogbo","Iwifunni","Ede","🔴 Live Bayi","📡 Lọ Live","Didara","Ipo Dudu","Ṣiṣe Aifọwọyi","Iyara","Atunkọ","Fipamọ Data"],
+["ig","Igbo","ig-NG","Ụlọ","Shorts","Bulite","Dashboard","Live","Gị","Ntọala","Chọọ...","Niile","Ọkwa","Asụsụ","🔴 Live Ugbu a","📡 Gaa Live","Ogo","Ọnọdụ Ọchịchịrị","Kpọọ Na-akpaghị Aka","Ọsọ","Ndepụta","Nchekwa Data"],
+["fa","فارسی","fa-IR","خانه","شورتس","آپلود","داشبورد","زنده","تو","تنظیمات","جستجو...","همه","اعلان‌ها","زبان","🔴 زنده همین حالا","📡 برو زنده","کیفیت","حالت تیره","پخش خودکار","سرعت","زیرنویس","صرفه‌جویی داده"],
+["ps","پښتو","ps-AF","کور","شارټس","اپلوډ","ډشبورډ","ژوندۍ","ته","ترتیبات","لټون...","ټول","خبرتیاوې","ژبه","🔴 اوس ژوندۍ","📡 ژوندۍ لاړ شه","کیفیت","تور حالت","خودکاره غږول","سرعت","فرعي سرلیکونه","د معلومات خوندي کول"],
+["my","မြန်မာ","my-MM","ပင်မ","Shorts","တင်ရန်","ဒက်ရှ်ဘုတ်","တိုက်ရိုက်","သင်","ဆက်တင်","ရှာရန်...","အားလုံး","အကြောင်းကြားစာ","ဘာသာစကား","🔴 အခု တိုက်ရိုက်","📡 တိုက်ရိုက် သွား","အရည်အသွေး","အမှောင်မုဒ်","အလိုအလျောက် ဖွင့်","အမြန်နှုန်း","စာတန်းထိုး","ဒေတာ ချွေတာ"],
+["km","ខ្មែរ","km-KH","ទំព័រដើម","Shorts","ផ្ទុកឡើង","ផ្ទាំង","ផ្ទាល់","អ្នក","ការកំណត់","ស្វែងរក...","ទាំងអស់","ការជូនដំណឹង","ភាសា","🔴 ផ្ទាល់ឥឡូវនេះ","📡 ទៅផ្ទាល់","គុណភាព","របៀបងងឹត","ចាក់ដោយស្វ័យប្រវត្តិ","ល្បឿន","ចំណងជើងរង","សន្សំទិន្នន័យ"],
+["lo","ລາວ","lo-LA","ໜ້າຫຼັກ","Shorts","ອັບໂຫຼດ","ແຜງ","ສົດ","ເຈົ້າ","ການຕັ້ງຄ່າ","ຄົ້ນຫາ...","ທັງໝົດ","ແຈ້ງການ","ພາສາ","🔴 ສົດຕອນນີ້","📡 ໄປສົດ","ຄຸນນະພາບ","ໂໝດມືດ","ຫຼິ້ນອັດຕະໂນມັດ","ຄວາມໄວ","ຄຳบรรยาย","ປະຢັດຂໍ້ມູນ"],
+["si","සිංහල","si-LK","මුල් පිටුව","Shorts","උඩුගත","ඩෑෂ්බෝඩ්","සජීවී","ඔබ","සැකසුම්","සොයන්න...","සියල්ල","දැනුම්දීම්","භාෂාව","🔴 දැන් සජීවී","📡 සජීවී යන්න","ගුණාත්මකභාවය","අඳුරු මාදිලිය","ස්වයංක්‍රීයව වාදනය","වේගය","උපසිරැසි","දත්ත සුරැකීම"],
+["dz","རྫོང་ཁ","dz-BT","གཙོ་ངོས","Shorts","ཡར་འཇོག","ལས་སྣ","གསོན་པོ","ཁྱེད","སྒྲིག་འགོད","འཚོལ...","ཚང་མ","བརྡ་ཁྱབ","སྐད་ཡིག","🔴 ད་ལྟ་གསོན་པོ","📡 གསོན་པོར་འགྲོ","སྤུས་ཚད","མུན་ནག་གི་རྣམ་པ","རང་འགུལ་འཁྲབ","མགྱོགས་ཚད","འོག་མའི་ཡིག","གཞི་གྲངས་ཉར་ཚགས"],
+["kha","Khasi","en-IN","Home","Shorts","Upload","Dashboard","Live","You","Setting","Search...","All","Notifications","Language","🔴 Live Now","📡 Go Live","Quality","Dark Mode","Autoplay","Speed","Subtitles","Data Saver"],
+["lus","Mizo","lus-IN","In","Shorts","Upload","Dashboard","Live","Nang","Setting","Zawn...","Zawng","Notifications","Tawng","🔴 Live Tun","📡 Live Kal","Quality","Dark Mode","Autoplay","Speed","Subtitles","Data Saver"],
+["brj","ब्रज","hi-IN","घर","शॉर्ट्स","अपलोड","डैशबोर्ड","लाइव","तू","सेटिंग","खोज...","सब","नोटिफिकेशन","भाषा","🔴 अभी लाइव","📡 लाइव जा","क्वालिटी","डार्क मोड","ऑटोप्ले","स्पीड","सबटाइटल","डेटा सेवर"]
 ];
 let videos=[];try{videos=JSON.parse(localStorage.getItem('bf75_my_videos')||'[]')}catch(e){videos=[]}
 let demo=[{id:'s1',type:'short',title:'Bhajan Short',cat:'Bhakti',channel:'@BharatFlix',img:'https://picsum.photos/400/600?random=1',video:'https://www.w3schools.com/html/mov_bbb.mp4',dur:'0:32'},{id:'s2',type:'short',title:'Comedy Short',cat:'Comedy',channel:'@BharatFlix',img:'https://picsum.photos/400/600?random=2',video:'https://www.w3schools.com/html/mov_bbb.mp4',dur:'0:28'},{id:'s3',type:'short',title:'Music Short',cat:'Music',channel:'@BharatFlix',img:'https://picsum.photos/400/600?random=3',video:'https://www.w3schools.com/html/mov_bbb.mp4',dur:'0:41'},{id:'s4',type:'short',title:'News Short',cat:'News',channel:'@BharatFlix',img:'https://picsum.photos/400/600?random=4',video:'https://www.w3schools.com/html/mov_bbb.mp4',dur:'0:35'},{id:'l1',type:'long',title:'Full Bhajan - Long Video',cat:'Bhakti',channel:'@BharatFlix',img:'https://picsum.photos/800/450?random=11',video:'https://www.w3schools.com/html/mov_bbb.mp4',dur:'12:40'},{id:'l2',type:'long',title:'Full Comedy - Long Video',cat:'Comedy',channel:'@BharatFlix',img:'https://picsum.photos/800/450?random=12',video:'https://www.w3schools.com/html/mov_bbb.mp4',dur:'18:20'},{id:'l3',type:'long',title:'Music Full Song',cat:'Music',channel:'@BharatFlix',img:'https://picsum.photos/800/450?random=13',video:'https://www.w3schools.com/html/mov_bbb.mp4',dur:'10:15'}];
@@ -204,149 +217,79 @@ function togglePop(id){let e=document.getElementById(id);let was=e.style.display
 function getLang(){return localStorage.getItem('bf75_lang')||'hi';}
 function applyLang(code){
 let row=LANGS.find(l=>l[0]===code)||LANGS[0];
-let map={home:row[3],shorts:row[4],upload:row[5],dashboard:row[6],live:row[7],you:row[8],setting:row[9],search:row[10],all:row[11],notiTitle:row[12],langLabel:row[13],liveNow:row[14],goLive:row[15]};
+let map={home:row[3],shorts:row[4],upload:row[5],dashboard:row[6],live:row[7],you:row[8],setting:row[9],search:row[10],all:row[11],notiTitle:row[12],langLabel:row[13],liveNow:row[14],goLive:row[15],quality:row[16],darkMode:row[17],autoplay:row[18],speed:row[19],subtitle:row[20],dataSaver:row[21]};
 document.querySelectorAll('[data-t]').forEach(el=>{let k=el.getAttribute('data-t');if(map[k])el.textContent=map[k];});
 document.getElementById('searchInput').placeholder=map.search;
 document.documentElement.lang=code;
 document.getElementById('appLang').value=code;
-document.getElementById('langInfo').textContent='✅ Total '+LANGS.length+' Bhasha - Abhi: '+row[1]+' - App Isi Bhasha Me Hai - Koi Kati Nahi';
-document.getElementById('settingsBox').querySelector('p').textContent='App Setting - '+LANGS.length+' Bhasha - 100% - '+row[1];
+// HARI LINE HATA DI - YOUTUBE ME NAHI HOTI - KUCH NAHI LIKHNA
 }
-function changeLang(code){localStorage.setItem('bf75_lang',code);applyLang(code);toast('✅ Language Badal Gayi - '+code+' - App Ab Isi Bhasha Me Hai');}
+function changeLang(code){localStorage.setItem('bf75_lang',code);applyLang(code);toast('Language Badal Gayi');}
 function initLang(){let sel=document.getElementById('appLang');sel.innerHTML='';LANGS.forEach(l=>{let o=document.createElement('option');o.value=l[0];o.textContent=l[1];sel.appendChild(o);});applyLang(getLang());}
 function saveSet(k,v){localStorage.setItem('bf75_'+k,v);toast('Setting Save');}
 function toggleSwitch(k,el){let on=!el.classList.contains('on');el.classList.toggle('on',on);localStorage.setItem('bf75_'+k,on);if(k==='noti'&&on)askNoti();}
 function toggleTheme(el){let on=!el.classList.contains('on');el.classList.toggle('on',on);document.body.classList.toggle('dark',on);}
 function clearHistory(){localStorage.removeItem('bf75_search_hist');toast('History Saaf Ho Gayi');}
-// ===== SEARCH 100% =====
 let searchHist=[];try{searchHist=JSON.parse(localStorage.getItem('bf75_search_hist')||'[]')}catch(e){searchHist=[]}
 function openSearch(){document.getElementById('searchBox').classList.add('open');setTimeout(()=>document.getElementById('searchInput').focus(),50);showHist();}
 function closeSearch(){document.getElementById('searchBox').classList.remove('open');document.getElementById('searchInput').value='';doSearch('');}
 function openSearchFromShort(){closeShort();openSearch();}
 function showHist(){let box=document.getElementById('histBox');if(!searchHist.length){box.style.display='none';return;}box.style.display='block';box.innerHTML='<b style="font-size:13px">Pehle Khoja:</b>'+searchHist.map(h=>`<div style="padding:8px 0;border-bottom:1px solid #eee;font-size:13px" onclick="document.getElementById('searchInput').value='${h}';doSearch('${h}')">🔍 ${h}</div>`).join('');}
-function doSearch(q){
-q=(q||'').toString().trim();
-let low=q.toLowerCase();
-if(q){searchHist=[q,...searchHist.filter(x=>x.toLowerCase()!==low)].slice(0,10);localStorage.setItem('bf75_search_hist',JSON.stringify(searchHist));}
-let found=0;
-document.querySelectorAll('#feed > div').forEach(el=>{let txt=(el.getAttribute('data-search')||'').toLowerCase();let ok=!low||txt.includes(low);el.style.display=ok?'':'none';if(ok)found++;});
-document.getElementById('noResult').style.display=found===0?'block':'none';
-document.getElementById('liveSec').style.display=low?'none':'block';
-document.getElementById('histBox').style.display=low?'none':'block';
-if(low&&found>0)toast('✅ '+found+' Video Mili - '+q);
-}
+function doSearch(q){q=(q||'').toString().trim();let low=q.toLowerCase();if(q){searchHist=[q,...searchHist.filter(x=>x.toLowerCase()!==low)].slice(0,10);localStorage.setItem('bf75_search_hist',JSON.stringify(searchHist));}let found=0;document.querySelectorAll('#feed > div').forEach(el=>{let txt=(el.getAttribute('data-search')||'').toLowerCase();let ok=!low||txt.includes(low);el.style.display=ok?'':'none';if(ok)found++;});document.getElementById('noResult').style.display=found===0?'block':'none';document.getElementById('liveSec').style.display=low?'none':'block';document.getElementById('histBox').style.display=low?'none':'block';if(low&&found>0)toast(found+' Video Mili - '+q);}
 function filterChip(el,word){document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));el.classList.add('active');doSearch(word);}
 function showLive(){document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));document.getElementById('liveSec').style.display='block';document.getElementById('liveSec').scrollIntoView({behavior:'smooth'});}
-// ===== VOICE 100% =====
 let rec=null,micOn=false;
-async function voiceSearch(){
-let btn=document.getElementById('micBtn');
-if(micOn&&rec){try{rec.stop();}catch(e){}return;}
-let SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-if(!SR){toast('Chrome Me Kholiye');return;}
-try{let s=await navigator.mediaDevices.getUserMedia({audio:true});s.getTracks().forEach(t=>t.stop());}catch(e){toast('Mic Allow Karo');return;}
-let row=LANGS.find(l=>l[0]===getLang())||LANGS[0];
-rec=new SR();rec.lang=row[2];rec.interimResults=false;
-rec.onstart=()=>{micOn=true;btn.classList.add('listening');btn.textContent='🔴';toast('Bolo... Sun Raha Hu...');};
-rec.onresult=(e)=>{let txt=e.results[0][0].transcript;document.getElementById('searchInput').value=txt;doSearch(txt);toast('✅ Sun Liya - '+txt);addNoti('🎙️ Voice Search - '+txt);};
-rec.onerror=()=>{micOn=false;btn.classList.remove('listening');btn.textContent='🎙️';toast('Mic Dobara Dabao');};
-rec.onend=()=>{micOn=false;btn.classList.remove('listening');btn.textContent='🎙️';};
-try{rec.start();}catch(e){toast('Mic Dobara Dabao');}
-}
-// ===== NOTIFICATION 100% =====
+async function voiceSearch(){let btn=document.getElementById('micBtn');if(micOn&&rec){try{rec.stop();}catch(e){}return;}let SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){toast('Chrome Me Kholiye');return;}try{let s=await navigator.mediaDevices.getUserMedia({audio:true});s.getTracks().forEach(t=>t.stop());}catch(e){toast('Mic Allow Karo');return;}let row=LANGS.find(l=>l[0]===getLang())||LANGS[0];rec=new SR();rec.lang=row[2];rec.interimResults=false;rec.onstart=()=>{micOn=true;btn.classList.add('listening');btn.textContent='🔴';toast('Bolo... Sun Raha Hu...');};rec.onresult=(e)=>{let txt=e.results[0][0].transcript;document.getElementById('searchInput').value=txt;doSearch(txt);toast('Sun Liya - '+txt);addNoti('Voice Search - '+txt);};rec.onerror=()=>{micOn=false;btn.classList.remove('listening');btn.textContent='🎙️';toast('Mic Dobara Dabao');};rec.onend=()=>{micOn=false;btn.classList.remove('listening');btn.textContent='🎙️';};try{rec.start();}catch(e){toast('Mic Dobara Dabao');}}
 let notiList=[];try{notiList=JSON.parse(localStorage.getItem('bf75_noti')||'[]')}catch(e){notiList=[]}
-if(!notiList.length){notiList=[{t:'BharatFlix ne naya Short dala - Dekho',time:'Abhi',seen:false},{t:'🔴 Live Abhi - Bhajan Live Shuru',time:'Abhi',seen:false}];localStorage.setItem('bf75_noti',JSON.stringify(notiList));}
+if(!notiList.length){notiList=[{t:'BharatFlix ne naya Short dala - Dekho',time:'Abhi',seen:false},{t:'Live Abhi - Bhajan Live Shuru',time:'Abhi',seen:false}];localStorage.setItem('bf75_noti',JSON.stringify(notiList));}
 function updateBell(){let un=notiList.filter(n=>!n.seen).length;let b=document.getElementById('bellCount');b.style.display=un>0?'flex':'none';b.textContent=un;}
-function askNoti(){if(!('Notification' in window)){toast('Is Browser Me Notification Nahi');return;}if(Notification.permission==='granted'){toast('✅ Notification Pehle Se On Hai');return;}Notification.requestPermission().then(p=>{if(p==='granted'){toast('✅ Notification On Ho Gaya');addNoti('✅ Notification On Ho Gaya');}else toast('Allow Karo');});}
+function askNoti(){if(!('Notification' in window)){toast('Is Browser Me Notification Nahi');return;}if(Notification.permission==='granted'){toast('Notification Pehle Se On Hai');return;}Notification.requestPermission().then(p=>{if(p==='granted'){toast('Notification On Ho Gaya');addNoti('Notification On Ho Gaya');}else toast('Allow Karo');});}
 function addNoti(txt){notiList.unshift({t:txt,time:new Date().toLocaleTimeString('hi-IN',{hour:'2-digit',minute:'2-digit'}),seen:false});notiList=notiList.slice(0,30);localStorage.setItem('bf75_noti',JSON.stringify(notiList));updateBell();if('Notification' in window&&Notification.permission==='granted'){try{new Notification('BharatFlix - '+txt,{body:'Dabao To Video Khulegi',icon:'apk-icon.png'});}catch(e){}}}
 function openNoti(){let box=document.getElementById('notiList');box.innerHTML=notiList.length?notiList.map(n=>`<div class="notiItem" onclick="goHome();togglePop('notiBox')"><b>${n.seen?'':'🔴 '}${n.t}</b><br><small>${n.time}</small></div>`).join(''):'<p>Koi Notification Nahi</p>';togglePop('notiBox');notiList.forEach(n=>n.seen=true);localStorage.setItem('bf75_noti',JSON.stringify(notiList));setTimeout(updateBell,300);}
 function clearNoti(){notiList=[];localStorage.setItem('bf75_noti',JSON.stringify(notiList));updateBell();openNoti();}
-// ===== INSTALL - ISI SIDE KO KHOLEGA =====
 let deferred=null,isInstalled=false;
 if(window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches)isInstalled=true;
 if(localStorage.getItem('bf75_installed')==='yes')isInstalled=true;
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferred=e;updateInstallBtn();});
-window.addEventListener('appinstalled',()=>{isInstalled=true;localStorage.setItem('bf75_installed','yes');updateInstallBtn();toast('✅ Install Ho Gaya - Home Screen Par Dekho');});
+window.addEventListener('appinstalled',()=>{isInstalled=true;localStorage.setItem('bf75_installed','yes');updateInstallBtn();toast('Install Ho Gaya');});
 function updateInstallBtn(){let b=document.getElementById('installBtn');if(!b)return;if(isInstalled){b.style.display='none';return;}b.style.display='block';b.textContent='Install';}
-async function installApp(){let b=document.getElementById('installBtn');if(isInstalled){b.style.display='none';return;}if(!deferred){toast('Browser Menu - Add to Home Screen Dabao - Yahi Side Khulegi');return;}b.textContent='Installing...';b.className='installing';toast('Installing Ho Raha Hai...');try{deferred.prompt();let ch=await deferred.userChoice;if(ch.outcome==='accepted'){isInstalled=true;localStorage.setItem('bf75_installed','yes');b.style.display='none';toast('✅ Install Ho Gaya - Home Screen Par Dekho');}else{b.textContent='Install';b.className='';}}catch(e){b.textContent='Install';}deferred=null;}
+async function installApp(){let b=document.getElementById('installBtn');if(isInstalled){b.style.display='none';return;}if(!deferred){toast('Browser Menu - Add to Home Screen Dabao - Yahi Side Khulegi');return;}b.textContent='Installing...';try{deferred.prompt();let ch=await deferred.userChoice;if(ch.outcome==='accepted'){isInstalled=true;localStorage.setItem('bf75_installed','yes');b.style.display='none';toast('Install Ho Gaya');}else{b.textContent='Install';}}catch(e){b.textContent='Install';}deferred=null;}
 updateInstallBtn();
-// ===== FEED + CATEGORY AUTO + QUALITY =====
 let shortList=[];let shortIdx=0;let curLongId=null;
-function renderFeed(){
-let box=document.getElementById('feed');box.innerHTML='';shortList=[];
-allVideos.forEach(v=>{
-let c=getCount(v.id);
-if(v.type==='short'){shortList.push(v);let d=document.createElement('div');d.className='shortCard';d.setAttribute('data-search',(v.title+' '+v.cat+' '+v.channel).toLowerCase());d.onclick=()=>openShort(v.id);d.innerHTML=`<img src="${v.img}"><div class="shortInfo"><b>${v.title}</b><p style="font-size:11px;color:#ccc">${v.cat} • ${c.view} views • ${v.channel}</p></div>`;box.appendChild(d);}
-else{let d=document.createElement('div');d.className='longCard';d.setAttribute('data-search',(v.title+' '+v.cat+' '+v.channel).toLowerCase());d.onclick=()=>openLong(v.id);d.innerHTML=`<img src="${v.img}"><b style="font-size:14px;display:block;margin-top:6px">${v.title}</b><p style="font-size:12px;color:#666">${c.view} views • ${c.like} likes • ${v.channel}</p><div class="vAct"><button onclick="event.stopPropagation();likeId('${v.id}')">👍 Like</button><button onclick="event.stopPropagation();shareId('${v.id}')">↗ Share</button><button onclick="event.stopPropagation();saveId('${v.id}')">🔖 Save</button><button onclick="event.stopPropagation();openLong('${v.id}')">▶️ Dekho</button></div>`;box.appendChild(d);}
-});
-renderLive();
-}
-function renderLive(){let row=document.getElementById('liveRow');row.innerHTML='';[{t:'Bhajan Live',c:'Bhakti',img:'https://picsum.photos/400/250?random=21',v:'2.1K'},{t:'News Live',c:'News',img:'https://picsum.photos/400/250?random=22',v:'1.4K'},{t:'Music Live',c:'Music',img:'https://picsum.photos/400/250?random=23',v:'900'}].forEach(l=>{let d=document.createElement('div');d.className='liveCard';d.onclick=()=>openLive(l.t);d.innerHTML=`<img src="${l.img}"><span class="lb">🔴 LIVE</span><span class="lv">👁 ${l.v}</span><div class="li"><b>${l.t}</b><p style="font-size:11px;color:#ccc">${l.c}</p></div>`;row.appendChild(d);});}
+function renderFeed(){let box=document.getElementById('feed');box.innerHTML='';shortList=[];allVideos.forEach(v=>{let c=getCount(v.id);if(v.type==='short'){shortList.push(v);let d=document.createElement('div');d.className='shortCard';d.setAttribute('data-search',(v.title+' '+v.cat+' '+v.channel).toLowerCase());d.onclick=()=>openShort(v.id);d.innerHTML=`<img src="${v.img}"><div class="shortInfo"><b>${v.title}</b><p style="font-size:11px;color:#ccc">${v.cat} • ${c.view} views • ${v.channel}</p></div>`;box.appendChild(d);}else{let d=document.createElement('div');d.className='longCard';d.setAttribute('data-search',(v.title+' '+v.cat+' '+v.channel).toLowerCase());d.onclick=()=>openLong(v.id);d.innerHTML=`<img src="${v.img}"><b style="font-size:14px;display:block;margin-top:6px">${v.title}</b><p style="font-size:12px;color:#666">${c.view} views • ${c.like} likes • ${v.channel}</p><div class="vAct"><button onclick="event.stopPropagation();likeId('${v.id}')">👍 Like</button><button onclick="event.stopPropagation();shareId('${v.id}')">↗ Share</button><button onclick="event.stopPropagation();saveId('${v.id}')">🔖 Save</button><button onclick="event.stopPropagation();openLong('${v.id}')">▶️ Dekho</button></div>`;box.appendChild(d);}});renderLive();}
+function renderLive(){let row=document.getElementById('liveRow');row.innerHTML='';[{t:'Bhajan Live',c:'Bhakti',img:'https://picsum.photos/400/250?random=21'},{t:'News Live',c:'News',img:'https://picsum.photos/400/250?random=22'},{t:'Music Live',c:'Music',img:'https://picsum.photos/400/250?random=23'}].forEach(l=>{let d=document.createElement('div');d.className='liveCard';d.onclick=()=>openLive(l.t);d.innerHTML=`<img src="${l.img}"><span class="lb">🔴 LIVE</span><div class="li"><b>${l.t}</b><p style="font-size:11px;color:#ccc">${l.c}</p></div>`;row.appendChild(d);});}
 function likeId(id){let c=getCount(id);if(c.liked){c.liked=false;c.like--;}else{c.liked=true;c.like++;}saveCounts();renderFeed();if(curLongId===id)updateLongInfo();toast(c.liked?'Like Ho Gaya':'Like Hat Gaya');}
-function shareId(id){if(navigator.share){navigator.share({title:'BharatFlix',text:'BharatFlix Dekho',url:location.href}).catch(()=>{});}else toast('Share Link Copy Ho Gaya');getCount(id).view++;saveCounts();}
+function shareId(id){if(navigator.share){navigator.share({title:'BharatFlix',text:'BharatFlix Dekho',url:location.href}).catch(()=>{});}else toast('Share Link Copy Ho Gaya');}
 function saveId(id){let c=getCount(id);c.saved=!c.saved;saveCounts();toast(c.saved?'Save Ho Gaya':'Save Hat Gaya');}
 function shareCurrent(){shareId(shortList[shortIdx]?shortList[shortIdx].id:curLongId||'s1');}
-// Short Player - Category Auto
 function openShort(id){let idx=shortList.findIndex(v=>v.id===id);if(idx<0)idx=0;shortIdx=idx;let v=shortList[shortIdx];let c=getCount(v.id);c.view++;saveCounts();document.getElementById('shortPlayer').classList.add('open');document.getElementById('shortTitle').textContent=v.title;document.getElementById('shortMeta').textContent=v.cat+' • '+c.view+' views';document.getElementById('shortChannel').textContent=v.channel;let vid=document.getElementById('shortVideo');vid.src=v.video;vid.play().catch(()=>{});updateShortCounts();}
 function updateShortCounts(){let v=shortList[shortIdx];if(!v)return;let c=getCount(v.id);document.getElementById('shortLikeCount').textContent=c.like;document.getElementById('shortCommentCount').textContent=c.comment||12;document.getElementById('shortLikeBtn').textContent=c.liked?'♥':'♡';document.getElementById('shortLikeBtn').classList.toggle('active',c.liked);document.getElementById('shortSubBtn').textContent=c.subscribed?'Subscribed':'Subscribe';}
 function toggleShortLike(){let v=shortList[shortIdx];likeId(v.id);updateShortCounts();}
 function toggleShortSave(){let v=shortList[shortIdx];saveId(v.id);updateShortCounts();}
 function toggleSub(){let v=shortList[shortIdx];let c=getCount(v.id);c.subscribed=!c.subscribed;saveCounts();updateShortCounts();toast(c.subscribed?'Subscribe Ho Gaya':'Unsubscribe Ho Gaya');}
-function openShortComments(){let v=shortList[shortIdx];let c=getCount(v.id);let txt=prompt('Comment Likho:');if(txt){c.comments.push(txt);c.comment=c.comments.length;saveCounts();updateShortCounts();addNoti('💬 Naya Comment - '+txt.slice(0,20));}}
-function shortNext(){
-if(!shortList.length)return;
-let cur=shortList[shortIdx];
-// Category Auto - Usi Category Ka Agla Short
-let same=shortList.filter(v=>v.cat===cur.cat);
-let nextIdx=shortList.findIndex(v=>v.id===cur.id);
-let candidate=null;
-for(let i=1;i<shortList.length;i++){let cand=shortList[(nextIdx+i)%shortList.length];if(cand.cat===cur.cat){candidate=cand;break;}}
-if(candidate)openShort(candidate.id);
-else openShort(shortList[(shortIdx+1)%shortList.length].id);
-}
+function openShortComments(){let v=shortList[shortIdx];let c=getCount(v.id);let txt=prompt('Comment Likho:');if(txt){c.comments.push(txt);c.comment=c.comments.length;saveCounts();updateShortCounts();addNoti('Naya Comment - '+txt.slice(0,20));}}
+function shortNext(){if(!shortList.length)return;let cur=shortList[shortIdx];let nextIdx=shortList.findIndex(v=>v.id===cur.id);let candidate=null;for(let i=1;i<shortList.length;i++){let cand=shortList[(nextIdx+i)%shortList.length];if(cand.cat===cur.cat){candidate=cand;break;}}if(candidate)openShort(candidate.id);else openShort(shortList[(shortIdx+1)%shortList.length].id);}
 function toggleShortPlay(){let vid=document.getElementById('shortVideo');if(vid.paused)vid.play();else vid.pause();}
 function closeShort(){document.getElementById('shortPlayer').classList.remove('open');let vid=document.getElementById('shortVideo');vid.pause();try{vid.src='';}catch(e){}}
 function openFirstShort(){if(shortList.length)openShort(shortList[0].id);}
 function goHomeFromShort(){closeShort();goHome();}
-// Long Player - Quality + Category Auto
-function openLong(id){
-curLongId=id;let v=allVideos.find(x=>x.id===id);let c=getCount(v.id);c.view++;saveCounts();
-document.getElementById('longPlayer').classList.add('open');document.getElementById('longTitle').textContent=v.title;document.getElementById('longMeta').textContent=v.cat+' • '+v.dur+' • '+v.channel;
-updateLongInfo();
-let vid=document.getElementById('longVideo');vid.src=v.video;vid.playbackRate=parseFloat(document.getElementById('speedSel').value||1);vid.play().catch(()=>{});
-document.getElementById('longPlayer').scrollIntoView({behavior:'smooth'});
-// Category Auto - Usi Category Ki Long Video Suggest
-let same=allVideos.filter(x=>x.type==='long'&&x.cat===v.cat&&x.id!==v.id);
-if(same.length)toast('✅ '+v.cat+' Ki Agli Video Bhi Tayyar Hai - Category Auto');
-}
+function openLong(id){curLongId=id;let v=allVideos.find(x=>x.id===id);let c=getCount(v.id);c.view++;saveCounts();document.getElementById('longPlayer').classList.add('open');document.getElementById('longTitle').textContent=v.title;document.getElementById('longMeta').textContent=v.cat+' • '+v.dur+' • '+v.channel;updateLongInfo();let vid=document.getElementById('longVideo');vid.src=v.video;vid.playbackRate=parseFloat(document.getElementById('speedSel').value||1);vid.play().catch(()=>{});document.getElementById('longPlayer').scrollIntoView({behavior:'smooth'});}
 function updateLongInfo(){let v=allVideos.find(x=>x.id===curLongId);if(!v)return;let c=getCount(v.id);document.getElementById('longActions').innerHTML=`<button onclick="likeId('${v.id}')">👍 Like (${c.like})</button><button onclick="shareId('${v.id}')">↗ Share</button><button onclick="saveId('${v.id}')">🔖 Save</button><button onclick="playNextSameCat()">⏭️ Agli ${v.cat} Video</button>`;let list=document.getElementById('longCommentList');list.innerHTML=c.comments.length?c.comments.map(t=>`<div style="background:#f5f5f5;padding:7px;border-radius:10px;font-size:12px;margin-top:6px">👤 ${t}</div>`).join(''):'<div style="font-size:12px;color:#888">Abhi Koi Comment Nahi</div>';}
-function playNextSameCat(){
-let cur=allVideos.find(x=>x.id===curLongId);if(!cur)return;
-let same=allVideos.filter(x=>x.type===cur.type&&x.cat===cur.cat&&x.id!==cur.id);
-if(same.length){if(cur.type==='long')openLong(same[0].id);else openShort(same[0].id);}
-else toast('Is Category Ki Aur Video Nahi Hai');
-}
+function playNextSameCat(){let cur=allVideos.find(x=>x.id===curLongId);if(!cur)return;let same=allVideos.filter(x=>x.type===cur.type&&x.cat===cur.cat&&x.id!==cur.id);if(same.length){if(cur.type==='long')openLong(same[0].id);else openShort(same[0].id);}else toast('Is Category Ki Aur Video Nahi Hai');}
 function closeLong(){document.getElementById('longPlayer').classList.remove('open');let vid=document.getElementById('longVideo');vid.pause();try{vid.src='';}catch(e){}curLongId=null;}
-function addLongComment(){let v=allVideos.find(x=>x.id===curLongId);if(!v)return;let inp=document.getElementById('longCommentInput');let txt=inp.value.trim();if(!txt){toast('Pehle Comment Likho');return;}let c=getCount(v.id);c.comments.push(txt);c.comment=c.comments.length;saveCounts();inp.value='';updateLongInfo();addNoti('💬 Naya Comment - '+txt.slice(0,20));}
-function changeQuality(q){let vid=document.getElementById('longVideo');toast('Quality Badal Gayi - '+q+' - Video Ab Isi Quality Me Chalegi');}
+function addLongComment(){let v=allVideos.find(x=>x.id===curLongId);if(!v)return;let inp=document.getElementById('longCommentInput');let txt=inp.value.trim();if(!txt){toast('Pehle Comment Likho');return;}let c=getCount(v.id);c.comments.push(txt);c.comment=c.comments.length;saveCounts();inp.value='';updateLongInfo();addNoti('Naya Comment - '+txt.slice(0,20));}
+function changeQuality(q){toast('Quality Badal Gayi - '+q);}
 function changeSpeed(s){let vid=document.getElementById('longVideo');vid.playbackRate=parseFloat(s);localStorage.setItem('bf75_speed',s);toast('Speed - '+s+'x');}
-// Live
 function goLive(){togglePop('goLiveBox');}
-function startMyLive(){let t=document.getElementById('liveTitleInput').value.trim()||'Mera Live';togglePop('goLiveBox');openLive(t);addNoti('🔴 Live Shuru - '+t);}
+function startMyLive(){let t=document.getElementById('liveTitleInput').value.trim()||'Mera Live';togglePop('goLiveBox');openLive(t);addNoti('Live Shuru - '+t);}
 function openLive(title){document.getElementById('livePlayer').classList.add('open');document.getElementById('liveTitle').textContent=title;let vid=document.getElementById('liveVideo');vid.src='https://www.w3schools.com/html/mov_bbb.mp4';vid.play().catch(()=>{});}
 function closeLive(){document.getElementById('livePlayer').classList.remove('open');let vid=document.getElementById('liveVideo');vid.pause();try{vid.src='';}catch(e){}}
 function sendLiveChat(){let inp=document.getElementById('liveChatInput');let txt=inp.value.trim();if(!txt)return;let list=document.getElementById('liveChatList');let d=document.createElement('div');d.style.cssText='background:#f5f5f5;padding:7px;border-radius:10px;font-size:12px;margin-top:6px';d.textContent='👤 '+txt;list.appendChild(d);inp.value='';}
 function playAd(){toast('Ad Chal Raha Hai...');}
-// Upload / Dashboard / Profile
-function doUpload(){let title=document.getElementById('upTitle').value.trim()||'Meri Video';let cat=document.getElementById('upCat').value;let type=document.getElementById('upType').value;let nv={id:'my'+Date.now(),type:type,title:title,cat:cat,channel:'@MeraChannel',img:'https://picsum.photos/400/600?random='+Math.floor(Math.random()*100),video:'https://www.w3schools.com/html/mov_bbb.mp4',dur:type==='short'?'0:30':'10:00'};let my=[];try{my=JSON.parse(localStorage.getItem('bf75_my_videos')||'[]')}catch(e){my=[]}my.unshift(nv);localStorage.setItem('bf75_my_videos',JSON.stringify(my));allVideos.unshift(nv);renderFeed();togglePop('uploadBox');toast('✅ Upload Ho Gaya - '+title);addNoti('✅ Nayi Video Upload - '+title);}
+function doUpload(){let title=document.getElementById('upTitle').value.trim()||'Meri Video';let cat=document.getElementById('upCat').value;let type=document.getElementById('upType').value;let nv={id:'my'+Date.now(),type:type,title:title,cat:cat,channel:'@MeraChannel',img:'https://picsum.photos/400/600?random='+Math.floor(Math.random()*100),video:'https://www.w3schools.com/html/mov_bbb.mp4',dur:type==='short'?'0:30':'10:00'};let my=[];try{my=JSON.parse(localStorage.getItem('bf75_my_videos')||'[]')}catch(e){my=[]}my.unshift(nv);localStorage.setItem('bf75_my_videos',JSON.stringify(my));allVideos.unshift(nv);renderFeed();togglePop('uploadBox');toast('Upload Ho Gaya - '+title);addNoti('Nayi Video Upload - '+title);}
 function openDashboard(){let my=[];try{my=JSON.parse(localStorage.getItem('bf75_my_videos')||'[]')}catch(e){my=[]}document.getElementById('dashInfo').innerHTML='Total Video: '+my.length+'<br>Total Views: '+my.reduce((s,v)=>s+getCount(v.id).view,0)+'<br>Channel: Mera Channel';togglePop('dashboardBox');}
-function saveProfile(){let name=document.getElementById('accName').value.trim();if(!name){toast('Naam Likho');return;}localStorage.setItem('bf75_profile',JSON.stringify({name,channel:document.getElementById('accChannel').value,handle:document.getElementById('accHandle').value,bio:document.getElementById('accBio').value,country:document.getElementById('accCountry').value,state:document.getElementById('accState').value,district:document.getElementById('accDistrict').value}));toast('✅ Profile Save Ho Gayi');togglePop('accountBox');}
-// Country / State / District
-function initLocation(){
-let c=document.getElementById('accCountry');c.innerHTML='<option value="">🌍 Country Chuno</option><option>All Country</option><option>India</option><option>USA</option><option>UK</option><option>Canada</option><option>Pakistan</option><option>Bangladesh</option><option>Nepal</option>';
-let s=document.getElementById('accState');s.innerHTML='<option value="">🏠 State Chuno</option><option>All State</option><option>Uttar Pradesh</option><option>Bihar</option><option>Delhi</option><option>Maharashtra</option><option>Rajasthan</option>';
-let d=document.getElementById('accDistrict');d.innerHTML='<option value="">📍 District Chuno</option><option>All District</option><option>Lucknow</option><option>Kanpur Nagar</option><option>Varanasi</option><option>Prayagraj</option>';
-}
+function saveProfile(){let name=document.getElementById('accName').value.trim();if(!name){toast('Naam Likho');return;}localStorage.setItem('bf75_profile',JSON.stringify({name,channel:document.getElementById('accChannel').value,handle:document.getElementById('accHandle').value,bio:document.getElementById('accBio').value,country:document.getElementById('accCountry').value,state:document.getElementById('accState').value,district:document.getElementById('accDistrict').value}));toast('Profile Save Ho Gayi');togglePop('accountBox');}
+function initLocation(){let c=document.getElementById('accCountry');c.innerHTML='<option value="">Country Chuno</option><option>All Country</option><option>India</option><option>USA</option><option>UK</option><option>Canada</option><option>Pakistan</option><option>Bangladesh</option><option>Nepal</option>';let s=document.getElementById('accState');s.innerHTML='<option value="">State Chuno</option><option>All State</option><option>Uttar Pradesh</option><option>Bihar</option><option>Delhi</option><option>Maharashtra</option><option>Rajasthan</option>';let d=document.getElementById('accDistrict');d.innerHTML='<option value="">District Chuno</option><option>All District</option><option>Lucknow</option><option>Kanpur Nagar</option><option>Varanasi</option><option>Prayagraj</option>';}
 function goHome(){closeShort();closeLong();doSearch('');window.scrollTo({top:0,behavior:'smooth'});}
 initLang();initLocation();renderFeed();updateBell();
 </script>
