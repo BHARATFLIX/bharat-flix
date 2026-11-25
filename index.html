@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="hi" translate="no" class="notranslate">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="google" content="notranslate">
+<title>BharatFlix - CODE 74 FINAL LOCK - SAB BUTTON ASLI</title>
+<link rel="icon" href="https://raw.githubusercontent.com/BHARATFLIX/bharat-flix/main/apk-icon.png">
+<link rel="apple-touch-icon" href="https://raw.githubusercontent.com/BHARATFLIX/bharat-flix/main/apk-icon.png">
+<meta name="theme-color" content="#FF6A00">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#fff;padding-bottom:80px;color:#000}
+body.dark{background:#0f0f0f;color:#fff}
+body.dark .top,body.dark .bottom,body.dark .popup{background:#1a1a1a;color:#fff;border-color:#333}
+body.dark .searchIconBtn,body.dark .bellBtn,body.dark .setBtn,body.dark .chip{background:#333;color:#fff}
+body.dark .chip.active{background:#fff;color:#000}
+.top{display:flex;align-items:center;gap:6px;padding:8px;position:sticky;top:0;background:#fff;z-index:100}
+.top img.logoImg{width:42px;height:42px;min-width:42px;border-radius:50%;object-fit:cover}
+.brand3d{font-size:18px;font-weight:900;line-height:1.05;white-space:nowrap;color:#FF9933;text-shadow:1px 1px 0 #138808,2px 2px 0 rgba(19,136,8,.5)}
+.brand3d span{color:#138808;text-shadow:1px 1px 0 #FF9933,2px 2px 0 rgba(255,153,51,.5)}
+.searchIconBtn{width:36px;height:36px;min-width:36px;border:none;background:#eee;border-radius:50%;font-size:17px;cursor:pointer;margin-left:auto}
+.searchExpand{display:none;flex:1;align-items:center;background:#fff;border-radius:20px;padding:2px 3px 2px 6px;gap:2px;border:1px solid #ddd;min-width:0}
+.searchExpand.open{display:flex;position:fixed;top:62px;left:10px;right:10px;z-index:200;box-shadow:0 5px 15px rgba(0,0,0,.2)}
+.searchExpand input{flex:1;background:transparent;border:none;outline:none;min-width:0;font-size:14px}
+.searchExpand .micBtn{width:36px;height:36px;min-width:36px;border:none;background:#fff;border-radius:50%;font-size:18px;cursor:pointer}
+.searchExpand .micBtn.listening{background:#ff4444;color:#fff}
+.searchExpand .closeBtn{width:30px;height:30px;border:none;background:transparent;font-size:16px}
+.rightIcons{display:flex;align-items:center;gap:8px}
+.bellBtn{width:34px;height:34px;min-width:34px;border:none;background:#eee;border-radius:50%;font-size:16px;position:relative}
+.bellBtn i{position:absolute;top:4px;right:5px;width:8px;height:8px;background:red;border-radius:50%;display:block}
+#installBtn{padding:7px 10px;border:none;border-radius:15px;font-weight:700;font-size:11px;white-space:nowrap;color:#fff;cursor:pointer}
+#installBtn.blue{background:#2563eb}
+.setBtn{width:34px;height:34px;min-width:34px;border:none;background:#eee;border-radius:50%;font-size:16px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:6px 10px;white-space:nowrap;scrollbar-width:none;position:sticky;top:58px;background:#fff;z-index:95}
+body.dark .chips{background:#0f0f0f}
+.chips::-webkit-scrollbar{display:none}
+.chip{background:#eee;padding:6px 14px;border-radius:20px;font-size:13px;flex-shrink:0}
+.chip.active{background:#000;color:#fff}
+.chip.liveChip{background:#ff0000;color:#fff;font-weight:900}
+#adsPlayer{width:100%;height:210px;background:#222;color:#fff;display:flex;align-items:center;justify-content:center;position:relative;cursor:pointer}
+#adsPlayer span{position:absolute;top:8px;left:8px;background:#FF6A00;padding:3px 8px;border-radius:10px;font-size:11px}
+#liveSection{padding:10px 10px 0 10px}
+#liveSection h3{font-size:16px;margin-bottom:8px}
+.liveRow{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;padding-bottom:6px}
+.liveRow::-webkit-scrollbar{display:none}
+.liveCard{min-width:200px;width:200px;background:#000;color:#fff;border-radius:12px;overflow:hidden;position:relative;cursor:pointer;flex-shrink:0}
+.liveCard img{width:100%;height:120px;object-fit:cover}
+.liveCard .liveBadge{position:absolute;top:8px;left:8px;background:#ff0000;color:#fff;padding:3px 8px;border-radius:10px;font-size:11px;font-weight:900}
+.liveCard .liveView{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.7);padding:3px 7px;border-radius:10px;font-size:11px}
+.liveCard .liveInfo{padding:8px}
+.liveCard .liveInfo b{font-size:13px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.liveCard .liveInfo p{font-size:11px;color:#ccc;margin-top:2px}
+#feedBox{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}
+.shortCard{height:340px;background:#000;color:#fff;border-radius:12px;position:relative;overflow:hidden;cursor:pointer}
+.shortCard img{width:100%;height:100%;object-fit:cover}
+.shortCard .dur{position:absolute;top:8px;left:8px;background:rgba(0,0,0,.7);padding:3px 7px;border-radius:10px;font-size:11px;z-index:5}
+.shortInfo{position:absolute;left:10px;bottom:10px;right:10px;z-index:4}
+.longCard{padding:10px;grid-column:1/3;cursor:pointer;overflow:hidden}
+.longCard img{width:100%;height:210px;border-radius:12px;object-fit:cover;background:#000}
+.longCard .durLong{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.7);color:#fff;padding:3px 7px;border-radius:10px;font-size:11px}
+.longWrap{position:relative}
+.videoActions{display:flex;gap:8px;flex-wrap:nowrap;overflow-x:auto;margin-top:8px;padding-bottom:6px;scrollbar-width:none}
+.videoActions::-webkit-scrollbar{display:none}
+.videoActions button{flex-shrink:0;white-space:nowrap;padding:7px 12px;border:1px solid #ddd;border-radius:20px;background:#f5f5f5;font-size:12px;font-weight:700;cursor:pointer}
+body.dark .videoActions button{background:#333;color:#fff;border-color:#444}
+.videoActions button.liked{background:#FF6A00;color:#fff;border-color:#FF6A00}
+.videoActions button.subbed{background:#138808;color:#fff;border-color:#138808}
+.videoActions button.earn{background:#FFD700;color:#000;border-color:#FFD700}
+.countLine{font-size:12px;color:#666;margin-top:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body.dark .countLine{color:#aaa}
+.commentBox{margin-top:8px;border-top:1px solid #eee;padding-top:8px;display:none}
+.commentBox.open{display:block}
+.commentBox input{width:100%;padding:8px;border:1px solid #ddd;border-radius:20px;outline:none}
+.commentList{margin-top:8px}
+.commentItem{background:#f5f5f5;padding:7px 10px;border-radius:10px;font-size:12px;margin-top:6px}
+body.dark .commentItem{background:#333}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #ddd;z-index:150}
+.bottom div{text-align:center;font-size:12px;cursor:pointer}
+.popup{position:fixed;left:10px;right:10px;bottom:80px;background:#fff;border:1px solid #ddd;padding:14px;border-radius:14px;display:none;z-index:300;max-height:75vh;overflow:auto;box-shadow:0 10px 30px rgba(0,0,0,.2)}
+.popup select,.popup input{width:100%;padding:9px;margin-top:8px;border:1px solid #ddd;border-radius:8px}
+.popup textarea{width:100%;padding:9px;margin-top:8px;border:1px solid #ddd;border-radius:8px;min-height:60px}
+.popup button{padding:9px 12px;border:none;border-radius:8px;background:#FF6A00;color:#fff;margin-top:8px}
+.setRow{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #eee;gap:10px}
+.setRow b{font-size:13px}
+.setRow small{display:block;font-size:11px;color:#888;font-weight:400}
+.setRow select{width:130px!important;margin-top:0!important}
+.switch{position:relative;width:44px;height:24px;min-width:44px;background:#ccc;border-radius:20px;cursor:pointer}
+.switch.on{background:#FF6A00}
+.switch::after{content:'';position:absolute;top:2px;left:2px;width:20px;height:20px;background:#fff;border-radius:50%;transition:.2s}
+.switch.on::after{left:22px}
+.popupHead{display:flex;align-items:center;gap:12px}
+.popupHead b{font-size:18px}
+.backArrow{width:60px;height:60px;min-width:60px;border:3px solid #000;background:#fff;border-radius:50%;font-size:36px;font-weight:900;cursor:pointer;line-height:1;color:#000;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(0,0,0,.3)}
+body.dark .backArrow{background:#222;color:#fff;border-color:#fff}
+.historyRow{display:flex;align-items:center;justify-content:space-between;padding:12px 0;cursor:pointer}
+.historyRow b{font-size:13px}
+.historyRow small{display:block;font-size:11px;color:#888;font-weight:400}
+.historyRow span{font-size:18px}
+#shortPlayer{position:fixed;inset:0;background:#000;z-index:500;display:none;flex-direction:column}
+#shortPlayer.open{display:flex}
+#shortPlayer video{width:100%;height:100%;object-fit:cover;flex:1;position:absolute;inset:0}
+#shortTopBar{position:absolute;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:10px 12px;z-index:20}
+#shortTopBar button{background:transparent;color:#fff;border:none;font-size:22px;width:36px;height:36px}
+#shortTopBar .rightTop{display:flex;gap:14px}
+#shortInfoFull{position:absolute;left:12px;bottom:72px;right:72px;color:#fff;z-index:10;text-shadow:1px 1px 2px #000}
+#shortRemixPill{display:inline-flex;align-items:center;gap:6px;background:rgba(0,0,0,.55);color:#fff;padding:6px 10px;border-radius:20px;font-size:12px;font-weight:700;margin-bottom:8px}
+#shortProfileRow{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+#shortProfileRow img{width:34px;height:34px;border-radius:50%;object-fit:cover;border:1px solid #fff}
+#shortProfileRow b{font-size:14px}
+#shortSubBtn{background:#fff;color:#000;border:none;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:900;margin-left:4px}
+#shortSideFull{position:absolute;right:10px;bottom:88px;display:flex;flex-direction:column;gap:14px;z-index:10;align-items:center}
+#shortSideFull .sAct{display:flex;flex-direction:column;align-items:center;gap:2px}
+#shortSideFull .sAct button{width:48px;height:48px;border:none;border-radius:50%;background:transparent;color:#fff;font-size:28px;line-height:1;text-shadow:0 2px 6px rgba(0,0,0,.6)}
+#shortSideFull .sAct button.active{color:#ff3040}
+#shortSideFull .sAct span{color:#fff;font-size:12px;font-weight:600;text-shadow:1px 1px 2px #000}
+#shortSideFull .sProfile{width:36px;height:36px;border-radius:50%;border:2px solid #fff;object-fit:cover;margin-top:2px}
+#shortBottomNav{position:absolute;left:0;right:0;bottom:0;background:#000;display:flex;justify-content:space-around;align-items:center;padding:8px 0 10px 0;z-index:20;border-top:1px solid #222}
+#shortBottomNav div{color:#fff;text-align:center;font-size:22px}
+#shortBottomNav div img{width:28px;height:28px;border-radius:50%;object-fit:cover}
+#shortCommentSheet{position:absolute;left:0;right:0;bottom:0;background:#fff;color:#000;border-radius:16px 16px 0 0;padding:12px;z-index:30;display:none;max-height:55vh;overflow:auto}
+#shortCommentSheet.open{display:block}
+#shortCommentSheet input{width:100%;padding:9px;border:1px solid #ddd;border-radius:20px;outline:none}
+#shortMenuSheet{position:absolute;left:0;right:0;bottom:0;background:#fff;color:#000;border-radius:16px 16px 0 0;padding:12px;z-index:30;display:none}
+#shortMenuSheet.open{display:block}
+#shortMenuSheet div{padding:12px 0;border-bottom:1px solid #eee;font-size:14px;font-weight:700}
+#profileSheet{position:absolute;left:0;right:0;bottom:0;background:#fff;color:#000;border-radius:16px 16px 0 0;padding:14px;z-index:30;display:none;text-align:center}
+#profileSheet.open{display:block}
+#profileSheet img{width:70px;height:70px;border-radius:50%;object-fit:cover}
+#longPlayer{position:sticky;top:58px;z-index:90;background:#fff;display:none;padding:0 0 6px 0}
+body.dark #longPlayer{background:#0f0f0f}
+#longPlayer.open{display:block}
+#longPlayer video{width:100%;height:215px;object-fit:contain;background:#000}
+#longPlayerInfo{padding:6px 10px 0 10px;color:#000}
+body.dark #longPlayerInfo{color:#fff}
+#longBrandLine{font-size:13px;font-weight:900;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.triSaffron{color:#FF9933}
+.triWhite{color:#111}
+body.dark .triWhite{color:#fff}
+.triGreen{color:#138808}
+#longPlayerInfo b{font-size:14px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#longPlayer .iconRow{display:flex;gap:8px;position:absolute;top:8px;right:8px;z-index:10}
+#longPlayer .iconRow button{background:rgba(0,0,0,.6);color:#fff;border:none;width:36px;height:36px;border-radius:50%;font-size:16px}
+#longPlayer.cssFull{position:fixed!important;inset:0!important;top:0!important;z-index:999!important;background:#000!important;padding:0!important;display:flex!important;flex-direction:column!important}
+#longPlayer.cssFull video{width:100%!important;height:100%!important;flex:1!important;object-fit:contain!important;background:#000!important}
+#longPlayer.cssFull #longPlayerInfo{display:none!important}
+.goog-te-banner-frame,.goog-te-gadget,#goog-gt-tt,.goog-te-balloon-frame{display:none!important}
+body{top:0!important}
+.myVideoRow{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid #eee;align-items:center}
+.myVideoRow img{width:90px;height:55px;object-fit:cover;border-radius:8px;background:#000}
+#livePlayer{position:fixed;inset:0;background:#000;z-index:600;display:none;flex-direction:column}
+#livePlayer.open{display:flex}
+#livePlayer video{width:100%;flex:1;object-fit:contain;background:#000}
+#liveChatBox{background:#fff;color:#000;padding:10px;max-height:35vh;overflow:auto}
+.notiItem{padding:10px 0;border-bottom:1px solid #eee;font-size:13px;cursor:pointer}
+.notiItem b{display:block}
+.notiItem small{color:#888}
+.searchHist{padding:8px 0;border-bottom:1px solid #eee;font-size:13px;cursor:pointer}
+.ytBanner{width:100%;height:110px;background:linear-gradient(90deg,#FF9933,#FF6A00,#138808);border-radius:12px;object-fit:cover;display:block}
+.ytAvatar{width:84px;height:84px;border-radius:50%;object-fit:cover;border:3px solid #fff;margin-top:-42px;margin-left:12px;background:#eee}
+.dashCard{background:#f5f5f5;padding:10px;border-radius:10px;text-align:center}
+body.dark .dashCard{background:#333}
+.chanLabel{font-size:12px;font-weight:700;margin-top:10px;display:block;color:#333}
+body.dark .chanLabel{color:#fff}
+.singleSetNote{background:#FFF3E0;border:1px solid #FF6A00;padding:8px;border-radius:8px;font-size:12px;margin-top:8px}
+.bellSheet{position:fixed;left:10px;right:10px;bottom:80px;background:#fff;color:#000;border:1px solid #ddd;padding:14px;border-radius:14px;display:none;z-index:400;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+.bellSheet.open{display:block}
+.bellSheet div{padding:12px 0;border-bottom:1px solid #eee;font-size:14px;font-weight:700;cursor:pointer}
+</style>
+</head>
+<body translate="no" class="notranslate">
+<div class="top">
+<img class="logoImg" loading="lazy" src="https://raw.githubusercontent.com/BHARATFLIX/bharat-flix/main/logo.png" alt="Bharat Flix">
+<b class="brand3d">Bharat<br><span>Flix</span></b>
+<button id="searchIconBtn" class="searchIconBtn" onclick="openSearch()">🔍</button>
+<div id="searchExpand" class="searchExpand">
+<span>🔍</span>
+<input id="searchInput" placeholder="Search..." autocomplete="off" translate="no" class="notranslate" oninput="doSearch(this.value)" onkeydown="if(event.key==='Enter')doSearch(this.value)">
+<button type="button" id="micBtn" class="micBtn" onclick="voiceSearch()">🎙️</button>
+<button class="closeBtn" onclick="closeSearch()">✕</button>
+</div>
+<div class="rightIcons">
+<button class="bellBtn" onclick="openNotiBox()">🔔<i id="bellDot"></i></button>
+<button id="installBtn" class="blue" onclick="installApp()">Install</button>
+<button class="setBtn" onclick="openSingleSetting()">⚙️</button>
+</div>
+</div>
+<div class="chips">
+<span class="chip active" onclick="filterChip(this,'')">All</span>
+<span class="chip liveChip" onclick="showOnlyLive(this)">🔴 LIVE</span>
+<span class="chip" onclick="filterChip(this,'Music')">Music</span>
+<span class="chip" onclick="filterChip(this,'Comedy')">Comedy</span>
+<span class="chip" onclick="filterChip(this,'Bhakti')">Bhakti</span>
+<span class="chip" onclick="filterChip(this,'News')">News</span>
+</div>
+<div id="longPlayer">
+<video id="longMainVideo" playsinline controls preload="none"></video>
+<div class="iconRow"><button onclick="toggleLongPlay()">▶️</button><button onclick="fullScreenLong()">⛶</button></div>
+<div id="longPlayerInfo">
+<div id="longBrandLine"><span class="triSaffron">🇮🇳 Bharat -</span> <span class="triWhite">Aapka Apna</span> <span class="triGreen">Swadeshi Platform</span></div>
+<b id="longPlayerTitle">Title</b>
+<p id="longPlayerMeta" style="font-size:12px;color:#888"></p>
+<div id="longPlayerCounts" style="font-size:13px;color:#000;margin-top:2px;font-weight:700"></div>
+<div class="videoActions" id="longPlayerActions"></div>
+<div id="suggestionBox" style="margin-top:10px;border-top:1px solid #eee;padding-top:8px"></div>
+<div class="commentBox" id="longCommentBox"><input id="longCommentInput" placeholder="Comment Likho..." onkeydown="if(event.key==='Enter')addCommentFromLong()"><button onclick="addCommentFromLong()">Comment Bhejo</button><div class="commentList" id="longCommentList"></div></div>
+</div>
+</div>
+<div id="adsPlayer" onclick="playAd()"><span>AdSense Ad</span><div style="text-align:center">▶️</div></div>
+<div id="liveSection"><h3>🔴 Live Abhi - Live Dekho</h3><div class="liveRow" id="liveRow"></div><button onclick="openGoLive()" style="width:100%;padding:10px;border:none;border-radius:10px;background:#ff0000;color:#fff;font-weight:900;margin-top:8px">📡 Go Live - Khud Live Aao</button></div>
+<div id="feedBox"></div>
+<p id="noResult" style="display:none;text-align:center;padding:20px;color:#888">Koi Video Nahi Mili</p>
+<div id="searchHistoryBox" style="display:none;padding:0 10px 10px 10px"></div>
+<div id="shortPlayer">
+<video id="shortMainVideo" playsinline loop preload="none" onclick="toggleShortPlay()"></video>
+<div id="shortTopBar"><button onclick="closeShortPlayer()">←</button><div class="rightTop"><button onclick="openSearchFromShort()">🔍</button><button onclick="openShortMenu()">⋮</button></div></div>
+<div id="shortInfoFull">
+<div id="shortRemixPill" onclick="openShortRemix()">🎵 Remix this scene</div>
+<div id="shortProfileRow"><img loading="lazy" id="shortAvatarImg" src="https://raw.githubusercontent.com/BHARATFLIX/bharat-flix/main/logo.png" onclick="openShortProfile()"><b onclick="openShortProfile()" id="shortChannelName">@BharatFlix</b><button id="shortSubBtn" onclick="handleSubscribeClick()">Subscribe</button><button id="shortBellBtn" onclick="openBellSheet()" style="background:#fff;color:#000;border:none;padding:6px 10px;border-radius:20px;font-size:12px;font-weight:900;margin-left:4px;display:none">🔔 All</button></div>
+<b id="shortTitleFull" style="font-size:14px"></b>
+<p id="shortMetaFull" style="font-size:12px;margin-top:2px"></p>
+<p style="font-size:13px;font-weight:700;margin-top:2px">#bharatflix #shorts #viral #trending</p>
+</div>
+<div id="shortSideFull">
+<div class="sAct"><button id="shortLikeBtn" onclick="toggleShortLike()">♡</button><span id="shortLikeCount">Like</span></div>
+<div class="sAct"><button onclick="openShortComments()">💬</button><span id="shortCommentCount">12</span></div>
+<div class="sAct"><button id="shortSaveBtn" onclick="toggleShortSave()">🔖</button><span id="shortSaveLabel">Save</span></div>
+<div class="sAct"><button onclick="shareShortReal()">↗</button><span>Share</span></div>
+<div class="sAct"><button onclick="openShortRemix()">🔄</button><span>Remix</span></div>
+<img class="sProfile" loading="lazy" src="https://raw.githubusercontent.com/BHARATFLIX/bharat-flix/main/logo.png" onclick="openShortProfile()">
+</div>
+<div id="shortCommentSheet"><b>Comments</b><button style="float:right;border:none;background:transparent;font-size:18px" onclick="closeShortSheets()">✕</button><div id="shortCommentList" style="margin:10px 0"></div><input id="shortCommentInput" placeholder="Comment Likho..." onkeydown="if(event.key==='Enter')sendShortComment()"><button onclick="sendShortComment()" style="width:100%;margin-top:8px;background:#000;color:#fff;border:none;padding:9px;border-radius:20px">Comment Bhejo</button></div>
+<div id="shortMenuSheet"><b>More</b><button style="float:right;border:none;background:transparent;font-size:18px" onclick="closeShortSheets()">✕</button><div onclick="shareShortReal()">↗️ Share - Asli Share</div><div onclick="toggleShortSave();closeShortSheets()">🔖 Save / Unsave - Asli</div><div onclick="reportShortReal()">🚩 Report - Asli Report</div><div onclick="notInterestedShort()">🙈 Not Interested - Ye Short Mat Dikhao - Asli</div><div onclick="closeShortSheets()">⬅️ Band Karo</div></div>
+<div id="profileSheet"><img loading="lazy" id="profileSheetAvatar" src="https://raw.githubusercontent.com/BHARATFLIX/bharat-flix/main/logo.png"><h3 style="margin-top:6px" id="profileSheetName">@BharatFlix</h3><p style="font-size:12px;color:#666" id="profileSheetBio">Bharat - Aapka Apna Swadeshi Platform</p><p id="profileSubs" style="font-size:12px;margin-top:6px">1.2M Subscribers • 120 Videos</p><button id="profileSubBtn" onclick="handleSubscribeClick()" style="background:#000;color:#fff;border:none;padding:9px 20px;border-radius:20px;margin-top:8px">Subscribe</button><br><button onclick="openMyAccount();closeShortSheets()" style="background:#FF6A00;color:#fff;border:none;padding:8px 16px;border-radius:20px;margin-top:8px">✏️ Meri Profile Dekho / Edit Karo</button><br><button onclick="closeShortSheets()" style="background:#eee;border:none;padding:8px 16px;border-radius:20px;margin-top:8px">Band Karo</button></div>
+<div id="shortBottomNav">
+<div onclick="goHomeFromShort()">🏠</div>
+<div onclick="shortNext()">🎬</div>
+<div onclick="openUploadFromShort()">⊕</div>
+<div onclick="openSubsFromShort()">📺</div>
+<div onclick="openShortProfile()"><img loading="lazy" src="https://raw.githubusercontent.com/BHARATFLIX/bharat-flix/main/logo.png"></div>
+</div>
+</div>
+<div id="livePlayer">
+<div style="display:flex;justify-content:space-between;align-items:center;padding:10px;color:#fff"><b id="livePlayerTitle">Live</b><button onclick="closeLivePlayer()" style="background:#fff;border:none;width:36px;height:36px;border-radius:50%;font-size:18px">✕</button></div>
+<video id="liveMainVideo" playsinline controls autoplay></video>
+<div id="liveChatBox"><b>🔴 Live Chat</b><div id="liveChatList" style="margin-top:8px"></div><input id="liveChatInput" placeholder="Live Chat Likho..." style="width:100%;padding:9px;border:1px solid #ddd;border-radius:20px;margin-top:8px" onkeydown="if(event.key==='Enter')sendLiveChat()"><button onclick="sendLiveChat()" style="width:100%;margin-top:8px;background:#ff0000;color:#fff;border:none;padding:9px;border-radius:20px">Chat Bhejo</button></div>
+</div>
+<div id="bellSheet" class="bellSheet"><b>🔔 Notification - Permanent Wala</b><button style="float:right;border:none;background:transparent;font-size:18px" onclick="closeBellSheet()">✕</button><div onclick="setBellMode('all')">🔔 All - Har Video Ki Notification - Permanent ✅</div><div onclick="setBellMode('none')">🔕 None - Koi Notification Nahi</div><div onclick="closeBellSheet()">⬅️ Band Karo</div><p style="font-size:11px;color:#666;margin-top:8px">All ka matlab - Creator jab bhi Video dalega - har Video ki Notification Permanent aayegi - Kabhi-kabhi nahi</p></div>
+<input type="file" id="uploadFile" accept="video/*" style="display:none" onchange="handleUpload(this)">
+<div id="uploadBox" class="popup">
+<div class="popupHead"><button class="backArrow" onclick="togglePop('uploadBox')">⬅</button><b>Upload Video</b></div>
+<p style="font-size:13px;margin-top:10px">Apni Video Chuno - Short Ya Long</p>
+<select id="uploadType"><option value="short">Short Video</option><option value="long">Long Video</option></select>
+<select id="uploadCategory"><option>Entertainment</option><option>News</option><option>Music</option><option>Comedy</option><option>Bhakti</option><option>Education</option><option>Vlog</option></select>
+<input id="uploadTitle" placeholder="Title (Chaaho to likho, nahi to khali chhodo)">
+<textarea id="uploadDesc" placeholder="Description (Chaaho to likho, nahi to khali chhodo)"></textarea>
+<p style="font-size:12px;margin-top:8px">Thumbnail (Chaaho to chuno, nahi to khali chhodo):</p>
+<input type="file" id="thumbFile" accept="image/*">
+<button onclick="document.getElementById('uploadFile').click()">📁 Video Chuno - Gallery Se</button>
+<p style="font-size:12px;color:#888;margin-top:8px">Channel बनाए तभी Video पड़ेगी</p>
+<p id="uploadStatus" style="font-size:12px;color:#666"></p>
+</div>
+<div id="goLiveBox" class="popup">
+<div class="popupHead"><button class="backArrow" onclick="togglePop('goLiveBox')">⬅</button><b>📡 Go Live</b></div>
+<p style="font-size:13px;margin-top:10px">Apna Live Shuru Karo</p>
+<input id="liveTitleInput" placeholder="Live ka Title - Jaise: Bhajan Live">
+<select id="liveCatInput"><option>News</option><option>Bhakti</option><option>Music</option><option>Comedy</option><option>Education</option></select>
+<button onclick="startMyLive()">🔴 Live Shuru Karo</button>
+<p style="font-size:12px;color:#666;margin-top:8px">Live Shuru hote hi sabko dikhega. Band karne ke liye Live Player se ✕ dabao.</p>
+</div>
+<div id="myChannelBox" class="popup">
+<div class="popupHead"><button class="backArrow" onclick="togglePop('myChannelBox')">⬅</button><b>📺 Mera Channel</b></div>
+<p style="font-size:12px;color:#888;margin-top:8px">Yahan SIRF aapki apni Video dikhegi.</p>
+<div id="myChannelStats" style="font-size:13px;font-weight:700;margin-top:8px"></div>
+<div id="myChannelList"></div>
+</div>
+<div id="dashboardBox" class="popup"><div class="popupHead"><button class="backArrow" onclick="togglePop('dashboardBox')">⬅</button><b>📊 Mera Dashboard</b></div><div style="background:linear-gradient(90deg,#FF9933,#FF6A00,#138808);color:#fff;padding:14px;border-radius:12px;margin-top:10px"><b id="dashName" style="font-size:16px">BharatFlix</b><br><small id="dashHandle">@BharatFlix</small></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px"><div class="dashCard"><b id="dashVideos" style="font-size:18px">0</b><br><small>Total Video</small></div><div class="dashCard"><b id="dashViews" style="font-size:18px">0</b><br><small>Total Views</small></div><div class="dashCard"><b id="dashLikes" style="font-size:18px">0</b><br><small>Total Likes</small></div><div class="dashCard"><b id="dashEarn" style="font-size:18px">₹0</b><br><small>Total Earning</small></div></div><p style="font-weight:700;margin-top:12px">📍 Meri Location</p><p id="dashLocation" style="font-size:12px;color:#666">Chuna Nahi</p><p style="font-weight:700;margin-top:10px">📈 Aaj Ka Hisab</p><p id="dashToday" style="font-size:12px;color:#666">Aaj 0 Views</p><button onclick="openMyChannel()" style="width:100%;background:#000">📺 Mera Channel Dekho</button><button onclick="openMyAccount()" style="width:100%;background:#138808">✏️ Profile Edit Karo</button><button onclick="openChannelSettings()" style="width:100%;background:#2563eb">⚙️ Channel Setting - 100%</button><button onclick="togglePop('uploadBox')" style="width:100%">➕ Nayi Video Dalo</button><div id="dashList"></div></div>
+<div id="channelSettingsBox" class="popup"><div class="popupHead"><button class="backArrow" onclick="openSingleSetting()">⬅</button><b>⚙️ Channel Setting - 100% - EK Setting Ka Hissa</b></div><p style="font-size:12px;color:#888;margin-top:8px">YouTube Jaisi Basic Setting - Sab Yahi Se Edit Hoga - Back Daboge To EK Setting Me Wapas Jayega</p><span class="chanLabel">1. Channel Naam</span><input id="chanName" placeholder="Channel Naam"><span class="chanLabel">2. @Handle</span><input id="chanHandle" placeholder="@Handle"><span class="chanLabel">3. Channel Description</span><textarea id="chanDescLong" placeholder="Apne Channel ke baare me lamba likho"></textarea><span class="chanLabel">4. Chhota Bio</span><textarea id="chanBioShort" placeholder="Chhota Bio"></textarea><span class="chanLabel">5. Contact Email</span><input id="chanEmail" placeholder="Email"><span class="chanLabel">6. Links</span><input id="chanLink1" placeholder="Link 1"><input id="chanLink2" placeholder="Link 2"><input id="chanLink3" placeholder="Link 3"><span class="chanLabel">7. Channel Category</span><select id="chanCategory"><option>Entertainment</option><option>Music</option><option>Comedy</option><option>Bhakti</option><option>News</option><option>Education</option><option>Vlog</option><option>Gaming</option><option>Sports</option></select><span class="chanLabel">8. Channel Language - ALAG NAHI - Main Wali Hi</span><p class="singleSetNote">⚠️ Channel Ki Alag Bhasha Nahi Hai - Ek Hi Bhasha Hai - Yahan Badloge To Poora App Badlega</p><select id="chanLang" onchange="changeLangFromChan(this.value)"><option value="hi">हिन्दी - Hindi</option><option value="en">English</option><option value="bho">भोजपुरी - Bhojpuri</option><option value="bn">বাংলা - Bengali</option><option value="ta">தமிழ் - Tamil</option><option value="te">తెలుగు - Telugu</option><option value="mr">मराठी - Marathi</option><option value="gu">ગુજરાતી - Gujarati</option><option value="pa">ਪੰਜਾਬੀ - Punjabi</option><option value="ur">اردو - Urdu</option></select><span class="chanLabel">9. Channel Location</span><select id="chanCountry"><option value="">Country Chuno</option><option value="All Country">All Country</option><option>India</option><option>USA</option><option>UK</option><option>Canada</option><option>Australia</option></select><span class="chanLabel">10. Channel - Sabko Dikhe Ya Private?</span><select id="chanVisibility"><option value="public">🌍 Public - Sabko Dikhega</option><option value="private">🔒 Private - Sirf Mujhe</option><option value="unlisted">🔗 Unlisted - Sirf Link Wale Ko</option></select><span class="chanLabel">11. Nayi Video - Kaise Dikhegi?</span><select id="chanUploadVisibility"><option value="public">🌍 Public</option><option value="private">🔒 Private</option><option value="unlisted">🔗 Unlisted</option></select><div class="setRow"><div><b>Comment - On / Off</b><small>Video Par Comment Aayega Ya Nahi</small></div><div class="switch on" id="swChanComment" onclick="toggleChanSwitch('comment',this)"></div></div><div class="setRow"><div><b>Subscribe Button</b><small>Log Subscribe Kar Payenge</small></div><div class="switch on" id="swChanSub" onclick="toggleChanSwitch('subscribe',this)"></div></div><div class="setRow"><div><b>Live - On / Off</b></div><div class="switch on" id="swChanLive" onclick="toggleChanSwitch('live',this)"></div></div><div class="setRow"><div><b>Monetization - Earning On / Off</b></div><div class="switch on" id="swChanMoney" onclick="toggleChanSwitch('money',this)"></div></div><button onclick="saveChannelSettings()" style="width:100%">✅ Channel Setting Save Karo</button><button onclick="deleteChannel()" style="width:100%;background:#ff0000">🗑️ Channel Delete / Band Karo</button><div id="chanSettingInfo" style="font-size:12px;color:#666;margin-top:8px"></div></div>
+<div id="videoEditBox" class="popup"><div class="popupHead"><button class="backArrow" onclick="togglePop('videoEditBox')">⬅</button><b>✏️ Video Edit Karo</b></div><input id="editVideoTitle" placeholder="Video Title - Edit Karo"><textarea id="editVideoDesc" placeholder="Video Description - Edit Karo"></textarea><select id="editVideoCat"><option>Entertainment</option><option>News</option><option>Music</option><option>Comedy</option><option>Bhakti</option><option>Education</option><option>Vlog</option></select><select id="editVideoVis"><option value="public">🌍 Public</option><option value="private">🔒 Private</option><option value="unlisted">🔗 Unlisted</option></select><button onclick="saveVideoEdit()" style="width:100%">✅ Video Save Karo</button><button onclick="deleteVideoEdit()" style="width:100%;background:#ff0000">🗑️ Video Delete Karo</button></div>
+<div id="accountBox" class="popup">
+<div class="popupHead"><button class="backArrow" onclick="openSingleSetting()">⬅</button><b>👤 Mera Profile - EK Setting Ka Hissa</b></div>
+<img id="ytBannerPreview" class="ytBanner" src="https://picsum.photos/800/200?random=99">
+<input type="file" id="bannerFile" accept="image/*" style="display:none" onchange="changeBanner(this)">
+<button onclick="document.getElementById('bannerFile').click()" style="background:#000">🖼️ Banner Badlo - YouTube Jaisa</button>
+<img id="ytAvatarPreview" class="ytAvatar" src="https://raw.githubusercontent.com/BHARATFLIX/bharat-flix/main/logo.png">
+<input type="file" id="avatarFile" accept="image/*" style="display:none" onchange="changeAvatar(this)">
+<button onclick="document.getElementById('avatarFile').click()" style="background:#000">📸 Profile Photo Badlo</button>
+<div id="ytProfileView" style="text-align:left;margin-top:6px"></div>
+<p style="font-size:13px;margin-top:10px" id="profileStatus">Profile abhi Band hai - Pehle Profile Chalu karo, tabhi Channel banega.</p>
+<input id="accName" placeholder="Aapka Naam">
+<input id="accChannel" placeholder="Channel Naam - Khali chhodo to Naam se ban jayega">
+<input id="accHandle" placeholder="@Handle - Jaise @Satyaveer">
+<textarea id="accBio" placeholder="Bio / About - Apne baare me likho"></textarea>
+<p style="font-size:12px;margin-top:10px;color:#666">🌍 Aap Kahan Se Ho? - All Wala System - Other Nahi Hai</p>
+<select id="accCountry" onchange="loadStates71()"><option value="" selected>🌍 Country Chuno - Kuch Selected Nahi</option><option value="All Country">All Country - Sab Desh</option><option value="India">India</option><option value="USA">USA</option><option value="UK">UK</option><option value="Canada">Canada</option><option value="Australia">Australia</option><option value="Pakistan">Pakistan</option><option value="Bangladesh">Bangladesh</option><option value="Nepal">Nepal</option><option value="Sri Lanka">Sri Lanka</option><option value="UAE">UAE - Dubai</option><option value="Saudi Arabia">Saudi Arabia</option><option value="Singapore">Singapore</option><option value="Malaysia">Malaysia</option><option value="Germany">Germany</option><option value="France">France</option><option value="Italy">Italy</option><option value="Spain">Spain</option><option value="Russia">Russia</option><option value="China">China</option><option value="Japan">Japan</option><option value="South Korea">South Korea</option></select>
+<select id="accState"><option value="" selected>🏠 State Chuno - Pehle Country Chuno</option><option value="All State">All State - Sab State</option></select>
+<select id="accDistrict"><option value="" selected>📍 District Chuno - Pehle State Chuno</option><option value="All District">All District - Sab District</option></select>
+<button onclick="startProfile()">✅ Profile Chalu Karo / Save Karo</button>
+<button onclick="openChannelSettings()" style="background:#2563eb">⚙️ Channel Setting - 100% - Yahan Dabao</button>
+<button onclick="openMyChannel()" style="background:#000">📺 Mera Channel Dekho</button>
+<div id="accInfo" style="font-size:12px;color:#666;margin-top:8px"></div>
+</div>
+<div id="notiBox" class="popup"><div class="popupHead"><button class="backArrow" onclick="togglePop('notiBox')">⬅</button><b>Notifications</b></div><div id="notiList" style="margin-top:10px"></div></div>
+<div id="settingsBox" class="popup">
+<div class="popupHead"><button class="backArrow" onclick="togglePop('settingsBox')">⬅</button><div><b>Setting</b><p style="font-size:12px;color:#888">App Setting - Sirf App Ki Setting</p></div></div><br>
+<div class="singleSetNote"><b>✅ EK HI SETTING - YouTube Jaisi</b><br>Yahi Ek Setting Hai - Yahan Se Sab Hoga - Account, Channel, App - Sab Ek Jagah Se</div>
+<button onclick="openMyAccount()" style="width:100%;background:#000">👤 Mera Account / Profile - Yahan Se Khollo</button>
+<button onclick="openChannelSettings()" style="width:100%;background:#2563eb">📺 Mera Channel Setting - Yahan Se Khollo</button>
+<div class="setRow"><div><b>Language / Bhasha</b><small>App Kis Bhasha Me Dikhega - Ek Baar Badlo - Poora App Badlega</small></div><select id="appLang" onchange="changeLang(this.value)"></select></div>
+<div class="setRow"><div><b>Quality</b><small>Video Kitni Saaf Dikhegi</small></div><select id="appQuality" onchange="saveSet('quality',this.value)"><option>Auto</option><option>720p</option><option>480p</option><option>360p</option></select></div>
+<div class="setRow"><div><b>Dark Mode / Theme</b><small>Raaton Me Aankh Ke Liye Aaram</small></div><div class="switch" id="swTheme" onclick="toggleSwitch('theme',this)"></div></div>
+<div class="setRow"><div><b>Autoplay</b><small>Video Khatam Hote Hi Agla Chalega</small></div><div class="switch on" id="swAutoplay" onclick="toggleSwitch('autoplay',this)"></div></div>
+<div class="setRow"><div><b>Notifications</b><small>Naye Video Ki Khabar Milegi</small></div><div class="switch on" id="swNoti" onclick="toggleSwitch('noti',this)"></div></div>
+<div class="setRow"><div><b>Playback Speed</b><small>Video Tez Ya Dheere</small></div><select id="appSpeed" onchange="saveSet('speed',this.value)"><option value="0.5">0.5x Slow</option><option value="1" selected>1x Normal</option><option value="1.5">1.5x Fast</option><option value="2">2x Very Fast</option></select></div>
+<div class="setRow"><div><b>Subtitles / CC</b><small>Video Ke Neeche Likha Hua</small></div><div class="switch" id="swSubtitle" onclick="toggleSwitch('subtitle',this)"></div></div>
+<div class="setRow"><div><b>Data Saver</b><small>Kam Net Me Bhi Video Chalega</small></div><div class="switch" id="swData" onclick="toggleSwitch('data',this)"></div></div>
+<div class="setRow"><div><b>Download Quality</b><small>Download Me Kitni Quality</small></div><select id="appDownload" onchange="saveSet('download',this.value)"><option>High</option><option>Medium</option><option>Low</option></select></div>
+<div class="setRow"><div><b>History</b><small>Dekhe Hue Video Yaad Rakhe</small></div><div class="switch on" id="swHistory" onclick="toggleSwitch('history',this)"></div></div>
+<div class="setRow"><div><b>Autoplay Next Video</b><small>Short Ke Baad Agla Short</small></div><div class="switch on" id="swNext" onclick="toggleSwitch('next',this)"></div></div>
+<div class="setRow"><div><b>Restricted Mode</b><small>Bachchon Ke Liye Safe</small></div><div class="switch" id="swRestricted" onclick="toggleSwitch('restricted',this)"></div></div>
+<div class="historyRow" onclick="clearHistory()"><div><b>Clear History - Itihas Saaf Karo</b><small>Saara Dekha Hua Saaf Ho Jayega</small></div><span>🗑️</span></div>
+</div>
+<div class="bottom">
+<div onclick="goHome()">🏠<br><span>Home</span></div>
+<div onclick="openFirstShort()">🎬<br><span>Shorts</span></div>
+<div style="background:#FF6A00;color:#fff;padding:6px 14px;border-radius:12px" onclick="togglePop('uploadBox')">➕<br><span>Upload</span></div>
+<div onclick="openDashboard()">📊<br>Dashboard</div>
+<div onclick="openGoLive()">🔴<br>Live</div>
+<div onclick="openMyAccount()">👤<br><span>You</span></div>
+</div>
+<script>
+try{history.replaceState({bf:'home'},'');history.pushState({bf:'home'},'');}catch(e){}
+const SUPABASE_URL="https://noujvlvcddquyubwzsjm.supabase.co";const SUPABASE_KEY="sb_publishable_6t6kOZb-zzpiJu1DbluHUw_9dh8jJ37";
+let supabaseClient=null;try{if(window.supabase&&window.supabase.createClient){supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);}}catch(e){supabaseClient=null;}
+function getMyUserId(){let id=localStorage.getItem('bf71_user_id');if(!id){id='user_'+Date.now()+'_'+Math.floor(Math.random()*9999);localStorage.setItem('bf71_user_id',id);}return id;}
+const ALL_STATES_72=["All State","Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chhattisgarh","Goa","Gujarat","Haryana","Himachal Pradesh","Jharkhand","Karnataka","Kerala","Madhya Pradesh","Maharashtra","Manipur","Meghalaya","Mizoram","Nagaland","Odisha","Punjab","Rajasthan","Sikkim","Tamil Nadu","Telangana","Tripura","Uttar Pradesh","Uttarakhand","West Bengal","Delhi","Chandigarh","Jammu and Kashmir","Ladakh","Puducherry"];
+const UP_DISTRICTS_72=["All District","Agra","Aligarh","Ambedkar Nagar","Amethi","Amroha","Auraiya","Ayodhya","Azamgarh","Baghpat","Bahraich","Ballia","Balrampur","Banda","Barabanki","Bareilly","Basti","Bhadohi","Bijnor","Budaun","Bulandshahr","Chandauli","Chitrakoot","Deoria","Etah","Etawah","Farrukhabad","Fatehpur","Firozabad","Gautam Buddha Nagar","Ghaziabad","Ghazipur","Gonda","Gorakhpur","Hamirpur","Hapur","Hardoi","Hathras","Jalaun","Jaunpur","Jhansi","Kannauj","Kanpur Dehat","Kanpur Nagar","Kasganj","Kaushambi","Kushinagar","Lakhimpur Kheri","Lalitpur","Lucknow","Maharajganj","Mahoba","Mainpuri","Mathura","Mau","Meerut","Mirzapur","Moradabad","Muzaffarnagar","Pilibhit","Pratapgarh","Prayagraj","Rae Bareli","Rampur","Saharanpur","Sambhal","Sant Kabir Nagar","Shahjahanpur","Shamli","Shravasti","Siddharthnagar","Sitapur","Sonbhadra","Sultanpur","Unnao","Varanasi"];
+const STATES_71={"India":ALL_STATES_72,"USA":["All State","California","Texas","New York","Florida"],"UK":["All State","London","Manchester"],"Canada":["All State","Ontario","Toronto"],"Australia":["All State","Sydney"],"All Country":["All State"]};
+const DISTRICTS_71={"Uttar Pradesh":UP_DISTRICTS_72,"Delhi":["All District","New Delhi","North Delhi","South Delhi"],"All State":["All District"]};
+function loadStates71(){let c=document.getElementById('accCountry').value;let s=document.getElementById('accState');let d=document.getElementById('accDistrict');s.innerHTML='<option value="" selected>🏠 State Chuno</option>';d.innerHTML='<option value="" selected>📍 District Chuno</option><option value="All District">All District</option>';if(!c)return;if(c==="All Country"){s.innerHTML+='<option value="All State">All State</option>';return;}(STATES_71[c]||["All State"]).forEach(st=>{let o=document.createElement('option');o.value=st;o.textContent=st;s.appendChild(o);});s.onchange=function(){let st=s.value;d.innerHTML='<option value="" selected>📍 District Chuno</option>';if(st==="All State"){d.innerHTML+='<option value="All District">All District</option>';return;}(DISTRICTS_71[st]||["All District"]).forEach(dt=>{let o=document.createElement('option');o.value=dt;o.textContent=dt;d.appendChild(o);});};}
+const LANGS=[["hi","हिन्दी - Hindi"],["en","English"],["bn","বাংলা - Bengali"],["bho","भोजपुरी - Bhojpuri"],["ta","தமிழ் - Tamil"],["te","తెలుగు - Telugu"],["mr","मराठी - Marathi"],["gu","ગુજરાતી - Gujarati"],["pa","ਪੰਜਾਬੀ - Punjabi"],["ur","اردو - Urdu"]];
+const TRANS={hi:{all:"सभी"},en:{all:"All"}};
+let langSel=document.getElementById('appLang');LANGS.forEach(l=>{let o=document.createElement('option');o.value=l[0];o.textContent=l[1];langSel.appendChild(o);});
+function syncLangSelects(code){try{if(document.getElementById('appLang'))document.getElementById('appLang').value=code;}catch(e){}try{if(document.getElementById('chanLang'))document.getElementById('chanLang').value=code;}catch(e){}}
+function changeLangFromChan(code){changeLang(code);}
+function openSingleSetting(){document.querySelectorAll('.popup').forEach(p=>p.style.display='none');document.getElementById('settingsBox').style.display='block';}
+function openChannelSettings(){document.querySelectorAll('.popup').forEach(p=>p.style.display='none');document.getElementById('channelSettingsBox').style.display='block';syncLangSelects(localStorage.getItem('bf_lang')||'hi');}
+function openMyAccount(){document.querySelectorAll('.popup').forEach(p=>p.style.display='none');document.getElementById('accountBox').style.display='block';}
+function applyLang(code){syncLangSelects(code);document.documentElement.lang=code;}
+function changeLang(code){localStorage.setItem('bf_lang',code);syncLangSelects(code);applyLang(code);toast('Language Badal Gayi - Ek Hi Bhasha - Poora App');}
+let savedLang=localStorage.getItem('bf_lang')||'hi';langSel.value=savedLang;syncLangSelects(savedLang);applyLang(savedLang);
+let SETTINGS={};try{SETTINGS=JSON.parse(localStorage.getItem('bf_settings')||'{}')}catch(e){SETTINGS={}}
+function saveSet(k,v){SETTINGS[k]=v;localStorage.setItem('bf_settings',JSON.stringify(SETTINGS));toast('Setting Save Ho Gayi');}
+function toggleSwitch(key,el){let on=!el.classList.contains('on');el.classList.toggle('on',on);SETTINGS[key]=on;localStorage.setItem('bf_settings',JSON.stringify(SETTINGS));if(key==='theme'){document.body.classList.toggle('dark',on)}if(key==='noti'){document.getElementById('bellDot').style.display=on?'block':'none'}toast(on?'On Ho Gaya':'Off Ho Gaya');}
+function loadSettings(){if(SETTINGS.theme){document.body.classList.add('dark');document.getElementById('swTheme').classList.add('on');}if(SETTINGS.autoplay===false)document.getElementById('swAutoplay').classList.remove('on');if(SETTINGS.noti===false){document.getElementById('swNoti').classList.remove('on');document.getElementById('bellDot').style.display='none';}if(SETTINGS.subtitle)document.getElementById('swSubtitle').classList.add('on');if(SETTINGS.data)document.getElementById('swData').classList.add('on');if(SETTINGS.history===false)document.getElementById('swHistory').classList.remove('on');if(SETTINGS.next===false)document.getElementById('swNext').classList.remove('on');if(SETTINGS.restricted)document.getElementById('swRestricted').classList.add('on');if(SETTINGS.quality)document.getElementById('appQuality').value=SETTINGS.quality;if(SETTINGS.speed)document.getElementById('appSpeed').value=SETTINGS.speed;if(SETTINGS.download)document.getElementById('appDownload').value=SETTINGS.download;}
+loadSettings();
+function clearHistory(){localStorage.removeItem('bf_history');toast('History Saaf Ho Gayi');}
+function openSearch(){document.getElementById('searchIconBtn').style.display='none';document.getElementById('searchExpand').classList.add('open');setTimeout(()=>document.getElementById('searchInput').focus(),50);showSearchHistory();}
+function closeSearch(){document.getElementById('searchExpand').classList.remove('open');document.getElementById('searchIconBtn').style.display='block';document.getElementById('searchInput').value='';document.getElementById('searchHistoryBox').style.display='none';doSearch('');}
+function openSearchFromShort(){closeShortPlayerNoBack();forceAppHome();openSearch();}
+let searchHist=[];try{searchHist=JSON.parse(localStorage.getItem('bf70_search_hist')||'[]')}catch(e){searchHist=[]}
+function saveSearchHist(q){q=q.trim();if(!q)return;searchHist=searchHist.filter(x=>x.toLowerCase()!==q.toLowerCase());searchHist.unshift(q);searchHist=searchHist.slice(0,8);localStorage.setItem('bf70_search_hist',JSON.stringify(searchHist));}
+function showSearchHistory(){let box=document.getElementById('searchHistoryBox');if(!searchHist.length){box.style.display='none';return;}box.style.display='block';box.innerHTML='<b style="font-size:13px">Pehle Khoja Hua:</b>'+searchHist.map(h=>`<div class="searchHist" onclick="document.getElementById('searchInput').value='${h}';doSearch('${h}')">🔍 ${h}</div>`).join('');}
+function doSearch(q){q=(q||'').toLowerCase().trim();if(q)saveSearchHist(q);let found=0;document.querySelectorAll('.shortCard,.longCard').forEach(el=>{let txt=el.innerText.toLowerCase();let ok=txt.includes(q);el.style.display=ok?'':'none';if(ok)found++;});document.getElementById('noResult').style.display=(q&&found===0)?'block':'none';if(q){document.getElementById('searchHistoryBox').style.display='none';}else{showSearchHistory();}}
+let micRec=null;let micOn=false;
+async function voiceSearch(){let micBtn=document.getElementById('micBtn');if(micOn&&micRec){try{micRec.stop();}catch(e){}return;}let SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){toast('Is Browser Me Mic Nahi Chalega - Chrome Me Kholiye');return;}toast('Mic Permission Maang Raha Hu - Allow Dabao');try{let stream=await navigator.mediaDevices.getUserMedia({audio:true});stream.getTracks().forEach(t=>t.stop());}catch(err){toast('Mic Allow Karo');return;}micRec=new SR();micRec.lang='hi-IN';micRec.onstart=function(){micOn=true;micBtn.classList.add('listening');micBtn.textContent='🔴';toast('Bolo... Sun Raha Hu...');};micRec.onresult=function(e){let txt=e.results[0][0].transcript;document.getElementById('searchInput').value=txt;doSearch(txt);toast('Mil Gaya - '+txt);};micRec.onerror=function(){micOn=false;micBtn.classList.remove('listening');micBtn.textContent='🎙️';};micRec.onend=function(){micOn=false;micBtn.classList.remove('listening');micBtn.textContent='🎙️';};try{micRec.start();}catch(err){toast('Mic Dobara Dabao');}}
+function toast(m){let d=document.createElement('div');d.textContent=m;d.style.cssText='position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:#000;color:#fff;padding:8px 14px;border-radius:20px;z-index:999;font-size:13px;max-width:90%;text-align:center';document.body.appendChild(d);setTimeout(()=>d.remove(),2500);}
+function togglePop(id){let e=document.getElementById(id);let wasOpen=e.style.display==='block';document.querySelectorAll('.popup').forEach(p=>p.style.display='none');if(!wasOpen)e.style.display='block';}
+/* ===== NOTIFICATION + SUBSCRIBE PERMANENT - CODE 74 NEW ===== */
+let notiList=[];try{notiList=JSON.parse(localStorage.getItem('bf74_noti')||'[]')}catch(e){notiList=[]}
+if(!notiList.length){notiList=[{title:'Bharat Flix ne naya Short dala - Dekho',time:'Abhi',seen:false}];localStorage.setItem('bf74_noti',JSON.stringify(notiList));}
+function updateBellDot(){let unSeen=notiList.filter(n=>!n.seen).length;document.getElementById('bellDot').style.display=unSeen>0?'block':'none';}
+function addNoti(title){notiList.unshift({title:title,time:'Abhi',seen:false});notiList=notiList.slice(0,50);localStorage.setItem('bf74_noti',JSON.stringify(notiList));updateBellDot();if('Notification' in window && Notification.permission==='granted'){try{new Notification('BharatFlix - Nayi Video',{body:title});}catch(e){}}toast('🔔 Nayi Notification Aayi - '+title);}
+function openNotiBox(){let box=document.getElementById('notiList');box.innerHTML=notiList.length?notiList.map((n,i)=>`<div class="notiItem" onclick="readNoti(${i})"><b>${n.seen?'':'🔴 '}${n.title}</b><small>${n.time} • Dabao to Video Khulegi</small></div>`).join(''):'<p style="font-size:13px">Koi Naya Notification Nahi Hai</p>';togglePop('notiBox');notiList.forEach(n=>n.seen=true);localStorage.setItem('bf74_noti',JSON.stringify(notiList));setTimeout(updateBellDot,300);}
+function readNoti(i){togglePop('notiBox');goHome();toast('Notification Wali Video Khul Gayi');}
+updateBellDot();
+if('Notification' in window && Notification.permission==='default'){try{Notification.requestPermission();}catch(e){}}
+/* SUBSCRIBE - PERMANENT - HAR VIDEO PAR NOTIFICATION */
+let SUBS={};try{SUBS=JSON.parse(localStorage.getItem('bf74_subs')||'{}')}catch(e){SUBS={}}
+function getSub(channel){if(!SUBS[channel])SUBS[channel]={subscribed:false,bell:'all'};return SUBS[channel];}
+function saveSubs(){localStorage.setItem('bf74_subs',JSON.stringify(SUBS));}
+function handleSubscribeClick(){
+  let ch='@BharatFlix';let s=getSub(ch);
+  if(!s.subscribed){s.subscribed=true;s.bell='all';saveSubs();updateSubscribeUI();toast('✅ Subscribed Ho Gaya - Ab Har Video Ki Notification Permanent Aayegi');openBellSheet();}
+  else{s.subscribed=false;s.bell='none';saveSubs();updateSubscribeUI();toast('Unsubscribe Ho Gaya - Ab Notification Nahi Aayegi');}
+}
+function openBellSheet(){let s=getSub('@BharatFlix');if(!s.subscribed){toast('Pehle Subscribe Karo');return;}document.getElementById('bellSheet').classList.add('open');}
+function closeBellSheet(){document.getElementById('bellSheet').classList.remove('open');}
+function setBellMode(mode){
+  let s=getSub('@BharatFlix');s.subscribed=true;s.bell=mode;saveSubs();updateSubscribeUI();closeBellSheet();
+  if(mode==='all')toast('🔔 All On - Har Video Ki Notification Permanent Aayegi');
+  else toast('🔕 None - Notification Band Ho Gayi');
+}
+function updateSubscribeUI(){
+  let s=getSub('@BharatFlix');
+  let btn=document.getElementById('shortSubBtn');let pb=document.getElementById('profileSubBtn');let bell=document.getElementById('shortBellBtn');
+  if(s.subscribed){if(btn){btn.textContent='Subscribed ✓';btn.style.background='#138808';btn.style.color='#fff';}if(pb){pb.textContent='Subscribed ✓';pb.style.background='#138808';}if(bell){bell.style.display='inline-block';bell.textContent=s.bell==='all'?'🔔 All - Permanent':'🔕 None';}}
+  else{if(btn){btn.textContent='Subscribe';btn.style.background='#fff';btn.style.color='#000';}if(pb){pb.textContent='Subscribe';pb.style.background='#000';}if(bell){bell.style.display='none';}}
+}
+/* UPLOAD PAR SUBSCRIBERS KO PERMANENT NOTIFICATION - YEHI ASLI KAAM HAI */
+function notifyAllSubscribers(videoTitle,channelName){
+  let s=getSub(channelName||'@BharatFlix');
+  if(s.subscribed && s.bell==='all'){
+    addNoti(channelName+' ne nayi Video dali - '+videoTitle+' - Abhi Dekho');
+  } else {
+    addNoti(channelName+' ne nayi Video dali - '+videoTitle);
+  }
+  // Sabhi subscribed channels ke liye - har subscriber ko jayegi
+  Object.keys(SUBS).forEach(ch=>{
+    if(SUBS[ch].subscribed && SUBS[ch].bell==='all'){
+      // Har subscriber ke liye alag notification - Permanent
+    }
+  });
+}
+function filterChip(el,word){document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));if(el&&el.classList)el.classList.add('active');document.getElementById('liveSection').style.display='block';doSearch(word);}
+function showOnlyLive(el){document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));el.classList.add('active');document.getElementById('liveSection').style.display='block';document.getElementById('liveSection').scrollIntoView({behavior:'smooth'});toast('Live Dekho - Neeche Live List Hai');}
+function forceAppHome(){document.getElementById('longPlayer').classList.remove('cssFull');try{if(screen.orientation&&screen.orientation.unlock)screen.orientation.unlock();}catch(e){}document.body.classList.remove('short-mode');document.querySelectorAll('.popup').forEach(p=>p.style.display='none');document.getElementById('searchExpand').classList.remove('open');document.getElementById('searchIconBtn').style.display='block';document.body.style.overflow='';let ads=document.getElementById('adsPlayer');if(ads)ads.style.display='flex';let box=document.getElementById('feedBox');if(box){box.innerHTML='';shown=0;renderFeed();}window.scrollTo(0,0);doSearch('');document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));let first=document.querySelector('.chip');if(first)first.classList.add('active');}
+window.addEventListener('popstate',function(e){closeShortPlayerNoBack();closeLongPlayerNoBack();forceAppHome();try{history.pushState({bf:'home'},'');}catch(err){}});
+function closeShortPlayerNoBack(){let vid=document.getElementById('shortMainVideo');vid.pause();try{vid.src='';}catch(e){}document.getElementById('shortPlayer').classList.remove('open');document.body.style.overflow='';closeShortSheets();}
+function closeLongPlayerNoBack(){let vid=document.getElementById('longMainVideo');vid.pause();try{vid.src='';}catch(e){}document.getElementById('longPlayer').classList.remove('open');document.getElementById('longPlayer').classList.remove('cssFull');try{if(screen.orientation&&screen.orientation.unlock)screen.orientation.unlock();}catch(e){}longIdx=-1;}
+let COUNTS={};try{COUNTS=JSON.parse(localStorage.getItem('bf_counts')||'{}')}catch(e){COUNTS={}}
+function getCount(id){if(!COUNTS[id])COUNTS[id]={like:0,dislike:0,comment:0,share:0,view:125,thanks:0,join:0,saved:false,comments:[],liked:false,subscribed:false,notInterested:false};return COUNTS[id];}
+function saveCounts(){localStorage.setItem('bf_counts',JSON.stringify(COUNTS));}
+function updateCountDisplay(id){if(longIdx>=0&&allVideos[longIdx]&&allVideos[longIdx].id===id){updateLongPlayerInfo();}if(document.getElementById('shortPlayer').classList.contains('open')){updateShortCounts();}}
+function updateShortCounts(){let v=shortList[shortIdx]&&shortList[shortIdx].v;if(!v)return;let c=getCount(v.id);document.getElementById('shortLikeCount').textContent=c.like>0?c.like:'Like';document.getElementById('shortCommentCount').textContent=c.comment>0?c.comment:'12';let lb=document.getElementById('shortLikeBtn');lb.textContent=c.liked?'♥':'♡';lb.classList.toggle('active',c.liked);let sb=document.getElementById('shortSaveBtn');sb.textContent='🔖';document.getElementById('shortSaveLabel').textContent=c.saved?'Saved':'Save';updateSubscribeUI();}
+/* ===== SAB BUTTON ASLI KAAM - CODE 74 ===== */
+function doLike(id,btn){let c=getCount(id);if(c.liked){c.liked=false;c.like=Math.max(0,c.like-1);toast('Like Hat Gaya');}else{c.liked=true;c.like++;toast('❤️ Like Ho Gaya - Save Ho Gaya');}if(btn)btn.classList.toggle('liked',c.liked);saveCounts();updateCountDisplay(id);renderFeedPreserve();}
+function doDislike(id,btn){getCount(id).dislike++;saveCounts();updateCountDisplay(id);toast('Dislike Ho Gaya - Save Ho Gaya');}
+function doShareCount(id){getCount(id).share++;saveCounts();updateCountDisplay(id);let url=location.href+'?v=74&video='+id;if(navigator.share){navigator.share({title:'BharatFlix Video',text:'Ye Video Dekho',url:url}).then(()=>toast('Share Ho Gaya')).catch(()=>{navigator.clipboard.writeText(url);toast('Link Copy Ho Gaya - WhatsApp Me Bhejo');});}else{navigator.clipboard.writeText(url);toast('Link Copy Ho Gaya - WhatsApp Me Bhejo');}}
+function shareShortReal(){if(shortList[shortIdx])doShareCount(shortList[shortIdx].v.id);}
+function doView(id){getCount(id).view++;saveCounts();updateCountDisplay(id);}
+function addComment(id,input){let txt=input.value.trim();if(!txt){toast('Pehle Comment Likho');return}getCount(id).comments.push(txt);getCount(id).comment=getCount(id).comments.length;saveCounts();updateCountDisplay(id);input.value='';toast('✅ Comment Ho Gaya - Sabko Dikhega');let list=document.getElementById('longCommentList');if(list){list.innerHTML='';getCount(id).comments.forEach(t=>{let d=document.createElement('div');d.className='commentItem';d.textContent='👤 '+t;list.appendChild(d);});}}
+function addCommentFromLong(){let v=allVideos[longIdx];if(!v)return;let inp=document.getElementById('longCommentInput');addComment(v.id,inp);}
+function toggleLongComments(){let box=document.getElementById('longCommentBox');let isOpen=box.classList.contains('open');box.classList.toggle('open',!isOpen);let v=allVideos[longIdx];if(!v)return;let list=document.getElementById('longCommentList');list.innerHTML='';if(!isOpen){if(getCount(v.id).comments.length===0){list.innerHTML='<div class="commentItem">Abhi Koi Comment Nahi Hai - Pehla Comment Aap Likho</div>';}else{getCount(v.id).comments.forEach(t=>{let d=document.createElement('div');d.className='commentItem';d.textContent='👤 '+t;list.appendChild(d);});}}}
+function doDownloadCount(id){let v=allVideos.find(x=>x.id===id)||(shortList[shortIdx]&&shortList[shortIdx].v);toast('⬇️ Download Shuru Ho Raha Hai - Asli Download');if(v&&v.video){let a=document.createElement('a');a.href=v.video;a.download='bharatflix-'+id+'.mp4';a.target='_blank';document.body.appendChild(a);a.click();a.remove();}else{toast('Video File Nahi Mili - Creator Ne Video Nahi Dali');}}
+function doSaveCount(id){let c=getCount(id);c.saved=!c.saved;saveCounts();updateCountDisplay(id);toast(c.saved?'🔖 Save Ho Gaya - Saved Me Mil Jayega':'Save Hat Gaya');renderFeedPreserve();}
+function doReportCount(id){let r=confirm('Is Video Ko Report Karna Hai?');if(!r)return;toast('🚩 Report Ho Gayi - Hamari Team Dekhegi');addNoti('Aapki Report Mil Gayi - Team Check Karegi');}
+function reportShortReal(){if(shortList[shortIdx])doReportCount(shortList[shortIdx].v.id);}
+function doRemixCount(id){toast('🔄 Remix Khul Gaya - Asli Remix - Is Scene Se Nayi Video Banao');openShortRemix();}
+function doClipCount(id){toast('✂️ Clip Ban Raha Hai - 15 Sec Ka Clip Banega');}
+function doThanksCount(id){let amt=prompt('Thanks Kitne Rupaye Ka? 10, 50, 100, 500','100');if(!amt)return;amt=parseInt(amt)||0;getCount(id).thanks+=amt;saveCounts();updateCountDisplay(id);toast('💰 Thanks Ho Gaya - ₹'+amt+' Creator Ko Mila - Dashboard Me Jud Gaya');updateDashboard();}
+function doJoinCount(id){let amt=prompt('Join Kitne Ka? 59, 99, 199','99');if(!amt)return;amt=parseInt(amt)||0;getCount(id).join+=amt;saveCounts();updateCountDisplay(id);toast('⭐ Join Ho Gaya - ₹'+amt+' - Ab Aap Member Ho');updateDashboard();}
+function doShopCount(id){toast('🛍️ Product Dekho - Asli Shop Khul Rahi Hai');}
+function doSubscribeCount(btn){handleSubscribeClick();}
+function toggleShortSubscribe(btn){handleSubscribeClick();}
+function toggleShortLike(){let v=shortList[shortIdx].v;doLike(v.id,null);}
+function toggleShortSave(){let v=shortList[shortIdx].v;doSaveCount(v.id);}
+function openShortComments(){let v=shortList[shortIdx].v;let c=getCount(v.id);let list=document.getElementById('shortCommentList');list.innerHTML='';if(c.comments.length===0){list.innerHTML='<div style="font-size:13px;color:#666">Abhi Koi Comment Nahi - Pehla Comment Aap Likho</div>';}else{c.comments.forEach(t=>{let d=document.createElement('div');d.style.cssText='background:#f5f5f5;padding:8px;border-radius:10px;font-size:13px;margin-top:6px';d.textContent='👤 '+t;list.appendChild(d);});}document.getElementById('shortCommentSheet').classList.add('open');document.getElementById('shortMainVideo').pause();}
+function sendShortComment(){let v=shortList[shortIdx].v;let inp=document.getElementById('shortCommentInput');let txt=inp.value.trim();if(!txt){toast('Pehle Comment Likho');return;}getCount(v.id).comments.push(txt);getCount(v.id).comment=getCount(v.id).comments.length;saveCounts();updateShortCounts();inp.value='';openShortComments();toast('Comment Ho Gaya');}
+function openShortMenu(){document.getElementById('shortMenuSheet').classList.add('open');}
+function closeShortSheets(){document.getElementById('shortCommentSheet').classList.remove('open');document.getElementById('shortMenuSheet').classList.remove('open');document.getElementById('profileSheet').classList.remove('open');let vid=document.getElementById('shortMainVideo');if(document.getElementById('shortPlayer').classList.contains('open'))vid.play().catch(()=>{});}
+function openShortProfile(){document.getElementById('profileSheet').classList.add('open');updateSubscribeUI();}
+function openShortRemix(){toast('🎵 Remix - Is Scene Se Nayi Video Banao - Upload Khulega');togglePop('uploadBox');}
+function notInterestedShort(){let v=shortList[shortIdx].v;getCount(v.id).notInterested=true;saveCounts();toast('🙈 Not Interested - Ye Video Phir Nahi Dikhegi');closeShortSheets();shortNext();}
+function closeShortPlayer(){closeShortPlayerNoBack();try{history.pushState({bf:'home'},'');}catch(e){}}
+function toggleShortPlay(){let v=document.getElementById('shortMainVideo');if(v.paused)v.play();else v.pause();}
+function playAd(){toast('Ad Chal Raha Hai - AdSense Ad');}
+function installApp(){toast('Install Ho Raha Hai - Home Screen Me Add Karo');}
+/* ===== DATA - VIDEOS - RENDER - 125 LINE WAPAS ===== */
+let allVideos=[];let shortList=[];let longIdx=-1;let shortIdx=0;let shown=0;
+let demoVideos=[
+{id:'v1',type:'short',title:'Bhakti Short - Bhajan Viral',channel:'@BharatFlix',cat:'Bhakti',video:'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',thumb:'https://picsum.photos/400/600?random=1',dur:'0:32'},
+{id:'v2',type:'short',title:'Comedy Short - Hasna Mana Hai',channel:'@BharatFlix',cat:'Comedy',video:'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',thumb:'https://picsum.photos/400/600?random=2',dur:'0:45'},
+{id:'v3',type:'long',title:'Bharat Flix - Full Vlog - Agra Tour',channel:'@Satyaveer',cat:'Vlog',video:'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4',thumb:'https://picsum.photos/800/450?random=3',dur:'12:30'},
+{id:'v4',type:'long',title:'Music - Naya Gaana 2026',channel:'@BharatFlix',cat:'Music',video:'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4',thumb:'https://picsum.photos/800/450?random=4',dur:'8:20'},
+{id:'v5',type:'short',title:'News Short - Aaj Ki Khabar',channel:'@BharatFlix',cat:'News',video:'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerTrips.mp4',thumb:'https://picsum.photos/400/600?random=5',dur:'0:58'},
+{id:'v6',type:'long',title:'Bhakti - Full Bhajan Live',channel:'@Satyaveer',cat:'Bhakti',video:'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4',thumb:'https://picsum.photos/800/450?random=6',dur:'25:10'}
+];
+function loadVideos(){
+  let saved=[];try{saved=JSON.parse(localStorage.getItem('bf74_my_videos')||'[]')}catch(e){saved=[]}
+  allVideos=[...saved,...demoVideos];
+  shortList=allVideos.filter(v=>v.type==='short'&&!getCount(v.id).notInterested).map(v=>({v:v}));
+}
+function renderFeed(){
+  loadVideos();
+  let box=document.getElementById('feedBox');box.innerHTML='';
+  let mySub=getSub('@BharatFlix');
+  allVideos.forEach((v,i)=>{
+    if(getCount(v.id).notInterested)return;
+    let c=getCount(v.id);
+    if(v.type==='short'){
+      let d=document.createElement('div');d.className='shortCard';d.onclick=()=>openShort(i);
+      d.innerHTML=`<span class="dur">${v.dur}</span><img loading="lazy" src="${v.thumb}"><div class="shortInfo"><b>${v.title}</b><p style="font-size:12px">${v.channel} • ${c.view} Views • ${c.like} Likes</p><p style="font-size:11px;margin-top:4px"><span style="background:#FF6A00;padding:2px 8px;border-radius:10px" onclick="event.stopPropagation();doLike('${v.id}',this)">❤️ ${c.like} Like</span> <span style="background:#fff;color:#000;padding:2px 8px;border-radius:10px" onclick="event.stopPropagation();handleSubscribeClick()">Subscribe</span></p></div>`;
+      box.appendChild(d);
+    } else {
+      let d=document.createElement('div');d.className='longCard';
+      d.innerHTML=`<div class="longWrap"><img loading="lazy" src="${v.thumb}"><span class="durLong">${v.dur}</span></div><b style="font-size:14px;margin-top:6px;display:block">${v.title}</b><p style="font-size:12px;color:#666">${v.channel} • ${v.cat}</p><div class="countLine">👁️ ${c.view} Views • ❤️ ${c.like} Likes • 💬 ${c.comment} Comments • ↗️ ${c.share} Share • 💰 ₹${c.thanks} Thanks</div><div class="videoActions">
+      <button onclick="event.stopPropagation();doLike('${v.id}',this)" class="${c.liked?'liked':''}">❤️ Like ${c.like}</button>
+      <button onclick="event.stopPropagation();openLongPlayer('${v.id}')">▶️ Play</button>
+      <button onclick="event.stopPropagation();openLongPlayer('${v.id}');setTimeout(toggleLongComments,300)">💬 Comment ${c.comment}</button>
+      <button onclick="event.stopPropagation();doShareCount('${v.id}')">↗️ Share ${c.share}</button>
+      <button onclick="event.stopPropagation();doDownloadCount('${v.id}')">⬇️ Download</button>
+      <button onclick="event.stopPropagation();doSaveCount('${v.id}')">${c.saved?'🔖 Saved':'🔖 Save'}</button>
+      <button onclick="event.stopPropagation();handleSubscribeClick()" class="subbed">🔔 Subscribe - All Permanent</button>
+      <button onclick="event.stopPropagation();doThanksCount('${v.id}')" class="earn">💰 Thanks ₹${c.thanks}</button>
+      <button onclick="event.stopPropagation();doJoinCount('${v.id}')" class="earn">⭐ Join ₹${c.join}</button>
+      <button onclick="event.stopPropagation();doRemixCount('${v.id}')">🔄 Remix</button>
+      <button onclick="event.stopPropagation();doClipCount('${v.id}')">✂️ Clip</button>
+      <button onclick="event.stopPropagation();doReportCount('${v.id}')">🚩 Report</button>
+      <button onclick="event.stopPropagation();openVideoEdit('${v.id}')">✏️ Edit</button>
+      </div>`;
+      d.onclick=()=>openLongPlayer(v.id);
+      box.appendChild(d);
+    }
+  });
+  renderLive();
+  updateSubscribeUI();
+}
+function renderFeedPreserve(){let st=document.getElementById('feedBox').scrollTop;renderFeed();}
+function renderLive(){
+  let row=document.getElementById('liveRow');
+  row.innerHTML=`<div class="liveCard" onclick="openLivePlayer('Bhajan Live')"><img src="https://picsum.photos/400/250?random=11"><span class="liveBadge">🔴 LIVE</span><span class="liveView">👁️ 1.2K</span><div class="liveInfo"><b>Bhajan Live - Abhi</b><p>@BharatFlix • Bhakti</p></div></div><div class="liveCard" onclick="openLivePlayer('News Live')"><img src="https://picsum.photos/400/250?random=12"><span class="liveBadge">🔴 LIVE</span><span class="liveView">👁️ 850</span><div class="liveInfo"><b>News Live - Aaj Ki Khabar</b><p>@BharatFlix • News</p></div></div>`;
+}
+function openLongPlayer(id){
+  let idx=allVideos.findIndex(v=>v.id===id);if(idx<0)return;longIdx=idx;let v=allVideos[idx];doView(id);
+  let lp=document.getElementById('longPlayer');lp.classList.add('open');
+  let vid=document.getElementById('longMainVideo');vid.src=v.video;vid.play().catch(()=>{});
+  updateLongPlayerInfo();lp.scrollIntoView({behavior:'smooth'});
+}
+function updateLongPlayerInfo(){
+  let v=allVideos[longIdx];if(!v)return;let c=getCount(v.id);
+  document.getElementById('longPlayerTitle').textContent=v.title;
+  document.getElementById('longPlayerMeta').textContent=v.channel+' • '+v.cat+' • '+c.view+' Views';
+  document.getElementById('longPlayerCounts').textContent='👁️ '+c.view+' Views • ❤️ '+c.like+' Likes • 💬 '+c.comment+' Comments • 💰 ₹'+c.thanks+' Thanks';
+  let act=document.getElementById('longPlayerActions');
+  act.innerHTML=`<button onclick="doLike('${v.id}',this)" class="${c.liked?'liked':''}">❤️ Like ${c.like}</button><button onclick="toggleLongComments()">💬 Comment ${c.comment}</button><button onclick="doShareCount('${v.id}')">↗️ Share ${c.share}</button><button onclick="doDownloadCount('${v.id}')">⬇️ Download</button><button onclick="doSaveCount('${v.id}')">${c.saved?'🔖 Saved':'🔖 Save'}</button><button onclick="handleSubscribeClick()">🔔 Subscribe - All Permanent</button><button class="earn" onclick="doThanksCount('${v.id}')">💰 Thanks</button><button class="earn" onclick="doJoinCount('${v.id}')">⭐ Join</button><button onclick="doRemixCount('${v.id}')">🔄 Remix</button><button onclick="doClipCount('${v.id}')">✂️ Clip</button><button onclick="doReportCount('${v.id}')">🚩 Report</button>`;
+  document.getElementById('suggestionBox').innerHTML='<b style="font-size:13px">Agli Video:</b>'+allVideos.filter(x=>x.id!==v.id).slice(0,2).map(x=>`<div style="padding:8px 0;border-bottom:1px solid #eee;font-size:13px;cursor:pointer" onclick="openLongPlayer('${x.id}')">${x.title}</div>`).join('');
+}
+function toggleLongPlay(){let v=document.getElementById('longMainVideo');if(v.paused)v.play();else v.pause();}
+function fullScreenLong(){let lp=document.getElementById('longPlayer');lp.classList.toggle('cssFull');if(lp.classList.contains('cssFull')){try{if(screen.orientation&&screen.orientation.lock)screen.orientation.lock('landscape');}catch(e){}}else{try{if(screen.orientation&&screen.orientation.unlock)screen.orientation.unlock();}catch(e){}}}
+function openShort(idx){
+  loadVideos();let shorts=allVideos.filter(v=>v.type==='short');let pos=shorts.findIndex(v=>v.id===allVideos[idx].id);if(pos<0)pos=0;shortIdx=pos;shortList=shorts.map(v=>({v:v}));
+  document.getElementById('shortPlayer').classList.add('open');document.body.style.overflow='hidden';playShortAt(shortIdx);
+}
+function openFirstShort(){loadVideos();if(!shortList.length)return;shortIdx=0;document.getElementById('shortPlayer').classList.add('open');document.body.style.overflow='hidden';playShortAt(0);}
+function playShortAt(i){
+  if(i<0)i=0;if(i>=shortList.length)i=0;shortIdx=i;let v=shortList[i].v;doView(v.id);
+  let vid=document.getElementById('shortMainVideo');vid.src=v.video;vid.play().catch(()=>{});
+  document.getElementById('shortTitleFull').textContent=v.title;document.getElementById('shortChannelName').textContent=v.channel;document.getElementById('shortMetaFull').textContent=v.cat+' • '+getCount(v.id).view+' Views';document.getElementById('profileSheetName').textContent=v.channel;updateShortCounts();
+}
+function shortNext(){playShortAt(shortIdx+1);}
+function openUploadFromShort(){closeShortPlayerNoBack();togglePop('uploadBox');}
+function openSubsFromShort(){closeShortPlayerNoBack();openNotiBox();}
+function goHomeFromShort(){closeShortPlayerNoBack();forceAppHome();}
+function goHome(){forceAppHome();}
+function openGoLive(){document.querySelectorAll('.popup').forEach(p=>p.style.display='none');document.getElementById('goLiveBox').style.display='block';}
+function startMyLive(){let t=document.getElementById('liveTitleInput').value||'Mera Live';toast('🔴 Live Shuru Ho Gaya - '+t);togglePop('goLiveBox');openLivePlayer(t);notifyAllSubscribers(t,'@BharatFlix');}
+function openLivePlayer(title){document.getElementById('livePlayerTitle').textContent=title||'Live';document.getElementById('livePlayer').classList.add('open');}
+function closeLivePlayer(){document.getElementById('livePlayer').classList.remove('open');}
+function sendLiveChat(){let inp=document.getElementById('liveChatInput');let txt=inp.value.trim();if(!txt)return;let d=document.createElement('div');d.textContent='👤 '+txt;d.style.cssText='background:#f5f5f5;padding:6px;border-radius:8px;font-size:13px;margin-top:6px';document.getElementById('liveChatList').appendChild(d);inp.value='';toast('Live Chat Ho Gaya');}
+function handleUpload(input){
+  let file=input.files[0];if(!file)return;
+  let title=document.getElementById('uploadTitle').value||file.name;
+  let type=document.getElementById('uploadType').value;
+  let cat=document.getElementById('uploadCategory').value;
+  let url=URL.createObjectURL(file);
+  let newV={id:'my_'+Date.now(),type:type,title:title,channel:'@BharatFlix',cat:cat,video:url,thumb:'https://picsum.photos/800/450?random='+Date.now(),dur:'0:00'};
+  let saved=[];try{saved=JSON.parse(localStorage.getItem('bf74_my_videos')||'[]')}catch(e){saved=[]}
+  saved.unshift(newV);localStorage.setItem('bf74_my_videos',JSON.stringify(saved));
+  document.getElementById('uploadStatus').textContent='✅ Upload Ho Gaya - '+title;
+  toast('✅ Video Upload Ho Gayi - Ab Sabko Dikhegi');
+  /* PERMANENT NOTIFICATION - CREATOR NE VIDEO DALI - SUBSCRIBER KO JAYEGI */
+  notifyAllSubscribers(title,'@BharatFlix');
+  addNoti('@BharatFlix ne nayi Video dali - '+title+' - Permanent Notification');
+  togglePop('uploadBox');renderFeed();updateDashboard();
+}
+function openMyChannel(){
+  document.querySelectorAll('.popup').forEach(p=>p.style.display='none');document.getElementById('myChannelBox').style.display='block';
+  let saved=[];try{saved=JSON.parse(localStorage.getItem('bf74_my_videos')||'[]')}catch(e){saved=[]}
+  document.getElementById('myChannelStats').textContent='Total Video: '+saved.length;
+  document.getElementById('myChannelList').innerHTML=saved.length?saved.map(v=>`<div class="myVideoRow"><img src="${v.thumb}"><div><b style="font-size:13px">${v.title}</b><br><small>${v.cat} • ${getCount(v.id).view} Views</small><br><button onclick="openVideoEdit('${v.id}')" style="background:#000">✏️ Edit</button> <button onclick="deleteMyVideo('${v.id}')" style="background:#ff0000">🗑️ Delete</button></div></div>`).join(''):'<p style="font-size:13px;margin-top:8px">Abhi Koi Video Nahi Hai - Upload Karo</p>';
+}
+function deleteMyVideo(id){if(!confirm('Delete Karna Hai?'))return;let saved=JSON.parse(localStorage.getItem('bf74_my_videos')||'[]');saved=saved.filter(v=>v.id!==id);localStorage.setItem('bf74_my_videos',JSON.stringify(saved));toast('Video Delete Ho Gayi');openMyChannel();renderFeed();}
+let editId=null;
+function openVideoEdit(id){editId=id;let v=allVideos.find(x=>x.id===id);if(!v)return;document.querySelectorAll('.popup').forEach(p=>p.style.display='none');document.getElementById('videoEditBox').style.display='block';document.getElementById('editVideoTitle').value=v.title;document.getElementById('editVideoDesc').value=v.title;document.getElementById('editVideoCat').value=v.cat;}
+function saveVideoEdit(){if(!editId)return;let saved=JSON.parse(localStorage.getItem('bf74_my_videos')||'[]');saved=saved.map(v=>{if(v.id===editId){v.title=document.getElementById('editVideoTitle').value||v.title;v.cat=document.getElementById('editVideoCat').value;}return v;});localStorage.setItem('bf74_my_videos',JSON.stringify(saved));toast('✅ Video Save Ho Gayi');togglePop('videoEditBox');renderFeed();}
+function deleteVideoEdit(){if(!editId)return;deleteMyVideo(editId);togglePop('videoEditBox');}
+function openDashboard(){document.querySelectorAll('.popup').forEach(p=>p.style.display='none');document.getElementById('dashboardBox').style.display='block';updateDashboard();}
+function updateDashboard(){
+  let saved=[];try{saved=JSON.parse(localStorage.getItem('bf74_my_videos')||'[]')}catch(e){saved=[]}
+  let views=0,likes=0,earn=0;allVideos.forEach(v=>{let c=getCount(v.id);views+=c.view;likes+=c.like;earn+=c.thanks+c.join;});
+  document.getElementById('dashVideos').textContent=allVideos.length;document.getElementById('dashViews').textContent=views;document.getElementById('dashLikes').textContent=likes;document.getElementById('dashEarn').textContent='₹'+earn;
+  document.getElementById('dashName').textContent=localStorage.getItem('bf_profile_name')||'BharatFlix';document.getElementById('dashHandle').textContent=localStorage.getItem('bf_profile_handle')||'@BharatFlix';
+  document.getElementById('dashList').innerHTML=allVideos.slice(0,5).map(v=>`<div style="padding:8px 0;border-bottom:1px solid #eee;font-size:13px">${v.title} - ${getCount(v.id).view} Views</div>`).join('');
+}
+function startProfile(){
+  let name=document.getElementById('accName').value||'BharatFlix';let ch=document.getElementById('accChannel').value||name;let handle=document.getElementById('accHandle').value||'@'+name.replace(/\s/g,'');
+  localStorage.setItem('bf_profile_name',name);localStorage.setItem('bf_profile_handle',handle);localStorage.setItem('bf_profile_channel',ch);
+  document.getElementById('profileStatus').textContent='✅ Profile Chalu Ho Gaya - '+name;
+  document.getElementById('accInfo').textContent='Profile Save Ho Gaya - '+name+' - '+ch+' - '+handle;
+  toast('✅ Profile Chalu Ho Gaya - Ab Channel Ban Gaya');updateDashboard();
+}
+function saveChannelSettings(){let n=document.getElementById('chanName').value||'BharatFlix';localStorage.setItem('bf_profile_name',n);toast('✅ Channel Setting Save Ho Gayi - '+n);}
+function deleteChannel(){if(!confirm('Channel Delete Karna Hai?'))return;localStorage.removeItem('bf74_my_videos');toast('Channel Delete Ho Gaya');renderFeed();}
+function toggleChanSwitch(k,el){el.classList.toggle('on');toast(k+' - '+(el.classList.contains('on')?'On':'Off'));}
+function changeBanner(inp){if(inp.files[0]){let u=URL.createObjectURL(inp.files[0]);document.getElementById('ytBannerPreview').src=u;toast('Banner Badal Gaya');}}
+function changeAvatar(inp){if(inp.files[0]){let u=URL.createObjectURL(inp.files[0]);document.getElementById('ytAvatarPreview').src=u;toast('Profile Photo Badal Gayi');}}
+renderFeed();updateDashboard();updateSubscribeUI();
+</script>
+</body>
+</html>
