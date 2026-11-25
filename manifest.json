@@ -1,13 +1,14 @@
 {
   "name": "BharatFlix",
   "short_name": "BharatFlix",
-  "start_url": "/index.html",
+  "start_url": "/bharat-flix/index.html",
+  "scope": "/bharat-flix/",
   "display": "standalone",
   "background_color": "#FF6A00",
   "theme_color": "#FF6A00",
   "icons": [
     {
-      "src": "https://raw.githubusercontent.com/BHARATFLIX/bharat-flix/main/apk-icon.png",
+      "src": "https://bharatflix.github.io/bharat-flix/apk-icon.png",
       "sizes": "512x512",
       "type": "image/png"
     }
