@@ -6,6 +6,7 @@
 <meta name="google" content="notranslate">
 <title>BharatFlix - Aapka Apna Swadeshi App</title>
 <meta name="theme-color" content="#FF6A00">
+<link rel="manifest" href="manifest.json">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
@@ -239,7 +240,7 @@ function isReallyInstalled(){return window.matchMedia('(display-mode: standalone
 function setInstallState(){if(isReallyInstalled())installBtn.style.display='none';else{installBtn.style.display='block';installBtn.className='';installBtn.textContent='Install';}}setInstallState();
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;setInstallState();});
 window.addEventListener('appinstalled',()=>{deferredPrompt=null;toast('Install Ho Gaya');setInstallState();});
-function installApp(){if(isReallyInstalled()){toast('Pehle Se Install Hai');return;}if(deferredPrompt){installBtn.className='installing';installBtn.textContent='...';deferredPrompt.prompt();deferredPrompt.userChoice.then(r=>{if(r.outcome==='accepted')toast('Install Ho Raha Hai');else{setInstallState();}deferredPrompt=null;});}else{toast('Thoda Ruko');setTimeout(()=>location.reload(),1000);}}
+function installApp(){if(isReallyInstalled()){toast('Pehle Se Install Hai');return;}if(deferredPrompt){installBtn.className='installing';installBtn.textContent='...';deferredPrompt.prompt();deferredPrompt.userChoice.then(r=>{if(r.outcome==='accepted')toast('Install Ho Raha Hai');else{setInstallState();}deferredPrompt=null;});}else{toast('Chrome me ⋮ > Add to Home Screen dabao');}}
 function goHome(){closeShortPlayer();closeLongPlayer();forceAppHome();}
 function playAd(){toast('Ad Chal Raha Hai - Skip in 5s');}
 function saveUpi(){let u=document.getElementById('myUpiInput').value.trim();if(!u){toast('UPI Likho');return;}localStorage.setItem('bf_upi',u);toast('UPI Save Ho Gaya - '+u);openDashboard();}
