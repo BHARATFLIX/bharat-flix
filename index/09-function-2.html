@@ -1,0 +1,30 @@
+<!-- 09-function-2.html - Function Part 2 - Start -->
+<script>
+function initApp(){
+renderCats();
+changeLang(currentLang);
+loadVideos();
+let savedName=localStorage.getItem('bf_name');
+if(savedName){ let a=document.getElementById('accName'); if(a)a.innerText=savedName; }
+let q=localStorage.getItem('bf_quality'); if(q){ let s=document.getElementById('qualitySel'); if(s)s.value=q; }
+}
+
+function saveHistory(v){
+try{
+let h=JSON.parse(localStorage.getItem('bf_history')||'[]');
+h.unshift({title:v.title,time:Date.now()});
+localStorage.setItem('bf_history',JSON.stringify(h.slice(0,50)));
+}catch(e){}
+}
+
+function openGoLive(){
+alert('🔴 Go Live - Live Shuru Ho Gaya! Title: '+ (document.getElementById('upTitle')?.value||'Live'));
+}
+
+window.addEventListener('DOMContentLoaded',initApp);
+window.addEventListener('click',function(e){
+if(!e.target.closest('.pop') && !e.target.closest('.topIcons')){
+document.querySelectorAll('.pop').forEach(p=>p.style.display='none');
+}
+});
+</script>
