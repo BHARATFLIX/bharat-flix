@@ -1,0 +1,74 @@
+<!-- 05-setting-report-admin.html -->
+<style>
+.pop{position:fixed;right:10px;top:60px;background:#111;border:1px solid #333;border-radius:14px;padding:12px;width:280px;display:none;z-index:50}
+.pop h3{margin:0 0 8px}
+.pop button,.pop select{width:100%;background:#222;color:#fff;border:0;padding:10px;border-radius:10px;margin:4px 0;text-align:left}
+.pop button.on{background:#FF6A00}
+.bottomNav{position:fixed;bottom:0;left:0;right:0;background:#000;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #222;z-index:20}
+.bottomNav button{background:transparent;border:0;color:#fff;font-size:20px}
+.bottomNav small{display:block;font-size:10px}
+</style>
+
+<!-- SETTINGS POPUP -->
+<div class="pop" id="settingsBox">
+<h3>⚙️ Settings</h3>
+<label style="font-size:12px;color:#aaa">Language / भाषा</label>
+<select id="langSel" onchange="changeLang(this.value)"><option value="hi">Hindi</option><option value="bho">Bhojpuri</option><option value="en">English</option></select>
+<label style="font-size:12px;color:#aaa">Theme</label>
+<select onchange="changeTheme(this.value)"><option value="dark">Dark</option><option value="light">Light</option></select>
+<button onclick="toggleHistory()">🕘 History</button>
+<button onclick="openMyAccount()">👤 My Account</button>
+<button onclick="clearHistory()">🗑️ History Clear</button>
+<button onclick="togglePop('settingsBox')">❌ Band Karo</button>
+</div>
+
+<!-- ADMIN POPUP -->
+<div class="pop" id="adminBox">
+<h3>🛡️ Admin</h3>
+<button onclick="openAdminLogin()">🔑 Admin Login</button>
+<button onclick="openAdminPanel()">📊 Dashboard</button>
+<button onclick="togglePop('adminBox')">❌ Band Karo</button>
+</div>
+
+<!-- REPORT POPUP -->
+<div class="pop" id="reportBox">
+<h3>🚩 Report Karo</h3>
+<button onclick="doReport('Spam')">Spam Hai</button>
+<button onclick="doReport('Ganda Content')">Ganda Content</button>
+<button onclick="doReport('Copyright')">Copyright</button>
+<button onclick="doReport('Fake')">Fake / Galat Jankari</button>
+<button onclick="togglePop('reportBox')">❌ Band Karo</button>
+</div>
+
+<!-- ACCOUNT POPUP -->
+<div class="pop" id="accountBox">
+<h3>👤 My Account</h3>
+<p id="accName" style="font-size:13px;color:#aaa">Guest User</p>
+<input id="accNameInput" placeholder="Apna Naam likho" style="width:100%;background:#222;border:0;color:#fff;padding:10px;border-radius:10px">
+<button onclick="saveAccount()">💾 Save</button>
+<button onclick="logoutAcc()">🚪 Logout</button>
+<button onclick="togglePop('accountBox')">❌ Band Karo</button>
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="bottomNav">
+<button onclick="goHome()">🏠<small>Home</small></button>
+<button onclick="openFirstShort()">⚡<small>Shorts</small></button>
+<button onclick="openCreate()">➕<small>Create</small></button>
+<button onclick="togglePop('settingsBox')">⚙️<small>Setting</small></button>
+<button onclick="openMyAccount()">👤<small>Account</small></button>
+</div>
+
+<script>
+function togglePop(id){let el=document.getElementById(id); let show=el.style.display!='block'; document.querySelectorAll('.pop').forEach(p=>p.style.display='none'); el.style.display=show?'block':'none'}
+function openMyAccount(){togglePop('accountBox')}
+function openCreate(){document.getElementById('createWrap').scrollIntoView({behavior:'smooth'})}
+function saveAccount(){let n=document.getElementById('accNameInput').value.trim(); if(!n)return alert('Naam likho'); localStorage.setItem('bf_name',n); document.getElementById('accName').innerText=n; alert('Save Ho Gaya')}
+function logoutAcc(){localStorage.removeItem('bf_name'); document.getElementById('accName').innerText='Guest User'; alert('Logout Ho Gaya')}
+function toggleHistory(){alert('History khul gayi')}
+function clearHistory(){localStorage.removeItem('bf_history'); alert('History Clear')}
+function changeTheme(v){document.body.style.background=v=='light'?'#fff':'#000'; document.body.style.color=v=='light'?'#000':'#fff'}
+function doReport(r){alert('Report ho gayi: '+r); togglePop('reportBox')}
+function openAdminLogin(){let p=prompt('Admin Password daalo'); if(p=='admin123'){alert('Admin Login Ho Gaya'); openAdminPanel()}else alert('Galat Password')}
+function openAdminPanel(){alert('Admin Dashboard - Videos / Users / Reports yahan dikhenge')}
+</script>
