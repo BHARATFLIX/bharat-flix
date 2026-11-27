@@ -1,0 +1,23 @@
+<!-- 07-dict.html - Translation Dict - Halka -->
+<script>
+const DICT={
+hi:{home:"Home",shorts:"Shorts",create:"Create",setting:"Setting",account:"Account",search:"Search Video",subscribe:"Subscribe",subscribed:"Subscribed",like:"Like",share:"Share",comment:"Comment likho...",upload:"Upload Karo",title:"Video ka Title likho..."},
+bho:{home:"Ghar",shorts:"Shorts",create:"Banao",setting:"Setting",account:"Account",search:"Video Khojo",subscribe:"Subscribe Karo",subscribed:"Subscribed",like:"Pasand",share:"Share Karo",comment:"Comment likho...",upload:"Upload Karo",title:"Video ke Title likho..."},
+en:{home:"Home",shorts:"Shorts",create:"Create",setting:"Setting",account:"Account",search:"Search Video",subscribe:"Subscribe",subscribed:"Subscribed",like:"Like",share:"Share",comment:"Write a comment...",upload:"Upload",title:"Write video title..."}
+};
+let currentLang=localStorage.getItem('bf_lang')||'hi';
+function t(key){
+let d=DICT[currentLang]||DICT['hi'];
+return d[key]||key;
+}
+function changeLang(l){
+currentLang=l; localStorage.setItem('bf_lang',l);
+let sel=document.getElementById('langSel'); if(sel)sel.value=l;
+let s=document.getElementById('searchInput'); if(s)s.placeholder=t('search');
+applyLang();
+}
+function applyLang(){
+// bottom nav + headings ko translate karo
+document.querySelectorAll('[data-t]').forEach(el=>{ el.innerText=t(el.getAttribute('data-t')); });
+}
+</script>
