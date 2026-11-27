@@ -1,0 +1,28 @@
+<!-- 06-langs.html - Language List - Halka -->
+<script>
+const LANGS=[
+{id:'all',name:'All'},
+{id:'bho',name:'Bhojpuri'},
+{id:'hi',name:'Hindi'},
+{id:'en',name:'English'},
+{id:'music',name:'Music'},
+{id:'comedy',name:'Comedy'},
+{id:'news',name:'News'},
+{id:'gaming',name:'Gaming'},
+{id:'vlog',name:'Vlog'},
+{id:'education',name:'Education'},
+{id:'sports',name:'Sports'}
+];
+let currentCat='all';
+function renderCats(){
+let row=document.getElementById('catRow'); if(!row)return; row.innerHTML='';
+LANGS.forEach(c=>{
+let b=document.createElement('button');
+b.innerText=c.name;
+if(c.id==currentCat)b.classList.add('on');
+b.onclick=()=>{currentCat=c.id; renderCats(); filterByCat();};
+row.appendChild(b);
+});
+}
+function filterByCat(){ if(typeof loadVideos=='function') loadVideos(); }
+</script>
