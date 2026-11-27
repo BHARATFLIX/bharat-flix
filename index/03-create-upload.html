@@ -1,0 +1,88 @@
+<!-- 03-create-upload.html -->
+<style>
+.createWrap{max-width:600px;margin:0 auto;padding:10px}
+.createWrap input,.createWrap textarea,.createWrap select{width:100%;background:#1c1c1c;border:0;outline:0;color:#fff;padding:12px;border-radius:12px;margin:6px 0}
+.createWrap label{font-size:13px;color:#aaa}
+.upBtn{width:100%;background:#FF6A00;border:0;color:#fff;padding:13px;border-radius:12px;font-weight:800;font-size:16px}
+.catChips{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}
+.catChips button{background:#222;color:#fff;border:0;padding:7px 14px;border-radius:20px}
+.catChips button.on{background:#FF6A00}
+.thumbBox{width:100%;aspect-ratio:16/9;background:#222;border-radius:12px;display:flex;align-items:center;justify-content:center;overflow:hidden;margin:6px 0}
+.thumbBox img{width:100%;height:100%;object-fit:cover}
+</style>
+
+<div class="createWrap" id="createWrap">
+<h2>➕ Create / Upload</h2>
+
+<div class="catChips">
+<button onclick="setUploadType('video',this)" class="on">🎬 Long Video</button>
+<button onclick="setUploadType('short',this)">⚡ Short</button>
+<button onclick="setUploadType('live',this)">🔴 Go Live</button>
+<button onclick="setUploadType('post',this)">📝 Post</button>
+</div>
+
+<label>Video / Short Chunno</label>
+<input type="file" id="upFile" accept="video/*" onchange="previewUpload(this)">
+
+<div class="thumbBox" id="thumbBox">Thumbnail Preview</div>
+<label>Thumbnail</label>
+<input type="file" id="upThumb" accept="image/*" onchange="previewThumb(this)">
+
+<label>Title *</label>
+<input id="upTitle" placeholder="Video ka Title likho...">
+
+<label>Description</label>
+<textarea id="upDesc" rows="3" placeholder="Description likho..."></textarea>
+
+<label>Category</label>
+<select id="upCat">
+<option>All</option><option>Bhojpuri</option><option>Hindi</option><option>Music</option><option>Comedy</option><option>News</option><option>Gaming</option><option>Vlog</option><option>Education</option><option>Sports</option>
+</select>
+
+<label>Language</label>
+<select id="upLang"><option>Hindi</option><option>Bhojpuri</option><option>English</option><option>Other</option></select>
+
+<label>Privacy</label>
+<select id="upPrivacy"><option>Public</option><option>Unlisted</option><option>Private</option></select>
+
+<label><input type="checkbox" id="upKids"> Kids ke liye hai?</label><br>
+<label><input type="checkbox" id="upComments" checked> Comments On rakhe?</label>
+
+<button class="upBtn" onclick="uploadVideo()">📤 Upload Karo</button>
+<div id="upProgress" style="margin-top:10px;display:none">
+<div style="background:#222;height:8px;border-radius:8px;overflow:hidden"><div id="upBar" style="height:100%;width:0%;background:#FF6A00"></div></div>
+<p id="upStatus" style="font-size:13px;color:#aaa">Upload ho raha hai...</p>
+</div>
+</div>
+
+<script>
+let uploadType='video';
+function setUploadType(t,btn){
+uploadType=t;
+document.querySelectorAll('.catChips button').forEach(b=>b.classList.remove('on'));
+btn.classList.add('on');
+if(t=='live'){openGoLive(); return}
+if(t=='post'){alert('Post wala section khul gaya'); return}
+}
+function previewUpload(inp){
+if(!inp.files[0])return;
+let url=URL.createObjectURL(inp.files[0]);
+document.getElementById('thumbBox').innerHTML='<video src="'+url+'" controls style="width:100%;height:100%"></video>';
+}
+function previewThumb(inp){
+if(!inp.files[0])return;
+let url=URL.createObjectURL(inp.files[0]);
+document.getElementById('thumbBox').innerHTML='<img src="'+url+'">';
+}
+function uploadVideo(){
+let title=document.getElementById('upTitle').value.trim();
+if(!title){alert('Title to likho bhai'); return}
+document.getElementById('upProgress').style.display='block';
+let p=0;
+let iv=setInterval(()=>{
+p+=10; document.getElementById('upBar').style.width=p+'%';
+document.getElementById('upStatus').innerText='Upload ho raha hai... '+p+'%';
+if(p>=100){clearInterval(iv); document.getElementById('upStatus').innerText='✅ Upload Ho Gaya!'; alert('Video Upload Ho Gayi');}
+},300);
+}
+</script>
