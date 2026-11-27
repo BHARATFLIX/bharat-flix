@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>BhojFlix</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#000;color:#fff;font-family:sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.top{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:10px;padding:10px 14px;background:#000}
+.logo{font-size:22px;font-weight:900;color:#FF6A00}
+.logo span{color:#fff}
+.top .searchBox{flex:1;background:#1c1c1c;border-radius:20px;padding:7px 12px;display:flex;gap:6px}
+.top .searchBox input{flex:1;background:transparent;border:0;outline:0;color:#fff}
+.topIcons{display:flex;gap:12px;align-items:center;font-size:18px}
+.topIcons button{background:#1c1c1c;border:0;color:#fff;border-radius:50%;width:32px;height:32px}
+.chipRow{display:flex;gap:8px;overflow-x:auto;padding:6px 12px;white-space:nowrap}
+.chipRow button{background:#222;color:#fff;border:0;padding:6px 12px;border-radius:16px}
+.chipRow button.on{background:#FF6A00}
+</style>
+</head>
+<body>
+<div class="top">
+<div class="logo">Bhoj<span>Flix</span></div>
+<div class="searchBox">🔍<input id="searchInput" placeholder="Search Video" oninput="searchVideos(this.value)"></div>
+<div class="topIcons">
+<button onclick="togglePop('settingsBox')">⚙️</button>
+<button onclick="togglePop('adminBox')">🛡️</button>
+<button onclick="openMyAccount()">👤</button>
+</div>
+</div>
+<div class="chipRow" id="catRow"></div>
