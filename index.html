@@ -3,22 +3,41 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bharat Flix - Aapka Apna Swadeshi Platform</title>
+<title>Bharat Flix</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}
+body{background:#000;color:#fff;padding-bottom:70px}
+.top{display:flex;align-items:center;justify-content:space-between;padding:12px 15px;position:sticky;top:0;background:#000}
+.logo{font-size:22px;font-weight:900}.logo span{color:#e50914}
+.search{flex:1;margin:0 10px;background:#222;border-radius:20px;padding:8px 12px;color:#aaa}
+.avatar{width:32px;height:32px;border-radius:50%;background:#e50914;display:flex;align-items:center;justify-content:center;font-weight:900}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:10px 12px}
+.chips button{background:#222;color:#fff;border:0;padding:8px 14px;border-radius:20px;white-space:nowrap}
+iframe{width:100%;height:calc(100vh - 150px);border:0;background:#111}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#111;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #222}
+.bottom button{background:none;border:0;color:#aaa;font-size:12px}
+.bottom button.active{color:#fff}.bottom b{display:block;font-size:18px}
+</style>
 </head>
-<body style="background:#000;color:#fff;font-family:sans-serif;text-align:center;padding:20px;">
-<h1>Bharat Flix</h1>
-<p>Aapka Apna Swadeshi Platform</p>
-
-<a href="./01-handle.html" style="display:block;color:#fff;background:#222;padding:12px;margin:8px;border-radius:10px;text-decoration:none;">Part 1 - Handle</a>
-<a href="./02-player.html" style="display:block;color:#fff;background:#222;padding:12px;margin:8px;border-radius:10px;text-decoration:none;">Part 2 - Player</a>
-<a href="./03-create-upload.html" style="display:block;color:#fff;background:#e50914;padding:12px;margin:8px;border-radius:10px;text-decoration:none;">Part 3 - Create / Upload</a>
-<a href="./index/04-watch-channel-shorts.html" style="display:block;color:#fff;background:#222;padding:12px;margin:8px;border-radius:10px;text-decoration:none;">Part 4 - Watch / Channel / Shorts</a>
-<a href="./05-setting-report-admin.html" style="display:block;color:#fff;background:#222;padding:12px;margin:8px;border-radius:10px;text-decoration:none;">Part 5 - Setting / Report / Admin</a>
-<a href="./06-langs.html" style="display:block;color:#fff;background:#222;padding:12px;margin:8px;border-radius:10px;text-decoration:none;">Part 6 - Langs</a>
-<a href="./07-dict.html" style="display:block;color:#fff;background:#222;padding:12px;margin:8px;border-radius:10px;text-decoration:none;">Part 7 - Dict</a>
-<a href="./08-function-1.html" style="display:block;color:#fff;background:#222;padding:12px;margin:8px;border-radius:10px;text-decoration:none;">Part 8 - Function 1</a>
-<a href="./09-function-2.html" style="display:block;color:#fff;background:#222;padding:12px;margin:8px;border-radius:10px;text-decoration:none;">Part 9 - Function 2</a>
-<a href="./10-function-3.html" style="display:block;color:#fff;background:#222;padding:12px;margin:8px;border-radius:10px;text-decoration:none;">Part 10 - Function 3</a>
-
+<body>
+<div class="top"><div class="logo">Bharat <span>Flix</span></div><div class="search">🔍 Search...</div><div class="avatar">B</div></div>
+<div class="chips">
+<button onclick="load('index/04-watch-channel-shorts.html')">Home</button>
+<button onclick="load('index/02-player.html')">Player</button>
+<button onclick="load('index/03-create-upload.html')">Upload</button>
+<button onclick="load('index/01-handle.html')">Handle</button>
+<button onclick="load('index/05-setting-report-admin.html')">Setting</button>
+</div>
+<iframe id="app" src="./index/04-watch-channel-shorts.html"></iframe>
+<div class="bottom">
+<button class="active" onclick="load('index/04-watch-channel-shorts.html')"><b>🏠</b>Home</button>
+<button onclick="load('index/04-watch-channel-shorts.html')"><b>▶️</b>Shorts</button>
+<button onclick="load('index/03-create-upload.html')"><b>➕</b>Create</button>
+<button onclick="load('index/05-setting-report-admin.html')"><b>⚙️</b>Setting</button>
+<button onclick="load('index/01-handle.html')"><b>👤</b>You</button>
+</div>
+<script>
+function load(p){document.getElementById('app').src='./'+p;}
+</script>
 </body>
 </html>
