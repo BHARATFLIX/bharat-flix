@@ -3,12 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bharat Flix</title>
+<title>Bharat - Aapka Apna Swadeshi Platform</title>
+<meta name="description" content="Bharat - Aapka Apna Swadeshi Platform. Watch Movies, Web Series, Live, Shorts on Bharat Flix.">
+<!-- GOOGLE LOGO KE LIYE -->
+<link rel="icon" href="./logo.png">
+<link rel="apple-touch-icon" href="./logo.png">
+<meta property="og:title" content="Bharat - Aapka Apna Swadeshi Platform">
+<meta property="og:description" content="Bharat - Aapka Apna Swadeshi Platform">
+<meta property="og:image" content="https://bharatflix.github.io/bharat-flix/logo.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bharatflix.github.io/bharat-flix/">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}
 body{background:#fff;color:#000;padding-bottom:70px}
 .top{display:flex;align-items:center;gap:8px;padding:10px 12px;position:sticky;top:0;background:#fff;z-index:10}
-.logo{font-size:22px;font-weight:900;line-height:1;cursor:pointer}.logo i{font-style:normal;color:#ff7a00}.logo b{color:#138808}
+.logo{cursor:pointer;line-height:0}.logo img{height:42px;width:42px;border-radius:50%;object-fit:cover}
 .icon{width:36px;height:36px;background:#f1f1f1;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;border:0}
 .install{background:#1e7bff;color:#fff;border:0;padding:8px 12px;border-radius:20px;font-weight:700}
 .searchBox{display:none;padding:0 12px 10px}.searchBox input{width:100%;padding:10px;border:1px solid #ddd;border-radius:20px}
@@ -26,7 +35,7 @@ iframe{width:100%;height:0;border:0;display:none}
 </head>
 <body>
 <div class="top">
-<div class="logo" onclick="home()">Bharat<br><i>Flix</i> <b>🇮🇳</b></div>
+<div class="logo" onclick="home()"><img src="./logo.png" alt="Bharat Flix"></div>
 <button class="icon" onclick="toggleSearch()">🔍</button>
 <button class="icon" onclick="show('index/05-setting-report-admin.html')">🔔</button>
 <button class="install" id="installBtn" onclick="doInstall()">Install</button>
@@ -67,7 +76,6 @@ function filterCat(cat,btn){document.querySelectorAll('#chips button').forEach(b
 function filterCards(){let q=document.getElementById('q').value.toLowerCase();document.querySelectorAll('#grid .card').forEach(c=>{c.style.display=c.dataset.name.includes(q)?'block':'none';});}
 function show(p){let f=document.getElementById('app');f.style.display='block';f.style.height='calc(100vh - 70px)';f.src='./'+p;window.scrollTo(0,0);}
 function home(){let f=document.getElementById('app');f.style.display='none';f.src='';window.scrollTo(0,0);}
-// AUTOMATIC - jiska number / handle aayega wahi khulega
 window.onload=function(){
 let u=new URLSearchParams(location.search);
 let go=u.get('go')||u.get('page')||u.get('open');
