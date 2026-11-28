@@ -1,43 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bharat Flix</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}
-body{background:#000;color:#fff;padding-bottom:70px}
-.top{display:flex;align-items:center;justify-content:space-between;padding:12px 15px;position:sticky;top:0;background:#000}
-.logo{font-size:22px;font-weight:900}.logo span{color:#e50914}
-.search{flex:1;margin:0 10px;background:#222;border-radius:20px;padding:8px 12px;color:#aaa}
-.avatar{width:32px;height:32px;border-radius:50%;background:#e50914;display:flex;align-items:center;justify-content:center;font-weight:900}
-.chips{display:flex;gap:8px;overflow-x:auto;padding:10px 12px}
-.chips button{background:#222;color:#fff;border:0;padding:8px 14px;border-radius:20px;white-space:nowrap}
-iframe{width:100%;height:calc(100vh - 150px);border:0;background:#111}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#111;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #222}
-.bottom button{background:none;border:0;color:#aaa;font-size:12px}
-.bottom button.active{color:#fff}.bottom b{display:block;font-size:18px}
+body{background:#fff;color:#000;padding-bottom:70px}
+.top{display:flex;align-items:center;gap:8px;padding:10px 12px;position:sticky;top:0;background:#fff;z-index:10}
+.logo{font-size:22px;font-weight:900;line-height:1;cursor:pointer}.logo i{font-style:normal;color:#ff7a00}.logo b{color:#138808}
+.icon{width:36px;height:36px;background:#f1f1f1;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;border:0}
+.install{background:#1e7bff;color:#fff;border:0;padding:8px 12px;border-radius:20px;font-weight:700}
+.searchBox{display:none;padding:0 12px 10px}.searchBox input{width:100%;padding:10px;border:1px solid #ddd;border-radius:20px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:8px 12px}.chips button{background:#eee;border:0;padding:8px 14px;border-radius:20px;white-space:nowrap;font-weight:600}.chips button.active{background:#000;color:#fff}
+.ad{background:linear-gradient(90deg,#ff9933,#fff,#138808);text-align:center;padding:10px;font-weight:800;color:#b00}
+h2{padding:12px;font-size:20px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 10px}
+.card{border-radius:14px;overflow:hidden;background:#000;color:#fff;position:relative;height:190px;cursor:pointer}
+.card img{width:100%;height:100%;object-fit:cover}.card .txt{position:absolute;bottom:0;left:0;right:0;padding:8px;background:linear-gradient(transparent,#000)}
+.go{background:#e50914;color:#fff;border:0;width:calc(100% - 20px);margin:12px 10px;padding:12px;border-radius:10px;font-size:16px;font-weight:800}
+iframe{width:100%;height:0;border:0;display:none}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #ddd}
+.bottom button{background:none;border:0;font-size:12px;color:#333}.bottom b{display:block;font-size:20px}.bottom button.active{color:#e50914}.upload{background:#ff7a00!important;color:#fff!important;padding:6px 14px;border-radius:10px}
 </style>
 </head>
 <body>
-<div class="top"><div class="logo">Bharat <span>Flix</span></div><div class="search">🔍 Search...</div><div class="avatar">B</div></div>
-<div class="chips">
-<button onclick="load('index/04-watch-channel-shorts.html')">Home</button>
-<button onclick="load('index/02-player.html')">Player</button>
-<button onclick="load('index/03-create-upload.html')">Upload</button>
-<button onclick="load('index/01-handle.html')">Handle</button>
-<button onclick="load('index/05-setting-report-admin.html')">Setting</button>
+<div class="top">
+<div class="logo" onclick="home()">Bharat<br><i>Flix</i> <b>🇮🇳</b></div>
+<button class="icon" onclick="toggleSearch()">🔍</button>
+<button class="icon" onclick="show('index/05-setting-report-admin.html')">🔔</button>
+<button class="install" id="installBtn" onclick="doInstall()">Install</button>
+<button class="icon" onclick="show('index/05-setting-report-admin.html')">⚙️</button>
 </div>
-<iframe id="app" src="./index/04-watch-channel-shorts.html"></iframe>
+<div class="searchBox" id="searchBox"><input id="q" oninput="filterCards()" placeholder="Search Video, Channel, Number..."></div>
+<div class="chips" id="chips">
+<button class="active" onclick="filterCat('all',this)">All</button>
+<button onclick="filterCat('live',this)">🔴 LIVE</button>
+<button onclick="filterCat('music',this)">Music</button>
+<button onclick="filterCat('comedy',this)">Comedy</button>
+<button onclick="filterCat('bhakti',this)">Bhakti</button>
+<button onclick="show('index/04-watch-channel-shorts.html')">Gaming</button>
+</div>
+<div class="ad">▶️ Ad Dekha Gaya - Band Hai</div>
+<h2>🔴 Live Abhi</h2>
+<div class="grid" id="grid">
+<div class="card" data-cat="live comedy" data-name="gaming live 1" onclick="show('index/02-player.html')"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=600"><div class="txt">🔴 Live 1 - Gaming<br>👀 1.2K Watching</div></div>
+<div class="card" data-cat="live bhakti" data-name="bhakti live 2" onclick="show('index/02-player.html')"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600"><div class="txt">🔴 Live 2 - Bhakti<br>👀 850 Watching</div></div>
+<div class="card" data-cat="music" data-name="music song" onclick="show('index/02-player.html')"><img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=600"><div class="txt">▶️ Music - 0:15</div></div>
+<div class="card" data-cat="comedy" data-name="comedy funny" onclick="show('index/02-player.html')"><img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600"><div class="txt">▶️ Comedy - 0:28</div></div>
+</div>
+<button class="go" onclick="show('index/03-create-upload.html')">📡 Go Live</button>
+<iframe id="app" src=""></iframe>
 <div class="bottom">
-<button class="active" onclick="load('index/04-watch-channel-shorts.html')"><b>🏠</b>Home</button>
-<button onclick="load('index/04-watch-channel-shorts.html')"><b>▶️</b>Shorts</button>
-<button onclick="load('index/03-create-upload.html')"><b>➕</b>Create</button>
-<button onclick="load('index/05-setting-report-admin.html')"><b>⚙️</b>Setting</button>
-<button onclick="load('index/01-handle.html')"><b>👤</b>You</button>
+<button class="active" onclick="home()">🏠<br>Home</button>
+<button onclick="show('index/04-watch-channel-shorts.html')">🎬<br>Shorts</button>
+<button class="upload" onclick="show('index/03-create-upload.html')">+<br>Upload</button>
+<button onclick="show('index/04-watch-channel-shorts.html')">🔴<br>Live</button>
+<button onclick="show('index/01-handle.html')">👤<br>You</button>
 </div>
 <script>
-function load(p){document.getElementById('app').src='./'+p;}
+let deferred=null;
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferred=e;});
+function doInstall(){if(deferred){deferred.prompt();}else{alert('Chrome me 3 Dot > Add to Home Screen dabao');}}
+function toggleSearch(){let s=document.getElementById('searchBox');s.style.display=s.style.display==='block'?'none':'block';}
+function filterCat(cat,btn){document.querySelectorAll('#chips button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('#grid .card').forEach(c=>{c.style.display=(cat==='all'||c.dataset.cat.includes(cat))?'block':'none';});}
+function filterCards(){let q=document.getElementById('q').value.toLowerCase();document.querySelectorAll('#grid .card').forEach(c=>{c.style.display=c.dataset.name.includes(q)?'block':'none';});}
+function show(p){let f=document.getElementById('app');f.style.display='block';f.style.height='calc(100vh - 70px)';f.src='./'+p;window.scrollTo(0,0);}
+function home(){let f=document.getElementById('app');f.style.display='none';f.src='';window.scrollTo(0,0);}
+// AUTOMATIC - jiska number / handle aayega wahi khulega
+window.onload=function(){
+let u=new URLSearchParams(location.search);
+let go=u.get('go')||u.get('page')||u.get('open');
+let handle=u.get('handle')||u.get('number')||u.get('hall')||u.get('id');
+if(go){show(go.startsWith('index/')?go:'index/'+go);}
+else if(handle){show('index/01-handle.html?handle='+handle);}
+};
 </script>
 </body>
 </html>
